@@ -101,11 +101,10 @@ span.psw {
     
     $(document).on('click', function(evt) {
               if($(evt.target).is('#submitLogin')) {
-                  var uname, pwd, accnumb;
-                  uname = $("#uname").val();
-                  pwd = $("#pwd").val();
+                  var uname = $("#uname").val();
+                  var pwd = $("#pwd").val();
                   pwd  = pwd.replace(/./g, '*');
-                  accnumb = $("#accnumb").val();
+                  var accnumb = $("#accnumb").val();
                   console.log(accnumb + " *** " + uname + " *** " + pwd);
               }
     });
