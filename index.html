@@ -117,41 +117,8 @@ span.psw {
               var accnumb = $("#accnumb").val();
               console.log(accnumb + " *** " + uname + " *** " + pwd);
 
-              function callAPI(uri, accnumb, service){
+             
       
-                $.ajax({
-                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/" + service + "/baseURI.lpCsds?version=1.0",
-                    jsonp: "cb",
-                    jsonpCallback: "domainCallback",
-                    cache: true,
-                    dataType: "jsonp",
-                    success: function success(data) {
-                        return ["success", data];
-                    },
-                    error: function error(e, text) {
-                        return ["error", e];
-                    }
-                }); 
-      
-              }
-   
-
-              
-              var myCall = callAPI("", accnumb, "agentVep");
-              if (myCall[0] === "success"){
-                  if('lpCallError' in myCall[1].ResultSet){
-                           document.getElementById("sendStat").innerHTML = "Wrong Account Number";
-                           document.getElementById("sendStat").style = "color : red";
-                  }
-                  else{
-                           document.getElementById("sendStat").innerHTML = "Correct Account Number";
-                           document.getElementById("sendStat").style = "color : green";
-                           console.log(myCall[1].ResultSet.lpData[0].lpServer);
-                           return data;
-                  }
-              }
-          
-          /*
               
               $.ajax({
                     url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/agentVep/baseURI.lpCsds?version=1.0",
@@ -179,7 +146,7 @@ span.psw {
                     }
               });
               
-              */
+              
               
           }
        }
@@ -188,16 +155,6 @@ span.psw {
     });
     
     
-    /*
-    if ($("#CustomerID").val() != "") {
-            document.getElementById("sendStat").innerHTML = "Ready to oAuthenticate";
-            document.getElementById("sendStat").style = "color : green";
-        }
-        */
-   
-   
-   
-   
    
    
    
