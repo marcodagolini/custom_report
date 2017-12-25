@@ -3,28 +3,7 @@
 
 
 <head>
-  <script>
-   
-   function callAPI(uri, accnumb, service){
-      
-     $.ajax({
-                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/" + service + "/baseURI.lpCsds?version=1.0",
-                    jsonp: "cb",
-                    jsonpCallback: "domainCallback",
-                    cache: true,
-                    dataType: "jsonp",
-                    success: function success(data) {
-                        return ["success", data];
-                    },
-                    error: function error(e, text) {
-                        return ["error", e];
-                    }
-              }); 
-      
-   }
-   
-   
-</script>
+  
 </head>
 
 
@@ -135,6 +114,26 @@ span.psw {
               var pwd = $("#pwd").val();
               var accnumb = $("#accnumb").val();
               console.log(accnumb + " *** " + uname + " *** " + pwd);
+
+              function callAPI(uri, accnumb, service){
+      
+                $.ajax({
+                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/" + service + "/baseURI.lpCsds?version=1.0",
+                    jsonp: "cb",
+                    jsonpCallback: "domainCallback",
+                    cache: true,
+                    dataType: "jsonp",
+                    success: function success(data) {
+                        return ["success", data];
+                    },
+                    error: function error(e, text) {
+                        return ["error", e];
+                    }
+                }); 
+      
+              }
+   
+
               
               var callAPI = callAPI("", accnumb, "agentVep");
               if (callAPI[0] === "success"){
