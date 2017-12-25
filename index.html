@@ -122,7 +122,7 @@ span.psw {
                     cache: true,
                     dataType: "jsonp",
                     success: function success(data) {
-                        if(data.hasOwnProperty('ResultSet.lpCallError')){
+                        if('lpCallError' in data.ResultSet){
                            document.getElementById("sendStat").innerHTML = "Wrong Account Number";
                            document.getElementById("sendStat").style = "color : red";
                            
