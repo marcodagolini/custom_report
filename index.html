@@ -115,7 +115,13 @@ span.psw {
                     cache: true,
                     dataType: "jsonp",
                     success: function success(data) {
-                        console.log(data.ResultSet.lpData[0].lpServer);
+                        if((data.ResultSet.lpData[0].lpServer)!== null){
+                           console.log(data.ResultSet.lpData[0].lpServer);
+                        }
+                        else{
+                           document.getElementById("sendStat").innerHTML = "Wrong Account Number";
+                           document.getElementById("sendStat").style = "color : red";
+                        }
                     },
                     error: function error(e, text) {
                         console.log(text);
