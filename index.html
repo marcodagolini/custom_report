@@ -101,7 +101,6 @@ span.psw {
               if($(evt.target).is('#submitLogin')) {
                   var uname = $("#uname").val();
                   var pwd = $("#pwd").val();
-                  pwd  = pwd.replace(/./g, '*');
                   var accnumb = $("#accnumb").val();
                   console.log(accnumb + " *** " + uname + " *** " + pwd);
               }
