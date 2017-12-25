@@ -68,7 +68,7 @@ span.psw {
 
 <h2>Report Login</h2>
 
-<form action="/action_page.php">
+<form>
 
   <div class="container">
   
@@ -90,6 +90,18 @@ span.psw {
 
 
 </form>
+
+<script>
+    
+    if ($("#CustomerID").val() != "") {
+            document.getElementById("sendStat").innerHTML = "Ready to oAuthenticate";
+            document.getElementById("sendStat").style = "color : green";
+        }
+    
+</script>
+    
+    
+
 
 </body>
 </html>
