@@ -136,16 +136,16 @@ span.psw {
    
 
               
-              var callAPI = callAPI("", accnumb, "agentVep");
-              if (callAPI[0] === "success"){
-                  if('lpCallError' in callAPI[1].ResultSet){
+              var myCall = callAPI("", accnumb, "agentVep");
+              if (myCall[0] === "success"){
+                  if('lpCallError' in myCall[1].ResultSet){
                            document.getElementById("sendStat").innerHTML = "Wrong Account Number";
                            document.getElementById("sendStat").style = "color : red";
                   }
                   else{
                            document.getElementById("sendStat").innerHTML = "Correct Account Number";
                            document.getElementById("sendStat").style = "color : green";
-                           console.log(callAPI[1].ResultSet.lpData[0].lpServer);
+                           console.log(myCall[1].ResultSet.lpData[0].lpServer);
                            return data;
                   }
               }
