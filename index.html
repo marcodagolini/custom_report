@@ -77,15 +77,15 @@ span.psw {
   <div class="container">
   
     <label><b>Account Number</b></label>
-    <input type="text" placeholder="Enter Account Number" name="accnumb" required>
+    <input id="accnumb" type="text" placeholder="Enter Account Number" name="accnumb" required>
   
     <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input id="uname" type="text" placeholder="Enter Username" name="uname" required>
 
     <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input id="psw" type="password" placeholder="Enter Password" name="psw" required>
         
-    <button type="submit">Login</button>
+    <button id="submitLogin" type="submit">Login</button>
     
   </div>
     </br></br></br></br>
@@ -96,6 +96,18 @@ span.psw {
 </form>
 
 <script>
+    
+    $(document).on('click', function(evt) {
+              if($(evt.target).is('#submitLogin')) {
+                  var uname, pwd, accnumb;
+                  uname = $("#uname").innerHTML;
+                  pwd = $("#pwd").innerHTML;
+                  accnumb = $("#accnumb").innerHTML;
+                  console.log(uname + " *** " + pwd + " *** " + accnumb);
+              }
+    });
+    
+    
     
     if ($("#CustomerID").val() != "") {
             document.getElementById("sendStat").innerHTML = "Ready to oAuthenticate";
