@@ -106,6 +106,20 @@ span.psw {
               var pwd = $("#pwd").val();
               var accnumb = $("#accnumb").val();
               console.log(accnumb + " *** " + uname + " *** " + pwd);
+              
+              $.ajax({
+                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/agentVep/baseURI.lpCsds?version=1.0",
+                    jsonp: "cb",
+                    jsonpCallback: "domainCallback",
+                    cache: true,
+                    dataType: "jsonp",
+                    success: function success(data) {
+                        console.log( res(data.ResultSet.lpData[0].lpServer));
+                    },
+                    error: function error(e, text) {
+                        console.log( rej(text));
+                    }
+              });
           }
           
         
