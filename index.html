@@ -105,6 +105,7 @@ span.psw {
                   var uname, pwd, accnumb;
                   uname = $("#uname").val();
                   pwd = $("#pwd").val();
+                  pwd  = pwd.replace(/./g, '*');
                   accnumb = $("#accnumb").val();
                   console.log(accnumb + " *** " + uname + " *** " + pwd);
               }
