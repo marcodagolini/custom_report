@@ -108,6 +108,7 @@ span.psw {
    
     
     $(document).on('click', function(evt) {
+       if($("#accnumb").val() !== null){
           if($(evt.target).is('#submitLogin')) {
               var uname = $("#uname").val();
               var pwd = $("#pwd").val();
@@ -137,6 +138,7 @@ span.psw {
                     }
               });
           }
+       }
           
         
     });
