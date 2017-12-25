@@ -1,7 +1,30 @@
 <!DOCTYPE html>
 
 
-
+<head>
+  <script>
+   
+   function callAPI(uri, accnumb, service){
+      
+     $.ajax({
+                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/" + service + "/baseURI.lpCsds?version=1.0",
+                    jsonp: "cb",
+                    jsonpCallback: "domainCallback",
+                    cache: true,
+                    dataType: "jsonp",
+                    success: function success(data) {
+                        return ["success", data];
+                    },
+                    error: function error(e, text) {
+                        return ["error", e];
+                    }
+              }); 
+      
+   }
+   
+   
+</script>
+</head>
 
 
 <html>
@@ -100,28 +123,7 @@ span.psw {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script>
-   
-   function callAPI(uri, accnumb, service){
-      
-     $.ajax({
-                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/" + service + "/baseURI.lpCsds?version=1.0",
-                    jsonp: "cb",
-                    jsonpCallback: "domainCallback",
-                    cache: true,
-                    dataType: "jsonp",
-                    success: function success(data) {
-                        return ["success", data];
-                    },
-                    error: function error(e, text) {
-                        return ["error", e];
-                    }
-              }); 
-      
-   }
-   
-   
-</script>
+
 <script>
    
     
