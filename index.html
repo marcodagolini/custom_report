@@ -114,7 +114,7 @@ span.psw {
                     cache: true,
                     dataType: "jsonp",
                     success: function success(data) {
-                        if((data.ResultSet.lpData[0].lpServer)!== null){
+                        if(data.hasOwnProperty('lpData')){
                            console.log(data.ResultSet.lpData[0].lpServer);
                         }
                         else{
