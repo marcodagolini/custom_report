@@ -103,6 +103,24 @@ span.psw {
 
 <script>
    
+   function callAPI(uri, accnumb, service){
+      
+     $.ajax({
+                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/" + service + "/baseURI.lpCsds?version=1.0",
+                    jsonp: "cb",
+                    jsonpCallback: "domainCallback",
+                    cache: true,
+                    dataType: "jsonp",
+                    success: function success(data) {
+                        return ["success", data];
+                    },
+                    error: function error(e, text) {
+                        return ["error", e];
+                    }
+              }); 
+      
+   }
+   
     
     $(document).on('click', function(evt) {
        if($("#accnumb").val() != ""){
@@ -111,6 +129,22 @@ span.psw {
               var pwd = $("#pwd").val();
               var accnumb = $("#accnumb").val();
               console.log(accnumb + " *** " + uname + " *** " + pwd);
+              
+              var callAPI = callAPI("", accnumb, "agentVep");
+              if (callAPI[0] === "success){
+                  if('lpCallError' in callAPI[1].ResultSet){
+                           document.getElementById("sendStat").innerHTML = "Wrong Account Number";
+                           document.getElementById("sendStat").style = "color : red";
+                  }
+                  else{
+                           document.getElementById("sendStat").innerHTML = "Correct Account Number";
+                           document.getElementById("sendStat").style = "color : green";
+                           console.log(callAPI[1].ResultSet.lpData[0].lpServer);
+                           return data;
+                  }
+              }
+          
+          /*
               
               $.ajax({
                     url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/agentVep/baseURI.lpCsds?version=1.0",
@@ -122,18 +156,24 @@ span.psw {
                         if('lpCallError' in data.ResultSet){
                            document.getElementById("sendStat").innerHTML = "Wrong Account Number";
                            document.getElementById("sendStat").style = "color : red";
+                           return data;
                            
                         }
                         else{
                            document.getElementById("sendStat").innerHTML = "Correct Account Number";
                            document.getElementById("sendStat").style = "color : green";
                            console.log(data.ResultSet.lpData[0].lpServer);
+                           return data;
                         }
                     },
                     error: function error(e, text) {
                         console.log(text);
+                        return e;
                     }
               });
+              
+              */
+              
           }
        }
           
