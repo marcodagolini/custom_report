@@ -10,7 +10,7 @@
 
     
 
-input[type=text], input[type=pass] {
+input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -77,13 +77,13 @@ span.psw {
   <div class="container">
   
     <label><b>Account Number</b></label>
-    <input id="accnumb" type="text" placeholder="Enter Account Number" name="accnumb">
+    <input id="accnumb" type="text" placeholder="Enter Account Number">
   
     <label><b>Username</b></label>
-    <input id="uname" type="text" placeholder="Enter Username" name="uname" >
+    <input id="uname" type="text" placeholder="Enter Username">
 
     <label><b>Password</b></label>
-    <input id="psw" type="pass" placeholder="Enter Password" name="psw" >
+    <input id="psw" type="password" placeholder="Enter Password">
         
     <button id="submitLogin" >Login</button>
     
@@ -105,7 +105,7 @@ span.psw {
                   uname = $("#uname").val();
                   pwd = $("#pwd").val();
                   accnumb = $("#accnumb").val();
-                  console.log(uname + " *** " + pwd + " *** " + accnumb);
+                  console.log(accnumb + " *** " + uname + " *** " + pwd);
               }
     });
     
