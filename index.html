@@ -130,7 +130,7 @@ span.psw {
               console.log(accnumb + " *** " + uname + " *** " + pwd);
               
               var callAPI = callAPI("", accnumb, "agentVep");
-              if (callAPI[0] === "success){
+              if (callAPI[0] === "success"){
                   if('lpCallError' in callAPI[1].ResultSet){
                            document.getElementById("sendStat").innerHTML = "Wrong Account Number";
                            document.getElementById("sendStat").style = "color : red";
