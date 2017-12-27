@@ -185,7 +185,7 @@ span.psw {
                               contentType: "application/json",
                               data: '{\"start":{\"from\":1514135523000,\"to\":1514135623000}}',
                               success: function success(data) {
-                                window.location.replace("http://www.inter.it/en/hp");
+
                                 $('#myloader').css('display', 'none');
                                 $('#myreports').css('display', 'inline');
                               
@@ -270,24 +270,7 @@ span.psw {
                                 $('#mylogin').css('display', 'none');
                                 $('#myreports').css('display', 'inline');
                                 
-                                
-                                   
-                                
-                                
-                                /*
-                                  if('lpCallError' in data.ResultSet){
-                                      document.getElementById("sendStat").innerHTML = "Wrong Account Number";
-                                      document.getElementById("sendStat").style = "color : red";
-                                      return data;
-                           
-                                  }
-                                  else{
-                                      document.getElementById("sendStat").innerHTML = "Correct Account Number";
-                                      document.getElementById("sendStat").style = "color : green";
-                                      console.log(data.ResultSet.lpData[0].lpServer);
-                                      return data;
-                                  }
-                                  */
+            
                               },
                               error: function error(e, text) {
                                 /*
