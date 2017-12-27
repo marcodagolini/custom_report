@@ -267,7 +267,12 @@ span.psw {
                                 localStorage.setItem('csrf', csrf);
                                 localStorage.setItem('bearer', bearer);
                                 $('#mylogin').css('display', 'none');
-                                $('#myreports').css('display', 'inline');
+                                $('#myloader').css('display', 'inline');
+                                
+                                setTimeout(function(){
+                                      $('#myloader').css('display', 'none');
+                                      $('#myreports').css('display', 'inline');
+                                }, 2000);
                                 
             
                               },
