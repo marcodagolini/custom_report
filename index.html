@@ -126,72 +126,7 @@ span.psw {
   csrf = localStorage.getItem('csrf');
   
   
-  setTimeout(function(){
   
-  $.ajax({
-                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/agentVep/baseURI.lpCsds?version=1.0",
-                    jsonp: "cb",
-                    jsonpCallback: "domainCallback",
-                    cache: true,
-                    dataType: "jsonp",
-                    success: function success(data) {
-                        if('lpCallError' in data.ResultSet){
-                           document.getElementById("sendStat").innerHTML = "Wrong Account Number";
-                           document.getElementById("sendStat").style = "color : red";
-                           
-                        }
-                        else{
-                           document.getElementById("sendStat").innerHTML = "Correct Account Number";
-                           document.getElementById("sendStat").style = "color : green";
-                           uri = data.ResultSet.lpData[0].lpServer;
-                           console.log(uri);
-                          
-                          
-                          $.ajax({
-                              url: "https://" + uri + "/api/account/" + accnumb + "/refresh",
-                              method: "POST",
-                              cache: true,
-                              Accept: "application/json",
-                              contentType: "application/json",
-                              data: '{"csrf":"' + csrf + '"}',
-                              success: function success(data) {
-                                console.log("*&*&*&*&*&*" + JSON.stringify(data) + "*&*&*&*&*&*");
-                                /*
-                                  if('lpCallError' in data.ResultSet){
-                                      document.getElementById("sendStat").innerHTML = "Wrong Account Number";
-                                      document.getElementById("sendStat").style = "color : red";
-                                      return data;
-                           
-                                  }
-                                  else{
-                                      document.getElementById("sendStat").innerHTML = "Correct Account Number";
-                                      document.getElementById("sendStat").style = "color : green";
-                                      console.log(data.ResultSet.lpData[0].lpServer);
-                                      return data;
-                                  }
-                                  */
-                              },
-                              error: function error(e, text) {
-                                /*
-                                  console.log(text);
-                                  return e;
-                                  */
-                              }
-                          });
-                          
-                          
-                           return data;
-                        }
-                    },
-                    error: function error(e, text) {
-                        console.log(text);
-                        return e;
-                    }
-              });
-  
-  
-  
-  }, 3000);
   
    
     
@@ -242,76 +177,7 @@ span.psw {
                                 localStorage.setItem('bearer', bearer);
                                 
                                 
-                                
-                                setTimeout(function(){
-                                
-                                
-                                $.ajax({
-                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/agentVep/baseURI.lpCsds?version=1.0",
-                    jsonp: "cb",
-                    jsonpCallback: "domainCallback",
-                    cache: true,
-                    dataType: "jsonp",
-                    success: function success(data) {
-                        if('lpCallError' in data.ResultSet){
-                           document.getElementById("sendStat").innerHTML = "Wrong Account Number";
-                           document.getElementById("sendStat").style = "color : red";
-                           
-                        }
-                        else{
-                           document.getElementById("sendStat").innerHTML = "Correct Account Number";
-                           document.getElementById("sendStat").style = "color : green";
-                           uri = data.ResultSet.lpData[0].lpServer;
-                           console.log(uri);
-                          
-                          
-                          $.ajax({
-                              url: "https://" + uri + "/api/account/" + accnumb + "/refresh",
-                              method: "POST",
-                              cache: true,
-                              Accept: "application/json",
-                              contentType: "application/json",
-                              data: '{"csrf":"' + csrf + '"}',
-                              success: function success(data) {
-                                console.log("*&*&*&*&*&*" + JSON.stringify(data) + "*&*&*&*&*&*");
-                                /*
-                                  if('lpCallError' in data.ResultSet){
-                                      document.getElementById("sendStat").innerHTML = "Wrong Account Number";
-                                      document.getElementById("sendStat").style = "color : red";
-                                      return data;
-                           
-                                  }
-                                  else{
-                                      document.getElementById("sendStat").innerHTML = "Correct Account Number";
-                                      document.getElementById("sendStat").style = "color : green";
-                                      console.log(data.ResultSet.lpData[0].lpServer);
-                                      return data;
-                                  }
-                                  */
-                              },
-                              error: function error(e, text) {
-                                /*
-                                  console.log(text);
-                                  return e;
-                                  */
-                              }
-                          });
-                          
-                          
-                           return data;
-                        }
-                    },
-                    error: function error(e, text) {
-                        console.log(text);
-                        return e;
-                    }
-              });
-                                
-                                
-                                
-                              
-                                
-                             }, 3000);     
+                                   
                                 
                                 
                                 /*
