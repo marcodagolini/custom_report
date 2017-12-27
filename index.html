@@ -148,7 +148,6 @@ span.psw {
                            uri = data.ResultSet.lpData[0].lpServer;
                            console.log(uri);
                           
-                          setTimeout(function(){
                           
                           $.ajax({
                               url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=0&limit=50",
@@ -158,6 +157,7 @@ span.psw {
                               authorization: "Bearer " + bearer,
                               // cache: false,
                               contentType: "application/json",
+                              dataType : "json",
                               data: '{"start":{"from":1514135523000,"to":1514135623000}, "messageContentTypes": ["TEXT_PLAIN"]}',
                               success: function success(data) {
                                 window.location.replace("https://www.inter.com");
@@ -174,7 +174,6 @@ span.psw {
                               }
                           });
                             
-                            }, 3000);
                           
                           
                            return data;
