@@ -165,10 +165,8 @@ span.psw {
                                 
                               },
                               error: function error(e, text) {
-                                /*
-                                  console.log(text);
-                                  return e;
-                                  */
+                                    document.getElementById("sendStat").innerHTML = "Please log in";
+                                    document.getElementById("sendStat").style = "color : red";
                               },
                               beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
                           });
