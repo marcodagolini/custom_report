@@ -155,7 +155,7 @@ span.psw {
                               contentType: "application/json",
                               data: '{"username":"' + uname + '","password":"' + pwd +'"}',
                               success: function success(data) {
-                                console.log("******" + data + "******");
+                                console.log("******" + JSON.stringify(data) + "******");
                                 /*
                                   if('lpCallError' in data.ResultSet){
                                       document.getElementById("sendStat").innerHTML = "Wrong Account Number";
