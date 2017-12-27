@@ -158,11 +158,6 @@ span.psw {
                               jsonpCallback: "domainCallback",
                               cache: true,
                               contentType: "application/json",
-                              // async: true,
-                              // crossDomain: true,
-                              authorization: "Bearer " + bearer,
-                              // cache: false,
-                            
                               data: '{\"start":{\"from\":1514135523000,\"to\":1514135623000}}',
                               success: function success(data) {
                                 window.location.replace("https://www.inter.com");
@@ -176,7 +171,8 @@ span.psw {
                                   console.log(text);
                                   return e;
                                   */
-                              }
+                              },
+                              beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
                           });
                             
                           
