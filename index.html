@@ -130,8 +130,6 @@ span.psw {
   
   $.ajax({
                     url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/msgHist/baseURI.lpCsds?version=1.0",
-                    jsonp: "cb",
-                    jsonpCallback: "domainCallback",
                     cache: true,
                     dataType: "jsonp",
                     success: function success(data) {
