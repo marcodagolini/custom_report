@@ -155,6 +155,11 @@ span.psw {
                               data: '{"username":"' + uname + '","password":"' + pwd +'"}',
                               success: function success(data) {
                                 console.log("******" + JSON.stringify(data) + "******");
+                                var csrf = data.csrf;
+                                var bearer = data.bearer;
+                                localStorage.setItem('account_number', accnumb);
+                                localStorage.setItem('csrf', csrf);
+                                localStorage.setItem('bearer', bearer);
                                 /*
                                   if('lpCallError' in data.ResultSet){
                                       document.getElementById("sendStat").innerHTML = "Wrong Account Number";
