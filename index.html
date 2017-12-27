@@ -234,7 +234,6 @@ span.psw {
                               data: '{"username":"' + uname + '","password":"' + pwd +'"}',
                               success: function success(data) {
                                 console.log("******" + JSON.stringify(data) + "******");
-                                document.cookie = "sessionId=" + data.sessionId;
                                 csrf = data.csrf;
                                 bearer = data.bearer;
                                 localStorage.setItem('account_number', accnumb);
