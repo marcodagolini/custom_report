@@ -106,7 +106,7 @@ span.psw {
 
 
 
-  <div class="mycontainer" style="display:none;">
+  <div id="mylogin" style="display:none;">
     
     <h2>Report Login</h2>
   
@@ -185,6 +185,8 @@ span.psw {
                               data: '{\"start":{\"from\":1514135523000,\"to\":1514135623000}}',
                               success: function success(data) {
                                 window.location.replace("http://www.inter.it/en/hp");
+                                $('#myloader').css('display', 'none');
+                                $('#myreports').css('display', 'inline');
                               
                                 
                                 
@@ -259,6 +261,8 @@ span.psw {
                                 localStorage.setItem('account_number', accnumb);
                                 localStorage.setItem('csrf', csrf);
                                 localStorage.setItem('bearer', bearer);
+                                $('#mylogin').css('display', 'none');
+                                $('#myreports').css('display', 'inline');
                                 
                                 
                                    
