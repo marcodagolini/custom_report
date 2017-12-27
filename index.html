@@ -112,6 +112,84 @@ span.psw {
   var uname;
   var pwd;
   var accnumb;
+  var csrf;
+  var bearer;
+  
+  
+  
+  accnumb = localStorage.getItem('accnumb');
+  csrf = localStorage.getItem('csrf');
+  
+  
+  
+  
+  $.ajax({
+                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/agentVep/baseURI.lpCsds?version=1.0",
+                    jsonp: "cb",
+                    jsonpCallback: "domainCallback",
+                    cache: true,
+                    dataType: "jsonp",
+                    success: function success(data) {
+                        if('lpCallError' in data.ResultSet){
+                           document.getElementById("sendStat").innerHTML = "Wrong Account Number";
+                           document.getElementById("sendStat").style = "color : red";
+                           
+                        }
+                        else{
+                           document.getElementById("sendStat").innerHTML = "Correct Account Number";
+                           document.getElementById("sendStat").style = "color : green";
+                           uri = data.ResultSet.lpData[0].lpServer;
+                           console.log(uri);
+                          
+                          
+                          $.ajax({
+                              url: "https://" + uri + "/api/account/" + accnumb + "/refresh",
+                              method: "POST",
+                              jsonp: "cb",
+                              jsonpCallback: "domainCallback",
+                              cache: true,
+                              dataType: "jsonp",
+                              contentType: "application/json",
+                              data: '{"csrf":"' + csrf + '"}',
+                              success: function success(data) {
+                                console.log("*&*&*&*&*&*" + JSON.stringify(data) + "*&*&*&*&*&*");
+                                /*
+                                  if('lpCallError' in data.ResultSet){
+                                      document.getElementById("sendStat").innerHTML = "Wrong Account Number";
+                                      document.getElementById("sendStat").style = "color : red";
+                                      return data;
+                           
+                                  }
+                                  else{
+                                      document.getElementById("sendStat").innerHTML = "Correct Account Number";
+                                      document.getElementById("sendStat").style = "color : green";
+                                      console.log(data.ResultSet.lpData[0].lpServer);
+                                      return data;
+                                  }
+                                  */
+                              },
+                              error: function error(e, text) {
+                                /*
+                                  console.log(text);
+                                  return e;
+                                  */
+                              }
+                          });
+                          
+                          
+                           return data;
+                        }
+                    },
+                    error: function error(e, text) {
+                        console.log(text);
+                        return e;
+                    }
+              });
+  
+  
+  
+  
+  
    
     
     $(document).on('click', function(evt) {
@@ -154,8 +232,8 @@ span.psw {
                               data: '{"username":"' + uname + '","password":"' + pwd +'"}',
                               success: function success(data) {
                                 console.log("******" + JSON.stringify(data) + "******");
-                                var csrf = data.csrf;
-                                var bearer = data.bearer;
+                                csrf = data.csrf;
+                                bearer = data.bearer;
                                 localStorage.setItem('account_number', accnumb);
                                 localStorage.setItem('csrf', csrf);
                                 localStorage.setItem('bearer', bearer);
