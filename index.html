@@ -146,6 +146,7 @@ span.psw {
                           
                           $.ajax({
                               url: "https://" + uri + "/api/account/" + accnumb + "/login?v=1.3",
+                              method: 'POST',
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
                               cache: true,
