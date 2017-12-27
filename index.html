@@ -152,7 +152,7 @@ span.psw {
   
   
   
-  if((accnumb !== null) && (bearer !== null)){
+  if((accnumb !== null) || (bearer !== null)){
   /***************************/
   
     $.ajax({
@@ -238,7 +238,7 @@ span.psw {
                     dataType: "jsonp",
                     success: function success(data) {
                         if('lpCallError' in data.ResultSet){
-                           document.getElementById("sendStat").innerHTML = "Wrong Account Number";
+                           document.getElementById("sendStat").innerHTML = "Please insert a correct login!";
                            document.getElementById("sendStat").style = "color : red";
                            
                         }
@@ -270,10 +270,8 @@ span.psw {
             
                               },
                               error: function error(e, text) {
-                                /*
-                                  console.log(text);
-                                  return e;
-                                  */
+                                    document.getElementById("sendStat").innerHTML = "Please insert a correct login!";
+                                    document.getElementById("sendStat").style = "color : red";
                               }
                           });
                           
