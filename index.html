@@ -148,7 +148,7 @@ span.psw {
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
                               cache: true,
-                              dataType: "jsonp",
+                              contentType: 'application/json',
                               data: '{"username":' + uname + ',"password":' + pwd +'}',
                               success: function success(data) {
                                 console.log("******" + data + "******");
