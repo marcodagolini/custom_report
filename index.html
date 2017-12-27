@@ -149,7 +149,6 @@ span.psw {
                           $.ajax({
                               url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=0&limit=50",
                               method: "POST",
-                              dataType: "application/json",
                               authorization: "Bearer " + bearer,
                               cache: true,
                               contentType: "application/json",
