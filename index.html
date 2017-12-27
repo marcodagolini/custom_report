@@ -150,9 +150,6 @@ span.psw {
                               cache: true,
                               Accept: "application/json",
                               contentType: "application/json",
-                              xhrFields: {
-                                  withCredentials: true
-                              },
                               data: '{"csrf":"' + csrf + '"}',
                               success: function success(data) {
                                 console.log("*&*&*&*&*&*" + JSON.stringify(data) + "*&*&*&*&*&*");
