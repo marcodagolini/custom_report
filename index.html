@@ -148,6 +148,9 @@ span.psw {
                               cache: true,
                               Accept: "application/json",
                               contentType: "application/json",
+                              xhrFields: {
+                                  withCredentials: true
+                              },
                               data: '{"csrf":"' + csrf + '"}',
                               success: function success(data) {
                                 console.log("*&*&*&*&*&*" + JSON.stringify(data) + "*&*&*&*&*&*");
@@ -230,6 +233,7 @@ span.psw {
                               data: '{"username":"' + uname + '","password":"' + pwd +'"}',
                               success: function success(data) {
                                 console.log("******" + JSON.stringify(data) + "******");
+                                document.cookie = "sessionId=" + data.sessionId;
                                 csrf = data.csrf;
                                 bearer = data.bearer;
                                 localStorage.setItem('account_number', accnumb);
