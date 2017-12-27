@@ -192,7 +192,9 @@ span.psw {
                                 
                               },
                               error: function error(e, text) {
-                                    document.getElementById("sendStat").innerHTML = "Please log in";
+                                    $('#myloader').css('display', 'none');
+                                    $('#mylogin').css('display', 'inline');
+                                    document.getElementById("sendStat").innerHTML = "Please log in!";
                                     document.getElementById("sendStat").style = "color : red";
                               },
                               beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
