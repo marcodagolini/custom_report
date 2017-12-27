@@ -107,14 +107,19 @@ span.psw {
 
 
 <script>
+  
+  var uri = "";
+  var uname;
+  var pwd;
+  var accnumb;
    
     
     $(document).on('click', function(evt) {
        if($("#accnumb").val() != ""){
           if($(evt.target).is('#submitLogin')) {
-              var uname = $("#uname").val();
-              var pwd = $("#pwd").val();
-              var accnumb = $("#accnumb").val();
+              uname = $("#uname").val();
+              pwd = $("#pwd").val();
+              accnumb = $("#accnumb").val();
               console.log(accnumb + " *** " + uname + " *** " + pwd);
 
              
@@ -130,13 +135,48 @@ span.psw {
                         if('lpCallError' in data.ResultSet){
                            document.getElementById("sendStat").innerHTML = "Wrong Account Number";
                            document.getElementById("sendStat").style = "color : red";
-                           return data;
                            
                         }
                         else{
                            document.getElementById("sendStat").innerHTML = "Correct Account Number";
                            document.getElementById("sendStat").style = "color : green";
-                           console.log(data.ResultSet.lpData[0].lpServer);
+                           uri = data.ResultSet.lpData[0].lpServer;
+                           console.log(uri);
+                          
+                          
+                          $.ajax({
+                              url: "https://" + uri + "/api/account/" + accnumb + "/login?v=1.3",
+                              jsonp: "cb",
+                              jsonpCallback: "domainCallback",
+                              cache: true,
+                              dataType: "jsonp",
+                              data: '{"username":' + uname + ',"password":' + pwd +'}',
+                              success: function success(data) {
+                                console.log("******" + data + "******");
+                                /*
+                                  if('lpCallError' in data.ResultSet){
+                                      document.getElementById("sendStat").innerHTML = "Wrong Account Number";
+                                      document.getElementById("sendStat").style = "color : red";
+                                      return data;
+                           
+                                  }
+                                  else{
+                                      document.getElementById("sendStat").innerHTML = "Correct Account Number";
+                                      document.getElementById("sendStat").style = "color : green";
+                                      console.log(data.ResultSet.lpData[0].lpServer);
+                                      return data;
+                                  }
+                                  */
+                              },
+                              error: function error(e, text) {
+                                /*
+                                  console.log(text);
+                                  return e;
+                                  */
+                              }
+                          });
+                          
+                          
                            return data;
                         }
                     },
