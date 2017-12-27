@@ -150,7 +150,7 @@ span.psw {
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
                               cache: true,
-                              dataType: "jsonp",
+                              Accept: "application/json",
                               contentType: "application/json",
                               data: '{"csrf":"' + csrf + '"}',
                               success: function success(data) {
