@@ -399,12 +399,9 @@ span.psw {
 		    var d = new Date(enddate);
 		    var end = d.getTime();  
 		      
-		      
-		    
-                  var start = 0;
-		  var end = 0;
-		  var options = $('#transcriptOptions').val();
-		  downloadTranscripts(start, end, options);
+
+		    var options = $('#transcriptOptions').val();
+		    downloadTranscripts(start, end, options);
               }
 	 });
 
