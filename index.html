@@ -515,9 +515,9 @@ download = function (content, filename, contentType) {
     var blob = new Blob([content], {
         'type': contentType
     });
-	// window.location = window.URL.createObjectURL(blob);
-    a.href = window.URL.createObjectURL(blob);
-	console.log(window.URL.createObjectURL(blob));
+	window.location = window.URL.createObjectURL(blob);
+    // a.href = window.URL.createObjectURL(blob);
+	// console.log(window.URL.createObjectURL(blob));
     // a.download = filename;
 };
 
