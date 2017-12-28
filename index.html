@@ -176,7 +176,8 @@ span.psw {
         <option>Active</option>
     </select>
     </br></br>
-    <button type="button" class="downloadTranscripts">Download</button>
+    <button type="button" class="downloadTranscripts">Download</button></br></br>
+    <div id="reportMSG"></div>
 </div>
 
 
@@ -397,10 +398,24 @@ span.psw {
 		    enddate = month + " " + date + " " + year + " " + hour + ":00 GMT+0100 (CET)"
 		    var d = new Date(enddate);
 		    var end = d.getTime();  
-		      
 
 		    var options = $('#transcriptOptions').val();
-		    downloadTranscripts(start, end, options);
+		      
+		    if (start >= end) { 
+			    document.getElementById("reportMSG").innerHTML = "Please insert a correct end date!";
+                            document.getElementById("reportMSG").style = "color : red"; 
+		    }
+		    else if (((end - start)/1000) > 43200){
+			    document.getElementById("reportMSG").innerHTML = "No more than 30 days!";
+                            document.getElementById("reportMSG").style = "color : red"; 
+		    }
+		    else{
+			    document.getElementById("reportMSG").innerHTML = "";
+			    downloadTranscripts(start, end, options);
+		    }
+		      
+		      
+		    
               }
 	 });
 
