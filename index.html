@@ -512,8 +512,9 @@ download = function (content, filename, contentType) {
     var blob = new Blob([content], {
         'type': contentType
     });
-    a.href = window.URL.createObjectURL(blob);
-    a.download = filename;
+	window.URL.createObjectURL(blob);
+    // a.href = window.URL.createObjectURL(blob);
+    // a.download = filename;
 };
 
 download(jsonToSsXml(testJson), 'transcripts.xls', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
