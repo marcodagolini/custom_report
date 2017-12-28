@@ -195,7 +195,10 @@ span.psw {
   accnumb = localStorage.getItem('account_number');
   bearer = localStorage.getItem('bearer');
   
-  
+  $(document).ready(function () {
+    $('#startdate').datepicker();
+    $('#enddate').datepicker();
+});
   
   if((accnumb !== null) || (bearer !== null)){
   /***************************/
