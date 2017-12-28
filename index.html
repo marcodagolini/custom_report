@@ -160,13 +160,13 @@ span.psw {
     <h2>Download your transcripts:</h2>
     <label><b>Start date</b></label></br>
 
-    <input id="startdate" type="text" />
+    <input id="startdate" type="date" />
     <input id="starthour" type="time">
     </br>
 
     <label><b>End date</b></label></br>
 
-    <input id="enddate" type="text" />
+    <input id="enddate" type="date" />
     <input id="endhour" type="time">
     
     </br></br>
@@ -199,10 +199,7 @@ span.psw {
   accnumb = localStorage.getItem('account_number');
   bearer = localStorage.getItem('bearer');
   
-  $(document).ready(function () {
-    $('#startdate').datepicker();
-    $('#enddate').datepicker();
-});
+  
   
   if((accnumb !== null) || (bearer !== null)){
   /***************************/
