@@ -350,18 +350,18 @@ span.psw {
   function downloadTranscripts(){
 	  
 	  
-	 console.log( $('#startdate').val(new Date().toDateInputValue()));
-	 console.log( $('#starthour').val());
-	 console.log( $('#enddate').val(new Date().toDateInputValue(7)));
-	 console.log( $('#endhour').val());
+	 console.log( $('#startdate').val(new Date()));
+	 console.log( $('#starthour').val("00:00"));
+	 console.log( $('#enddate').val(new Date().toDateInputValue()));
+	 console.log( $('#endhour').val("23:59"));
 	 console.log( $('#transcriptOptions').val());
 	  
 	  
   }
     
    
-  Date.prototype.toDateInputValue = (function(number) {
-      var local = new Date(this - number);
+  Date.prototype.toDateInputValue = (function() {
+      var local = new Date(this);
       local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
       return local.toJSON().slice(0,10);
   });
