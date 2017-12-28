@@ -363,13 +363,13 @@ span.psw {
 	 var dd = date.getDate();
     	 var mm = date.getMonth() + 1;
     	 var y = date.getFullYear();
-	 var startdate = y + "-" + mm + "-" + dd;
+	 var enddate = y + "-" + mm + "-" + dd;
 	 
 	 date.setDate(date.getDate() - 7);
 	 var dd = date.getDate();
     	 var mm = date.getMonth() + 1;
     	 var y = date.getFullYear();
-	 var enddate = y + "-" + mm + "-" + dd;
+	 var startdate = y + "-" + mm + "-" + dd;
 
 	 
 	 $('#startdate').val(startdate);
@@ -406,11 +406,11 @@ span.psw {
 
 		    var options = $('#transcriptOptions').val();
 		      
-		    if (end >= start) { 
+		    if (start >= end) { 
 			    document.getElementById("reportMSG").innerHTML = "Please insert a correct end date!";
                             document.getElementById("reportMSG").style = "color : red"; 
 		    }
-		    else if (((start - end)/1000) > (60*60*24*31)){
+		    else if (((end - start)/1000) > (60*60*24*31)){
 			    document.getElementById("reportMSG").innerHTML = "No more than 30 days!";
                             document.getElementById("reportMSG").style = "color : red"; 
 		    }
