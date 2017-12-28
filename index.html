@@ -388,9 +388,10 @@ span.psw {
 		    var hour = $('#starthour').val();
 		      
 		    startdate = month + " " + date + " " + year + " " + hour + ":00 GMT+0100 (CET)"
-		    alert(startdate + "****" + startdate.getTime());
+		    var d = new Date(startdate);
+		    alert(startdate + "****" + d.getTime());
 		      
-		    var d = new Date("Jun 20 19:20:00 +0000 2012");
+		    
 		    d.getTime();  
 		      
 		    
