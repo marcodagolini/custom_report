@@ -430,13 +430,13 @@ span.psw {
 	 var body = "";
 	 
 	 if (options === "Open"){ 
-		 body = '{"start":{"from":start,"to":end},"status":["OPEN"]}'; 
+		 body = '{"start":{"from":' + start + ',"to":' + end + '},"status":["OPEN"]}'; 
 	 }
 	 else if (options === "Close"){
-		 body = '{"start":{"from":start,"to":end},"status":["CLOSE"]}';	 
+		 body = '{"start":{"from":' + start + ',"to":' + end + '},"status":["CLOSE"]}';	 
 	 }
 	 else if (options === "Active"){
-		 body = '{"start":{"from":start,"to":end}, "messageContentTypes": ["TEXT_PLAIN"]}';	 
+		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "messageContentTypes": ["TEXT_PLAIN"]}';	 
 	 }
 	 
 	 $.ajax({
