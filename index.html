@@ -177,7 +177,7 @@ span.psw {
         <option>Active</option>
     </select>
     </br></br>
-    <button type="button" class="downloadTranscripts">Download</button></br></br>
+    <button type="button" id ="downloadTranscripts" class="downloadTranscripts">Download</button></br></br>
     <div id="reportMSG"></div>
 </div>
 
@@ -508,12 +508,13 @@ console.log(jsonToSsXml(testJson));
 
 download = function (content, filename, contentType) {
     if (!contentType) contentType = 'application/octet-stream';
-    var a = document.getElementById('test');
+    var a = document.getElementById('downloadTranscripts');
     var blob = new Blob([content], {
         'type': contentType
     });
-	window.location = window.URL.createObjectURL(blob);
-    // a.href = window.URL.createObjectURL(blob);
+	// window.location = window.URL.createObjectURL(blob);
+    a.href = window.URL.createObjectURL(blob);
+	console.log(window.URL.createObjectURL(blob));
     // a.download = filename;
 };
 
