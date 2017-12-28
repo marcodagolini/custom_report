@@ -353,8 +353,13 @@ span.psw {
 
   function downloadTranscripts(){
 	  
-	  
-	 console.log( $('#startdate').val(new Date()));
+	 var date = new Date();
+	 var dd = date.getDate();
+    	 var mm = date.getMonth() + 1;
+    	 var y = date.getFullYear();
+	 var startdate = dd + "/" + mm + "/" + y;
+	 console.log (startdate);
+	 console.log( $('#startdate').val(startdate));
 	 console.log( $('#starthour').val("00:00"));
 	 console.log( $('#enddate').val(new Date().toDateInputValue()));
 	 console.log( $('#endhour').val("23:59"));
