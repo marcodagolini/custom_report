@@ -349,13 +349,9 @@ span.psw {
   function downloadTranscripts(){
 	  
 	  
-	 var date = new Date();
-	 $('#startdate').val(date);
-	 date.setDate(date.getDate() - 7);
-	 $('#enddate').val(date);
-	 console.log( $('#startdate').val());
+	 console.log( $('#startdate').val(new Date().toDateInputValue()));
 	 console.log( $('#starthour').val());
-	 console.log( $('#enddate').val());
+	 console.log( $('#enddate').val(new Date().toDateInputValue(7)));
 	 console.log( $('#endhour').val());
 	 console.log( $('#transcriptOptions').val());
 	  
@@ -363,7 +359,11 @@ span.psw {
   }
     
    
-   
+  Date.prototype.toDateInputValue = (function(number) {
+      var local = new Date(this - number);
+      local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+      return local.toJSON().slice(0,10);
+  });
    
     
 </script>
