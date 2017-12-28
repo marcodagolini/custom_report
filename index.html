@@ -236,6 +236,7 @@ span.psw {
 
                                 $('#myloader').css('display', 'none');
                                 $('#myreports').css('display', 'inline');
+				refreshTranscripts();
                               
                                                    
                                 
@@ -322,6 +323,7 @@ span.psw {
                                 setTimeout(function(){
                                       $('#myloader').css('display', 'none');
                                       $('#myreports').css('display', 'inline');
+				      refreshTranscripts();
                                 }, 2000);
                                 
             
@@ -351,7 +353,7 @@ span.psw {
     });
     
 
-  function downloadTranscripts(){
+  function refreshTranscripts(){
 	  
 	 var date = new Date();
 	 var dd = date.getDate();
