@@ -402,11 +402,11 @@ span.psw {
 
 		    var options = $('#transcriptOptions').val();
 		      
-		    if (start >= end) { 
+		    if (end >= start) { 
 			    document.getElementById("reportMSG").innerHTML = "Please insert a correct end date!";
                             document.getElementById("reportMSG").style = "color : red"; 
 		    }
-		    else if (((end - start)/1000) > 43200){
+		    else if (((start - end)/1000) > 43200){
 			    document.getElementById("reportMSG").innerHTML = "No more than 30 days!";
                             document.getElementById("reportMSG").style = "color : red"; 
 		    }
