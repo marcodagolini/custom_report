@@ -379,7 +379,8 @@ span.psw {
 	  
 	 $(document).on('click', function(evt) {
               if($(evt.target).is('.downloadTranscripts')) {
-		      
+		     
+		    startdate = $('#startdate').val();
 		    alert(startdate); 
 		    startdate = new Date(startdate);
 		    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
