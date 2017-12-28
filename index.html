@@ -380,7 +380,6 @@ span.psw {
               if($(evt.target).is('.downloadTranscripts')) {
 		     
 		    startdate = $('#startdate').val();
-		    alert(startdate); 
 		    startdate = new Date(startdate);
 		    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 		    var year = startdate.getFullYear();
@@ -388,7 +387,9 @@ span.psw {
   	            var date = startdate.getDate(); 
 		     
 		    var hour = $('#starthour').val();
-		      alert(month + "***" + hour);
+		      
+		    startdate = month + " " + date + " " + year + " " + hour + ":00 GMT+0100 (CET)"
+		    alert(startdate + "****" + startdate.getTime());
 		      
 		    var d = new Date("Jun 20 19:20:00 +0000 2012");
 		    d.getTime();  
