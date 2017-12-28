@@ -346,7 +346,8 @@ span.psw {
 
   function downloadTranscripts(){
 	  
-	 $('#startdate').val(new Date().toDateInputValue());
+	 $('#startdate').val(new Date().toDateInputValue()-7);
+	 $('#enddate').val(new Date().toDateInputValue());
 	 console.log( $('#startdate').val());
 	 console.log( $('#starthour').val());
 	 console.log( $('#enddate').val());
