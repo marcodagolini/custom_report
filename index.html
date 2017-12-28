@@ -383,15 +383,23 @@ span.psw {
 		    var year = startdate.getFullYear();
   		    var month = months[startdate.getMonth()];
   	            var date = startdate.getDate(); 
-		     
 		    var hour = $('#starthour').val();
-		      
 		    startdate = month + " " + date + " " + year + " " + hour + ":00 GMT+0100 (CET)"
 		    var d = new Date(startdate);
-		    alert(startdate + "****" + d.getTime());
+		    var start = d.getTime();
 		      
 		    
-		    d.getTime();  
+		    enddate = $('#enddate').val();
+		    enddate = new Date(enddate);
+		    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+		    var year = enddate.getFullYear();
+  		    var month = months[enddate.getMonth()];
+  	            var date = enddate.getDate(); 
+		    var hour = $('#endhour').val();
+		    enddate = month + " " + date + " " + year + " " + hour + ":00 GMT+0100 (CET)"
+		    var d = new Date(enddate);
+		    var end = d.getTime();  
+		      
 		      
 		    
                   var start = 0;
