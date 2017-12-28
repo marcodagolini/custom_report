@@ -177,7 +177,7 @@ span.psw {
         <option>Active</option>
     </select>
     </br></br>
-    <button type="button" id="downloadTranscripts">Download</button>
+    <button type="button" class="downloadTranscripts">Download</button>
 </div>
 
 
@@ -373,7 +373,20 @@ span.psw {
 	 $('#endhour').val("23:59");
 	  
 	  
-	 
+	 $(document).on('click', function(evt) {
+              if($(evt.target).is('.downloadTranscripts')) {
+		      
+		    alert(startdate);  
+		    var d = new Date("Jun 20 19:20:00 +0000 2012");
+		    d.getTime();  
+		      
+		    
+                  var start =;
+		  var end =;
+		  var options = $('#transcriptOptions').val();
+		  downloadTranscripts(start, end, options);
+              }
+	 }
 
 	  
 	  
@@ -382,7 +395,7 @@ span.psw {
    
  function downloadTranscripts(start, end, options){
 	 
-	 
+	 console.log(start + "****" + end + "****" + options);
 	 
  }
    
