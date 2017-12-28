@@ -381,12 +381,13 @@ span.psw {
 		      
 		    alert(startdate); 
 		    startdate = new Date(startdate);
-		      	var dd = startdate.getDate();
-		      alert(dd);
-    	 		var mm = startdate.getMonth() + 1;
-		      alert(mm);
-    	 		var y = startdate.getFullYear();
-		      alert(y);
+		    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+		    var year = startdate.getFullYear();
+  		    var month = months[startdate.getMonth()];
+  	            var date = startdate.getDate(); 
+		     
+		    var hour = $('#starthour').val();
+		      alert(month + "***" + hour);
 		      
 		    var d = new Date("Jun 20 19:20:00 +0000 2012");
 		    d.getTime();  
