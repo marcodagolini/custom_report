@@ -443,8 +443,10 @@ checklogin(accnumb, bearer);
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      console.log(answer);
+					      console.log(answer.length);
 					      document.getElementById("reportMSG").innerHTML = "Success!";
 					      document.getElementById("reportMSG").style = "color : green";
+					      
 					      $("#hiddenbutton")[0].click();	
 					      // console.log(answer[109].agentParticipants["0"]);
 					      // console.log(answer[9].agentParticipants["0"]);
