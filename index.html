@@ -461,7 +461,7 @@ checklogin(accnumb, bearer);
 								   thismessage = "-structured content-";
 							      }
 							      thisactor = answer[i].messageRecords[m].sentBy;
-							      messages = messages + " *** " + thisactor + ": " + thismessage;
+							      messages = messages + "     " + thisactor + ": " + thismessage;
 						      }
 						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      console.log(messages);
