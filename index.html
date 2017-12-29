@@ -402,7 +402,7 @@ checklogin(accnumb, bearer);
 	 var offset = 0;
 	 var body = "";
 	 var answer = [];
-	 var exportObject;
+	 var exportObject = [];
 	 
 	 if (options === "Open"){ 
 		 body = '{"start":{"from":' + start + ',"to":' + end + '},"status":["OPEN"]}'; 
@@ -448,9 +448,14 @@ checklogin(accnumb, bearer);
 					      document.getElementById("reportMSG").innerHTML = "Success!";
 					      document.getElementById("reportMSG").style = "color : green";
 					      for (var i = 0; i < (answer.length); i++){
-						      var pieceToAdd = {"start": "Tony Peña","end": "New York","agent": "United States","conversation": "1978-03-15","transcript": "42"};
-						      exportObject
+						      var pieceToAdd = '{"start": ' + answer["0"].info.startTime + ',
+									"end": ' + answer["0"].info.endTime + ',
+									"agent": ' + answer["0"].info.latestAgentNickname + ',
+									"conversation": ' + answer["0"].info.conversationId + ',
+									"transcript": "xyz"}';
+						      exportObject = exportObject.concat(pieceToAdd);
 					      }
+				      	      console.log(exportObject);
 					      $("#hiddenbutton")[0].click();	
 					      // console.log(answer[109].agentParticipants["0"]);
 					      // console.log(answer[9].agentParticipants["0"]);
