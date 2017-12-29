@@ -447,7 +447,20 @@ checklogin(accnumb, bearer);
 					      document.getElementById("reportMSG").innerHTML = "Success!";
 					      document.getElementById("reportMSG").style = "color : green";
 					      for (var i = 0; i < (answer.length); i++){
-						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"conversation": answer[i].info.conversationId,"transcript": "xyz"};
+						      var messages = "";
+						      var thismessage = "";
+						      var thisactor = "";
+						      for (var m = 0; m < (answer[i].messageRecords.length); i++){
+							      if(answer[i].messageRecords[m].type === "TEXT_PLAIN"){
+								   thismessage = answer[i].messageRecords[m].messageData.msg.text;   
+							      }
+							      else{
+								   thismessage = "-structured content-";
+							      }
+							      thisactor = answer[i].messageRecords[m].sentBy;
+							      messages = messages + " *** <" + thisactor + ">: " + thismessage;
+						      }
+						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
