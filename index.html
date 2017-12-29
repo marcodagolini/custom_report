@@ -197,7 +197,7 @@ span.psw {
   
   function checklogin(accnumb, bearer){	
 	$('#myloader').css('display', 'inline');
-  	if((accnumb !== null) || (bearer !== null)){
+  	if((accnumb !== null) || (accnumb === '') || (bearer !== null) || (bearer === '')){
     		$.ajax({
                     url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/msgHist/baseURI.lpCsds?version=1.0",
                     jsonp: "cb",
@@ -206,7 +206,7 @@ span.psw {
                     dataType: "jsonp",
                     success: function success(data) {
                         if('lpCallError' in data.ResultSet){
-				localStorage.setItem('account_number', null);
+				localStorage.setItem('account_number', '');
 			   	return false;
                         }
                         else{
@@ -227,7 +227,7 @@ span.psw {
           					$('#myreports').css('display', 'inline');   
                               		},
                               		error: function error(e, text) {
-						localStorage.setItem('account_number', null);
+						localStorage.setItem('account_number', '');
 				    		return false;
                               		},
                               		beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
@@ -236,7 +236,7 @@ span.psw {
                     },
                     error: function error(e, text) {
 			    console.log(text);
-			    localStorage.setItem('account_number', null);
+			    localStorage.setItem('account_number', '');
 			    return false;
                     }
               	});
