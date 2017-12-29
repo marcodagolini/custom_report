@@ -396,6 +396,7 @@ checklogin(accnumb, bearer);
  function downloadTranscripts(start, end, options){
 	 
 	 var conversationsToDownload = 0;
+	 var conversationsPartial = 0;
 	 var body = "";
 	 var answer = {};
 	 
@@ -423,7 +424,8 @@ checklogin(accnumb, bearer);
 				      console.log(data);
 				      answer = data;
 				      conversationsToDownload = data._metadata.count;
-				      console.log(conversationsToDownload);
+				      conversationsPartial = data.conversationHistoryRecords.length;
+				      console.log(conversationsPartial + " of -->" + conversationsToDownload);
                               },
                               error: function error(e, text) {
 				      document.getElementById("reportMSG").innerHTML = "System error. Please try again!";
