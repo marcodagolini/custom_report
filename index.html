@@ -210,7 +210,7 @@ span.psw {
                     success: function success(data) {
                         if('lpCallError' in data.ResultSet){
 				localStorage.setItem('account_number', '');
-			   	return false;
+			   	location.reload(); 
                         }
                         else{
                            	uri = data.ResultSet.lpData[0].lpServer;
@@ -228,11 +228,10 @@ span.psw {
 						refreshTranscripts();
 						$('#myloader').css('display', 'none');
           					$('#myreports').css('display', 'inline');
-						return true;
                               		},
                               		error: function error(e, text) {
 						localStorage.setItem('account_number', '');
-				    		return false;
+				    		location.reload(); 
                               		},
                               		beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
                           	});   
@@ -241,28 +240,19 @@ span.psw {
                     error: function error(e, text) {
 			    console.log(text);
 			    localStorage.setItem('account_number', '');
-			    return false;
+			    location.reload(); 
                     }
               	});
   	  }
 	  else{
-		  localStorage.setItem('account_number', '');
-		  return false;
+		  $('#myloader').css('display', 'none');
+		  $('#mylogin').css('display', 'inline');
 	  }
   }
 	
 	
-  if(!((accnumb === null) || (accnumb === '') || (bearer === null) || (bearer === ''))){
-	  var access = checklogin(accnumb, bearer);
-	  if (!access){
-		  // location.reload();
-	  }
-  }
-  else{
-	  $('#myloader').css('display', 'none');
-          $('#mylogin').css('display', 'inline');
-  }
-	  
+checklogin(accnumb, bearer);
+  
 	
 	
 	
