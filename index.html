@@ -424,7 +424,7 @@ checklogin(accnumb, bearer);
 				      answer = data;
 				      conversationsToDownload = data._metadata.count;
 				      conversationsPartial = data.conversationHistoryRecords.length;
-				      console.log(conversationsPartial + " of -->" + conversationsToDownload);
+				      console.log(conversationsPartial + " of --> " + conversationsToDownload);
                               },
                               error: function error(e, text) {
 				      document.getElementById("reportMSG").innerHTML = "System error. Please try again!";
