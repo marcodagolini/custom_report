@@ -398,7 +398,7 @@ checklogin(accnumb, bearer);
 	 var conversationsPartial = 0;
 	 var offset = 0;
 	 var body = "";
-	 var answer = {};
+	 var answer = [];
 	 
 	 if (options === "Open"){ 
 		 body = '{"start":{"from":' + start + ',"to":' + end + '},"status":["OPEN"]}'; 
@@ -410,8 +410,9 @@ checklogin(accnumb, bearer);
 		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "messageContentTypes": ["TEXT_PLAIN"]}';	 
 	 }
 	 
+	 function tryUntilSuccess(offset, callback) {
 	 
-	 $.ajax({
+	 	$.ajax({
                               url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
                               method: "POST",
                               jsonp: "cb",
@@ -420,24 +421,46 @@ checklogin(accnumb, bearer);
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
-				      document.getElementById("reportMSG").innerHTML = "Success!";
-				      document.getElementById("reportMSG").style = "color : green";
-				      console.log(data);
-				      offset = offset + 100;
-				      answer = data;
-				      conversationsToDownload = data._metadata.count;
-				      conversationsPartial = data.conversationHistoryRecords.length;
-				      console.log(conversationsPartial + " of --> " + conversationsToDownload);
+				      if(offset = 0){
+					      conversationsToDownload = data._metadata.count;
+					      conversationsPartial = data.conversationHistoryRecords.length;
+					      console.log(conversationsPartial + " of --> " + conversationsToDownload);      
+				      }
+				      if((data.conversationHistoryRecords.length) = 100){
+					      offset = offset + 100;
+					      answer = answer.concat(data.conversationHistoryRecords);
+					      console.log ("adding conversations...");
+					      setTimeout(function(){
+						      tryUntilSuccess(offset, callback);
+					      }, 2000);
+
+				      }
+				      else{
+					      answer = answer.concat(data.conversationHistoryRecords);
+					      console.log(answer);
+					      document.getElementById("reportMSG").innerHTML = "Success!";
+					      document.getElementById("reportMSG").style = "color : green";
+				      }
+				      
+     
+				      
                               },
                               error: function error(e, text) {
 				      document.getElementById("reportMSG").innerHTML = "System error. Please try again!";
 				      document.getElementById("reportMSG").style = "color : red";  
                               },
-                              beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
-                          });
+                              beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
+		});
+	 }
+	 
+	 tryUntilSuccess(offset, function(err, resp) {
+		 // Your code here...
+	 });
 	 
 
-	 
+	
+    		
+	
 	 
 	 
 	 
