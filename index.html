@@ -444,6 +444,7 @@ checklogin(accnumb, bearer);
 					      console.log(answer);
 					      document.getElementById("reportMSG").innerHTML = "Success!";
 					      document.getElementById("reportMSG").style = "color : green";
+					      $("#hiddenbutton")[0].click();	
 					      // console.log(answer[109].agentParticipants["0"]);
 					      // console.log(answer[9].agentParticipants["0"]);
 				      }
@@ -550,7 +551,7 @@ jsonToSsXml = function (jsonObject) {
     return xml;  
 };
 
-console.log(jsonToSsXml(testJson));
+// console.log(jsonToSsXml(testJson));
 
 download = function (content, filename, contentType) {
     if (!contentType) contentType = 'application/octet-stream';
@@ -563,7 +564,7 @@ download = function (content, filename, contentType) {
 };
 
 download(jsonToSsXml(testJson), 'transcripts.xls', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-$("#hiddenbutton")[0].click();	 
+ 
 	 
 	 
 	 
