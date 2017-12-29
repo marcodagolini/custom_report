@@ -226,7 +226,8 @@ span.psw {
                               		success: function success(data) {
 						refreshTranscripts();
 						$('#myloader').css('display', 'none');
-          					$('#myreports').css('display', 'inline');   
+          					$('#myreports').css('display', 'inline');
+						return true;
                               		},
                               		error: function error(e, text) {
 						localStorage.setItem('account_number', '');
