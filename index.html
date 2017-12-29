@@ -447,7 +447,7 @@ checklogin(accnumb, bearer);
 					      document.getElementById("reportMSG").innerHTML = "Success!";
 					      document.getElementById("reportMSG").style = "color : green";
 					      for (var i = 0; i < (answer.length); i++){
-						      var pieceToAdd = '{"start": ' + answer["i"].info.startTime + ',"end": ' + answer["i"].info.endTime + ',"agent": ' + answer["i"].info.latestAgentNickname + ',"conversation": ' + answer["i"].info.conversationId + ',"transcript": "xyz"}';
+						      var pieceToAdd = '{"start": ' + answer[i].info.startTime + ',"end": ' + answer[i].info.endTime + ',"agent": ' + answer[i].info.latestAgentNickname + ',"conversation": ' + answer[i].info.conversationId + ',"transcript": "xyz"}';
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
