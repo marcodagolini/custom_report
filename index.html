@@ -395,6 +395,8 @@ checklogin(accnumb, bearer);
    
  function downloadTranscripts(start, end, options){
 	 
+	 checklogin(accnumb, bearer);
+	 
 	 var body = "";
 	 
 	 if (options === "Open"){ 
