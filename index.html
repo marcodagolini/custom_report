@@ -396,6 +396,7 @@ checklogin(accnumb, bearer);
 	 
 	 var conversationsToDownload = 0;
 	 var conversationsPartial = 0;
+	 var offset = 0;
 	 var body = "";
 	 var answer = {};
 	 
@@ -409,8 +410,9 @@ checklogin(accnumb, bearer);
 		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "messageContentTypes": ["TEXT_PLAIN"]}';	 
 	 }
 	 
+	 
 	 $.ajax({
-                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=0&limit=100",
+                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
                               method: "POST",
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
@@ -421,6 +423,7 @@ checklogin(accnumb, bearer);
 				      document.getElementById("reportMSG").innerHTML = "Success!";
 				      document.getElementById("reportMSG").style = "color : green";
 				      console.log(data);
+				      offset = offset + 100;
 				      answer = data;
 				      conversationsToDownload = data._metadata.count;
 				      conversationsPartial = data.conversationHistoryRecords.length;
