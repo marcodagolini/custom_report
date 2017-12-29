@@ -451,6 +451,8 @@ checklogin(accnumb, bearer);
 						      var messages = "";
 						      var thismessage = "";
 						      var thisactor = "";
+						      console.log(answer[i].messageRecords);
+						      /*
 						      for (var m = 0; m < (answer[i].messageRecords.length); i++){
 							      if(answer[i].messageRecords[m].type === "TEXT_PLAIN"){
 								   thismessage = answer[i].messageRecords[m].messageData.msg.text;   
@@ -461,6 +463,7 @@ checklogin(accnumb, bearer);
 							      thisactor = answer[i].messageRecords[m].sentBy;
 							      messages = messages + " *** <" + thisactor + ">: " + thismessage;
 						      }
+						      */
 						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
