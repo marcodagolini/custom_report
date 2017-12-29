@@ -198,7 +198,7 @@ span.psw {
   
   function checklogin(accnumb, bearer){	
 	$('#myloader').css('display', 'inline');
-  	if((accnumb !== null) || (accnumb === '') || (bearer !== null) || (bearer === '')){
+  	if((accnumb !== null) || (accnumb !== '') || (bearer !== null) || (bearer !== '')){
     		$.ajax({
                     url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/msgHist/baseURI.lpCsds?version=1.0",
                     jsonp: "cb",
