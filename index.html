@@ -254,7 +254,8 @@ span.psw {
 	
 	
   if(!((accnumb === null) || (accnumb === '') || (bearer === null) || (bearer === ''))){
-	  if (!checklogin(accnumb, bearer)){
+	  var access = checklogin(accnumb, bearer);
+	  if (!access){
 		  // location.reload();
 	  }
   }
