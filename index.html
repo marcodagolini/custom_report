@@ -449,7 +449,7 @@ checklogin(accnumb, bearer);
 						      var messages = "";
 						      var thismessage = "";
 						      var thisactor = "";
-						      for (var m = 0; m < (answer[i].keys(messageRecords).length); i++){
+						      for (var m = 0; m < (answer[i].messageRecords.length); i++){
 							      if(answer[i].messageRecords[m].type === "TEXT_PLAIN"){
 								   thismessage = answer[i].messageRecords[m].messageData.msg.text;   
 							      }
