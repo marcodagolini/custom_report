@@ -394,9 +394,9 @@ checklogin(accnumb, bearer);
    
  function downloadTranscripts(start, end, options){
 	 
-	 checklogin(accnumb, bearer);
 	 
 	 var body = "";
+	 var answer = {};
 	 
 	 if (options === "Open"){ 
 		 body = '{"start":{"from":' + start + ',"to":' + end + '},"status":["OPEN"]}'; 
@@ -417,17 +417,19 @@ checklogin(accnumb, bearer);
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
-
-                                console.log(data);
-                              
-                                                   
-                                
+				      document.getElementById("reportMSG").innerHTML = "Success!";
+				      document.getElementById("reportMSG").style = "color : green";
+				      console.log(data);
+				      answer = data;
                               },
                               error: function error(e, text) {
-                                    
+				      document.getElementById("reportMSG").innerHTML = "System error. Please try again!";
+				      document.getElementById("reportMSG").style = "color : red";  
                               },
                               beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
                           });
+	 
+
 	 
 	 
 	 
