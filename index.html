@@ -243,17 +243,28 @@ span.psw {
               	});
   	  }
 	  else{
-          	$('#myloader').css('display', 'none');
-          	$('#mylogin').css('display', 'inline');
+		  localStorage.setItem('account_number', '');
+		  return false;
 	  }
   }
 	
 	
-	
-	
-  if (!checklogin(accnumb, bearer)){
-	  location.reload(); 
+  if(!((accnumb === null) || (accnumb === '') || (bearer === null) || (bearer === ''))){
+	  if (!checklogin(accnumb, bearer)){
+		  location.reload();
+	  }
   }
+  else{
+	  $('#myloader').css('display', 'none');
+          $('#mylogin').css('display', 'inline');
+  }
+	  
+	
+	
+	
+	
+	
+  
   $(document).on('click', function(evt) {
 	  if($("#accnumb").val() != ""){
 		  if($(evt.target).is('#submitLogin')) {
