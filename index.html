@@ -453,8 +453,8 @@ checklogin(accnumb, bearer);
 						      var thismessage = "";
 						      var thisactor = "";
 						      var length = answer[i].messageRecords.length;
-						      for (var m = 0; m < length; i++){
-							      var type = answer["i"].messageRecords["m"].type;
+						      for (var m = 0; m < length; m++){
+							      var type = answer[i].messageRecords[m].type;
 							      if(type === "TEXT_PLAIN"){
 								   thismessage = answer[i].messageRecords[m].messageData.msg.text;   
 							      }
