@@ -266,6 +266,7 @@ span.psw {
 						refreshTranscripts();
 						$('#myloader').css('display', 'none');
           					$('#myreports').css('display', 'inline');
+						loadstats();
                               		},
                               		error: function error(e, text) {
 						localStorage.setItem('account_number', '');
@@ -452,6 +453,13 @@ checklogin(accnumb, bearer);
 	  
 	  
   }
+	
+ function loadstats(){
+	 setTimeout(function(){
+		$('#loadingStats').css('display', 'none');
+		$('#loadedStats').css('display', 'inline');
+	 }, 3000);
+ }
     
    
  function downloadTranscripts(start, end, options){
