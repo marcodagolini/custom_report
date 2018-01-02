@@ -308,7 +308,12 @@ checklogin(accnumb, bearer);
   });
 		  	
 	
-	
+  $(document).on('change','statisticOptions',function(){
+	  $('#loadedStats').css('display', 'none');
+	  $('#loadingStats').css('display', 'inline');
+	  loadstats();
+  });
+
   
   $(document).on('click', function(evt) {
 	  if($("#accnumb").val() != ""){
