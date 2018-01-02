@@ -524,10 +524,10 @@ checklogin(accnumb, bearer);
 							      var time = answer[i].messageRecords[m].timeL;
 							      if(start <= time && time <= end){
 								    if (answer[i].messageRecords[m].sentBy === "Consumer"){
-									    receivedMessages = receivedMessages ++;
+									    receivedMessages = receivedMessages + 1;
 								    }
 								    else{
-									    sentMessages = sentMessages ++;
+									    sentMessages = sentMessages + 1;
 								    }
 							      }
 							      
