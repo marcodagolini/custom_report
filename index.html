@@ -271,8 +271,12 @@ checklogin(accnumb, bearer);
 	
   $(document).on('click', function(evt) {
 	  if($(evt.target).is('#logout')) {
-		  localStorage.setItem('account_number', '');
-		  location.reload();	  
+		  $('#myreports').css('display', 'none');
+		  $('#myloader').css('display', 'inline');
+		  setTimeout(function(){
+			  localStorage.setItem('account_number', '');
+			  location.reload();
+		  }, 2000);
 	  }
   });
 		  	
