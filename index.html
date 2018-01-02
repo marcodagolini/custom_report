@@ -270,7 +270,13 @@ checklogin(accnumb, bearer);
   
 	
 	
-	
+  $(document).on('click', function(evt) {
+	  if($(evt.target).is('#logout')) {
+		  localStorage.setItem('account_number', '');
+		  location.reload();	  
+	  }
+  });
+		  	
 	
 	
   
