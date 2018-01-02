@@ -529,11 +529,20 @@ checklogin(accnumb, bearer);
 					      for (var i = 0; i < (answer.length); i++){
 						      var length = answer[i].messageRecords.length;
 						      for (var m = 0; m < length; m++){
-							      var type = answer[i].messageRecords[m].type;
+							      var time = answer[i].messageRecords[m].timeL;
+							      if(start <= time && time <= end){
+								    if (answer[i].messageRecords[m].sentBy === "Consumer"){
+									    receivedMessages = receivedMessages ++;
+								    }
+								    else{
+									    sentMessages = sentMessages ++;
+								    }
+							      }
 							      
 						      }
 
 					      }
+					      console.log("received messages:" + receivedMessages +" *** sent messages:" + sentMessages);
 
 				      }
 				      
