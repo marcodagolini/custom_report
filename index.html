@@ -236,6 +236,7 @@ span.psw {
   var csrf;
   var accnumb = localStorage.getItem('account_number');
   var bearer = localStorage.getItem('bearer');
+  var statisticOptions = 0;
   
   function checklogin(accnumb, bearer){	
 	$('#myloader').css('display', 'inline');
@@ -456,7 +457,6 @@ checklogin(accnumb, bearer);
   }
 	
  function loadstats(){
-	 var statisticOptions = 0;
 	 switch($("#statisticOptions").val()) {
     		case "10 Mins":
         		statisticOptions = 10;
