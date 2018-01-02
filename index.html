@@ -35,7 +35,10 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }   
-   
+  
+select.statisticOptions {
+    text-align:right;
+}
 
 input[type=text], input[type=password] {
     width: 200px;
@@ -164,7 +167,7 @@ span.psw {
     </br></br>
 
     <h2>Some statistics about your last:</h2>
-    <select id="statisticOptions" style="text-align:right;">
+    <select id="statisticOptions" class="statisticOptions">
         <option>10 Mins</option>
         <option>20 Mins</option>
         <option>30 Mins</option>
