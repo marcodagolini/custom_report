@@ -458,6 +458,8 @@ checklogin(accnumb, bearer);
 	
  function loadstats(){
 	 setTimeout(function(){
+		$("#ricevedMessages").empty();
+		$("#ricevedMessages").append("changed text");
 		$('#loadingStats').css('display', 'none');
 		$('#loadedStats').css('display', 'inline');
 	 }, 3000);
