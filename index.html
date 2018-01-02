@@ -16,48 +16,6 @@
 <style>
 	
 	
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  padding: 30px;
-  text-align: center;
-}
-
-.saving {
-  font-size: 40px;
-}
-
-.saving span {
-  font-size: 50px;
-  animation-name: blink;
-  animation-duration: 1.4s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
-}
-
-.saving span:nth-child(2) {
-  animation-delay: .2s;
-}
-
-.saving span:nth-child(3) {
-  animation-delay: .4s;
-}
-
-@keyframes blink {
-  0% {
-    opacity: .2;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: .2;
-  }
-}
 
 .loader {
   border: 16px solid #f3f3f3;
@@ -207,7 +165,7 @@ span.psw {
     <button type="button" id ="logout" class="logout">Log Out</button>
     </br></br>
    
-    <div style"float:right;">
+
     <h2>Some statistics about your last:</h2>
     <select id="statisticOptions" class="statisticOptions">
         <option>10 Mins</option>
@@ -215,11 +173,11 @@ span.psw {
         <option>30 Mins</option>
 	<option>1 Hour</option>
     </select>
-    </div>
+
     </br>
     </br>
-    <p class="Loading">Saving<span>.</span><span>.</span><span>.</span></p>
-    <label><b>Incoming Messages: </b></label><div class="miniloader"></div>
+
+    <label><b>Incoming Messages: </b></label>
   
     <h2>Download your transcripts:</h2>
     <label><b>Start date</b></label></br>
