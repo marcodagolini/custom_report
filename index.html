@@ -481,7 +481,10 @@ checklogin(accnumb, bearer);
 	 var start = Date.now() - (1000*60*statisticOptions);
 	 var end = Date.now();
 	 console.log(start + "***" + end + "***" + $("#statisticOptions").val());
-	 setTimeout(function(){
+	 countMessages(start,end);
+	 // averageFirts();
+	 // averageGeneral();
+	 // setTimeout(function(){
 		$("#ricevedMessages").empty();
 		$("#ricevedMessages").append("changed text");
 		$('#loadingStats').css('display', 'none');
@@ -489,7 +492,69 @@ checklogin(accnumb, bearer);
 	 }, 3000);
  }
     
-   
+ 
+ function countMessages(start,end){
+	 
+	 var receivedMessages = 0;
+	 var sentMessages = 0;
+	 var conversationsPartial = 0;
+	 var offset = 0;
+	 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "messageContentTypes": ["TEXT_PLAIN","RICH_CONTENT"]}';
+	 var answer = [];
+	 
+	 function tryUntilSuccess(offset, callback) {
+	 
+	 	$.ajax({
+                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
+                              method: "POST",
+                              jsonp: "cb",
+                              jsonpCallback: "domainCallback",
+                              cache: true,
+                              contentType: "application/json",
+                              data: body,
+                              success: function success(data) {
+				      if((data.conversationHistoryRecords.length) == 100){
+					      offset = offset + 100;
+					      answer = answer.concat(data.conversationHistoryRecords);
+					      console.log(data.conversationHistoryRecords);
+					      console.log(answer);
+					      console.log ("adding conversations...");
+					      // setTimeout(function(){
+						      tryUntilSuccess(offset, callback);
+					      // }, 1000);
+
+				      }
+				      else{
+					      answer = answer.concat(data.conversationHistoryRecords);
+					      for (var i = 0; i < (answer.length); i++){
+						      var length = answer[i].messageRecords.length;
+						      for (var m = 0; m < length; m++){
+							      var type = answer[i].messageRecords[m].type;
+							      
+						      }
+
+					      }
+
+				      }
+				      
+     
+				      
+                              },
+                              error: function error(e, text) {
+
+                              },
+                              beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
+		});
+	 }
+	 
+	 tryUntilSuccess(offset, function(err, resp) {
+		 // Your code here...
+	 });
+	 
+	 
+ }
+ 
+ 
  function downloadTranscripts(start, end, options){
 	 
 	 var conversationsToDownload = 0;
@@ -506,7 +571,7 @@ checklogin(accnumb, bearer);
 		 body = '{"start":{"from":' + start + ',"to":' + end + '},"status":["CLOSE"]}';	 
 	 }
 	 else if (options === "Active"){
-		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "messageContentTypes": ["TEXT_PLAIN"]}';	 
+		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "messageContentTypes": ["TEXT_PLAIN","RICH_CONTENT"]}';	 
 	 }
 	 
 	 function tryUntilSuccess(offset, callback) {
