@@ -328,13 +328,13 @@ checklogin(accnumb, bearer);
 	 var dd = date.getDate();
     	 var mm = date.getMonth() + 1;
     	 var y = date.getFullYear();
-	 var enddate = dd + "/" + mm + "/" + dd;
+	 var enddate = dd + "/" + mm + "/" + y;
 	 
 	 date.setDate(date.getDate() - 7);
 	 var dd = date.getDate();
     	 var mm = date.getMonth() + 1;
     	 var y = date.getFullYear();
-	 var startdate = dd + "/" + mm + "/" + dd;
+	 var startdate = dd + "/" + mm + "/" + y;
 
 	 
 	 $('#startdate').val(startdate);
