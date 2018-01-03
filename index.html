@@ -523,6 +523,7 @@ checklogin(accnumb, bearer);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
+					      console.log("1 monyh ago: " + begin);
 					      console.log(answer.length);
 					      for (var i = 0; i < (answer.length); i++){
 						      var length = answer[i].messageRecords.length;
