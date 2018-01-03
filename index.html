@@ -515,14 +515,14 @@ checklogin(accnumb, bearer);
 				      if(((data.conversationHistoryRecords.length) == 100)&&((data.conversationHistoryRecords[99].info.endTimeL) < start)){
 					      offset = offset + 100;
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      console.log(data);
+					      // console.log(data);
 					      // console.log(answer);
 					      console.log ("adding conversations...");
 					      loadClosedConvs(offset, callback);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      console.log(answer);
+					      console.log(answer.length);
 					      for (var i = 0; i < (answer.length); i++){
 						      var length = answer[i].messageRecords.length;
 						      for (var m = 0; m < length; m++){
