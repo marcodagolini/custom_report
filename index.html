@@ -572,6 +572,8 @@ checklogin(accnumb, bearer);
 						      }
 
 					      }
+					      var responseFirstInSeconds = totTimeFirstResponse/firstResponses;
+					      
 					      console.log("received messages:" + receivedMessages +" *** sent messages:" + sentMessages);
 					      $("#ricevedMessages").empty();
 					      $("#ricevedMessages").append("received messages: " + receivedMessages);
