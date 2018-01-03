@@ -572,7 +572,40 @@ checklogin(accnumb, bearer);
 						      }
 
 					      }
-					      var responseFirstInSeconds = totTimeFirstResponse/firstResponses;
+					      
+					      
+					      function secondsToString(timeInSeconds){
+					      
+					      var hours;
+					      var minutes;
+					      var seconds;
+					      var diff;
+					      var stringAnswer;
+					      if (Math.floor(timeInSeconds/(60*60)) > 0){
+						      hours = Math.floor(timeInSeconds/(60*60));
+						      diff = timeInSeconds - hours*60*60;
+						      if (Math.floor(diff/60) > 0){
+							      minutes = Math.floor(diff/60);
+							      seconds = Math.floor(timeInSeconds - minutes);
+							      stringAnswer = hours + "h, " + minutes + "m, " + seconds + "s";
+						      }
+						      else{
+							      stringAnswer = hours + "h, " + seconds + "s";
+						      }
+					      }
+					      else if (Math.floor(timeInSeconds/60) > 0){
+						      var minutes = Math.floor(timeInSeconds/60);
+						      var seconds = Math.floor(timeInSeconds - minutes);
+						      stringAnswer = minutes + "m, " + seconds + "s";
+					      }
+					      else{
+						      var seconds = Math.floor(timeInSeconds);
+						      stringAnswer = seconds + "s";
+					      }
+						      return stringAnswer;
+					      }
+					      var stringFirst = secondsToString(totTimeFirstResponse/firstResponses);
+					      var stringGeneral = secondsToString((totTimeGeneralResponse+totTimeFirstResponse)/(firstResponses+secondResponses));
 					      
 					      console.log("received messages:" + receivedMessages +" *** sent messages:" + sentMessages);
 					      $("#ricevedMessages").empty();
@@ -580,9 +613,9 @@ checklogin(accnumb, bearer);
 					      $("#sentMessages").empty();
 					      $("#sentMessages").append("sent messages: " + sentMessages);
 					      $("#responseFirst").empty();
-					      $("#responseFirst").append("average firts time answer: " + totTimeFirstResponse/firstResponses + " seconds");
+					      $("#responseFirst").append("average firts time answer: " + stringFirst);
 					      $("#responseGeneral").empty();
-					      $("#responseGeneral").append("average general time answer: " + (totTimeGeneralResponse+totTimeFirstResponse)/(firstResponses+secondResponses) + " seconds");
+					      $("#responseGeneral").append("average general time answer: " + stringGeneral);
 					      
 					      $('#loadingStats').css('display', 'none');
 					      $('#loadedStats').css('display', 'inline');
