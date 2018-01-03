@@ -517,7 +517,7 @@ checklogin(accnumb, bearer);
 				      if(((data.conversationHistoryRecords.length) == 100)&&(true)){
 					      offset = offset + 100;
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      console.log(data.conversationHistoryRecords);
+					      console.log(data);
 					      // console.log(answer);
 					      console.log ("adding conversations...");
 					      loadClosedConvs(offset, callback);
