@@ -577,35 +577,41 @@ checklogin(accnumb, bearer);
 					      
 					      
 					      function secondsToString(timeInSeconds){
-					      
-					      var hours;
-					      var minutes;
-					      var seconds;
-					      var diff;
-					      var stringAnswer;
-					      if (Math.floor(timeInSeconds/(60*60)) > 0){
-						      hours = Math.floor(timeInSeconds/(60*60));
-						      diff = timeInSeconds - hours*60*60;
-						      if (Math.floor(diff/60) > 0){
-							      minutes = Math.floor(diff/60);
-							      seconds = Math.floor(timeInSeconds - minutes*60);
-							      stringAnswer = hours + "h, " + minutes + "m, " + seconds + "s";
+						      
+						      var hours;
+						      var minutes;
+						      var seconds;
+						      var diff;
+						      var stringAnswer;
+						      if (timeInSeconds == "NaN"){
+							     stringAnswer = "--";
+							     return stringAnswer;
+						      }
+						      if (Math.floor(timeInSeconds/(60*60)) > 0){
+							      hours = Math.floor(timeInSeconds/(60*60));
+							      diff = timeInSeconds - hours*60*60;
+							      if (Math.floor(diff/60) > 0){
+								      minutes = Math.floor(diff/60);
+								      seconds = Math.floor(timeInSeconds - minutes*60);
+								      stringAnswer = hours + "h, " + minutes + "m, " + seconds + "s";
+							      }
+							      else{
+								      stringAnswer = hours + "h, " + seconds + "s";
+							      }
+						      }
+						      else if (Math.floor(timeInSeconds/60) > 0){
+							      var minutes = Math.floor(timeInSeconds/60);
+							      var seconds = Math.floor(timeInSeconds - minutes*60);
+							      stringAnswer = minutes + "m, " + seconds + "s";
 						      }
 						      else{
-							      stringAnswer = hours + "h, " + seconds + "s";
+							      var seconds = Math.floor(timeInSeconds);
+							      stringAnswer = seconds + "s";
 						      }
-					      }
-					      else if (Math.floor(timeInSeconds/60) > 0){
-						      var minutes = Math.floor(timeInSeconds/60);
-						      var seconds = Math.floor(timeInSeconds - minutes*60);
-						      stringAnswer = minutes + "m, " + seconds + "s";
-					      }
-					      else{
-						      var seconds = Math.floor(timeInSeconds);
-						      stringAnswer = seconds + "s";
-					      }
 						      return stringAnswer;
 					      }
+					      
+
 					      var stringFirst = secondsToString(totTimeFirstResponse/firstResponses);
 					      var stringGeneral = secondsToString((totTimeGeneralResponse+totTimeFirstResponse)/(firstResponses+secondResponses));
 					      
