@@ -512,7 +512,7 @@ checklogin(accnumb, bearer);
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
-				      if(((data.conversationHistoryRecords.length) == 100)&&()){
+				      if(((data.conversationHistoryRecords.length) == 100)&&(true)){
 					      offset = offset + 100;
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      console.log(data.conversationHistoryRecords);
