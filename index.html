@@ -214,7 +214,7 @@ span.psw {
     <select id="transcriptOptions">
         <option>Open</option>
         <option>Close</option>
-        <option>Active</option>
+        <option>Open+Close</option>
     </select>
     </br></br>
     <button type="button" id ="downloadTranscripts" class="downloadTranscripts">Download</button></br></br>
@@ -659,8 +659,8 @@ checklogin(accnumb, bearer);
 	 else if (options === "Close"){
 		 body = '{"start":{"from":' + start + ',"to":' + end + '},"status":["CLOSE"]}';	 
 	 }
-	 else if (options === "Active"){
-		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "messageContentTypes": ["TEXT_PLAIN","RICH_CONTENT"]}';	 
+	 else if (options === "Open+Close"){
+		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status":["OPEN","CLOSE"]}';	 
 	 }
 	 
 	 function tryUntilSuccess(offset, callback) {
