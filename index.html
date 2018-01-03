@@ -498,10 +498,11 @@ checklogin(accnumb, bearer);
 	 var totTimeGeneralResponse = 0;
 	 var conversationsPartial = 0;
 	 var offset = 0;
-	 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "messageContentTypes": ["TEXT_PLAIN","RICH_CONTENT"]}';
+	 var begin = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
+	 var body = '{"start":{"from":' + begin + ',"to":' + end + '}, "status": ["OPEN"]}';
 	 var answer = [];
 	 
-	 function tryUntilSuccess(offset, callback) {
+	 function loadClosedConvs(offset, callback) {
 	 
 	 	$.ajax({
                               url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
@@ -518,10 +519,7 @@ checklogin(accnumb, bearer);
 					      console.log(data.conversationHistoryRecords);
 					      console.log(answer);
 					      console.log ("adding conversations...");
-					      // setTimeout(function(){
-						      tryUntilSuccess(offset, callback);
-					      // }, 1000);
-
+					      loadClosedConvs(offset, callback);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
@@ -573,10 +571,49 @@ checklogin(accnumb, bearer);
 		});
 	 }
 	 
-	 tryUntilSuccess(offset, function(err, resp) {
+	 function loadOpenConvs(offset, callback) {
+	 
+	 	$.ajax({
+                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
+                              method: "POST",
+                              jsonp: "cb",
+                              jsonpCallback: "domainCallback",
+                              cache: true,
+                              contentType: "application/json",
+                              data: body,
+                              success: function success(data) {
+				      if((data.conversationHistoryRecords.length) == 100){
+					      offset = offset + 100;
+					      answer = answer.concat(data.conversationHistoryRecords);
+					      console.log(data.conversationHistoryRecords);
+					      console.log(answer);
+					      console.log ("adding conversations...");
+					      loadOpenConvs(offset, callback);   
+
+				      }
+				      else{
+					      answer = answer.concat(data.conversationHistoryRecords);
+					      body = '{"start":{"from":' + begin + ',"to":' + end + '}, "status": ["CLOSE"]}';
+					      offset = 0;
+					      loadClosedConvs(offset, callback);
+				      }
+				      
+     
+				      
+                              },
+                              error: function error(e, text) {
+
+                              },
+                              beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
+		});
+	 }
+	 
+
+	 
+	
+	 loadOpenConvs(offset, function(err, resp) {
 		 // Your code here...
 	 });
-	 
 	 
  }
  
