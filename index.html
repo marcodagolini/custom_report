@@ -587,7 +587,7 @@ checklogin(accnumb, bearer);
 				      
                               },
                               error: function error(e, text) {
-
+				      location.reload();
                               },
                               beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
 		});
@@ -624,7 +624,7 @@ checklogin(accnumb, bearer);
 				      
                               },
                               error: function error(e, text) {
-
+				      location.reload();
                               },
                               beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
 		});
