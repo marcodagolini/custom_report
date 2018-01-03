@@ -505,7 +505,7 @@ checklogin(accnumb, bearer);
 	 function loadClosedConvs(offset, callback) {
 	 
 	 	$.ajax({
-                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
+                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100&sort=start:desc",
                               method: "POST",
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
@@ -513,7 +513,7 @@ checklogin(accnumb, bearer);
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
-				      if(((data.conversationHistoryRecords.length) == 100)&&(true)){
+				      if(((data.conversationHistoryRecords.length) == 100)&&((data.conversationHistoryRecords[99].info.endTimeL) < start)){
 					      offset = offset + 100;
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      console.log(data);
