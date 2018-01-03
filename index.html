@@ -346,7 +346,6 @@ checklogin(accnumb, bearer);
 							  contentType: "application/json",
 							  data: '{"username":"' + uname + '","password":"' + pwd +'"}',
 							  success: function success(data) {
-								  console.log("******" + JSON.stringify(data) + "******");
 								  csrf = data.csrf;
 								  bearer = data.bearer;
 								  localStorage.setItem('account_number', accnumb);
