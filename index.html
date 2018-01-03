@@ -271,7 +271,11 @@ span.psw {
 						refreshTranscripts();
 						$('#myloader').css('display', 'none');
           					$('#myreports').css('display', 'inline');
-						loadstats();
+						setTimeout(function(){
+							loadstats();
+						}, 500);
+						
+						
                               		},
                               		error: function error(e, text) {
 						localStorage.setItem('account_number', '');
