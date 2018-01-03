@@ -587,7 +587,7 @@ checklogin(accnumb, bearer);
 						      diff = timeInSeconds - hours*60*60;
 						      if (Math.floor(diff/60) > 0){
 							      minutes = Math.floor(diff/60);
-							      seconds = Math.floor(timeInSeconds - minutes);
+							      seconds = Math.floor(timeInSeconds - minutes*60);
 							      stringAnswer = hours + "h, " + minutes + "m, " + seconds + "s";
 						      }
 						      else{
@@ -596,7 +596,7 @@ checklogin(accnumb, bearer);
 					      }
 					      else if (Math.floor(timeInSeconds/60) > 0){
 						      var minutes = Math.floor(timeInSeconds/60);
-						      var seconds = Math.floor(timeInSeconds - minutes);
+						      var seconds = Math.floor(timeInSeconds - minutes*60);
 						      stringAnswer = minutes + "m, " + seconds + "s";
 					      }
 					      else{
