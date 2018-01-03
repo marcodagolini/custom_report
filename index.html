@@ -582,7 +582,7 @@ checklogin(accnumb, bearer);
 						      var seconds;
 						      var diff;
 						      var stringAnswer;
-						      if (timeInSeconds == "NaN"){
+						      if (isNaN(timeInSeconds)){
 							     stringAnswer = "--";
 							     return stringAnswer;
 						      }
