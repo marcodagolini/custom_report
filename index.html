@@ -481,97 +481,97 @@ checklogin(accnumb, bearer);
 		      var timeZone;
 		      switch($("#DropDownTimezone").val()) {
     				case "(GMT +1:00 hour) Rome, Brussels, Copenhagen, Madrid, Paris":
-        				timeZone = 10;
+        				timeZone = ":00 GMT+0100";
         			break;
     				case "(GMT +2:00) Kaliningrad, South Africa":
-        				timeZone = 20;
+        				timeZone = ":00 GMT+0200";
         			break;
     				case "(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg":
-        				timeZone = 30;
+        				timeZone = ":00 GMT+0300";
         			break;
 				case "(GMT +3:30) Tehran":
-        				timeZone = 60;
+        				timeZone = ":00 GMT+0330";
         			break;
     				case "(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi":
-        				timeZone = 10;
+        				timeZone = ":00 GMT+0400";
         			break;
     				case "(GMT +4:30) Kabul":
-        				timeZone = 20;
+        				timeZone = ":00 GMT+0430";
         			break;
     				case "(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent":
-        				timeZone = 30;
+        				timeZone = ":00 GMT+0500";
         			break;
 				case "(GMT +5:30) Bombay, Calcutta, Madras, New Delhi":
-        				timeZone = 60;
+        				timeZone = ":00 GMT+0530";
         			break;
     				case "(GMT +5:45) Kathmandu":
-        				timeZone = 10;
+        				timeZone = ":00 GMT+0545";
         			break;
     				case "(GMT +6:00) Almaty, Dhaka, Colombo":
-        				timeZone = 20;
+        				timeZone = ":00 GMT+0600";
         			break;
     				case "(GMT +7:00) Bangkok, Hanoi, Jakarta":
-        				timeZone = 30;
+        				timeZone = ":00 GMT+0700";
         			break;
 				case "(GMT +8:00) Beijing, Perth, Singapore, Hong Kong":
-        				timeZone = 60;
+        				timeZone = ":00 GMT+0800";
         			break;
 				case "(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk":
-        				timeZone = 30;
+        				timeZone = ":00 GMT+0900";
         			break;
 				case "(GMT +9:30) Adelaide, Darwin":
-        				timeZone = 60;
+        				timeZone = ":00 GMT+0930";
         			break;
     				case "(GMT +10:00) Eastern Australia, Guam, Vladivostok":
-        				timeZone = 10;
+        				timeZone = ":00 GMT+1000";
         			break;
     				case "(GMT +11:00) Magadan, Solomon Islands, New Caledonia":
-        				timeZone = 20;
+        				timeZone = ":00 GMT+1100";
         			break;
     				case "(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka":
-        				timeZone = 30;
+        				timeZone = ":00 GMT+1200";
         			break;
 				case "(GMT -12:00) Eniwetok, Kwajalein":
-        				timeZone = 60;
+        				timeZone = ":00 GMT-1200";
         			break;
     				case "(GMT -11:00) Midway Island, Samoa":
-        				timeZone = 30;
+        				timeZone = ":00 GMT-1100";
         			break;
 				case "(GMT -10:00) Hawaii":
-        				timeZone = 60;
+        				timeZone = ":00 GMT-1000";
         			break;
     				case "(GMT -9:00) Alaska":
-        				timeZone = 10;
+        				timeZone = ":00 GMT-0900";
         			break;
     				case "(GMT -8:00) Pacific Time (US &amp; Canada)":
-        				timeZone = 20;
+        				timeZone = ":00 GMT-0800";
         			break;
     				case "(GMT -7:00) Mountain Time (US &amp; Canada)":
-        				timeZone = 30;
+        				timeZone = ":00 GMT-0700";
         			break;
 				case "(GMT -6:00) Central Time (US &amp; Canada), Mexico City":
-        				timeZone = 60;
+        				timeZone = ":00 GMT-0600";
         			break;
 				case "(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima":
-        				timeZone = 30;
+        				timeZone = ":00 GMT-0500";
         			break;
 				case "(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz":
-        				timeZone = 60;
+        				timeZone = ":00 GMT-0400";
         			break;
     				case "(GMT -3:30) Newfoundland":
-        				timeZone = 10;
+        				timeZone = ":00 GMT-0330";
         			break;
     				case "(GMT -3:00) Brazil, Buenos Aires, Georgetown":
-        				timeZone = 20;
+        				timeZone = ":00 GMT-0300";
         			break;
     				case "(GMT -2:00) Mid-Atlantic":
-        				timeZone = 30;
+        				timeZone = ":00 GMT-0200";
         			break;
 				case "(GMT -1:00 hour) Azores, Cape Verde Islands":
-        				timeZone = 60;
+        				timeZone = ":00 GMT-0100";
         			break;
 				case "(GMT) Western Europe Time, London, Lisbon, Casablanca":
-        				timeZone = 60;
+        				timeZone = ":00 GMT+0000";
         			break;
 			}
 
@@ -586,7 +586,7 @@ checklogin(accnumb, bearer);
   		    var month = months[startdate.getMonth()];
   	            var date = startdate.getDate(); 
 		    var hour = $('#starthour').val();
-		    startdate = month + " " + date + " " + year + " " + hour + ":00 GMT+0100"
+		    startdate = month + " " + date + " " + year + " " + hour + timeZone;
 		    var d = new Date(startdate);
 		    var start = d.getTime();
 		      
@@ -598,7 +598,7 @@ checklogin(accnumb, bearer);
   		    var month = months[enddate.getMonth()];
   	            var date = enddate.getDate(); 
 		    var hour = $('#endhour').val();
-		    enddate = month + " " + date + " " + year + " " + hour + ":00 GMT+0100"
+		    enddate = month + " " + date + " " + year + " " + hour + timeZone;
 		    var d = new Date(enddate);
 		    var end = d.getTime();  
 
