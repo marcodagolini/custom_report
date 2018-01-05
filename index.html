@@ -875,7 +875,7 @@ checklogin(accnumb, bearer);
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      console.log(answer);
 					      console.log(answer.length);
-					      document.getElementById("reportMSG").innerHTML = "Success!";
+					      document.getElementById("reportMSG").innerHTML = answer.length + " Messaging conversations downloaded with success!";
 					      document.getElementById("reportMSG").style = "color : green";
 					      for (var i = 0; i < (answer.length); i++){
 						      var messages = "";
