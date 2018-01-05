@@ -899,7 +899,14 @@ checklogin(accnumb, bearer);
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
-					      exportData(exportObject);
+					      if (exportObject.length > 0){
+						      exportData(exportObject);
+					      }
+					      else{
+						      document.getElementById("reportMSG").innerHTML = "I've not found any conversation in this period!";
+						      document.getElementById("reportMSG").style = "color : red"; 
+					      }
+					      
 					      	
 					      // console.log(answer[109].agentParticipants["0"]);
 					      // console.log(answer[9].agentParticipants["0"]);
