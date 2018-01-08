@@ -192,6 +192,8 @@ span.psw {
 	    <label id="sentMessages"><b>Start date</b></label></br>
 	    <label id="responseFirst"><b>Start date</b></label></br>
 	    <label id="responseGeneral"><b>Start date</b></label></br>
+	    <label id="waitingForAnswer"><b>Start date</b></label></br>
+	    <label id="averageTimeWaitingForAnswer"><b>Start date</b></label></br>
             </br></br></br></br></br></br>
 
     </div>
@@ -632,6 +634,8 @@ checklogin(accnumb, bearer);
  function countMessages(start,end){
 	 
 	 var receivedMessages = 0;
+	 var waitingForAnswer = 0;
+	 var totTimeWaitingForAnswer = 0;
 	 var sentMessages = 0;
 	 var isfirstOfMultiple = 1;
 	 var firstResponses = 0;
@@ -684,6 +688,10 @@ checklogin(accnumb, bearer);
 									    }
 									    if(!timeWaiting){
 										  timeWaiting = answer[i].messageRecords[m].timeL;
+									    }
+									    if(m == (length - 1)){
+										   waitingForAnswer = waitingForAnswer + 1;
+										   totTimeWaitingForAnswer = totTimeWaitingForAnswer + answer[i].messageRecords[m].timeL;
 									    }
 									    receivedMessages = receivedMessages + 1;
 									    isfirstOfMultiple = 1;
@@ -755,6 +763,7 @@ checklogin(accnumb, bearer);
 
 					      var stringFirst = secondsToString(totTimeFirstResponse/firstResponses);
 					      var stringGeneral = secondsToString((totTimeGeneralResponse+totTimeFirstResponse)/(firstResponses+secondResponses));
+					      var stringWaiting = secondsToString((totTimeWaitingForAnswer)/(waitingForAnswer));
 					      
 					      console.log("received messages:" + receivedMessages +" *** sent messages:" + sentMessages);
 					      $("#ricevedMessages").empty();
@@ -765,6 +774,11 @@ checklogin(accnumb, bearer);
 					      $("#responseFirst").append("average firts time answer: " + stringFirst);
 					      $("#responseGeneral").empty();
 					      $("#responseGeneral").append("average general time answer: " + stringGeneral);
+					      $("#waitingForAnswer").empty();
+					      $("#waitingForAnswer").append("conversations waiting for an answer: " + waitingForAnswer);
+					      $("#averageTimeWaitingForAnswer").empty();
+					      $("#averageTimeWaitingForAnswer").append("average time waiting answer: " + stringWaiting);
+					      
 					      
 					      $('#loadingStats').css('display', 'none');
 					      $('#loadedStats').css('display', 'inline');
