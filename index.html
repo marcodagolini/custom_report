@@ -633,8 +633,10 @@ checklogin(accnumb, bearer);
  function countMessages(start,end){
 	 
 	 var receivedMessages = 0;
+	 var isConsumer = 0;
 	 var waitingForAnswer = 0;
 	 var totTimeWaitingForAnswer = 0;
+	 var partialTimeWaiting = 0;
 	 var sentMessages = 0;
 	 var isfirstOfMultiple = 1;
 	 var firstResponses = 0;
@@ -677,6 +679,7 @@ checklogin(accnumb, bearer);
 						      timeWaiting = 0;
 						      isFirstMessage = 0;
 						      isfirstOfMultiple = 1;
+						      isConsumer = 0;
 						      var length = answer[i].messageRecords.length;
 						      for (var m = 0; m < length; m++){
 							      var time = answer[i].messageRecords[m].timeL;
@@ -688,12 +691,16 @@ checklogin(accnumb, bearer);
 									    if(!timeWaiting){
 										  timeWaiting = answer[i].messageRecords[m].timeL;
 									    }
+									    if(!isConsumer){
+										   partialTimeWaiting =  (Date.now() - answer[i].messageRecords[m].timeL)/1000;
+									    }
 									    if(m == (length - 1)){
 										   waitingForAnswer = waitingForAnswer + 1;
-										   totTimeWaitingForAnswer = totTimeWaitingForAnswer +  ((Date.now() - answer[i].messageRecords[m].timeL)/1000);
+										   totTimeWaitingForAnswer = totTimeWaitingForAnswer +  partialTimeWaiting;
 									    }
 									    receivedMessages = receivedMessages + 1;
 									    isfirstOfMultiple = 1;
+									    isConsumer = 1;
 								    }
 								    else{
 									    sentMessages = sentMessages + 1;
