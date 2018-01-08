@@ -705,6 +705,7 @@ checklogin(accnumb, bearer);
 								    }
 								    else{
 									    sentMessages = sentMessages + 1;
+									    isConsumer = 0;
 									    if (isFirstMessage){
 										    partialTime = (answer[i].messageRecords[m].timeL - timeWaiting)/1000;
 										    totTimeFirstResponse = totTimeFirstResponse + partialTime;
