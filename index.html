@@ -698,6 +698,7 @@ checklogin(accnumb, bearer);
 									    if(m == (length - 1)){
 										   waitingForAnswer = waitingForAnswer + 1;
 										   totTimeWaitingForAnswer = totTimeWaitingForAnswer +  partialTimeWaiting;
+										   partialTimeWaiting = 0;
 									    }
 									    receivedMessages = receivedMessages + 1;
 									    isfirstOfMultiple = 1;
