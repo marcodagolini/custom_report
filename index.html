@@ -691,7 +691,7 @@ checklogin(accnumb, bearer);
 									    }
 									    if(m == (length - 1)){
 										   waitingForAnswer = waitingForAnswer + 1;
-										   totTimeWaitingForAnswer = totTimeWaitingForAnswer + answer[i].messageRecords[m].timeL;
+										   totTimeWaitingForAnswer = totTimeWaitingForAnswer +  ((Date.now() - answer[i].messageRecords[m].timeL)/1000);
 									    }
 									    receivedMessages = receivedMessages + 1;
 									    isfirstOfMultiple = 1;
