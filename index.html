@@ -320,8 +320,6 @@ span.psw {
                         }
                         else{
                            	facadeUri = data.ResultSet.lpData[0].lpServer;
-				console.log(data);
-                           	console.log(uri);
                            	$.ajax({
                               		url: "https://" + facadeUri + "/api/messaging/rest/reporting/brands/" + accnumb + "/msgstatistics?v=1",
                               		method: "GET",
