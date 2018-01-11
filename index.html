@@ -456,8 +456,44 @@ span.psw {
   }
 	
   function loadHeader(answer){
-	  console.log(answer);
-	  var length = answer.length;
+	 console.log(answer);
+	 var length = answer.length;
+	  
+	 var date = new Date();
+	 var dd = date.getDate();
+	 if (dd < 10){
+		 dd = "0" + dd;
+	 }
+    	 var mm = date.getMonth() + 1;
+	 if (mm < 10){
+		 mm = "0" + mm;
+	 }
+    	 var y = date.getFullYear();
+	 var enddate = y + "-" + mm + "-" + dd;
+	 
+	 date.setDate(date.getDate() - 7);
+	 var dd = date.getDate();
+	 if (dd < 10){
+		 dd = "0" + dd;
+	 }
+    	 var mm = date.getMonth() + 1;
+	 if (mm < 10){
+		 mm = "0" + mm;
+	 }
+    	 var y = date.getFullYear();
+	 var startdate = y + "-" + mm + "-" + dd;
+	  
+	 startdate = new Date(startdate);
+	 var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	 var year = startdate.getFullYear();
+  	 var month = months[startdate.getMonth()];
+  	 var date = startdate.getDate(); 
+	 var hour = $('#starthour').val();
+	 startdate = month + " " + date + " " + year + " " + hour + timeZone;
+	 var d = new Date(startdate);
+	 var start = d.getTime();
+	 console.log("*7*7*7  " + start);
+	  
 	  //for (var m = 0; m < length; m++){
 		  
 	  //}  
