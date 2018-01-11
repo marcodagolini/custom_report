@@ -417,10 +417,11 @@ span.psw {
 		diff = timeInSeconds - hours*60*60;
 		if (Math.floor(diff/60) > 0){
 			minutes = Math.floor(diff/60);
-			seconds = Math.floor(timeInSeconds - minutes*60);
+			seconds = Math.floor(diff - minutes*60);
 			stringAnswer = hours + "h, " + minutes + "m, " + seconds + "s";
 		}
 		else{
+			seconds = Math.floor(diff);
 			stringAnswer = hours + "h, " + seconds + "s";
 		}
 	}
