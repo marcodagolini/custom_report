@@ -18,6 +18,38 @@ body{
   margin: 20px;	
 }
 
+.grid-container-header {
+  display: grid;
+  grid-template-columns: 180px auto auto auto auto;
+  background-color: #2196F3;
+  padding: 5px;
+}
+.grid-container-closed {
+  display: grid;
+  grid-template-columns: 180px auto auto auto auto;
+  background-color: #ff0000;
+  padding: 5px;
+}
+.grid-container-open {
+  display: grid;
+  grid-template-columns: 180px auto auto auto auto;
+  background-color: #00ff00;
+  padding: 5px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 0px solid rgba(0, 0, 0, 0.8);
+  padding: 0px;
+  font-size: 20px;
+  text-align: center;
+}
+.grid-item-left {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 0px solid rgba(0, 0, 0, 0.8);
+  padding: 0px;
+  font-size: 20px;
+  text-align: right;
+}
 	
 .bar-container {
   display: grid;
@@ -219,7 +251,75 @@ span.psw {
 	    </br>
 	    <label id="waitingForAnswer"><b>Start date</b></label></br>
 	    <label id="averageTimeWaitingForAnswer"><b>Start date</b></label></br>
-            </br></br></br></br></br></br>
+            </br></br>
+<div class="grid-container-header">
+  <div class="grid-item"></div>
+  <div class="grid-item">last month</div>
+  <div class="grid-item">last day</div>  
+  <div class="grid-item">last hour</div>
+  <div class="grid-item">last 10 min</div>
+  <div class="grid-item-left">established</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">7</div>
+</div>
+<div class="grid-container-closed">
+  <div class="grid-item-left">closed</div>
+  <div class="grid-item">1</div>
+  <div class="grid-item">4</div>  
+  <div class="grid-item">5</div>
+  <div class="grid-item">1</div>
+  <div class="grid-item-left">first time answer</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">7</div>
+  <div class="grid-item-left">general time answer</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">7</div>
+  <div class="grid-item-left">waiting</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">7</div>
+  <div class="grid-item-left">not assigned</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">7</div>
+</div>
+<div class="grid-container-open">
+  <div class="grid-item-left">open</div>
+  <div class="grid-item">1</div>
+  <div class="grid-item">4</div>  
+  <div class="grid-item">5</div>
+  <div class="grid-item">1</div>
+  <div class="grid-item-left">first time answer</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">7</div>
+  <div class="grid-item-left">general time answer</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">7</div>
+  <div class="grid-item-left">waiting</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">7</div>
+  <div class="grid-item-left">not assigned</div>  
+  <div class="grid-item">7</div>
+  <div class="grid-item">8</div>
+  <div class="grid-item">9</div> 
+  <div class="grid-item">7</div>
+</div>
+
+</br></br></br></br>
 
     </div>
 
