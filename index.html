@@ -517,10 +517,10 @@ span.psw {
 	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
 	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
 	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 console.log("****end****   " + numberTenMinutesAgo);
-	 console.log("****end****   " + numberOneHourAgo);
-	 console.log("****end****   " + numberOneDayAgo);
-	 console.log("****end****   " + numberOneMonthAgo);
+	 document.getElementById("last10Header").innerHTML = numberTenMinutesAgo;
+	 document.getElementById("lastHourHeader").innerHTML = numberOneHourAgo;
+	 document.getElementById("lastDayHeader").innerHTML = numberOneDayAgo;
+	 document.getElementById("lastMonthHeader").innerHTML = numberOneMonthAgo;
   }
 	
   	
