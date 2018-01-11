@@ -402,6 +402,7 @@ span.psw {
   
   var uri = "";
   var facadeUri = "";
+  var timeZone = "";
   var uname;
   var pwd;
   var csrf;
@@ -667,8 +668,6 @@ checklogin(accnumb, bearer);
               if($(evt.target).is('.downloadTranscripts')) {
 		
 
-		      
-		      var timeZone = "";
 		      console.log($("#DropDownTimezone").val());
 		      switch($("#DropDownTimezone").val()) {
     				case "(GMT +1:00 hour) Rome, Brussels, Copenhagen, Madrid, Paris":
