@@ -761,10 +761,10 @@ span.psw {
 	 TotalTimeOneHourAgo = TotalTimeTenMinutesAgo + TotalTimeOneHourAgo;
 	 TotalTimeOneDayAgo = TotalTimeOneHourAgo + TotalTimeOneDayAgo;
 	 TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TotalTimeOneDayAgo;
-	 document.getElementById("last10FTAClose").innerHTML = secondsToString(TotalTimeTenMinutesAgo/numberTenMinutesAgo);
-	 document.getElementById("lastHourFTAClose").innerHTML = secondsToString(TotalTimeOneHourAgo/numberOneHourAgo);
-	 document.getElementById("lastDayFTAClose").innerHTML = secondsToString(TotalTimeOneDayAgo/numberOneDayAgo);
-	 document.getElementById("lastMonthFTAClose").innerHTML = secondsToString(TotalTimeOneMonthAgo/numberOneMonthAgo);
+	 document.getElementById("last10FTAClosed").innerHTML = secondsToString(TotalTimeTenMinutesAgo/numberTenMinutesAgo);
+	 document.getElementById("lastHourFTAClosed").innerHTML = secondsToString(TotalTimeOneHourAgo/numberOneHourAgo);
+	 document.getElementById("lastDayFTAClosed").innerHTML = secondsToString(TotalTimeOneDayAgo/numberOneDayAgo);
+	 document.getElementById("lastMonthFTAClosed").innerHTML = secondsToString(TotalTimeOneMonthAgo/numberOneMonthAgo);
 	 numberTenMinutesAgo = 0;
 	 numberOneHourAgo = 0;
 	 numberOneDayAgo = 0;
