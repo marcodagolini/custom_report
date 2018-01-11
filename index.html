@@ -784,7 +784,7 @@ span.psw {
 		 if(answer[m].info.status === "CLOSE"){
 		 	TimeAnswer = 0;
 		 	howManyMessages = answer[m].messageRecords.length;
-		 	for (var n = 1; n < howManyMessages; n++){
+		 	for (var n = 0; n < howManyMessages; n++){
 			 	if((answer[m].messageRecords[n].sentBy === "Consumer") && !isAnswered){
 				 	whatTime = answer[m].messageRecords[n].timeL;
 				 	isAnswered = 1;
@@ -835,7 +835,7 @@ span.psw {
 		 if(answer[m].info.status === "OPEN"){
 		 	TimeAnswer = 0;
 		 	howManyMessages = answer[m].messageRecords.length;
-		 	for (var n = 1; n < howManyMessages; n++){
+		 	for (var n = 0; n < howManyMessages; n++){
 			 	if((answer[m].messageRecords[n].sentBy === "Consumer") && !isAnswered){
 				 	whatTime = answer[m].messageRecords[n].timeL;
 				 	isAnswered = 1;
