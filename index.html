@@ -18,13 +18,13 @@ body{
 }
 
 	
-.grid-container {
+.bar-container {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   background-color: #2196F3;
   padding: 5px;
 }
-.grid-item {
+.bar-item {
   background-color: rgba(255, 255, 255, 0.8);
   border: 0px solid rgba(0, 0, 0, 0.8);
   padding: 0px;
@@ -181,17 +181,17 @@ span.psw {
     </br>
     <button type="button" id ="logout" class="logout" style="float: right;">Log Out</button>
 
-    <div class="grid-container">
-  	<div class="grid-item">open</div>
-  	<div class="grid-item">pending</div>
-  	<div class="grid-item">unassigned</div>  
-  	<div class="grid-item">overdue</div>
-  	<div class="grid-item">soon overdue</div>
-  	<div id="open" class="grid-item"></div>  
-  	<div id="pending" class="grid-item"></div>
-  	<div id="unassigned" class="grid-item"></div>
-  	<div id="overdue" class="grid-item"></div> 
-  	<div id="soonOverdue" class="grid-item"></div>
+    <div class="bar-container">
+  	<div class="bar-item">open</div>
+  	<div class="bar-item">pending</div>
+  	<div class="bar-item">unassigned</div>  
+  	<div class="bar-item">overdue</div>
+  	<div class="bar-item">soon overdue</div>
+  	<div id="open" class="bar-item"></div>  
+  	<div id="pending" class="bar-item"></div>
+  	<div id="unassigned" class="bar-item"></div>
+  	<div id="overdue" class="bar-item"></div> 
+  	<div id="soonOverdue" class="bar-item"></div>
     </div>
 
     <h2>Some statistics about your last:</h2>
