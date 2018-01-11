@@ -455,6 +455,10 @@ span.psw {
               	});
   }
 	
+  function loadHeader(answer){
+	  
+  }
+	
   	
   function loadstats(){
 	 switch($("#statisticOptions").val()) {
@@ -851,6 +855,7 @@ checklogin(accnumb, bearer);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
+					      loadHeader(answer);
 					      // console.log("1 monyh ago: " + begin);
 					      // console.log(answer.length);
 					      for (var i = 0; i < (answer.length); i++){
