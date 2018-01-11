@@ -456,6 +456,7 @@ span.psw {
 	 var numberOneMonthAgo = 0;
 	 console.log(answer);
 	 var length = answer.length;
+	 var howManyMessages;
 	  
 	 var date = new Date();
 	 var dd = date.getDate();
@@ -604,6 +605,40 @@ span.psw {
 	 numberOneHourAgo = 0;
 	 numberOneDayAgo = 0;
 	 numberOneMonthAgo = 0;
+	 for (var m = 0; m < length; m++){
+	 	 whatTime = answer[m].info.startTimeL;
+		 howManyMessages = answer[m].messageRecords.length;
+		 if (answer[m].info.status === "OPEN" && answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer"){
+			if (whatTime > tenMinutesAgo){
+				numberTenMinutesAgo = numberTenMinutesAgo + 1; 
+		 	}
+		 	else if (whatTime > oneHourAgo){
+				numberOneHourAgo = numberOneHourAgo + 1;
+		 	}
+		 	else if (whatTime > midnightToday){
+				numberOneDayAgo = numberOneDayAgo + 1;
+		 	}
+		 	else{
+				numberOneMonthAgo = numberOneMonthAgo + 1;
+		 	} 
+		 }
+	 }
+	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
+	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
+	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
+	 document.getElementById("last10WaitingOpen").innerHTML = numberTenMinutesAgo;
+	 document.getElementById("lastHourWaitingOpen").innerHTML = numberOneHourAgo;
+	 document.getElementById("lastDayWaitingOpen").innerHTML = numberOneDayAgo;
+	 document.getElementById("lastMonthWaitingOpen").innerHTML = numberOneMonthAgo;
+	 numberTenMinutesAgo = 0;
+	 numberOneHourAgo = 0;
+	 numberOneDayAgo = 0;
+	 numberOneMonthAgo = 0; 
+	  
+	  
+	  
+	  
+	 
   }
 	
   	
