@@ -481,7 +481,7 @@ span.psw {
               	});
   }
 	
-  function loadHeader(answer){
+  function loadStats(answer){
 	  
 	 var numberTenMinutesAgo = 0;
 	 var numberOneHourAgo = 0;
@@ -883,29 +883,6 @@ span.psw {
   }
 	
   	
-  function loadstats(){
-	 switch($("#statisticOptions").val()) {
-    		case "10 Mins":
-        		statisticOptions = 10;
-        		break;
-    		case "20 Mins":
-        		statisticOptions = 20;
-        		break;
-    		case "30 Mins":
-        		statisticOptions = 30;
-        		break;
-		case "1 Hour":
-        		statisticOptions = 60;
-        		break;
-	}
-
-	 var start = Date.now() - (1000*60*statisticOptions);
-	 var end = Date.now();
-	 console.log(start + "***" + end + "***" + $("#statisticOptions").val());
-	 countMessages(start,end);
-	 console.log(start + " *** " + end + "  done");
-
-  }
   
   function checklogin(accnumb, bearer){	
 	$('#myloader').css('display', 'inline');
@@ -939,7 +916,7 @@ span.psw {
           					$('#myreports').css('display', 'inline');
 						loadBar();
 						refreshTranscripts();
-						loadstats();
+						loadConvs();
                               		},
                               		error: function error(e, text) {
 						localStorage.setItem('account_number', '');
@@ -1228,26 +1205,12 @@ checklogin(accnumb, bearer);
 
     
  
- function countMessages(start,end){
+ function loadConvs(){
 	 
-	 var receivedMessages = 0;
-	 var isConsumer = 0;
-	 var waitingForAnswer = 0;
-	 var totTimeWaitingForAnswer = 0;
-	 var partialTimeWaiting = 0;
-	 var sentMessages = 0;
-	 var isfirstOfMultiple = 1;
-	 var firstResponses = 0;
-	 var secondResponses = 0;
-	 var totTimeFirstResponse = 0;
-	 var totTimeGeneralResponse = 0;
-	 var conversationsPartial = 0;
-	 var timeWaiting = 0;
-	 var partialTime = 0;
-	 var isFirstMessage;
+	 var end = Date.now();
+	 var start = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
 	 var offset = 0;
-	 var begin = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
-	 var body = '{"start":{"from":' + begin + ',"to":' + end + '}, "status": ["OPEN"]}';
+	 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"]}';
 	 var answer = [];
 	 
 	 function loadClosedConvs(offset, callback) {
@@ -1271,7 +1234,7 @@ checklogin(accnumb, bearer);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      loadHeader(answer);
+					      loadStats(answer);
 
 
 				      }
@@ -1308,7 +1271,7 @@ checklogin(accnumb, bearer);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      body = '{"start":{"from":' + begin + ',"to":' + end + '}, "status": ["CLOSE"]}';
+					      body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"]}';
 					      offset = 0;
 					      loadClosedConvs(offset, callback);
 				      }
