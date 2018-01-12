@@ -1217,7 +1217,7 @@ checklogin(accnumb, bearer);
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
-				      if(((data.conversationHistoryRecords.length) == 100)&&((data.conversationHistoryRecords[99].info.endTimeL) < start)){
+				      if((data.conversationHistoryRecords.length) == 100){
 					      offset = offset + 100;
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      // console.log(data);
