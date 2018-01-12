@@ -430,6 +430,8 @@ span.psw {
 	
   function loadBar(){
 	  
+	  setTimeout(function(){
+		  
 	      	$.ajax({
                     url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/facadeMsg/baseURI.lpCsds?version=1.0",
                     jsonp: "cb",
@@ -471,6 +473,7 @@ span.psw {
 			    location.reload(); 
                     }
               	});
+	}, 1000);
   }
 	
   function loadStats(answer){
