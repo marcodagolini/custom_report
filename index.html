@@ -233,13 +233,7 @@ span.psw {
   	<div id="soonOverdue" class="bar-item"></div>
     </div>
 
-    <h2>Some statistics about your last:</h2>
-    <select id="statisticOptions" class="statisticOptions">
-        <option>10 Mins</option>
-        <option>20 Mins</option>
-        <option>30 Mins</option>
-	<option>1 Hour</option>
-    </select>
+    <h2>Some statistics:</h2>
 
     <div id="loadingStats">
 	    </br></br>
@@ -882,9 +876,9 @@ span.psw {
 	 TotalTimeOneMonthAgo = 0;
 	 isAnswered = 0;
 	  
-	  
-	  
-	  
+	 $('#myloader').css('display', 'none');
+	 $('#myreports').css('display', 'inline');
+  
 	 
   }
 	
@@ -984,12 +978,7 @@ checklogin(accnumb, bearer);
 	  }
   });
 		  	
-	
-  $(document).on('change','#statisticOptions',function(){
-	  $('#loadedStats').css('display', 'none');
-	  $('#loadingStats').css('display', 'inline');
-	  loadstats();
-  });
+
 
   
   $(document).on('click', function(evt) {
@@ -1283,91 +1272,7 @@ checklogin(accnumb, bearer);
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      loadHeader(answer);
-					      // console.log("1 monyh ago: " + begin);
-					      // console.log(answer.length);
-					      for (var i = 0; i < (answer.length); i++){
-						      timeWaiting = 0;
-						      isFirstMessage = 0;
-						      isfirstOfMultiple = 1;
-						      isConsumer = 0;
-						      var length = answer[i].messageRecords.length;
-						      for (var m = 0; m < length; m++){
-							      var time = answer[i].messageRecords[m].timeL;
-							      if(start <= time && time <= end){
-								    if (answer[i].messageRecords[m].sentBy === "Consumer"){
-									    if(!m){
-										   isFirstMessage = 1; 
-									    }
-									    if(!timeWaiting){
-										  timeWaiting = answer[i].messageRecords[m].timeL;
-									    }
-									    if(!isConsumer){
-										   partialTimeWaiting =  (Date.now() - answer[i].messageRecords[m].timeL)/1000;
-									    }
-									    if(m == (length - 1)){
-										   waitingForAnswer = waitingForAnswer + 1;
-										   totTimeWaitingForAnswer = totTimeWaitingForAnswer +  partialTimeWaiting;
-										   partialTimeWaiting = 0;
-									    }
-									    receivedMessages = receivedMessages + 1;
-									    isfirstOfMultiple = 1;
-									    isConsumer = 1;
-								    }
-								    else{
-									    sentMessages = sentMessages + 1;
-									    isConsumer = 0;
-									    if (isFirstMessage){
-										    partialTime = (answer[i].messageRecords[m].timeL - timeWaiting)/1000;
-										    totTimeFirstResponse = totTimeFirstResponse + partialTime;
-										    firstResponses = firstResponses + 1;
-										    isFirstMessage = 0;
-										    isfirstOfMultiple = 0;
-									    }
-									    else{
-										    if(isfirstOfMultiple){
-											    isfirstOfMultiple = 0;
-											    if(timeWaiting){
-												    partialTime = (answer[i].messageRecords[m].timeL - timeWaiting)/1000;
-												    totTimeGeneralResponse = totTimeGeneralResponse + partialTime;
-												    secondResponses = secondResponses + 1;    
-											    }    
-											    
-										    }
-									    }
-									    timeWaiting = 0;
-									    
-								    }
-							      }
-							      
-						      }
 
-					      }
-					      
-					      
-					      
-					      
-
-					      var stringFirst = secondsToString(totTimeFirstResponse/firstResponses);
-					      var stringGeneral = secondsToString((totTimeGeneralResponse+totTimeFirstResponse)/(firstResponses+secondResponses));
-					      var stringWaiting = secondsToString((totTimeWaitingForAnswer)/(waitingForAnswer));
-					      
-					      console.log("received messages:" + receivedMessages +" *** sent messages:" + sentMessages);
-					      $("#ricevedMessages").empty();
-					      $("#ricevedMessages").append("received messages: " + receivedMessages);
-					      $("#sentMessages").empty();
-					      $("#sentMessages").append("sent messages: " + sentMessages);
-					      $("#responseFirst").empty();
-					      $("#responseFirst").append("average firts time answer: " + stringFirst);
-					      $("#responseGeneral").empty();
-					      $("#responseGeneral").append("average general time answer: " + stringGeneral);
-					      $("#waitingForAnswer").empty();
-					      $("#waitingForAnswer").append("conversations waiting for an answer: " + waitingForAnswer);
-					      $("#averageTimeWaitingForAnswer").empty();
-					      $("#averageTimeWaitingForAnswer").append("average time waiting answer: " + stringWaiting);
-					      
-					      
-					      $('#loadingStats').css('display', 'none');
-					      $('#loadedStats').css('display', 'inline');
 
 				      }
 				      
