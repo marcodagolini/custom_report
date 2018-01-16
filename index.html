@@ -640,6 +640,7 @@ span.psw {
 	 numberOneMonthAgo = 0;
 	 for (var m = 0; m < length; m++){
 		 howManyMessages = answer[m].messageRecords.length;
+		 if(howManyMessages){
 		 if (answer[m].info.status === "OPEN" && answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer"){
 			whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
 			if (whatTime > tenMinutesAgo){
@@ -654,6 +655,7 @@ span.psw {
 		 	else{
 				numberOneMonthAgo = numberOneMonthAgo + 1;
 		 	} 
+		 }
 		 }
 	 }
 	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
@@ -670,6 +672,7 @@ span.psw {
 	 for (var m = 0; m < length; m++){
 		 TimeAnswer = 0;
 		 howManyMessages = answer[m].messageRecords.length;
+		 if(howManyMessages){
 		 if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
 			whatTime = answer[m].messageRecords[0].timeL;
 			isAnswered = 0;
@@ -697,6 +700,7 @@ span.psw {
 				numberOneMonthAgo = numberOneMonthAgo + 1;
 		 	} 
 		 }
+		 }
 	 }
 	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
 	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
@@ -720,6 +724,7 @@ span.psw {
 	 for (var m = 0; m < length; m++){
 		 TimeAnswer = 0;
 		 howManyMessages = answer[m].messageRecords.length;
+		 if(howManyMessages){
 		 if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
 			whatTime = answer[m].messageRecords[0].timeL;
 			isAnswered = 0;
@@ -747,6 +752,7 @@ span.psw {
 				numberOneMonthAgo = numberOneMonthAgo + 1;
 		 	} 
 		 }
+		 }
 	 }
 	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
 	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
@@ -771,6 +777,7 @@ span.psw {
 		 if(answer[m].info.status === "CLOSE"){
 		 	TimeAnswer = 0;
 		 	howManyMessages = answer[m].messageRecords.length;
+			if(howManyMessages){
 		 	for (var n = 0; n < howManyMessages; n++){
 			 	if((answer[m].messageRecords[n].sentBy === "Consumer") && !isAnswered){
 				 	whatTime = answer[m].messageRecords[n].timeL;
@@ -796,7 +803,8 @@ span.psw {
 		 		 	} 
 				 	isAnswered = 0;
 			 	}
-		 	} 
+		 	}
+			}
 		 }	 
 	 }
 	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
@@ -822,6 +830,7 @@ span.psw {
 		 if(answer[m].info.status === "OPEN"){
 		 	TimeAnswer = 0;
 		 	howManyMessages = answer[m].messageRecords.length;
+			if(howManyMessages){
 		 	for (var n = 0; n < howManyMessages; n++){
 			 	if((answer[m].messageRecords[n].sentBy === "Consumer") && !isAnswered){
 				 	whatTime = answer[m].messageRecords[n].timeL;
@@ -847,7 +856,8 @@ span.psw {
 		 		 	} 
 				 	isAnswered = 0;
 			 	}
-		 	} 
+		 	}
+			}
 		 }	 
 	 }
 	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
