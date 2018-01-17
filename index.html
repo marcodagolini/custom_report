@@ -1036,7 +1036,7 @@ span.psw {
 		 if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
 			whatTime = answer[m].messageRecords[0].timeL;
 			if(answer[m].hasOwnProperty('agentParticipantsActive')){
-				TimeAnswer = (answer[m].agentParticipantsActive.timeL - whatTime)/1000;
+				TimeAnswer = (answer[m].agentParticipantsActive[0].timeL - whatTime)/1000;
 				if (whatTime > tenMinutesAgo){
 					TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
 					numberTenMinutesAgo = numberTenMinutesAgo + 1; 
@@ -1083,7 +1083,7 @@ span.psw {
 		 if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
 			whatTime = answer[m].messageRecords[0].timeL;
 			if(answer[m].hasOwnProperty('agentParticipantsActive')){
-				TimeAnswer = (answer[m].agentParticipantsActive.timeL - whatTime)/1000;
+				TimeAnswer = (answer[m].agentParticipantsActive[0].timeL - whatTime)/1000;
 				if (whatTime > tenMinutesAgo){
 					TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
 					numberTenMinutesAgo = numberTenMinutesAgo + 1; 
