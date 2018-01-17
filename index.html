@@ -1374,8 +1374,14 @@ checklogin(accnumb, bearer);
 	 // var start = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
 	 var start = 1516061935000;
 	 var offset = 0;
-	 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds": ["' + skillNumber + '"]}';
+	 var body = "";
 	 var answer = [];
+	 if(skillNumber === -1){
+		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"]}';
+	 }
+	 else{
+		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds": ["' + skillNumber + '"]}';
+	 }
 	 
 	 function loadClosedConvs(offset, callback) {
 	 
@@ -1435,7 +1441,13 @@ checklogin(accnumb, bearer);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds": ["' + skillNumber + '"]}';
+					      if(skillNumber === -1){
+						      body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"]}';
+					      }
+					      else{
+						      body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds": ["' + skillNumber + '"]}';
+					      }
+					      
 					      offset = 0;
 					      loadClosedConvs(offset, callback);
 				      }
