@@ -242,9 +242,9 @@ span.psw {
     </div>
 
     <div id="loadedStats" style="display:none;">
-	    <p>Some statistics filtered by skill </p>
+	    <h2>Some statistics filtered by skill </h2>
 	    
-	<div id="skill" style="float: right;"></div>
+	<div id="skill"></div>
 	    </br></br>
 	    
 	<div class="grid-container-header">
@@ -524,7 +524,8 @@ span.psw {
                               		cache: true,
                               		contentType: "application/json",
                               		success: function success(data) {
-						$("#skill").append("<select><option>Volvo</option><option>Saab</option><option>Opel</option><option>Audi</option></select>");
+						var appendSkill = '<select name="DropDownTimezone" id="DropDownTimezone"><option>(GMT -1:00 hour) Azores, Cape Verde Islands</option><option>(GMT) Western Europe Time, London, Lisbon, Casablanca</option></select>';
+						$("#skill").append(appendSkill);
 						console.log("********* " + JSON.stringify(data));
 
                               		},
