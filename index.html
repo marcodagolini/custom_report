@@ -408,6 +408,7 @@ span.psw {
   var facadeUri = "";
   var skillUri = "";
   var timeZone = "";
+  var skillNumber;
   var uname;
   var pwd;
   var csrf;
@@ -535,6 +536,16 @@ span.psw {
 						}
 						appendSkill = appendSkill.concat('</select>');
 						$("#skill").append(appendSkill);
+						if (length){
+							for (var m = 0; m < length; m++){
+								if(data[m].name === $("#skillName").val()){
+									skillNumber = data[m].id;
+								}
+							}	
+						}
+						else{
+							skillNumber = -1;
+						}
 						console.log($('#DropDownTimezone2').attr('id'));
 						console.log("********* " + JSON.stringify(data));
 
