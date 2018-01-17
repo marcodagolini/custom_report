@@ -409,7 +409,8 @@ span.psw {
   var facadeUri = "";
   var skillUri = "";
   var timeZone = "";
-  var skillNumber;
+  var skillNumber = -1;
+  var skillArray = [];
   var uname;
   var pwd;
   var csrf;
@@ -528,6 +529,7 @@ span.psw {
                               		cache: true,
                               		contentType: "application/json",
                               		success: function success(data) {
+						skillArray = JSON.stringify(data);
 						var appendSkill = '<select name="skillSelector" id="skillName"><option>All</option>';
 						var toAppend = '';
 						var length = data.length;
@@ -1208,7 +1210,11 @@ checklogin(accnumb, bearer);
 	 $('#starthour').val("00:00");
 	 $('#enddate').val(enddate);
 	 $('#endhour').val("00:00");
-	  
+	 
+	 $('#skillName').on('change', function() {
+		 alert( this.value );
+	 })
+  		
 	  
 	 $(document).on('click', function(evt) {
 		 
@@ -1368,7 +1374,7 @@ checklogin(accnumb, bearer);
 	 // var start = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
 	 var start = 1516061935000;
 	 var offset = 0;
-	 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds":["987637232"]}';
+	 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds":["' + skillNumber + '"]}';
 	 var answer = [];
 	 
 	 function loadClosedConvs(offset, callback) {
@@ -1429,7 +1435,7 @@ checklogin(accnumb, bearer);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds":["987637232"]}';
+					      body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds":["' + skillNumber + '"]}';
 					      offset = 0;
 					      loadClosedConvs(offset, callback);
 				      }
