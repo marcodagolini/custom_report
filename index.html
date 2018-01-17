@@ -540,12 +540,17 @@ span.psw {
 						$("#skill").append(appendSkill);
 						
 						$('#skillName').on('change', function() {
+							var isChanged = 0;
 							var length = skillArray.length;
 							for (var m = 0; m < length; m++){
 								if(skillArray[m].name === $("#skillName").val()){
 									skillNumber = skillArray[m].id;
+									isChanged = 1;
 									alert(skillNumber);
 								}
+							}
+							if (!isChanged){
+								skillNumber = -1;
 							}
 							
 							alert( this.value );
