@@ -249,7 +249,7 @@ span.psw {
 	    
 	<div class="grid-container-header">
   		<div class="grid-item"></div>
-  		<div class="grid-item">last 2 days</div>
+  		<div class="grid-item">last month</div>
   		<div class="grid-item">last day</div>  
   		<div class="grid-item">last hour</div>
   		<div class="grid-item">last 10 mins</div>
@@ -1372,8 +1372,8 @@ checklogin(accnumb, bearer);
 	 $('#loadingStats').css('display', 'inline');
 	 
 	 var end = Date.now();
-	 // var start = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
-	 var start = 1516061935000;
+	 var start = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
+	 // var start = 1516061935000;
 	 var offset = 0;
 	 var body = "";
 	 var answer = [];
