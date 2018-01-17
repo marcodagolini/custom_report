@@ -1340,7 +1340,8 @@ checklogin(accnumb, bearer);
  function loadConvs(){
 	 
 	 var end = Date.now();
-	 var start = end - (1000*60*60*24*2);  // loading Convs started till 1 month ago
+	 // var start = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
+	 var start = 1516061935000;
 	 var offset = 0;
 	 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"]}';
 	 var answer = [];
