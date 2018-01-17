@@ -1368,6 +1368,10 @@ checklogin(accnumb, bearer);
  
  function loadConvs(){
 	 
+	 
+	 $('#loadedStats').css('display', 'none');
+	 $('#loadingStats').css('display', 'inline');
+	 
 	 var end = Date.now();
 	 // var start = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
 	 var start = 1516061935000;
@@ -1418,6 +1422,7 @@ checklogin(accnumb, bearer);
 	 }
 	 
 	 function loadOpenConvs(offset, callback) {
+		 
 	 
 	 	$.ajax({
                               url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
