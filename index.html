@@ -527,7 +527,7 @@ span.psw {
                               		cache: true,
                               		contentType: "application/json",
                               		success: function success(data) {
-						skillArray = JSON.stringify(data);
+						skillArray = data;
 						var appendSkill = '<select name="skillSelector" id="skillName"><option>All</option>';
 						var toAppend = '';
 						var length = data.length;
