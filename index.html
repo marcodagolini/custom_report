@@ -545,19 +545,15 @@ span.psw {
 								if(skillArray[m].name === $("#skillName").val()){
 									skillNumber = skillArray[m].id;
 									isChanged = 1;
-									alert(skillNumber);
 								}
 							}
 							if (!isChanged){
 								skillNumber = -1;
 							}
 							
-							alert( this.value );
 						})
 		 
-						console.log($('#DropDownTimezone2').attr('id'));
-						console.log("********* " + JSON.stringify(data));
-						console.log("*********" + skillNumber)
+						loadConvs();
 
                               		},
                               		error: function error(e, text) {
