@@ -526,7 +526,14 @@ span.psw {
                               		cache: true,
                               		contentType: "application/json",
                               		success: function success(data) {
-						var appendSkill = '<select name="DropDownTimezone" id="DropDownTimezone2"><option id="first">(GMT -1:00 hour) Azores, Cape Verde Islands</option><option id="second">(GMT) Western Europe Time, London, Lisbon, Casablanca</option></select>';
+						var appendSkill = '<select name="skillSelector" id="skillName">';
+						var toAppend = '';
+						var length = data.length;
+						for (var m = 0; m < length; m++){
+							toAppend = '<option>' + data[m].name + '</option>';
+							appendSkill = appendSkill.concat(toAppend);
+						}
+						appendSkill = appendSkill.concat('</select>');
 						$("#skill").append(appendSkill);
 						console.log($('#DropDownTimezone2').attr('id'));
 						console.log("********* " + JSON.stringify(data));
