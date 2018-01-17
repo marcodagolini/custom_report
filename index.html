@@ -537,17 +537,16 @@ span.psw {
 						}
 						appendSkill = appendSkill.concat('</select>');
 						$("#skill").append(appendSkill);
-						if (length){
+						
+						$('#skillName').on('change', function(data) {
+							var length = data.length;
 							for (var m = 0; m < length; m++){
 								if(data[m].name === $("#skillName").val()){
 									skillNumber = data[m].id;
+									alert(skillNumber);
 								}
-							}	
-						}
-						else{
-							skillNumber = -1;
-						}
-						$('#skillName').on('change', function() {
+							}
+							
 							alert( this.value );
 						})
 		 
