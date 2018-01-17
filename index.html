@@ -525,7 +525,7 @@ span.psw {
                               		cache: true,
                               		contentType: "application/json",
                               		success: function success(data) {
-						var appendSkill = '<select name="skillSelector" id="skillName">';
+						var appendSkill = '<select name="skillSelector" id="skillName"><option>All</option>';
 						var toAppend = '';
 						var length = data.length;
 						for (var m = 0; m < length; m++){
