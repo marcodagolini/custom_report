@@ -461,7 +461,6 @@ span.psw {
 			   	location.reload(); 
                         }
                         else{
-				console.log ("********* " + JSON.stringify(data));
                            	facadeUri = data.ResultSet.lpData[0].lpServer;
                            	$.ajax({
                               		url: "https://" + facadeUri + "/api/messaging/rest/reporting/brands/" + accnumb + "/msgstatistics?v=1",
@@ -499,7 +498,7 @@ span.psw {
 	  setTimeout(function(){
 		  
 	      	$.ajax({
-                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/facadeMsg/baseURI.lpCsds?version=1.0",
+                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/accountConfigReadWrite/baseURI.lpCsds?version=1.0",
                     jsonp: "cb",
                     jsonpCallback: "domainCallback",
                     cache: true,
@@ -512,18 +511,16 @@ span.psw {
                         else{
                            	skillUri = data.ResultSet.lpData[0].lpServer;
                            	$.ajax({
-                              		url: "https://" + skillUri + "/api/messaging/rest/reporting/brands/" + accnumb + "/msgstatistics?v=1",
+                              		url: "https://" + skillUri + "/api/account/" + accnumb + "/configuration/le-users/skills",
                               		method: "GET",
                               		jsonp: "cb",
                               		jsonpCallback: "domainCallback",
                               		cache: true,
                               		contentType: "application/json",
                               		success: function success(data) {
-						document.getElementById("open").innerHTML = data.active;
-						document.getElementById("pending").innerHTML = data.pending;
-						document.getElementById("unassigned").innerHTML = data.unassigned;
-						document.getElementById("overdue").innerHTML = data.overdue;
-						document.getElementById("soonOverdue").innerHTML = data.soonToOverdue;
+						
+						console.log("********* " + data);
+
                               		},
                               		error: function error(e, text) {
 						localStorage.setItem('account_number', '');
