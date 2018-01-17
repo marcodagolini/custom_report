@@ -537,11 +537,11 @@ span.psw {
 						appendSkill = appendSkill.concat('</select>');
 						$("#skill").append(appendSkill);
 						
-						$('#skillName').on('change', function(data) {
-							var length = data.length;
+						$('#skillName').on('change', function(skillArray) {
+							var length = skillArray.length;
 							for (var m = 0; m < length; m++){
-								if(data[m].name === $("#skillName").val()){
-									skillNumber = data[m].id;
+								if(skillArray[m].name === $("#skillName").val()){
+									skillNumber = skillArray[m].id;
 									alert(skillNumber);
 								}
 							}
