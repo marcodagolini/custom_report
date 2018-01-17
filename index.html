@@ -547,6 +547,10 @@ span.psw {
 						else{
 							skillNumber = -1;
 						}
+						$('#skillName').on('change', function() {
+							alert( this.value );
+						})
+		 
 						console.log($('#DropDownTimezone2').attr('id'));
 						console.log("********* " + JSON.stringify(data));
 						console.log("*********" + skillNumber)
@@ -1209,9 +1213,7 @@ checklogin(accnumb, bearer);
 	 $('#enddate').val(enddate);
 	 $('#endhour').val("00:00");
 	 
-	 $('#skillName').on('change', function() {
-		 alert( this.value );
-	 })
+	 
   		
 	  
 	 $(document).on('click', function(evt) {
