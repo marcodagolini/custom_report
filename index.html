@@ -250,7 +250,8 @@ span.psw {
 	<div id="skill"></div>
 	    </br>
 	<label><b>Custom date</b></label></br>
-    	<input id="customDate" type="date" /></br></br>
+    	<input id="customDate" type="date" />
+	<input id="customHour" type="time"></br></br>
 
 	    
 	<div class="grid-container-header">
@@ -560,8 +561,21 @@ span.psw {
 						})
 						
 						$('#customDate').val($('#startdate').val());
+						$('#customHour').val("00:00");
+						
 						$('#customDate').on('change', function() {
-							alert($('#customDate').val());
+							
+							var thisDate = $('#customDate').val();
+							thisDate = new Date(thisDate);
+							var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+							var year = thisDate.getFullYear();
+							var month = months[thisDate.getMonth()];
+							var date = thisDate.getDate();
+							var hour = $('#customHour').val();
+							thisDate = month + " " + date + " " + year + " " + hour + timeZone;
+							var d = new Date(thisDate);
+							var start = d.getTime();
+							alert(start);
 						})
 
                               		},
