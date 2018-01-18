@@ -573,8 +573,9 @@ span.psw {
 							var hour = $('#customHour').val();
 							thisDate = month + " " + date + " " + year + " " + hour + timeZone;
 							var d = new Date(thisDate);
-							var start = d.getTime();
-							alert(start);
+							customDate = d.getTime();
+							loadConvs();
+
 						})
 
                               		},
