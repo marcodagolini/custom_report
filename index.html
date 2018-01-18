@@ -746,18 +746,19 @@ span.psw {
 		 howManyMessages = answer[m].messageRecords.length;
 		 if(howManyMessages){
 			if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
-			whatTime = answer[m].messageRecords[0].timeL;
-			isAnswered = 0;
-			for (var n = 1; n < howManyMessages; n++){
-				if(answer[m].messageRecords[n].sentBy === "Agent"){
-					TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-					isAnswered = 1;
-					n = howManyMessages;
+				whatTime = answer[m].messageRecords[0].timeL;
+				isAnswered = 0;
+				for (var n = 1; n < howManyMessages; n++){
+					if(answer[m].messageRecords[n].sentBy === "Agent"){
+						TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
+						isAnswered = 1;
+						n = howManyMessages;
+					}
 				}
-			}
-			if (isAnswered && (whatTime > customDate)){
-				totalTime = totalTime + TimeAnswer;
-				numberTotal = numberTotal + 1;			 
+				if (isAnswered && (whatTime > customDate)){
+					totalTime = totalTime + TimeAnswer;
+					numberTotal = numberTotal + 1;
+				}
 		 	}	
 		 }
 		 
@@ -772,18 +773,19 @@ span.psw {
 		 howManyMessages = answer[m].messageRecords.length;
 		 if(howManyMessages){
 			if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
-			whatTime = answer[m].messageRecords[0].timeL;
-			isAnswered = 0;
-			for (var n = 1; n < howManyMessages; n++){
-				if(answer[m].messageRecords[n].sentBy === "Agent"){
-					TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-					isAnswered = 1;
-					n = howManyMessages;
+				whatTime = answer[m].messageRecords[0].timeL;
+				isAnswered = 0;
+				for (var n = 1; n < howManyMessages; n++){
+					if(answer[m].messageRecords[n].sentBy === "Agent"){
+						TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
+						isAnswered = 1;
+						n = howManyMessages;
+					}
 				}
-			}
-			if (isAnswered && (whatTime > customDate)){
-				totalTime = totalTime + TimeAnswer;
-				numberTotal = numberTotal + 1;			 
+				if (isAnswered && (whatTime > customDate)){
+					totalTime = totalTime + TimeAnswer;
+					numberTotal = numberTotal + 1;
+				}
 		 	}	
 		 }
 		 
