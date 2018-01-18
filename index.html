@@ -2015,7 +2015,7 @@ checklogin(accnumb, bearer);
 						      }
 						      var phoneNumber = "";
 						      if(answer[i].hasOwnProperty('sdes')){
-							      phoneNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
+							      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
 						      }
 						      
       
