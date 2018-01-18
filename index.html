@@ -578,6 +578,16 @@ span.psw {
 						
 						$('#customDate').val($('#startdate').val());
 						$('#customHour').val("00:00");
+						var thisDate = $('#customDate').val();
+						thisDate = new Date(thisDate);
+						var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+						var year = thisDate.getFullYear();
+						var month = months[thisDate.getMonth()];
+						var date = thisDate.getDate();
+						var hour = $('#customHour').val();
+						thisDate = month + " " + date + " " + year + " " + hour + timeZone;
+						var d = new Date(thisDate);
+						customDate = d.getTime();
 						
 						$('#customDate').on('change', function() {
 							
