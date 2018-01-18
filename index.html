@@ -670,6 +670,16 @@ span.psw {
 		  }	 		  
 	  }
 	  document.getElementById("customTimeClosedClosedManual").innerHTML = numberConvs;
+	  var numberConvs = 0;
+	  for (var m = 0; m < length; m++){
+		  if (answer[m].info.status === "OPEN" && answer[m].info.latestQueueState === "IN_QUEUE"){
+			  whatTime = answer[m].info.startTimeL;
+			  if(whatTime > customDate){
+				 numberConvs = numberConvs + 1;  
+			  }
+		  }	 		  
+	  }
+	  document.getElementById("customTimeNAOpen").innerHTML = numberConvs;
 		  
 
   }
