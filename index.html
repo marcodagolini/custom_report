@@ -415,6 +415,7 @@ span.psw {
   var accnumb = localStorage.getItem('account_number');
   var bearer = localStorage.getItem('bearer');
   var statisticOptions = 0;
+  var customDate;
 	
 	
   function secondsToString(timeInSeconds){
@@ -551,6 +552,9 @@ span.psw {
 								skillNumber = -1;
 							}
 							loadConvs();
+						})
+						$('#customDate').on('change', function() {
+							alert("tilt!");
 						})
 
                               		},
@@ -1304,6 +1308,7 @@ checklogin(accnumb, bearer);
 	 $('#starthour').val("00:00");
 	 $('#enddate').val(enddate);
 	 $('#endhour').val("00:00");
+	 $('#customData').val(enddate);
 	 
 	 
   		
