@@ -649,6 +649,26 @@ span.psw {
 		  }	 		  
 	  }
 	  document.getElementById("customTimeClosedClosed").innerHTML = numberConvs;
+	  var numberConvs = 0;
+	  for (var m = 0; m < length; m++){
+		  if (answer[m].info.status === "CLOSE" && answer[m].info.closeReasonDescription === "BRAND_AUTO_CLOSE"){
+			  whatTime = answer[m].info.startTimeL;
+			  if(whatTime > customDate){
+				 numberConvs = numberConvs + 1;  
+			  }
+		  }	 		  
+	  }
+	  document.getElementById("customTimeClosedClosedAutomatic").innerHTML = numberConvs;
+	  var numberConvs = 0;
+	  for (var m = 0; m < length; m++){
+		  if (answer[m].info.status === "CLOSE" && answer[m].info.closeReasonDescription === "MANUAL_CLOSE"){
+			  whatTime = answer[m].info.startTimeL;
+			  if(whatTime > customDate){
+				 numberConvs = numberConvs + 1;  
+			  }
+		  }	 		  
+	  }
+	  document.getElementById("customTimeClosedClosedManual").innerHTML = numberConvs;
 		  
 
   }
