@@ -1529,6 +1529,10 @@ checklogin(accnumb, bearer);
 			  document.getElementById("refreshMSG").innerHTML = "Please do a query related to the last 30 days!";
 			  document.getElementById("refreshMSG").style = "color : red";
 		  }
+		  else if (customDate > customDate){
+			  document.getElementById("refreshMSG").innerHTML = "Start date ist more recent than the end date!";
+			  document.getElementById("refreshMSG").style = "color : red";
+		  }
 		  else{
 			  document.getElementById("refreshMSG").innerHTML = "";
 			  console.log("skill:" + skillNumber + "*****start:" + customDate + "*****end:" + endCustomDate);
