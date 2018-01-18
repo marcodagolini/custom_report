@@ -1994,7 +1994,7 @@ checklogin(accnumb, bearer);
 						      var howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
 							      if (answer[i].messageRecords[0].sentBy === "Consumer"){
-								      whatTime = answer[m].messageRecords[0].timeL;
+								      whatTime = answer[i].messageRecords[0].timeL;
 								      isAnswered = 0;
 								      for (var n = 1; n < howManyMessages; n++){
 									      if(answer[i].messageRecords[n].sentBy === "Agent"){
