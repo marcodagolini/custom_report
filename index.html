@@ -437,6 +437,7 @@ span.psw {
   var bearer = localStorage.getItem('bearer');
   var statisticOptions = 0;
   var customDate;
+  var endCustomDate;
 	
 	
   function secondsToString(timeInSeconds){
@@ -602,6 +603,16 @@ span.psw {
 							thisDate = month + " " + date + " " + year + " " + hour + timeZone;
 							var d = new Date(thisDate);
 							customDate = d.getTime();
+							thisDate = $('#endCustomDate').val();
+							thisDate = new Date(thisDate);
+							months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+							year = thisDate.getFullYear();
+							month = months[thisDate.getMonth()];
+							date = thisDate.getDate();
+							hour = $('#endCustomHour').val();
+							thisDate = month + " " + date + " " + year + " " + hour + timeZone;
+							d = new Date(thisDate);
+							endCustomDate = d.getTime();
 							loadConvs();
 
 						})
