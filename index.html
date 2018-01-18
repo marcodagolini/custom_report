@@ -622,6 +622,7 @@ span.psw {
   }
   function loadCustomStats(answer){
 	  var length = answer.length;
+	  var howManyMessages = 0;
 	  var numberConvs = 0;
 	  var whatTime = 0;
 	  for (var m = 0; m < length; m++){
@@ -681,6 +682,20 @@ span.psw {
 		  }	 		  
 	  }
 	  document.getElementById("customTimeNAOpen").innerHTML = numberConvs;
+	  var numberConvs = 0;
+	  for (var m = 0; m < length; m++){
+		 howManyMessages = answer[m].messageRecords.length;
+		 if(howManyMessages){
+		 	if (answer[m].info.status === "OPEN" && answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer"){
+				whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
+				if (whatTime > customDate){
+					numberConvs = numberConvs + 1;
+		 		}
+
+		 	}
+		 }
+	  }
+	  document.getElementById("customTimeWaitingOpen").innerHTML = numberConvs;
 		  
 
   }
