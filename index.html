@@ -563,22 +563,7 @@ span.psw {
 						}
 						appendSkill = appendSkill.concat('</select>');
 						$("#skill").append(appendSkill);
-						
-						$('#skillName').on('change', function() {
-							var isChanged = 0;
-							var length = skillArray.length;
-							for (var m = 0; m < length; m++){
-								if(skillArray[m].name === $("#skillName").val()){
-									skillNumber = skillArray[m].id;
-									isChanged = 1;
-								}
-							}
-							if (!isChanged){
-								skillNumber = -1;
-							}
-							loadConvs();
-						})
-						
+
 						$('#customDate').val($('#startdate').val());
 						$('#endCustomDate').val($('#enddate').val());
 						$('#customHour').val("00:00");
@@ -616,17 +601,20 @@ span.psw {
 							thisDate = month + " " + date + " " + year + " " + hour + timeZone;
 							var d = new Date(thisDate);
 							customDate = d.getTime();
-							thisDate = $('#endCustomDate').val();
+						})
+						$('#endCustomDate').on('change', function() {
+							
+							var thisDate = $('#endCustomDate').val();
 							thisDate = new Date(thisDate);
-							months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-							year = thisDate.getFullYear();
-							month = months[thisDate.getMonth()];
-							date = thisDate.getDate();
-							hour = $('#endCustomHour').val();
+							var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+							var year = thisDate.getFullYear();
+							var month = months[thisDate.getMonth()];
+							var date = thisDate.getDate();
+							var hour = $('#endCustomHour').val();
 							thisDate = month + " " + date + " " + year + " " + hour + timeZone;
-							d = new Date(thisDate);
+							var d = new Date(thisDate);
 							endCustomDate = d.getTime();
-							loadConvs();
+							
 
 						})
 
@@ -1518,7 +1506,19 @@ checklogin(accnumb, bearer);
 		  }, 2000);
 	  }
 	  if($(evt.target).is('#refresh')) {
-		  alert("click");
+		  
+		  var isChanged = 0;
+		  var length = skillArray.length;
+		  for (var m = 0; m < length; m++){
+			  if(skillArray[m].name === $("#skillName").val()){
+				  skillNumber = skillArray[m].id;
+				  isChanged = 1;
+			  }
+		  }
+		  if (!isChanged){
+			  skillNumber = -1;
+		  }
+		  loadConvs();							
 	  }
   });
 		  	
