@@ -1530,7 +1530,7 @@ checklogin(accnumb, bearer);
 			  document.getElementById("refreshMSG").innerHTML = "Please do a query related to the last 30 days!";
 			  document.getElementById("refreshMSG").style = "color : red";
 		  }
-		  else if (customDate > customDate){
+		  else if (customDate > endCustomDate){
 			  document.getElementById("refreshMSG").innerHTML = "Start date ist more recent than the end date!";
 			  document.getElementById("refreshMSG").style = "color : red";
 		  }
