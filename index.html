@@ -1945,7 +1945,7 @@ checklogin(accnumb, bearer);
 				      if((data.conversationHistoryRecords.length) == 100){
 					      offset = offset + 100;
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      document.getElementById("reportMSG").innerHTML = "...downloading sessions:" + (offset/data.conversationHistoryRecords.length) + "% completed...";
+					      document.getElementById("reportMSG").innerHTML = "...downloading sessions:" + (offset/data._metadata.count) + "% completed...";
 					      document.getElementById("reportMSG").style = "color : green";      
 					      console.log(data.conversationHistoryRecords);
 					      console.log(answer);
