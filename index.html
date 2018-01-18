@@ -1038,6 +1038,7 @@ span.psw {
 		 if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
 			whatTime = answer[m].messageRecords[0].timeL;
 			if(answer[m].hasOwnProperty('agentParticipants')){
+				console.log(m);
 				TimeAnswer = (answer[m].agentParticipants[0].timeL - whatTime)/1000;
 				if (whatTime > tenMinutesAgo){
 					TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
