@@ -1989,14 +1989,14 @@ checklogin(accnumb, bearer);
 						      var whatTime = 0;
 						      var firstTimeAnswer = "";
 						      var isAnswered = 0;
-						      var howManyMessages = answer[m].messageRecords.length;
+						      var howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
-							      if (answer[m].messageRecords[0].sentBy === "Consumer"){
+							      if (answer[i].messageRecords[0].sentBy === "Consumer"){
 								      whatTime = answer[m].messageRecords[0].timeL;
 								      isAnswered = 0;
 								      for (var n = 1; n < howManyMessages; n++){
-									      if(answer[m].messageRecords[n].sentBy === "Agent"){
-										      TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
+									      if(answer[i].messageRecords[n].sentBy === "Agent"){
+										      TimeAnswer = (answer[i].messageRecords[n].timeL - whatTime)/1000;
 										      isAnswered = 1;
 										      n = howManyMessages;
 									      }
@@ -2011,6 +2011,10 @@ checklogin(accnumb, bearer);
 							      }
 						      }
 						      var phoneNumber = "";
+						      if(answer[i].hasOwnProperty('sdes')){
+							      phoneNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
+						      }
+						      
       
 						      
 						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"endReason": endReason,"firstTimeAnswer": firstTimeAnswer,"phoneNumber": phoneNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
