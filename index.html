@@ -259,7 +259,7 @@ span.psw {
 	    
 	<div class="grid-container-header">
   		<div class="grid-item"></div>
-  		<div class="grid-item">last 30 days</div>
+  		<div class="grid-item">last 90 days</div>
 		<div class="grid-item">custom time</div>
   		<div class="grid-item">midnight-->now</div>  
   		<div class="grid-item">last 60 mins</div>
@@ -565,8 +565,8 @@ span.psw {
 
 						$('#customDate').val($('#startdate').val());
 						$('#endCustomDate').val($('#enddate').val());
-						$('#customHour').val("00:00");
-						$('#endCustomHour').val("00:00");
+						$('#customHour').val("00:01");
+						$('#endCustomHour').val("00:01");
 						var thisDate = $('#customDate').val();
 						thisDate = new Date(thisDate);
 						var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1620,9 +1620,9 @@ checklogin(accnumb, bearer);
 
 	 
 	 $('#startdate').val(startdate);
-	 $('#starthour').val("00:00");
+	 $('#starthour').val("00:01");
 	 $('#enddate').val(enddate);
-	 $('#endhour').val("00:00");
+	 $('#endhour').val("00:01");
 	 
 	 
   		
@@ -1786,8 +1786,7 @@ checklogin(accnumb, bearer);
 	 $('#loadingStats').css('display', 'inline');
 	 
 	 var end = Date.now();
-	 var start = end - (1000*60*60*24*30);  // loading Convs started till 1 month ago
-	 // var start = 1516061935000;
+	 var start = end - (1000*60*60*24*90);  // loading Convs started till 1 month ago
 	 var offset = 0;
 	 var body = "";
 	 var answer = [];
