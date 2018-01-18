@@ -593,7 +593,7 @@ span.psw {
 						
 						$('#customDate').on('change', function() {
 							
-							var thisDate = $('#customDate').val();
+							var thisDate = $('#customDate,#customHour').val();
 							thisDate = new Date(thisDate);
 							var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 							var year = thisDate.getFullYear();
@@ -604,7 +604,7 @@ span.psw {
 							var d = new Date(thisDate);
 							customDate = d.getTime();
 						})
-						$('#endCustomDate').on('change', function() {
+						$('#endCustomDate,#endCustomHour').on('change', function() {
 							
 							var thisDate = $('#endCustomDate').val();
 							thisDate = new Date(thisDate);
