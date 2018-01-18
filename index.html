@@ -1828,8 +1828,8 @@ checklogin(accnumb, bearer);
 				      if((data.conversationHistoryRecords.length) == 100){
 					      offset = offset + 100;
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      // console.log(data);
-					      // console.log(answer);
+					      document.getElementById("loaderMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
+					      document.getElementById("loaderMSG").style = "color : green";
 					      console.log ("adding conversations...");
 					      loadClosedConvs(offset, callback);
 				      }
@@ -1866,8 +1866,8 @@ checklogin(accnumb, bearer);
 				      if((data.conversationHistoryRecords.length) == 100){
 					      offset = offset + 100;
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      console.log(data.conversationHistoryRecords);
-					      console.log(answer);
+					      document.getElementById("loaderMSG").innerHTML = "...downloading open sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
+					      document.getElementById("loaderMSG").style = "color : green";
 					      console.log ("adding conversations...");
 					      loadOpenConvs(offset, callback);   
 
