@@ -1964,6 +1964,7 @@ checklogin(accnumb, bearer);
 						      var messages = "";
 						      var thismessage = "";
 						      var thisactor = "";
+						      var endReason = "";
 						      var length = answer[i].messageRecords.length;
 						      for (var m = 0; m < length; m++){
 							      var type = answer[i].messageRecords[m].type;
@@ -1976,7 +1977,43 @@ checklogin(accnumb, bearer);
 							      thisactor = answer[i].messageRecords[m].sentBy;
 							      messages = messages + "     " + thisactor + ": " + thismessage;
 						      }
-						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      if(answer[i].info.endTime === -1){
+							      endReason = "IN_PROGRESS";
+						      }
+						      else{
+							      endReason = answer[i].info.closeReason;
+						      }
+						      
+						      
+						      var TimeAnswer = 0;
+						      var whatTime = 0;
+						      var firstTimeAnswer = "";
+						      var isAnswered = 0;
+						      var howManyMessages = answer[m].messageRecords.length;
+						      if(howManyMessages){
+							      if (answer[m].messageRecords[0].sentBy === "Consumer"){
+								      whatTime = answer[m].messageRecords[0].timeL;
+								      isAnswered = 0;
+								      for (var n = 1; n < howManyMessages; n++){
+									      if(answer[m].messageRecords[n].sentBy === "Agent"){
+										      TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
+										      isAnswered = 1;
+										      n = howManyMessages;
+									      }
+								      }
+								      if (isAnswered){
+									      firstTimeAnswer = secondsToString(TimeAnswer);
+
+								      }
+								      else{
+									      firstTimeAnswer = "NOT_ANSWERED"
+								      }
+							      }
+						      }
+						      var phoneNumber = "";
+      
+						      
+						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"endReason": endReason,"firstTimeAnswer": firstTimeAnswer,"phoneNumber": phoneNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      console.log(messages);
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
@@ -2016,6 +2053,8 @@ checklogin(accnumb, bearer);
     			"end": "String",
     			"agent": "String",
 			"endReason": "String",
+			"firstTimeAnswer": "String",
+			"phoneNumber": "String",
     			"conversation": "String",
     			"transcript": "String"
 		 };
