@@ -1971,6 +1971,8 @@ checklogin(accnumb, bearer);
 							      var type = answer[i].messageRecords[m].type;
 							      if(type === "TEXT_PLAIN"){
 								   thismessage = answer[i].messageRecords[m].messageData.msg.text;
+								   console.log (thismessage);
+								   console.log ("************************");
 								   // thismessage = "";
 								   thismessage = thismessage.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/, '**emoticon**');
 							      }
@@ -1986,6 +1988,10 @@ checklogin(accnumb, bearer);
 						      else{
 							      endReason = answer[i].info.closeReason;
 						      }
+						      console.log ("************************");
+						      console.log ("************************");
+						      console.log ("************************");
+						      console.log ("************************");
 						      
 						      
 						      var TimeAnswer = 0;
