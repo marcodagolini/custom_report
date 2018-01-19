@@ -2014,13 +2014,14 @@ checklogin(accnumb, bearer);
 						      var phoneNumber = "";
 						      if(answer[i].hasOwnProperty('sdes')){
 							      console.log(i);
+							      console.log(answer[i]);
 							      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
 						      }
 						      
       
 						      
 						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"endReason": endReason,"firstTimeAnswer": firstTimeAnswer,"phoneNumber": phoneNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
-						      console.log(messages);
+						      // console.log(messages);
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
