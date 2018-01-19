@@ -2018,13 +2018,7 @@ checklogin(accnumb, bearer);
 							      if(answer[i].sdes.events[0].hasOwnProperty('customerInfo')){
 								      phoneNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
 							      }
-							      else if(answer[i].sdes.events[0].hasOwnProperty('personalInfo')){
-								      if(answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].hasOwnProperty('personalContact')){
-									   phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;   
-								      }
-								      
-							      }
-							      console.log(i);
+							      
 						      }
 						      
       
