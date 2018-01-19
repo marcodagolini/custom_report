@@ -2025,9 +2025,36 @@ checklogin(accnumb, bearer);
 							      
 						      }
 						      
+						      
+						      
+						      var timeToAccept = 0;
+						      TimeAnswer = 0;
+						      whatTime = 0;
+						      isAnswered = 0;
+						      howManyMessages = answer[i].messageRecords.length;
+						      if(howManyMessages){
+							      if (answer[i].messageRecords[0].sentBy === "Consumer"){
+								      whatTime = answer[i].messageRecords[0].timeL;
+								      for (var n = 1; n < howManyMessages; n++){
+									      if(answer[i].messageRecords[n].sentBy === "Agent"){
+										      TimeAnswer = (answer[i].messageRecords[n].timeL - whatTime)/1000;
+										      isAnswered = 1;
+										      n = howManyMessages;
+									      }
+								      }
+								      if (isAnswered){
+									      timeToAccept = secondsToString(TimeAnswer);
+
+								      }
+								      else{
+									      timeToAccept = "NOT_ANSWERED"
+								      }
+							      }
+						      }
+						      
       
 						      
-						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"endReason": endReason,"firstTimeAnswer": firstTimeAnswer,"phoneNumber": phoneNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"phoneNumber": phoneNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2063,6 +2090,7 @@ checklogin(accnumb, bearer);
     			"end": "String",
     			"agent": "String",
 			"endReason": "String",
+			"timeToAccept": "String",
 			"firstTimeAnswer": "String",
 			"phoneNumber": "String",
     			"conversation": "String",
