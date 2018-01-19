@@ -1972,6 +1972,8 @@ checklogin(accnumb, bearer);
 							      if(type === "TEXT_PLAIN"){
 								   thismessage = answer[i].messageRecords[m].messageData.msg.text;
 								   thismessage = thismessage.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/, '**emoticon**');
+								   thismessage = thismessage.replace(/^www./, '**link**');
+								   thismessage = thismessage.replace(/^http/, '**link**');
 								   console.log (thismessage);
 								   console.log ("************************");   
 							      }
