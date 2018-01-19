@@ -1968,7 +1968,8 @@ checklogin(accnumb, bearer);
 						      for (var m = 0; m < length; m++){
 							      var type = answer[i].messageRecords[m].type;
 							      if(type === "TEXT_PLAIN"){
-								   thismessage = answer[i].messageRecords[m].messageData.msg.text;   
+								   thismessage = answer[i].messageRecords[m].messageData.msg.text;
+								   thismessage.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '**emoticon**');
 							      }
 							      else{
 								   thismessage = "-structured content-";
