@@ -2019,7 +2019,10 @@ checklogin(accnumb, bearer);
 								      phoneNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
 							      }
 							      else if(answer[i].sdes.events[0].hasOwnProperty('personalInfo')){
-								      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
+								      if(answer[i].sdes.events[0].personalInfo.personalInfo.contacts.length){
+									      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
+								      }
+								      
 							      }
 							      
 						      }
