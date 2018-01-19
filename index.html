@@ -2039,8 +2039,8 @@ checklogin(accnumb, bearer);
 						      if(howManyMessages){
 							      if (answer[i].messageRecords[0].sentBy === "Consumer"){
 								      whatTime = answer[i].messageRecords[0].timeL;
-								      if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
-									      TimeAnswer = (answer[m].agentParticipants[0].timeL - whatTime)/1000;
+								      if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
+									      TimeAnswer = (answer[i].agentParticipants[0].timeL - whatTime)/1000;
 									      isAnswered = 1;
 								      }
 								      if (isAnswered){
