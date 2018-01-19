@@ -570,8 +570,8 @@ span.psw {
 
 						$('#customDate').val($('#startdate').val());
 						$('#endCustomDate').val($('#enddate').val());
-						$('#customHour').val("00:01");
-						$('#endCustomHour').val("00:01");
+						$('#customHour').val("00:00");
+						$('#endCustomHour').val("23:59");
 						var thisDate = $('#customDate').val();
 						thisDate = new Date(thisDate);
 						var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1639,9 +1639,9 @@ checklogin(accnumb, bearer);
 
 	 
 	 $('#startdate').val(startdate);
-	 $('#starthour').val("00:01");
+	 $('#starthour').val("00:00");
 	 $('#enddate').val(enddate);
-	 $('#endhour').val("00:01");
+	 $('#endhour').val("23:59");
 	 
 	 
   		
