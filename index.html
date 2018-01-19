@@ -2024,9 +2024,7 @@ checklogin(accnumb, bearer);
 								      if(answer[i].sdes.events[0].personalInfo.personalInfo.contacts.length){
 									      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
 								      }
-								      
 							      }
-							      
 						      }
 						      
 						      
@@ -2039,16 +2037,12 @@ checklogin(accnumb, bearer);
 						      if(howManyMessages){
 							      if (answer[i].messageRecords[0].sentBy === "Consumer"){
 								      whatTime = answer[i].messageRecords[0].timeL;
-								      for (var n = 1; n < howManyMessages; n++){
-									      if(answer[i].messageRecords[n].sentBy === "Agent"){
-										      TimeAnswer = (answer[i].messageRecords[n].timeL - whatTime)/1000;
-										      isAnswered = 1;
-										      n = howManyMessages;
-									      }
+								      if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
+									      TimeAnswer = (answer[m].agentParticipants[0].timeL - whatTime)/1000;
+									      isAnswered = 1;
 								      }
 								      if (isAnswered){
 									      timeToAccept = secondsToString(TimeAnswer);
-
 								      }
 								      else{
 									      timeToAccept = "NOT_ANSWERED"
