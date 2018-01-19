@@ -2012,9 +2012,12 @@ checklogin(accnumb, bearer);
 						      }
 						      var phoneNumber = "";
 						      if(answer[i].hasOwnProperty('sdes')){
-							      console.log(i);
-							      console.log(answer[i]);
-							      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
+							      if(answer[i].sdes.events[0].hasOwnProperty('customerInfo')){
+								      phoneNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
+							      }
+							      else if{
+								      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
+							      }      
 						      }
 						      
       
