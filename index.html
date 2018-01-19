@@ -1971,7 +1971,7 @@ checklogin(accnumb, bearer);
 							      var type = answer[i].messageRecords[m].type;
 							      if(type === "TEXT_PLAIN"){
 								   thismessage = answer[i].messageRecords[m].messageData.msg.text;
-								   thismessage.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/, '**emoticon**');
+								   thismessage = thismessage.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/, '**emoticon**');
 							      }
 							      else{
 								   thismessage = "-structured content-";
