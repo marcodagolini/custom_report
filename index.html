@@ -1974,8 +1974,6 @@ checklogin(accnumb, bearer);
 								   // thismessage = thismessage.replace(/www./, '**link**');
 								   // thismessage = thismessage.replace(/http/, '**link**');
 								   thismessage = thismessage.replace(/[&\/\\#+$~%<>{}]/g,'%d');
-								   console.log (thismessage);
-								   console.log ("************************");   
 							      }
 							      else{
 								   thismessage = "-structured content-";
@@ -1989,10 +1987,7 @@ checklogin(accnumb, bearer);
 						      else{
 							      endReason = answer[i].info.closeReason;
 						      }
-						      console.log ("************************");
-						      console.log ("************************");
-						      console.log ("************************");
-						      console.log ("************************");
+
 						      
 						      
 						      var TimeAnswer = 0;
@@ -2034,7 +2029,6 @@ checklogin(accnumb, bearer);
       
 						      
 						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"endReason": endReason,"firstTimeAnswer": firstTimeAnswer,"phoneNumber": phoneNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
-						      // console.log(messages);
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2045,10 +2039,7 @@ checklogin(accnumb, bearer);
 						      document.getElementById("reportMSG").innerHTML = "I've not found any conversation in this period!";
 						      document.getElementById("reportMSG").style = "color : red"; 
 					      }
-					      
-					      	
-					      // console.log(answer[109].agentParticipants["0"]);
-					      // console.log(answer[9].agentParticipants["0"]);
+
 				      }
 				      
      
