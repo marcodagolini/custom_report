@@ -1564,6 +1564,12 @@ checklogin(accnumb, bearer);
 		  if (!isChanged){
 			  skillNumber = -1;
 		  }
+		  length = teamArray.length;
+		  for (var m = 0; m < length; m++){
+			  if(teamArray[m].name === $("#teamName").val()){
+				  teamNumber = teamArray[m].id;
+			  }
+		  }
 		  if((endCustomDate > Date.now())){
 			  document.getElementById("refreshMSG").innerHTML = "Please do not insert a future date!";
 			  document.getElementById("refreshMSG").style = "color : red";					  
