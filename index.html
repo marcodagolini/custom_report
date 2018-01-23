@@ -1569,6 +1569,7 @@ checklogin(accnumb, bearer);
 		  for (var m = 0; m < length; m++){
 			  if(teamArray[m].name === $("#teamName").val()){
 				  teamNumber = teamArray[m].id;
+				  console.log("teamNumber="+teamNumber);
 			  }
 		  }
 		  if((endCustomDate > Date.now())){
