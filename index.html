@@ -648,12 +648,13 @@ span.psw {
 		  
 
                            	$.ajax({
-                              		url: "https://" + accountReadWrite + "/api/account/" + accnumb + "/configuration/le-users/skills",
+                              		url: "https://" + accountReadWrite + "/api/account/" + accnumb + "/configuration/le-users/agentGroups",
                               		method: "GET",
                               		jsonp: "cb",
                               		jsonpCallback: "domainCallback",
                               		cache: true,
                               		contentType: "application/json",
+					"If-Match": "-1",
                               		success: function success(data) {
 						teamArray = data;
 						var appendTeam = '<select name="teamSelector" id="teamName">';
