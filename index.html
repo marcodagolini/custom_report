@@ -1928,6 +1928,13 @@ checklogin(accnumb, bearer);
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      offset = 0;
+					      if(skillNumber === -1){
+						     body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"]';
+					      }
+					       else{
+						       body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds": ["' + skillNumber + '"]';
+					       }
+					      body = body + ' ,"agentGroupIds":["' + teamNumber + '"]}';
 					      loadClosedConvs(body, offset, callback);
 				      }
 				      
