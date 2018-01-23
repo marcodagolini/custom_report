@@ -1867,8 +1867,8 @@ checklogin(accnumb, bearer);
 		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds": ["' + skillNumber + '"]';
 	 }
 	 body = body + ' ,"agentGroupIds":["' + teamNumber + '"]}';
-	 console.log("(HISTORICAL) skill: " + skillNumber + " ***** start: " + start + " ***** end: " + end);
-	 function loadClosedConvs(offset, callback) {
+	 console.log("(HISTORICAL) skill: " + skillNumber + " ***** team: " + teamNumber + " ***** start: " + start + " ***** end: " + end);
+	 function loadClosedConvs(body, offset, callback) {
 	 
 	 	$.ajax({
                               url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100&sort=start:desc",
@@ -1885,7 +1885,7 @@ checklogin(accnumb, bearer);
 					      document.getElementById("loaderMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
 					      document.getElementById("loaderMSG").style = "color : green";
 					      console.log ("adding conversations...");
-					      loadClosedConvs(offset, callback);
+					      loadClosedConvs(body, offset, callback);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
@@ -1905,7 +1905,7 @@ checklogin(accnumb, bearer);
 		});
 	 }
 	 
-	 function loadOpenConvs(offset, callback) {
+	 function loadOpenConvs(body, offset, callback) {
 		 
 	 
 	 	$.ajax({
@@ -1923,20 +1923,13 @@ checklogin(accnumb, bearer);
 					      document.getElementById("loaderMSG").innerHTML = "...downloading open sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
 					      document.getElementById("loaderMSG").style = "color : green";
 					      console.log ("adding conversations...");
-					      loadOpenConvs(offset, callback);   
+					      loadOpenConvs(body, offset, callback);   
 
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      if(skillNumber === -1){
-						      body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"]}';
-					      }
-					      else{
-						      body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds": ["' + skillNumber + '"]}';
-					      }
-					      
 					      offset = 0;
-					      loadClosedConvs(offset, callback);
+					      loadClosedConvs(body, offset, callback);
 				      }
 				      
      
@@ -1952,7 +1945,7 @@ checklogin(accnumb, bearer);
 
 	 
 	
-	 loadOpenConvs(offset, function(err, resp) {
+	 loadOpenConvs(body, offset, function(err, resp) {
 		 // Your code here...
 	 });
 	 
