@@ -249,6 +249,8 @@ span.psw {
 	    
 	<div id="skill"></div>
 	    </br>
+ 	<div id="team"></div>
+	    </br>
 	<label><b>Start custom date</b></label></br>
     	<input id="customDate" type="date" />
 	<input id="customHour" type="time"></br>
@@ -639,6 +641,96 @@ span.psw {
               	});
 	}, 2000);
   }
+	
+  function loadTeams(){
+	  
+	  setTimeout(function(){
+		  
+
+                           	$.ajax({
+                              		url: "https://" + skillUri + "/api/account/" + accnumb + "/configuration/le-users/skills",
+                              		method: "GET",
+                              		jsonp: "cb",
+                              		jsonpCallback: "domainCallback",
+                              		cache: true,
+                              		contentType: "application/json",
+                              		success: function success(data) {
+						skillArray = data;
+						var appendSkill = '<select name="skillSelector" id="skillName"><option>All</option>';
+						var toAppend = '';
+						var length = data.length;
+						for (var m = 0; m < length; m++){
+							toAppend = '<option>' + data[m].name + '</option>';
+							appendSkill = appendSkill.concat(toAppend);
+						}
+						appendSkill = appendSkill.concat('</select>');
+						$("#skill").append(appendSkill);
+
+						$('#customDate').val($('#startdate').val());
+						$('#endCustomDate').val($('#enddate').val());
+						$('#customHour').val("00:00");
+						$('#endCustomHour').val("23:59");
+						var thisDate = $('#customDate').val();
+						thisDate = new Date(thisDate);
+						var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+						var year = thisDate.getFullYear();
+						var month = months[thisDate.getMonth()];
+						var date = thisDate.getDate();
+						var hour = $('#customHour').val();
+						thisDate = month + " " + date + " " + year + " " + hour + timeZone;
+						var d = new Date(thisDate);
+						customDate = d.getTime();
+						thisDate = $('#endCustomDate').val();
+						thisDate = new Date(thisDate);
+						months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+						year = thisDate.getFullYear();
+						month = months[thisDate.getMonth()];
+						date = thisDate.getDate();
+						hour = $('#endCustomHour').val();
+						thisDate = month + " " + date + " " + year + " " + hour + timeZone;
+						d = new Date(thisDate);
+						endCustomDate = d.getTime();
+						
+						$('#customDate').on('change', function() {
+							
+							var thisDate = $('#customDate,#customHour').val();
+							thisDate = new Date(thisDate);
+							var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+							var year = thisDate.getFullYear();
+							var month = months[thisDate.getMonth()];
+							var date = thisDate.getDate();
+							var hour = $('#customHour').val();
+							thisDate = month + " " + date + " " + year + " " + hour + timeZone;
+							var d = new Date(thisDate);
+							customDate = d.getTime();
+						})
+						$('#endCustomDate,#endCustomHour').on('change', function() {
+							
+							var thisDate = $('#endCustomDate').val();
+							thisDate = new Date(thisDate);
+							var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+							var year = thisDate.getFullYear();
+							var month = months[thisDate.getMonth()];
+							var date = thisDate.getDate();
+							var hour = $('#endCustomHour').val();
+							thisDate = month + " " + date + " " + year + " " + hour + timeZone;
+							var d = new Date(thisDate);
+							endCustomDate = d.getTime();
+							
+
+						})
+
+                              		},
+                              		error: function error(e, text) {
+						localStorage.setItem('account_number', '');
+				    		location.reload(); 
+                              		},
+                              		beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
+                          	});   
+                       
+	}, 3000);
+  }
+	
   function loadCustomStats(answer){
 	  var length = answer.length;
 	  var howManyMessages = 0;
