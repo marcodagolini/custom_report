@@ -1855,16 +1855,17 @@ checklogin(accnumb, bearer);
 	 $('#loadingStats').css('display', 'inline');
 	 
 	 var end = Date.now();
-	 var start = end - (1000*60*60*24*30);  // loading Convs started till 90 days ago
+	 var start = end - (1000*60*60*24*30);  // loading Convs started till 30 days ago
 	 var offset = 0;
 	 var body = "";
 	 var answer = [];
 	 if(skillNumber === -1){
-		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"]}';
+		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"]';
 	 }
 	 else{
-		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds": ["' + skillNumber + '"]}';
+		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds": ["' + skillNumber + '"]';
 	 }
+	 body = body + ' ,"agentGroupIds":["' + teamNumber + '"]}';
 	 console.log("(HISTORICAL) skill: " + skillNumber + " ***** start: " + start + " ***** end: " + end);
 	 function loadClosedConvs(offset, callback) {
 	 
