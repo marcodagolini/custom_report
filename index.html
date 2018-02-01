@@ -2598,17 +2598,17 @@ checklogin(accnumb, bearer);
 							      if(answer[i].sdes.events[0].hasOwnProperty('personalInfo')){
 								      if(answer[i].sdes.events[0].personalInfo.personalInfo.contacts.length){
 									      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
-									      if(answer[i].sdes.events[0].personalInfo.personalInfo.name === "undefined"){
-										      var sdesName = "";
-									      }
-									      else{
+									      if(answer[i].sdes.events[0].personalInfo.personalInfo.hasOwnProperty('name')){
 										      var sdesName = answer[i].sdes.events[0].personalInfo.personalInfo.name;
 									      }
-									      if(answer[i].sdes.events[0].personalInfo.personalInfo.surname === "undefined"){
-										      var sdesSurname = "";
+									      else{
+										      var sdesName = "";
+									      }
+									      if(answer[i].sdes.events[0].personalInfo.personalInfo.hasOwnProperty('surname')){
+										      var sdesSurname = answer[i].sdes.events[0].personalInfo.personalInfo.surname;
 									      }
 									      else{
-										      var sdesSurname = answer[i].sdes.events[0].personalInfo.personalInfo.surname;
+										      var sdesSurname = "";
 									      }
 									      customerName = sdesName + " " + sdesName;
 								      }
@@ -2616,17 +2616,17 @@ checklogin(accnumb, bearer);
 							      if(answer[i].sdes.events[1].hasOwnProperty('personalInfo')){
 								      if(answer[i].sdes.events[1].personalInfo.personalInfo.contacts.length){
 									      phoneNumber = answer[i].sdes.events[1].personalInfo.personalInfo.contacts[0].personalContact.phone;
-									      if(answer[i].sdes.events[1].personalInfo.personalInfo.name === "undefined"){
-										      var sdesName = "";
-									      }
-									      else{
+									      if(answer[i].sdes.events[1].personalInfo.personalInfo.hasOwnProperty('name')){
 										      var sdesName = answer[i].sdes.events[1].personalInfo.personalInfo.name;
 									      }
-									      if(answer[i].sdes.events[1].personalInfo.personalInfo.surname === "undefined"){
-										      var sdesSurname = "";
+									      else{
+										      var sdesName = "";
+									      }
+									      if(answer[i].sdes.events[1].personalInfo.personalInfo.hasOwnProperty('surname')){
+										      var sdesSurname = answer[i].sdes.events[1].personalInfo.personalInfo.surname;
 									      }
 									      else{
-										      var sdesSurname = answer[i].sdes.events[1].personalInfo.personalInfo.surname;
+										      var sdesSurname = "";
 									      }
 									      customerName = sdesName + " " + sdesName;
 								      }
