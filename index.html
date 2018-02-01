@@ -700,9 +700,9 @@ span.psw {
 						d = new Date(thisDate);
 						endCustomDate = d.getTime();
 						
-						$('#customDate').on('change', function() {
+						$('#customDate,#customHour').on('change', function() {
 							
-							var thisDate = $('#customDate,#customHour').val();
+							var thisDate = $('#customDate').val();
 							thisDate = new Date(thisDate);
 							var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 							var year = thisDate.getFullYear();
