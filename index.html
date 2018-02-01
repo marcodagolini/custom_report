@@ -2663,6 +2663,9 @@ setInterval(function(){
 							      }
 						      }
 						      
+						      var dateEngagement = new Date(answer[i].info.startTimeL);
+						      console.log (dateEngagement);
+						      
       
 						      
 						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"team": answer[i].info.latestAgentGroupName,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
