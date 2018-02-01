@@ -2097,11 +2097,7 @@ checklogin(accnumb, bearer);
 				  console.log("teamNumber="+teamNumber);
 			  }
 		  }
-		  if((endCustomDate > Date.now())){
-			  document.getElementById("refreshMSG").innerHTML = "Please do not insert a future date!";
-			  document.getElementById("refreshMSG").style = "color : red";					  
-		  }
-		  else if (customDate < (Date.now() - (1000*60*60*24*30))){
+		  if (customDate < (Date.now() - (1000*60*60*24*30))){
 			  document.getElementById("refreshMSG").innerHTML = "Please do a query related to the last 30 days!";
 			  document.getElementById("refreshMSG").style = "color : red";
 		  }
