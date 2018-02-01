@@ -2591,11 +2591,12 @@ checklogin(accnumb, bearer);
 							      }
 						      }
 						      var phoneNumber = "";
+						      var imeiNumber = "";
 						      if(answer[i].hasOwnProperty('sdes')){
 							      if(answer[i].sdes.events[0].hasOwnProperty('customerInfo')){
-								      phoneNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
+								      imeiNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
 							      }
-							      else if(answer[i].sdes.events[0].hasOwnProperty('personalInfo')){
+							      if(answer[i].sdes.events[0].hasOwnProperty('personalInfo')){
 								      if(answer[i].sdes.events[0].personalInfo.personalInfo.contacts.length){
 									      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
 								      }
@@ -2627,7 +2628,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"team": answer[i].info.latestAgentGroupName,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"phoneNumber": phoneNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"team": answer[i].info.latestAgentGroupName,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2666,6 +2667,7 @@ checklogin(accnumb, bearer);
 			"timeToAccept": "String",
 			"firstTimeAnswer": "String",
 			"phoneNumber": "String",
+			"imeiNumber": "String",
     			"conversation": "String",
     			"transcript": "String"
 		 };
