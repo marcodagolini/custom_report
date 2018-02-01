@@ -2593,6 +2593,7 @@ checklogin(accnumb, bearer);
 						      }
 						      var phoneNumber = "";
 						      var imeiNumber = "";
+						      var customerName = "";
 						      if(answer[i].hasOwnProperty('sdes')){
 							      if(answer[i].sdes.events[0].hasOwnProperty('customerInfo')){
 								      imeiNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
@@ -2600,6 +2601,7 @@ checklogin(accnumb, bearer);
 							      if(answer[i].sdes.events[0].hasOwnProperty('personalInfo')){
 								      if(answer[i].sdes.events[0].personalInfo.personalInfo.contacts.length){
 									      phoneNumber = answer[i].sdes.events[0].personalInfo.personalInfo.contacts[0].personalContact.phone;
+									      customerName = answer[i].sdes.events[0].personalInfo.personalInfo.name + answer[i].sdes.events[0].personalInfo.personalInfo.surname;
 								      }
 							      }
 						      }
@@ -2629,7 +2631,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"team": answer[i].info.latestAgentGroupName,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": answer[i].info.startTime,"end": answer[i].info.endTime,"agent": answer[i].info.latestAgentNickname,"team": answer[i].info.latestAgentGroupName,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2667,6 +2669,7 @@ checklogin(accnumb, bearer);
 			"endReason": "String",
 			"timeToAccept": "String",
 			"firstTimeAnswer": "String",
+			"customerName": "String",
 			"phoneNumber": "String",
 			"imeiNumber": "String",
     			"conversation": "String",
