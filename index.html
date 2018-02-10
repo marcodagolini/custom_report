@@ -2109,7 +2109,7 @@ setInterval(function(){
 			  }
 		  }
 		  if (!isChanged){
-			  skillNumber = -1;
+			  skillNumber = "-1";
 		  }
 		  length = teamArray.length;
 		  for (var m = 0; m < length; m++){
@@ -2393,7 +2393,7 @@ setInterval(function(){
 	 var offset = 0;
 	 var body = "";
 	 var answer = [];
-	 if(skillNumber === -1){
+	 if(skillNumber === "-1"){
 		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"]';
 	 }
 	 else{
@@ -2468,7 +2468,7 @@ setInterval(function(){
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      offset = 0;
-					      if(skillNumber === -1){
+					      if(skillNumber === "-1"){
 						     body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"]';
 					      }
 					      else{
