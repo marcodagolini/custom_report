@@ -2585,7 +2585,13 @@ setInterval(function(){
 							      endReason = "IN_PROGRESS";
 						      }
 						      else{
-							      endReason = answer[i].info.closeReason;
+							      var a = (answer[i].agentParticipants.length - 1);
+							      if(answer[i].agentParticipants[a].agentLoginName === "botLivePerson"){
+								      console.log(answer[i].agentParticipants[a].agentLoginName);
+								      endReason = "AUTO_CLOSURE";
+							      }else{
+								      endReason = answer[i].info.closeReason;
+							      }
 						      }
 						      
 						      
