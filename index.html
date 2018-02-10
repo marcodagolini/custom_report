@@ -2399,6 +2399,7 @@ setInterval(function(){
 	 }
 	 else{
 		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds": ["' + skillNumber + overwriteHumanSkill + '"]';
+		 console.log(body);
 	 }
 	 if (teamNumber){
 		 body = body + ' ,"agentGroupIds":["' + teamNumber + '"]}';
@@ -2474,6 +2475,7 @@ setInterval(function(){
 					      }
 					      else{
 						       body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds": ["' + skillNumber + overwriteHumanSkill + '"]';
+						      console.log(body);
 					      }
 					      if(teamNumber){
 						      body = body + ' ,"agentGroupIds":["' + teamNumber + '"]}';
