@@ -670,7 +670,7 @@ span.psw {
 						var toAppendHuman = '';
 						var length = data.length;
 						for (var m = 0; m < length; m++){
-							if(data[m].name.startsWith("***")){
+							if(!data[m].name.startsWith("***")){
 								toAppend = '<option>' + data[m].name + '</option>';
 								appendSkill = appendSkill.concat(toAppend);
 							}
