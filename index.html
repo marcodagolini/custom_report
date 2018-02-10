@@ -2398,7 +2398,7 @@ setInterval(function(){
 		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"]';
 	 }
 	 else{
-		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds": ["' + skillNumber + '"]';
+		 body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["OPEN"], "skillIds": ["' + skillNumber + overwriteHumanSkill + '"]';
 	 }
 	 if (teamNumber){
 		 body = body + ' ,"agentGroupIds":["' + teamNumber + '"]}';
@@ -2473,7 +2473,7 @@ setInterval(function(){
 						     body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"]';
 					      }
 					      else{
-						       body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds": ["' + skillNumber + '"]';
+						       body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds": ["' + skillNumber + overwriteHumanSkill + '"]';
 					      }
 					      if(teamNumber){
 						      body = body + ' ,"agentGroupIds":["' + teamNumber + '"]}';
