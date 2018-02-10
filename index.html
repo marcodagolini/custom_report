@@ -496,7 +496,7 @@ span.psw {
   var facadeUri = "";
   var accountReadWrite = "";
   var timeZone = "";
-  var skillNumber = -1;
+  var skillNumber = "-1";
   var teamNumber = 0;
   var skillArray = [];
   var teamArray = [];
@@ -2100,8 +2100,12 @@ setInterval(function(){
 		  var length = skillArray.length;
 		  for (var m = 0; m < length; m++){
 			  if(skillArray[m].name === $("#skillName").val()){
-				  skillNumber = skillArray[m].id;
-				  isChanged = 1;
+				  if(skillArray[m].name === "human"){
+					  skillNumber = skillArray[m].id + overwriteHumanSkill;
+				  }else{
+				  	skillNumber = skillArray[m].id;
+				  	isChanged = 1;
+				  }
 			  }
 		  }
 		  if (!isChanged){
