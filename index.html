@@ -506,6 +506,7 @@ span.psw {
   var statisticOptions = 0;
   var customDate;
   var endCustomDate;
+  var overwriteHumanSkill = "";
 	
   function findBulk(Seconds){
 	 if (Seconds <= 30){
@@ -664,11 +665,24 @@ span.psw {
 						skillArray = data;
 						var appendSkill = '<select name="skillSelector" id="skillName"><option>All</option>';
 						var toAppend = '';
+						var newHuman = '';
+						var toAppendHuman = '';
 						var length = data.length;
 						for (var m = 0; m < length; m++){
-							toAppend = '<option>' + data[m].name + '</option>';
-							appendSkill = appendSkill.concat(toAppend);
+							if(data[m].name.startsWith("***")){
+								toAppend = '<option>' + data[m].name + '</option>';
+								appendSkill = appendSkill.concat(toAppend);
+							}
+							else{
+								toAppendHuman = ',"' + data[m].id + '"';
+								newHuman = newHuman.concat(toAppendHuman);
+							}
 						}
+						console.log("*****");
+						console.log("*****");
+						console.log(newHuman);
+						console.log("*****");
+						console.log("*****");
 						appendSkill = appendSkill.concat('</select>');
 						$("#skill").append(appendSkill);
 						$('#customDate').val($('#startdate').val());
