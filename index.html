@@ -2584,10 +2584,17 @@ setInterval(function(){
 							      endReason = "IN_PROGRESS";
 						      }
 						      else{
-							      var a = (answer[i].agentParticipants.length - 1);
-							      if(answer[i].agentParticipants[a].agentLoginName === "botLivePerson"){
-								      console.log(answer[i].agentParticipants[a].agentLoginName);
-								      endReason = "AUTO_CLOSURE";
+							      if(answer[i].info.closeReason === "AGENT"){
+								      var a = (answer[i].agentParticipants.length - 1);
+								      if(typeof answer[i].agentParticipants[0] !== 'undefined'){
+									      if(answer[i].agentParticipants[a].agentLoginName === "botMarco"){
+										      console.log(answer[i].agentParticipants[a].agentLoginName);
+										      endReason = "AUTO_CLOSURE";
+									      }else{
+										      endReason = answer[i].info.closeReason;
+									      }
+								      }
+								      
 							      }else{
 								      endReason = answer[i].info.closeReason;
 							      }
