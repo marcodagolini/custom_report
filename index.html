@@ -676,7 +676,7 @@ span.psw {
 								appendSkill = appendSkill.concat(toAppend);
 							}
 							else{
-								toAppendHuman = ',"' + data[m].id + '"';
+								toAppendHuman = '","' + data[m].id;
 								newHuman = newHuman.concat(toAppendHuman);
 							}
 						}
@@ -685,6 +685,7 @@ span.psw {
 						console.log(newHuman);
 						console.log("*****");
 						console.log("*****");
+						overwriteHumanSkill = newHuman;
 						appendSkill = appendSkill.concat('</select>');
 						$("#skill").append(appendSkill);
 						$('#customDate').val($('#startdate').val());
