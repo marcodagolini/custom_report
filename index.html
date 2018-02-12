@@ -7,7 +7,6 @@
 
 
 
-
 <head>
   
 </head>
@@ -57,7 +56,7 @@ body{
 	
 .bar-container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto;
   background-color: #2196F3;
   padding: 5px;
 }
@@ -211,11 +210,13 @@ span.psw {
   	<div class="bar-item">open</div>
   	<div class="bar-item">pending</div>
   	<div class="bar-item">unassigned</div>
+	<div class="bar-item">limbo</div>
   	<div class="bar-item">overdue</div>
   	<div class="bar-item">soon overdue</div>
   	<div id="open" class="bar-item"></div>  
   	<div id="pending" class="bar-item"></div>
   	<div id="unassigned" class="bar-item"></div>
+	<div id="limbo" class="bar-item"></div>
   	<div id="overdue" class="bar-item"></div> 
   	<div id="soonOverdue" class="bar-item"></div>
     </div>
@@ -590,6 +591,38 @@ span.psw {
 	return stringAnswer;
   }
 	
+  function loadLimboBar(){
+	  
+	 var howManyLimbo = 0; 
+	 var body = body = '{"start":{"from":' + (Date.now() - (1000*60*60*24*30)) + ',"to":' + (Date.now()) + '}, "status": ["OPEN"]}';
+	 var offset = 0;
+	  
+	 $.ajax({
+                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
+                              method: "POST",
+                              jsonp: "cb",
+                              jsonpCallback: "domainCallback",
+                              cache: true,
+                              contentType: "application/json",
+                              data: body,
+                              success: function success(data) {
+				      if((data._metadata.count) > 0){
+					      var length = data.conversationHistoryRecords.length;
+					      for (var m = 0; m < length; m++){
+						      if((data.conversationHistoryRecords[m].info.latestSkillName) === "Limbo"){
+							      howManyLimbo = howManyLimbo +1;
+						      }	      
+					      }
+				      }
+				      document.getElementById("limbo").innerHTML = howManyLimbo;
+                              },
+                              error: function error(e, text) {
+		 
+                              },
+                              beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
+		});
+	  
+  }
 	
   function loadBar(){
 	  
@@ -2051,6 +2084,7 @@ span.psw {
 						$('#myloader').css('display', 'none');
           					$('#myreports').css('display', 'inline');
 						loadBar();
+						loadLimboBar();
 						loadSkills();
 						loadTeams();
 						refreshTranscripts();
@@ -2083,6 +2117,11 @@ checklogin(accnumb, bearer);
 setInterval(function(){
 	loadBar();
 }, 30000);
+setInterval(function(){
+	loadLimboBar();
+}, 30000);
+	
+	
   
 	
 	
@@ -2180,6 +2219,7 @@ setInterval(function(){
 									  $('#myloader').css('display', 'none');
 									  $('#myreports').css('display', 'inline');
 									  loadBar();
+									  loadLimboBar();
 									  loadSkills();
 									  loadTeams();
 									  refreshTranscripts();
