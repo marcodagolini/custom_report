@@ -2758,12 +2758,15 @@ setInterval(function(){
 						      var comments = "-";
 						      if(answer[i].hasOwnProperty('transfers')){
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
-								      console.log(answer[i].transfers);
-								      if(answer[i].transfers[0].hasOwnProperty('contextData')){
-									      if(answer[i].transfers[0].contextData.hasOwnProperty('structuredMetadata')){
-										      yesno = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[3].name;
-										      comments = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[4].name;
+								      var arraylength = answer[i].transfers.length;
+								      for (var i = (arraylength -1); i > -1; i--){
+									      if(answer[i].transfers[i].hasOwnProperty('contextData')){
+										      if(answer[i].transfers[i].contextData.hasOwnProperty('structuredMetadata')){
+											       yesno = answer[i].transfers[i].contextData.structuredMetadata[0].botResponse.intents[3].name;
+											      comments = answer[i].transfers[i].contextData.structuredMetadata[0].botResponse.intents[4].name;
+										      }
 									      }
+
 								      }
 							      }
 						      }
