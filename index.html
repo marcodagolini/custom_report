@@ -2755,14 +2755,15 @@ setInterval(function(){
 							      }
 						      }
 						      
-						      
+						      var yesno = "-";
+						      var comments = "-";
 						      if(answer[i].hasOwnProperty('transfers')){
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 								      console.log(answer[i].transfers);
 								      if(answer[i].transfers[0].hasOwnProperty('contextData')){
 									      if(answer[i].transfers[0].contextData.hasOwnProperty('structuredMetadata')){
-										      var yesno = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[3].name;
-										      var comments = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[4].name;
+										      yesno = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[3].name;
+										      comments = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[4].name;
 									      }
 								      }
 							      }
