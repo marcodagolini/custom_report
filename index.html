@@ -2762,8 +2762,8 @@ setInterval(function(){
 								      for (var z = (arraylength -1); z > -1; z--){
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
 										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
-											      yesno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[3].name;
-											      comments = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[4].name;
+											      yesno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
+											      comments = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
 										      }
 									      }
 
