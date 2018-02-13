@@ -2769,6 +2769,7 @@ setInterval(function(){
 								      }
 							      }
 						      }
+						      var skill = answer[i].info.latestSkillName;
 
 						      
 						      var timeToAccept = 0;
@@ -2797,7 +2798,7 @@ setInterval(function(){
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement,"agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement,"agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2832,6 +2833,7 @@ setInterval(function(){
     			"end": "String",
     			"agent": "String",
 			"team": "String",
+			"skill": "String",
 			"yesno": "String",
 			"comments": "String",
 			"endReason": "String",
