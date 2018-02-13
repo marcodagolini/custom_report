@@ -2755,6 +2755,18 @@ setInterval(function(){
 						      }
 						      
 						      
+						      if(answer[i].hasOwnProperty('transfers')){
+							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
+								      console.log(answer[i].transfers);
+								      if(answer[i].transfers[0].hasOwnProperty('contextData')){
+									      if(answer[i].transfers[0].contextData.hasOwnProperty('structuredMetadata')){
+										      var yesno = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[3].name;
+										      var comments = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[4].name;
+									      }
+								      }
+							      }
+						      }
+
 						      
 						      var timeToAccept = 0;
 						      TimeAnswer = 0;
@@ -2782,7 +2794,7 @@ setInterval(function(){
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement,"agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement,"agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2817,6 +2829,8 @@ setInterval(function(){
     			"end": "String",
     			"agent": "String",
 			"team": "String",
+			"yesno": "String",
+			"comments": "String",
 			"endReason": "String",
 			"timeToAccept": "String",
 			"firstTimeAnswer": "String",
