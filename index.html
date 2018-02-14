@@ -631,6 +631,7 @@ function botOrNot() {
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
+				      botOrNot();
 				      if((data._metadata.count) > 0){
 					      var length = data.conversationHistoryRecords.length;
 					      for (var m = 0; m < length; m++){
@@ -660,6 +661,7 @@ function botOrNot() {
                     cache: true,
                     dataType: "jsonp",
                     success: function success(data) {
+			loadLimboBar();
                         if('lpCallError' in data.ResultSet){
 				localStorage.setItem('account_number', '');
 			   	location.reload(); 
@@ -2149,15 +2151,7 @@ function botOrNot() {
 						setInterval(function(){
 							loadBar();
 						}, 30000);
-						setInterval(function(){
-							loadLimboBar();
-						}, 30000);
-						setInterval(function(){
-							botOrNot();
-						}, 30000);
 						loadBar();
-						loadLimboBar();
-						botOrNot();
 						loadSkills();
 						loadTeams();
 						refreshTranscripts();
@@ -2289,15 +2283,7 @@ checklogin(accnumb, bearer);
 									  setInterval(function(){
 										  loadBar();
 									  }, 30000);
-									  setInterval(function(){
-										  loadLimboBar();
-									  }, 30000);
-									  setInterval(function(){
-										  botOrNot();
-									  }, 30000);
 									  loadBar();
-									  loadLimboBar();
-									  botOrNot();
 									  loadSkills();
 									  loadTeams();
 									  refreshTranscripts();
