@@ -562,10 +562,12 @@ function botOrNot() {
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function () {
           	if (this.readyState === 4) {
+			document.getElementById('reportBot').style.fontWeight = 'bold';
             		document.getElementById("reportBot").innerHTML = "Il bot e' connesso";
             		document.getElementById("reportBot").style = "color : green";
           	}
 		else {
+			document.getElementById('reportBot').style.fontWeight = 'bold';
             		document.getElementById("reportBot").innerHTML = "Il bot non e' connesso";
             		document.getElementById("reportBot").style = "color : red";
           	}
