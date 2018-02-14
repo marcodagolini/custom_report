@@ -551,9 +551,27 @@ span.psw {
 	  
   }
 	
-  function refreshDates(){
-	  
-  }
+ 
+	
+function botOrNot() {
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+          	if (this.readyState === 4) {
+            		document.getElementById("reportBot").innerHTML = "Il bot e' connesso";
+            		document.getElementById("reportBot").style = "color : green";
+          	}
+		else {
+            		document.getElementById("reportBot").innerHTML = "Il bot non e' connesso";
+            		document.getElementById("reportBot").style = "color : red";
+          	}
+        });
+        var URLforGET = "https://vodafonebotdario.herokuapp.com/add?ping=true;
+	xhr.open("GET", URLforGET);
+        xhr.send();
+}
+	
+	
+	
 	
 	
   function secondsToString(timeInSeconds){
@@ -2159,6 +2177,10 @@ setInterval(function(){
 setInterval(function(){
 	loadLimboBar();
 }, 30000);
+setInterval(function(){
+	botOrNot();
+}, 30000);
+	 
 	
 	
   
