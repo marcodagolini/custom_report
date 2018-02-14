@@ -2154,6 +2154,9 @@ function botOrNot() {
 						setInterval(function(){
 							botOrNot();
 						}, 30000);
+						loadBar();
+						loadLimboBar();
+						botOrNot();
 						loadSkills();
 						loadTeams();
 						refreshTranscripts();
@@ -2291,6 +2294,9 @@ checklogin(accnumb, bearer);
 									  setInterval(function(){
 										  botOrNot();
 									  }, 30000);
+									  loadBar();
+									  loadLimboBar();
+									  botOrNot();
 									  loadSkills();
 									  loadTeams();
 									  refreshTranscripts();
