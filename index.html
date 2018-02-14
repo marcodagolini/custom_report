@@ -562,12 +562,14 @@ function botOrNot() {
           	if (this.readyState === 4) {
             		document.getElementById("reportBot").innerHTML = "Il bot e' connesso";
             		document.getElementById("reportBot").style = "color : green";
-			document.getElementById("reportBot").style.fontWeight = 'bold';
+			document.getElementById("reportBot").style.fontWeight = "bold";
+			document.getElementById("reportBot").style.fontSize = "xx-large";
           	}
 		else {
             		document.getElementById("reportBot").innerHTML = "Il bot non e' connesso";
             		document.getElementById("reportBot").style = "color : red";
-			document.getElementById("reportBot").style.fontWeight = 'bold';
+			document.getElementById("reportBot").style.fontWeight = "bold";
+			document.getElementById("reportBot").style.fontSize = "xx-large";
           	}
         });
         var URLforGET = "https://vodafonebotdario.herokuapp.com/add?ping=true";
