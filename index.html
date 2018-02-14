@@ -2145,8 +2145,15 @@ function botOrNot() {
                               		success: function success(data) {
 						$('#myloader').css('display', 'none');
           					$('#myreports').css('display', 'inline');
-						loadBar();
-						loadLimboBar();
+						setInterval(function(){
+							loadBar();
+						}, 30000);
+						setInterval(function(){
+							loadLimboBar();
+						}, 30000);
+						setInterval(function(){
+							botOrNot();
+						}, 30000);
 						loadSkills();
 						loadTeams();
 						refreshTranscripts();
