@@ -562,14 +562,22 @@ function botOrNot() {
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function () {
           	if (this.readyState === 4) {
-            		document.getElementById("reportBot").innerHTML = "Il bot e' connesso";
-            		document.getElementById("reportBot").style = "color : green";
-			document.getElementById("reportBot").style.fontWeight = "bold";
-			document.getElementById("reportBot").style.fontSize = "xx-large";
+			if (this.status == 200 && xhr.status < 300){
+				document.getElementById("reportBot").innerHTML = "Il bot e' connesso";
+				document.getElementById("reportBot").style = "color : green";
+				document.getElementById("reportBot").style.fontWeight = "bold";
+				document.getElementById("reportBot").style.fontSize = "xx-large";
+			}
+			else{
+				document.getElementById("reportBot").innerHTML = "Il bot non e' connesso";
+				document.getElementById("reportBot").style = "color : red";
+				document.getElementById("reportBot").style.fontWeight = "bold";
+				document.getElementById("reportBot").style.fontSize = "xx-large";
+			}
           	}
 		else {
-            		document.getElementById("reportBot").innerHTML = "Il bot non e' connesso";
-            		document.getElementById("reportBot").style = "color : red";
+            		document.getElementById("reportBot").innerHTML = "...checking bot status...";
+            		document.getElementById("reportBot").style = "color : black";
 			document.getElementById("reportBot").style.fontWeight = "bold";
 			document.getElementById("reportBot").style.fontSize = "xx-large";
           	}
