@@ -2247,6 +2247,7 @@ checklogin(accnumb, bearer);
 	  if($("#accnumb").val() != ""){
 		  if($(evt.target).is('#submitLogin')) {			  
 			  uname = $("#uname").val();
+			  localStorage.setItem('username', uname);
 			  pwd = $("#pwd").val();
 			  accnumb = $("#accnumb").val();
 			  console.log(accnumb + " *** " + uname + " *** " + pwd);
