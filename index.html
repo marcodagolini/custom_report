@@ -1367,7 +1367,7 @@ function botOrNot() {
 		 if(answer[m].info.closeReason === "AGENT"){
 			 var a = (answer[m].agentParticipants.length - 1);
 			 if(typeof answer[m].agentParticipants[0] !== 'undefined'){
-				 if((answer[m].agentParticipants[a].agentLoginName === "botLivePerson") && (answer[m].agentParticipants[a].permission === "ASSIGNED_AGENT")){
+				 if(answer[m].info.latestSkillName === "Limbo"){
 					if (whatTime > tenMinutesAgo){
 						numberTenMinutesAgo = numberTenMinutesAgo + 1;
 					}
