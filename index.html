@@ -586,7 +586,7 @@ function botOrNot() {
 			document.getElementById("reportBot").style.fontSize = "xx-large";
           	}
         });
-        var URLforGET = "https://vodafonebotdario.herokuapp.com/ping?ping=true&username=" + localStorage.getItem('account_number');
+        var URLforGET = "https://vodafonebotdario.herokuapp.com/ping?ping=true&username=" + localStorage.getItem('username');
 	xhr.open("GET", URLforGET);
         xhr.send();
 }
