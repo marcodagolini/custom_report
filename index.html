@@ -1853,7 +1853,7 @@ function botOrNot() {
 		 howManyMessages = answer[m].messageRecords.length;
 		 if(howManyMessages){
 		 if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
-			whatTime = answer[m].messageRecords[0].timeL;
+			whatTime = answer[m].info.startTimeL;
 			if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
 				TimeAnswer = (answer[m].agentParticipants[0].timeL - whatTime)/1000;
 				if (whatTime > tenMinutesAgo){
@@ -1990,7 +1990,7 @@ function botOrNot() {
 		 howManyMessages = answer[m].messageRecords.length;
 		 if(howManyMessages){
 		 if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
-			whatTime = answer[m].messageRecords[0].timeL;
+			whatTime = answer[m].info.startTimeL;
 			if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
 				TimeAnswer = (answer[m].agentParticipants[0].timeL - whatTime)/1000;
 				if (whatTime > tenMinutesAgo){
