@@ -2817,9 +2817,18 @@ checklogin(accnumb, bearer);
 							      }
 						      }
 						      
+						      var endDateEngagement = "";
+						      var durationinseconds = "";
 						      var startDateEngagement = new Date(answer[i].info.startTimeL);
-						      var endDateEngagement = new Date(answer[i].info.endTimeL);
-						      var durationinseconds = ((answer[i].info.endTimeL - answer[i].info.startTimeL)/1000).toString();
+						      if (answer[i].info.endTimeL != -1){
+							      endDateEngagement = new Date(answer[i].info.endTimeL);
+							      durationinseconds = ((answer[i].info.endTimeL - answer[i].info.startTimeL)/1000).toString();
+						      }
+						      else{
+							      endDateEngagement = "---";
+							      durationinseconds = "---";
+						      }
+						      
 						      
       
 						      
