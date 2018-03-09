@@ -2819,10 +2819,11 @@ checklogin(accnumb, bearer);
 						      
 						      var startDateEngagement = new Date(answer[i].info.startTimeL);
 						      var endDateEngagement = new Date(answer[i].info.endTimeL);
+						      var durationinseconds = (answer[i].info.endTimeL - answer[i].info.startTimeL)/1000;
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement,"agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2855,6 +2856,7 @@ checklogin(accnumb, bearer);
 		 testTypes = {
     			"start": "String",
     			"end": "String",
+			"durationinseconds": "String",
     			"agent": "String",
 			"team": "String",
 			"skill": "String",
