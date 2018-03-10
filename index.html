@@ -2810,7 +2810,7 @@ checklogin(accnumb, bearer);
 											      if((answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name)==="limbo"){
 												      if(z){
 													      var xy = z - 1;
-													      if((answer[i].transfers[xy].targetSkillName)==="human"||answer[i].transfers[xy].targetSkillName)==="risvegliata"){
+													      if((answer[i].transfers[xy].targetSkillName)!=="Limbo"){
 														      limbo = limbo +1;
 													      }
 												      }
