@@ -650,7 +650,9 @@ function botOrNot() {
 							      howManyLimbo = howManyLimbo + 1;
 						      }
 						      else{
-							      howManyUnassigned = howManyUnassigned + 1;
+							      if((data.conversationHistoryRecords[m].info.latestSkillName) === "Limbo"){
+								      howManyUnassigned = howManyUnassigned + 1;
+							      }   
 						      }
 					      }
 				      }
