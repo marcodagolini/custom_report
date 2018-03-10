@@ -2805,10 +2805,15 @@ checklogin(accnumb, bearer);
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
 										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
 											      if((answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name)==="limbo"){
-												      var xy = z - 1;
-												      if((answer[i].transfers[xy].targetSkillName)==="human"){
+												      if(z){
+													      var xy = z - 1;
+													      if((answer[i].transfers[xy].targetSkillName)==="human"){
+														      limbo = limbo +1;
+													      }
+												      }
+												      else{
 													      limbo = limbo +1;
-												      }    
+												      }
 											      }
 											      if((answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name)==="risvegliata"){
 												      var xy = z - 1;
