@@ -630,6 +630,7 @@ function botOrNot() {
   function loadLimboBar(){
 	  
 	 var howManyLimbo = 0; 
+	 var howManyUnassigned = 0;
 	 var body = body = '{"start":{"from":' + (Date.now() - (1000*60*60*24*30)) + ',"to":' + (Date.now()) + '}, "status": ["OPEN"]}';
 	 var offset = 0;
 	  
@@ -647,11 +648,15 @@ function botOrNot() {
 					      var length = data.conversationHistoryRecords.length;
 					      for (var m = 0; m < length; m++){
 						      if((data.conversationHistoryRecords[m].info.latestSkillName) === "Limbo"){
-							      howManyLimbo = howManyLimbo +1;
-						      }	      
+							      howManyLimbo = howManyLimbo + 1;
+						      }
+						      else{
+							      howManyUnassigned = howManyUnassigned + 1;
+						      }
 					      }
 				      }
 				      document.getElementById("limbo").innerHTML = howManyLimbo;
+				      document.getElementById("unassigned").innerHTML = howManyUnassigned;
                               },
                               error: function error(e, text) {
 		 
@@ -689,7 +694,6 @@ function botOrNot() {
                               		success: function success(data) {
 						document.getElementById("open").innerHTML = data.active;
 						document.getElementById("pending").innerHTML = data.pending;
-						document.getElementById("unassigned").innerHTML = data.unassigned;
 						document.getElementById("overdue").innerHTML = data.overdue;
 						document.getElementById("soonOverdue").innerHTML = data.soonToOverdue;
                               		},
