@@ -2799,7 +2799,27 @@ checklogin(accnumb, bearer);
 							      yesno = "---";
 						      }
 						      var skill = answer[i].info.latestSkillName;
+						      var limbo = 0;
+						      var risvegliata = 0;
+						      if(answer[i].hasOwnProperty('transfers')){
+							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
+								      var arraylength = answer[i].transfers.length;
+								      for (var z = (arraylength -1); z > -1; z--){
+									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
+										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
+											      if((answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name)==="limbo"){
+												      limbo = limbo +1;
+											      }
+											      if((answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name)==="limbo"){
+												      risvegliata = risvegliata + 1;
+											      }
+						      
+										      }
+									      }
 
+								      }
+							      }
+						      }
 						      
 						      var timeToAccept = 0;
 						      TimeAnswer = 0;
@@ -2837,7 +2857,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"limbo": limbo,"risvegliata": risvegliata,"skill": skill,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2874,6 +2894,8 @@ checklogin(accnumb, bearer);
     			"agent": "String",
 			"team": "String",
 			"skill": "String",
+			"limbo": "String",
+			"risvegliata": "String",
 			"yesno": "String",
 			"comments": "String",
 			"endReason": "String",
