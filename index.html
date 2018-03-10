@@ -2804,14 +2804,16 @@ checklogin(accnumb, bearer);
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
 										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
 											      if((answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name)==="limbo"){
-												      // if((answer[i].transfers[(z-1)].targetSkillName)==="human"){
+												      var xy = z - 1;
+												      if((answer[i].transfers[xy].targetSkillName)==="human"){
 													      limbo = limbo +1;
-												      // }    
+												      }    
 											      }
 											      if((answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name)==="risvegliata"){
-												      // if((answer[i].transfers[(z-1)].targetSkillName)==="limbo"){
+												      var xy = z - 1;
+												      if((answer[i].transfers[xy].targetSkillName)==="limbo"){
 													      risvegliata = risvegliata + 1;
-												      // }    
+												      }    
 											      }
 						      
 										      }
