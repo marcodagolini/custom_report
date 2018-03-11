@@ -2856,8 +2856,8 @@ checklogin(accnumb, bearer);
 						      var greenLight = 1;
 						      var managedByAgent = 0;
 						      howManyMessages = answer[i].messageRecords.length;
-						      var howManyPartecipants = answer[i].agentParticipants.length;
-						      if(howManyMessages && howManyPartecipants && (answer[i].info.status) === "CLOSE"){
+						      if(howManyMessages && answer[i].hasOwnProperty('agentParticipants') && (answer[i].info.status) === "CLOSE"){
+							      var howManyPartecipants = answer[i].agentParticipants.length;
 							      for (var z = 0; z < howManyPartecipants; z++){
 								      if ((z == (howManyPartecipants - 1)) && greenLight){
 									      elapsedtime = elapsedtime + ((answer[i].messageRecords[(howManyMessages - 1)].timeL - answer[i].agentParticipants[z].timeL)/1000);
@@ -2877,6 +2877,25 @@ checklogin(accnumb, bearer);
 						      }
 						      else{
 							    elapsedtime = Math.floor(elapsedtime)  
+						      }
+						      
+						      if(answer[i].hasOwnProperty('agentParticipants')){
+							      var arrayPartecipantAgents = [];
+							      var arrayPartecipantGroups = [];
+							      var howManyPartecipants = answer[i].agentParticipants.length;
+							      for (var z = 0; z < howManyPartecipants; z++){
+								      if((answer[i].agentParticipants[z].agentLoginName !== "botLivePerson") && ((answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT")||(answer[i].agentParticipants[z].permission === "MANAGER")) ){
+									      if(!arrayPartecipantAgents.includes(answer[i].agentParticipants[z].agentLoginName)){
+										      arrayPartecipantAgents.push(answer[i].agentParticipants[z].agentLoginName);
+									      }
+									      if(!arrayPartecipantGroups.includes(answer[i].agentParticipants[z].agentGroupName)){
+										      arrayPartecipantGroups.push(answer[i].agentParticipants[z].agentGroupName);
+									      }
+								      }
+							      }
+							      var partecipantAgents = arrayPartecipantAgents.length;
+							      var partecipantGroup = arrayPartecipantGroups.length;
+							      console.log(partecipantAgents + "****" + partecipantGroup);
 						      }
 						      
 						      var endDateEngagement = "";
