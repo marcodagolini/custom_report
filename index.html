@@ -2874,13 +2874,16 @@ checklogin(accnumb, bearer);
 						      if (elapsedtime == 0){
 							    elapsedtime = "---";  
 						      }
+						      else{
+							    elapsedtime = Math.floor(elapsedtime)  
+						      }
 						      
 						      var endDateEngagement = "";
 						      var durationinseconds = "";
 						      var startDateEngagement = new Date(answer[i].info.startTimeL);
 						      if (answer[i].info.endTimeL != -1){
 							      endDateEngagement = new Date(answer[i].info.endTimeL);
-							      durationinseconds = ((answer[i].info.endTimeL - answer[i].info.startTimeL)/1000).toString();
+							      durationinseconds = Math.floor((answer[i].info.endTimeL - answer[i].info.startTimeL)/1000);
 						      }
 						      else{
 							      endDateEngagement = "---";
