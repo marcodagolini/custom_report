@@ -2860,7 +2860,7 @@ checklogin(accnumb, bearer);
 								      if ((z == (howManyPartecipants - 1)) && greenLight){
 									      elapsedtime = elapsedtime + ((answer[i].messageRecords[(howManyMessages - 1)].timeL - answer[i].agentParticipants[z].timeL)/1000);
 								      }
-								      else if ((answer[i].agentParticipants[z].agentLoginName !== "botLivePerson") && (answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT") && greenLight){
+								      else if ((answer[i].agentParticipants[z].agentLoginName !== "botLivePerson") && ((answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT")||(answer[i].agentParticipants[z].permission === "MANAGER")) && greenLight){
 									      startTimestamp = answer[i].agentParticipants[z].timeL;
 									      greenLight = 0;
 								      } else if(!greenLight && (answer[i].agentParticipants[z].agentLoginName === "botLivePerson")){
