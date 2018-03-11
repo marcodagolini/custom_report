@@ -2852,6 +2852,26 @@ checklogin(accnumb, bearer);
 							      }
 						      }
 						      
+						      var elapsedtime = 0;
+						      var startTimestamp = 0;
+						      var greenLight = 1;
+						      howManyMessages = answer[i].messageRecords.length;
+						      var howManyPartecipants = answer[i].agentParticipants.length;
+						      if(howManyMessages && howManyPartecipants){
+							      for (var z = 0; z < howManyPartecipants; z++){
+								      if ((z == (howManyPartecipants - 1)) && !greenLight){
+									      elapsedtime = elapsedtime + ((answer[i].messageRecords[(howManyMessages - 1)].timeL - startTimestamp)/1000);
+								      }
+								      else if ((answer[i].agentParticipants[z].agentLoginName !== "botLivePerson") && (answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT") && greenLight){
+									      startTimestamp = answer[i].agentParticipants[z].timeL;
+									      greenLight = 0;
+								      } else if(!greenLight && (answer[i].agentParticipants[z].agentLoginName === "botLivePerson")){
+									      elapsedtime = elapsedtime + ((answer[i].agentParticipants[z].timeL - startTimestamp)/1000);
+									      greenLight = 1;
+								      }
+							      }
+						      }
+						      
 						      var endDateEngagement = "";
 						      var durationinseconds = "";
 						      var startDateEngagement = new Date(answer[i].info.startTimeL);
@@ -2867,7 +2887,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"limbo": limbo,"risvegliata": risvegliata,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "elapsedtime": elapsedtime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"limbo": limbo,"risvegliata": risvegliata,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2901,6 +2921,7 @@ checklogin(accnumb, bearer);
     			"start": "String",
     			"end": "String",
 			"durationinseconds": "String",
+			"elapsedtime": "String",
     			"agent": "String",
 			"team": "String",
 			"skill": "String",
