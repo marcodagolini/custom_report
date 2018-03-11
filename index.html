@@ -2808,7 +2808,7 @@ checklogin(accnumb, bearer);
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
 										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
 											      console.log(i);
-											      if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].hasOwnProperty('name')){
+											      if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents.length > 2){
 												      if((answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name)==="limbo"){
 													      if(z){
 														      var xy = z - 1;
