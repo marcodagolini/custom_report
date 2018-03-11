@@ -2891,11 +2891,8 @@ checklogin(accnumb, bearer);
 									      }
 								      }
 							      }
-							      var partecipantAgents = arrayPartecipantAgents.length;
-							      var partecipantGroup = arrayPartecipantGroups.length;
-							      console.log(partecipantAgents + "****" + partecipantGroup);
-							      console.log(arrayPartecipantAgents);
-							      console.log(arrayPartecipantGroups);
+							      var numeroagenti = arrayPartecipantAgents.length;
+							      var numerogruppi = arrayPartecipantGroups.length;
 						      }
 						      
 						      var endDateEngagement = "";
@@ -2913,7 +2910,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "elapsedtime": elapsedtime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"limbo": limbo,"risvegliata": risvegliata,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "elapsedtime": elapsedtime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"limbo": limbo,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2953,6 +2950,8 @@ checklogin(accnumb, bearer);
 			"skill": "String",
 			"limbo": "String",
 			"risvegliata": "String",
+			"numeroagenti": "String",
+			"numerogruppi": "String",
 			"yesno": "String",
 			"comments": "String",
 			"endReason": "String",
