@@ -2859,7 +2859,7 @@ checklogin(accnumb, bearer);
 						      var howManyPartecipants = answer[i].agentParticipants.length;
 						      if(howManyMessages && howManyPartecipants && (answer[i].info.status) === "CLOSE"){
 							      for (var z = 0; z < howManyPartecipants; z++){
-								      if ((z == (howManyPartecipants - 1)) && !greenLight){
+								      if ((z == (howManyPartecipants - 1)) && greenLight){
 									      elapsedtime = elapsedtime + ((answer[i].messageRecords[(howManyMessages - 1)].timeL - startTimestamp)/1000);
 								      }
 								      else if ((answer[i].agentParticipants[z].agentLoginName !== "botLivePerson") && (answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT") && greenLight){
@@ -2872,7 +2872,7 @@ checklogin(accnumb, bearer);
 							      }
 						      }
 						      if (elapsedtime == 0){
-							    elapsedtime = "--";  
+							    elapsedtime = "---";  
 						      }
 						      
 						      var endDateEngagement = "";
