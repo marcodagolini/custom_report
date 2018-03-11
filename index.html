@@ -2856,7 +2856,7 @@ checklogin(accnumb, bearer);
 						      var greenLight = 1;
 						      howManyMessages = answer[i].messageRecords.length;
 						      var howManyPartecipants = answer[i].agentParticipants.length;
-						      if(howManyMessages && howManyPartecipants){
+						      if(howManyMessages && howManyPartecipants && (answer[i].info.status) === "CLOSE"){
 							      for (var z = 0; z < howManyPartecipants; z++){
 								      if ((z == (howManyPartecipants - 1)) && !greenLight){
 									      elapsedtime = elapsedtime + ((answer[i].messageRecords[(howManyMessages - 1)].timeL - startTimestamp)/1000);
@@ -2869,6 +2869,9 @@ checklogin(accnumb, bearer);
 									      greenLight = 1;
 								      }
 							      }
+						      }
+						      if (elapsedtime == 0){
+							    elapsedtime = "--";  
 						      }
 						      
 						      var endDateEngagement = "";
