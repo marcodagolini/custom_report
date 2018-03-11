@@ -2850,7 +2850,7 @@ checklogin(accnumb, bearer);
 							      }
 						      }
 						      
-						      var elapsedtime = 0;
+						      var efforttime = 0;
 						      var startTimestamp = 0;
 						      var greenLight = 1;
 						      var managedByAgent = 0;
@@ -2859,23 +2859,23 @@ checklogin(accnumb, bearer);
 							      var howManyPartecipants = answer[i].agentParticipants.length;
 							      for (var z = 0; z < howManyPartecipants; z++){
 								      if ((z == (howManyPartecipants - 1)) && greenLight){
-									      elapsedtime = elapsedtime + ((answer[i].messageRecords[(howManyMessages - 1)].timeL - answer[i].agentParticipants[z].timeL)/1000);
+									      efforttime = efforttime + ((answer[i].messageRecords[(howManyMessages - 1)].timeL - answer[i].agentParticipants[z].timeL)/1000);
 								      }
 								      else if ((answer[i].agentParticipants[z].agentLoginName !== "botLivePerson") && ((answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT")||(answer[i].agentParticipants[z].permission === "MANAGER")) && !managedByAgent){
 									      startTimestamp = answer[i].agentParticipants[z].timeL;
 									      greenLight = 0;
 									      managedByAgent = 1;
 								      } else if(managedByAgent && (answer[i].agentParticipants[z].agentLoginName === "botLivePerson")){
-									      elapsedtime = elapsedtime + ((answer[i].agentParticipants[z].timeL - startTimestamp)/1000);
+									      efforttime = efforttime + ((answer[i].agentParticipants[z].timeL - startTimestamp)/1000);
 									      managedByAgent = 0;
 								      }
 							      }
 						      }
-						      if (elapsedtime == 0){
-							    elapsedtime = "---";  
+						      if (efforttime == 0){
+							    efforttime = "---";  
 						      }
 						      else{
-							    elapsedtime = Math.floor(elapsedtime)  
+							    efforttime = Math.floor(efforttime)  
 						      }
 						      
 						      if(answer[i].hasOwnProperty('agentParticipants')){
@@ -2911,7 +2911,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "elapsedtime": elapsedtime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"limbo": limbo,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"limbo": limbo,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2945,7 +2945,7 @@ checklogin(accnumb, bearer);
     			"start": "String",
     			"end": "String",
 			"durationinseconds": "String",
-			"elapsedtime": "String",
+			"efforttime": "String",
     			"agent": "String",
 			"team": "String",
 			"skill": "String",
