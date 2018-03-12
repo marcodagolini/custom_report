@@ -2856,6 +2856,9 @@ checklogin(accnumb, bearer);
 						      var startTimestamp = 0;
 						      var managedByAgent = 0;
 						      howManyMessages = answer[i].messageRecords.length;
+						      if (i == 108){
+							    console.log("arrived");  
+						      }
 						      if(howManyMessages && answer[i].hasOwnProperty('agentParticipants') && (answer[i].info.status) === "CLOSE"){
 							      var howManyPartecipants = answer[i].agentParticipants.length;
 							      if ((howManyPartecipants == 1) && (answer[i].agentParticipants[0].agentLoginName !== "botLivePerson") && (answer[i].agentParticipants[0].permission === "ASSIGNED_AGENT") && !((answer[i].agentParticipants[0].agentLoginName).indexOf("@") > -1)){
