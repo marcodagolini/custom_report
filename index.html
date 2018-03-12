@@ -2845,8 +2845,11 @@ checklogin(accnumb, bearer);
 						      if(answer[i].info.latestSkillName === "Limbo"){
 							      limboaveragetime = "---";
 						      }
-						      else{
+						      else if(limbo){
 							      limboaveragetime = totalLimbo/limbo;
+						      }
+						      else{
+							      limboaveragetime = "---";
 						      }
 						      
 						      var timeToAccept = 0;
