@@ -1189,7 +1189,6 @@ function botOrNot() {
 	 var numberOneHourAgo = 0;
 	 var numberOneDayAgo = 0;
 	 var numberOneMonthAgo = 0;
-	 console.log(answer);
 	 var length = answer.length;
 	 var howManyMessages;
 	 var TimeAnswer = 0;
@@ -2657,7 +2656,6 @@ checklogin(accnumb, bearer);
 					      document.getElementById("reportMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
 					      document.getElementById("reportMSG").style = "color : green";      
 					      console.log(data.conversationHistoryRecords);
-					      console.log(answer);
 					      console.log ("adding conversations...");
 					      // setTimeout(function(){
 						      tryUntilSuccess(offset, callback);
@@ -2665,7 +2663,6 @@ checklogin(accnumb, bearer);
 				      }
 				      else{
 					      answer = answer.concat(data.conversationHistoryRecords);
-					      console.log(answer);
 					      console.log(answer.length);
 					      document.getElementById("reportMSG").innerHTML = answer.length + " Messaging conversations downloaded with success!";
 					      document.getElementById("reportMSG").style = "color : green";
