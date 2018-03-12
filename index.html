@@ -2892,7 +2892,7 @@ checklogin(accnumb, bearer);
 							      var arrayPartecipantGroups = [];
 							      var howManyPartecipants = answer[i].agentParticipants.length;
 							      for (var z = 0; z < howManyPartecipants; z++){
-								      if((answer[i].agentParticipants[z].agentLoginName !== "botLivePerson") && (answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT") && (answer[i].agentParticipants[z].agentGroupName !== "Main Group")){
+								      if((answer[i].agentParticipants[z].agentLoginName !== "botLivePerson") && (answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT") && (answer[i].agentParticipants[z].agentLoginName.indexOf('@'))){
 									      if(!arrayPartecipantAgents.includes(answer[i].agentParticipants[z].agentLoginName)){
 										      arrayPartecipantAgents.push(answer[i].agentParticipants[z].agentLoginName);
 									      }
