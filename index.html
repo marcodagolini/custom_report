@@ -2846,7 +2846,7 @@ checklogin(accnumb, bearer);
 							      limboaveragetime = "botClose";
 						      }
 						      else if(limbo){
-							      limboaveragetime = totalLimbo/limbo;
+							      limboaveragetime = Math.floor(totalLimbo/limbo);
 						      }
 						      else{
 							      limboaveragetime = "agentClose";
