@@ -2797,10 +2797,23 @@ checklogin(accnumb, bearer);
 						      var skill = answer[i].info.latestSkillName;
 						      var limbo = 0;
 						      var risvegliata = 0;
+						      var limboaveragetime = 0;
+						      var startLimbo = 0;
+						      var totalLimbo = 0;
 						      if(answer[i].hasOwnProperty('transfers')){
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 								      var arraylength = answer[i].transfers.length;
 								      for (var z = 0; z < arraylength; z++){
+									      if ((answer[i].transfers[z].targetSkillName === "Limbo") && (answer[i].transfers[z].sourceSkillName !== "Limbo")){
+										      limbo = limbo +1;
+										      startLimbo = answer[i].transfers[z].timeL;
+									      }
+									      if ((answer[i].transfers[z].targetSkillName !== "Limbo") && (answer[i].transfers[z].sourceSkillName === "Limbo")){
+										      risvegliata = risvegliata +1;
+										      totalLimbo = totalLimbo + ((answer[i].transfers[z].timeL - startLimbo)/1000);
+									      }
+									      
+									      /*********************
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
 										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
 											      if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents.length > 2){
@@ -2826,8 +2839,15 @@ checklogin(accnumb, bearer);
 						      
 										      }
 									      }
+									      *********************/
 								      }
 							      }
+						      }
+						      if(answer[i].info.latestSkillName === "Limbo"){
+							      limboaveragetime = "---";
+						      }
+						      else{
+							      limboaveragetime = totalLimbo/limbo;
 						      }
 						      
 						      var timeToAccept = 0;
@@ -2920,7 +2940,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"limbo": limbo,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2959,6 +2979,7 @@ checklogin(accnumb, bearer);
 			"team": "String",
 			"skill": "String",
 			"limbo": "String",
+			"limboaveragetime": "String",
 			"risvegliata": "String",
 			"numeroagenti": "String",
 			"numerogruppi": "String",
