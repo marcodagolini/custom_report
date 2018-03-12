@@ -2865,6 +2865,9 @@ checklogin(accnumb, bearer);
 							      }
 							      else{
 							      for (var z = 0; z < howManyPartecipants; z++){
+								      var ert = answer[i].agentParticipants[z].agentLoginName;
+								      var fghj = answer[i].agentParticipants[z].permission;
+								      var trd = (answer[i].agentParticipants[0].agentLoginName).indexOf("@");
 								      if ((z == (howManyPartecipants - 1)) && managedByAgent){
 									      efforttime = efforttime + ((answer[i].messageRecords[(howManyMessages - 1)].timeL - answer[i].agentParticipants[z].timeL)/1000);
 								      }
