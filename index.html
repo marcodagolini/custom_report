@@ -2816,11 +2816,13 @@ checklogin(accnumb, bearer);
 								      }
 							      }
 						      }
-						      if((wasInLimbo == 1) && (limbo > 0)){
-							      limboaveragetime = Math.floor(totalLimbo/limbo);
-						      }
-						      else if(wasInLimbo == 1){
-							      limboaveragetime = "non svegliata";
+						      if(wasInLimbo == 1){
+							      if (limbo > 0){
+								     limboaveragetime = Math.floor(totalLimbo/limbo); 
+							      }
+							      else{
+								     limboaveragetime = "non svegliata"; 
+							      }
 						      }
 						      else{
 							      limboaveragetime = "niente Limbo";
