@@ -2814,10 +2814,10 @@ checklogin(accnumb, bearer);
 								      }
 							      }
 						      }
-						      if(wasInLimbo && (limbo > 0)){
+						      if((wasInLimbo == 1) && (limbo > 0)){
 							      limboaveragetime = Math.floor(totalLimbo/limbo);
 						      }
-						      else if(wasInLimbo){
+						      else if(wasInLimbo == 1){
 							      limboaveragetime = "non svegliata";
 						      }
 						      else{
