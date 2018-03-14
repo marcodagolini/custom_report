@@ -2797,6 +2797,7 @@ checklogin(accnumb, bearer);
 						      var limbo = 0;
 						      var risvegliata = 0;
 						      var limboaveragetime = 0;
+						      var wasInLimbo = 0;
 						      var startLimbo = 0;
 						      var totalLimbo = 0;
 						      if(answer[i].hasOwnProperty('transfers')){
@@ -2805,6 +2806,7 @@ checklogin(accnumb, bearer);
 								      for (var z = 0; z < arraylength; z++){
 									      if ((answer[i].transfers[z].targetSkillName === "Limbo") && (answer[i].transfers[z].sourceSkillName !== "Limbo")){
 										      limbo = limbo +1;
+										      wasInLimbo = 1;
 										      startLimbo = answer[i].transfers[z].timeL;
 									      }
 									      if ((answer[i].transfers[z].targetSkillName !== "Limbo") && (answer[i].transfers[z].sourceSkillName === "Limbo")){
@@ -2814,14 +2816,14 @@ checklogin(accnumb, bearer);
 								      }
 							      }
 						      }
-						      if(answer[i].info.latestSkillName === "Limbo"){
-							      limboaveragetime = "botClose";
-						      }
-						      else if(limbo){
+						      if(wasInLimbo && (limbo > 0)){
 							      limboaveragetime = Math.floor(totalLimbo/limbo);
 						      }
+						      else if(wasInLimbo && (limbo == 0)){
+							      limboaveragetime = "non svegliata";
+						      }
 						      else{
-							      limboaveragetime = "agentClose";
+							      limboaveragetime = "niente Limbo";
 						      }
 						      
 						      var timeToAccept = 0;
