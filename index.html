@@ -8,6 +8,7 @@
 
 
 
+
 <head>
   
 </head>
@@ -2665,7 +2666,6 @@ checklogin(accnumb, bearer);
 					      console.log(answer.length);
 					      document.getElementById("reportMSG").innerHTML = answer.length + " Messaging conversations downloaded with success!";
 					      document.getElementById("reportMSG").style = "color : green";
-					      var myTestSameAgent = 0;
 					      for (var i = 0; i < (answer.length); i++){
 						      var messages = "";
 						      var thismessage = "";
@@ -2811,9 +2811,6 @@ checklogin(accnumb, bearer);
 										      startLimbo = answer[i].transfers[z].timeL;
 									      }
 									      if ((answer[i].transfers[z].targetSkillName !== "Limbo") && (answer[i].transfers[z].sourceSkillName === "Limbo")){
-										      if((answer[i].transfers[z].targetSkillName.indexOf("***")) > -1){
-											      myTestSameAgent = myTestSameAgent + 1;
-										      }
 										      risvegliata = risvegliata +1;
 										      totalLimbo = totalLimbo + ((answer[i].transfers[z].timeL - startLimbo)/1000);
 									      }
@@ -2926,9 +2923,6 @@ checklogin(accnumb, bearer);
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
-					      console.log("******************************************");
-					      console.log(myTestSameAgent);
-					      console.log("******************************************");
 					      if (exportObject.length > 0){
 						      exportData(exportObject);
 					      }
