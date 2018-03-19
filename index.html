@@ -2811,7 +2811,7 @@ checklogin(accnumb, bearer);
 										      startLimbo = answer[i].transfers[z].timeL;
 									      }
 									      if ((answer[i].transfers[z].targetSkillName !== "Limbo") && (answer[i].transfers[z].sourceSkillName === "Limbo")){
-										      if((answer[i].transfers[z].targetSkillName){
+										      if(answer[i].transfers[z].targetSkillName.indexOf("***") > -1){
 											      myTestSameAgent = myTestSameAgent + 1;
 										      }
 										      risvegliata = risvegliata +1;
