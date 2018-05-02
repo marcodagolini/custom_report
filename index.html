@@ -2770,16 +2770,24 @@ checklogin(accnumb, bearer);
 						      
 						      var yesno = "-";
 						      var comments = "-";
+						      var facebook_out = "No";
 						      if(answer[i].hasOwnProperty('transfers')){
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 								      var arraylength = answer[i].transfers.length;
+								      for (var z = 0; z < arraylength; z++){
+									      if(answer[i].transfers[z].targetSkillName === "facebook_out"){
+										      facebook_out = "Yes";
+									      }
+								      }
 								      for (var z = (arraylength -1); z > -1; z--){
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
 										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
-											      yesno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
-											      if (yesno !== undefined || yesno !== "---"){
-												      comments = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
-												      z = 0;
+											      if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "yesno"){
+												      yesno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
+												      if (yesno !== undefined || yesno !== "---"){
+													      comments = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
+													      z = 0;
+												      }
 											      }
 											      
 										      }
