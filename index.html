@@ -2944,7 +2944,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"facebook_out": channel,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2983,6 +2983,7 @@ checklogin(accnumb, bearer);
 			"team": "String",
 			"skill": "String",
 			"channel": "String",
+			"facebook_out": "String",
 			"telefono": "String",
 			"ricontatto": "String",
 			"cfiscale": "String",
