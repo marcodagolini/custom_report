@@ -2775,7 +2775,7 @@ checklogin(accnumb, bearer);
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 								      var arraylength = answer[i].transfers.length;
 								      for (var z = 0; z < arraylength; z++){
-									      if(answer[i].transfers[z].targetSkillName === "facebook_out"){
+									      if(answer[i].transfers[z].targetSkillName === "Facebook_out"){
 										      facebook_out = "Yes";
 									      }
 								      }
@@ -2951,7 +2951,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"facebook_out": channel,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"facebook_out": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
