@@ -2800,6 +2800,13 @@ checklogin(accnumb, bearer);
 						      var startLimbo = 0;
 						      var totalLimbo = 0;
 						      var channel = "Web";
+						      var numero_telefono = "---";
+						      var numero_ricontatto = "---";
+						      var numero_cfiscale = "---";
+						      var vfTag = "---";
+						      var triplettauno = "---";
+						      var triplettadue = "---";
+						      var triplettatre = "---";
 						      if(answer[i].hasOwnProperty('transfers')){
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 								      if(answer[i].transfers[0].targetSkillName === "Facebook_priv"){
@@ -2810,13 +2817,13 @@ checklogin(accnumb, bearer);
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
 										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
 											      if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
-												      var numero_telefono = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
-												      var numero_ricontatto = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
-												      var numero_cfiscale = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
-												      var vfTag = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[3].name;
-												      var triplettauno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[4].name;
-												      var triplettadue = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[5].name;
-												      var triplettatre = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[6].name;
+												      numero_telefono = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
+												      numero_ricontatto = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
+												      numero_cfiscale = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
+												      vfTag = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[3].name;
+												      triplettauno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[4].name;
+												      triplettadue = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[5].name;
+												      triplettatre = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[6].name;
 												      z = 0;
 											      }
 										      }
