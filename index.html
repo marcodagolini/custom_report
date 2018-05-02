@@ -2803,10 +2803,10 @@ checklogin(accnumb, bearer);
 						      var totalLimbo = 0;
 						      var channel = "Web";
 						      if(answer[i].hasOwnProperty('transfers')){
-							      if(answer[i].transfers[0].targetSkillName === "Facebook_priv"){
-								      channel = "FaceBook";
-							      }
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
+								      if(answer[i].transfers[0].targetSkillName === "Facebook_priv"){
+									      channel = "FaceBook";
+								      }
 								      var arraylength = answer[i].transfers.length;
 								      for (var z = 0; z < arraylength; z++){
 									      if ((answer[i].transfers[z].targetSkillName === "Limbo") && (answer[i].transfers[z].sourceSkillName !== "Limbo")){
