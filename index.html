@@ -2807,6 +2807,23 @@ checklogin(accnumb, bearer);
 									      channel = "FaceBook";
 								      }
 								      var arraylength = answer[i].transfers.length;
+								      for (var z = (arraylength -1); z > -1; z--){
+									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
+										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
+											      if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
+												      var numero_telefono = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
+												      var numero_ricontatto = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
+												      var numero_cfiscale = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
+												      var vfTag = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[3].name;
+												      var triplettauno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[4].name;
+												      var triplettadue = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[5].name;
+												      var triplettatre = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[6].name;
+												      z = 0;
+											      }
+										      }
+									      }
+								      }
+   
 								      for (var z = 0; z < arraylength; z++){
 									      if ((answer[i].transfers[z].targetSkillName === "Limbo") && (answer[i].transfers[z].sourceSkillName !== "Limbo")){
 										      limbo = limbo +1;
@@ -2922,7 +2939,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2961,6 +2978,13 @@ checklogin(accnumb, bearer);
 			"team": "String",
 			"skill": "String",
 			"channel": "String",
+			"telefono": "String",
+			"ricontatto": "String",
+			"cfiscale": "String",
+			"tags": "String",
+			"triplettauno": "String",
+			"triplettadue": "String",
+			"triplettatre": "String",
 			"limbo": "String",
 			"limboaveragetime": "String",
 			"risvegliata": "String",
