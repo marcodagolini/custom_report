@@ -2802,7 +2802,11 @@ checklogin(accnumb, bearer);
 						      var wasInLimbo = 0;
 						      var startLimbo = 0;
 						      var totalLimbo = 0;
+						      var channel = "Web";
 						      if(answer[i].hasOwnProperty('transfers')){
+							      if(answer[i].transfers[0].targetSkillName === "Facebook_priv"){
+								      channel = "FaceBook";
+							      }
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 								      var arraylength = answer[i].transfers.length;
 								      for (var z = 0; z < arraylength; z++){
@@ -2920,7 +2924,7 @@ checklogin(accnumb, bearer);
 						      
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -2958,6 +2962,7 @@ checklogin(accnumb, bearer);
     			"agent": "String",
 			"team": "String",
 			"skill": "String",
+			"channel": "String",
 			"limbo": "String",
 			"limboaveragetime": "String",
 			"risvegliata": "String",
