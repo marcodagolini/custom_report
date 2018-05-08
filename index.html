@@ -2828,19 +2828,21 @@ checklogin(accnumb, bearer);
 												      numero_telefono = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
 												      numero_ricontatto = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
 												      numero_cfiscale = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
-												      console.log(vfTag);
-												      if(vfTag !== "undefined"){
-													      vfTag = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[3].name;
+												      vfTag = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[3].name;
+												      triplettauno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[4].name;
+												      triplettadue = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[5].name;
+												      triplettatre = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[6].name;
+												      if(vfTag === "undefined"){
+													      vfTag = "---";
 												      }
-												      console.log(triplettauno);
-												      if(triplettauno !== "undefined"){
-													     triplettauno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[4].name; 
+												      if(triplettauno === "undefined"){
+													     triplettauno = "---"; 
 												      }
-												      if(triplettadue !== "undefined"){
-													     triplettadue = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[5].name; 
+												      if(triplettadue === "undefined"){
+													     triplettadue = "---"; 
 												      }
-												      if(triplettatre !== "undefined"){
-													     triplettatre = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[6].name; 
+												      if(triplettatre === "undefined"){
+													     triplettatre = "---"; 
 												      }
 												      z = 0;
 											      }
