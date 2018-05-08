@@ -2827,9 +2827,11 @@ checklogin(accnumb, bearer);
 												      numero_telefono = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
 												      numero_ricontatto = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
 												      numero_cfiscale = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
+												      console.log(vfTag);
 												      if(vfTag !== "undefined"){
 													      vfTag = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[3].name;
 												      }
+												      console.log(triplettauno);
 												      if(triplettauno !== "undefined"){
 													     triplettauno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[4].name; 
 												      }
