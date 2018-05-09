@@ -511,6 +511,7 @@ span.psw {
   var customDate;
   var endCustomDate;
   var overwriteHumanSkill = "";
+  var FacebookBotID = "1089636032";
 	
   function findBulk(Seconds){
 	 if (Seconds <= 30){
@@ -966,7 +967,12 @@ function botOrNot() {
 		 	if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
 				whatTime = answer[m].messageRecords[0].timeL;
 				if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
-					TimeAnswer = (answer[m].agentParticipants[0].timeL - whatTime)/1000;
+					for (var b = 0; b < answer[m].agentParticipants.length; b++){
+						if(answer[m].agentParticipants[b].userTypeName === "Human"){
+							TimeAnswer = (answer[m].agentParticipants[b].timeL - whatTime)/1000;
+							b = answer[m].agentParticipants.length;
+						}
+					}
 					if ((whatTime > customDate) && (whatTime < endCustomDate)){
 						totalTime = totalTime + TimeAnswer;
 						numberTotal = numberTotal + 1;
@@ -1004,7 +1010,12 @@ function botOrNot() {
 		 	if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
 				whatTime = answer[m].messageRecords[0].timeL;
 				if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
-					TimeAnswer = (answer[m].agentParticipants[0].timeL - whatTime)/1000;
+					for (var b = 0; b < answer[m].agentParticipants.length; b++){
+						if(answer[m].agentParticipants[b].userTypeName === "Human"){
+							TimeAnswer = (answer[m].agentParticipants[b].timeL - whatTime)/1000;
+							b = answer[m].agentParticipants.length;
+						}
+					}
 					if ((whatTime > customDate) && (whatTime < endCustomDate)){
 						totalTime = totalTime + TimeAnswer;
 						numberTotal = numberTotal + 1;
@@ -1044,7 +1055,7 @@ function botOrNot() {
 				whatTime = answer[m].messageRecords[0].timeL;
 				isAnswered = 0;
 				for (var n = 1; n < howManyMessages; n++){
-					if(answer[m].messageRecords[n].sentBy === "Agent"){
+					if(answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID){
 						TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
 						isAnswered = 1;
 						n = howManyMessages;
@@ -1089,7 +1100,7 @@ function botOrNot() {
 				whatTime = answer[m].messageRecords[0].timeL;
 				isAnswered = 0;
 				for (var n = 1; n < howManyMessages; n++){
-					if(answer[m].messageRecords[n].sentBy === "Agent"){
+					if(answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID){
 						TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
 						isAnswered = 1;
 						n = howManyMessages;
@@ -1134,7 +1145,7 @@ function botOrNot() {
 				 		whatTime = answer[m].messageRecords[n].timeL;
 				 		isAnswered = 1;
 			 		}
-			 		else if((answer[m].messageRecords[n].sentBy === "Agent") && isAnswered){
+			 		else if((answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID) && isAnswered){
 				 		TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
 				 		if ((whatTime > customDate) && (whatTime < endCustomDate)){
 							totalTime = totalTime + TimeAnswer;
@@ -1162,7 +1173,7 @@ function botOrNot() {
 				 		whatTime = answer[m].messageRecords[n].timeL;
 				 		isAnswered = 1;
 			 		}
-			 		else if((answer[m].messageRecords[n].sentBy === "Agent") && isAnswered){
+			 		else if((answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID) && isAnswered){
 				 		TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
 				 		if ((whatTime > customDate) && (whatTime < endCustomDate)){
 							totalTime = totalTime + TimeAnswer;
@@ -1466,7 +1477,7 @@ function botOrNot() {
 			whatTime = answer[m].messageRecords[0].timeL;
 			isAnswered = 0;
 			for (var n = 1; n < howManyMessages; n++){
-				if(answer[m].messageRecords[n].sentBy === "Agent"){
+				if(answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID){
 					TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
 					isAnswered = 1;
 					n = howManyMessages;
@@ -1608,7 +1619,7 @@ function botOrNot() {
 			whatTime = answer[m].messageRecords[0].timeL;
 			isAnswered = 0;
 			for (var n = 1; n < howManyMessages; n++){
-				if(answer[m].messageRecords[n].sentBy === "Agent"){
+				if(answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID){
 					TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
 					isAnswered = 1;
 					n = howManyMessages;
@@ -1740,7 +1751,7 @@ function botOrNot() {
 				 	whatTime = answer[m].messageRecords[n].timeL;
 				 	isAnswered = 1;
 			 	}
-			 	else if((answer[m].messageRecords[n].sentBy === "Agent") && isAnswered){
+			 	else if((answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID) && isAnswered){
 				 	TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
 				 	if (whatTime > tenMinutesAgo){
 						TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
@@ -1793,7 +1804,7 @@ function botOrNot() {
 				 	whatTime = answer[m].messageRecords[n].timeL;
 				 	isAnswered = 1;
 			 	}
-			 	else if((answer[m].messageRecords[n].sentBy === "Agent") && isAnswered){
+			 	else if((answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID) && isAnswered){
 				 	TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
 				 	if (whatTime > tenMinutesAgo){
 						TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
@@ -1855,7 +1866,12 @@ function botOrNot() {
 		 if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
 			whatTime = answer[m].info.startTimeL;
 			if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
-				TimeAnswer = (answer[m].agentParticipants[0].timeL - whatTime)/1000;
+				for (var b = 0; b < answer[m].agentParticipants.length; b++){
+					if(answer[m].agentParticipants[b].userTypeName === "Human"){
+						TimeAnswer = (answer[m].agentParticipants[b].timeL - whatTime)/1000;
+						b = answer[m].agentParticipants.length;
+					}
+				}
 				if (whatTime > tenMinutesAgo){
 					TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
 					numberTenMinutesAgo = numberTenMinutesAgo + 1;
@@ -1992,7 +2008,12 @@ function botOrNot() {
 		 if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
 			whatTime = answer[m].info.startTimeL;
 			if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
-				TimeAnswer = (answer[m].agentParticipants[0].timeL - whatTime)/1000;
+				for (var b = 0; b < answer[m].agentParticipants.length; b++){
+					if(answer[m].agentParticipants[b].userTypeName === "Human"){
+						TimeAnswer = (answer[m].agentParticipants[b].timeL - whatTime)/1000;
+						b = answer[m].agentParticipants.length;
+					}
+				}
 				if (whatTime > tenMinutesAgo){
 					TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
 					numberTenMinutesAgo = numberTenMinutesAgo + 1;
