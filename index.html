@@ -2722,8 +2722,15 @@ checklogin(accnumb, bearer);
 						      var whatTime = 0;
 						      var firstTimeAnswer = "";
 						      var isAnswered = 0;
+						      var lastMessageAgent = 0;
 						      var howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
+							      for (var nh = (howManyMessages-1); nh >= 0; nh--){
+								      if ((answer[i].messageRecords[nh].sentBy === "Agent") && (answer[i].messageRecords[nh].participantId !== "1089636032")){
+									      lastMessageAgent = answer[i].messageRecords[nh].timeL;
+									      nh = 0;
+								      }
+							      }
 							      if (answer[i].messageRecords[0].sentBy === "Consumer"){
 								      whatTime = answer[i].messageRecords[0].timeL;
 								      isAnswered = 0;
@@ -2836,6 +2843,7 @@ checklogin(accnumb, bearer);
 						      var triplettauno = "---";
 						      var triplettadue = "---";
 						      var triplettatre = "---";
+						      var lastTagFromAgent = 0;
 						      if(answer[i].hasOwnProperty('transfers')){
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 								      if(answer[i].transfers[0].targetSkillName === "Facebook_priv"){
@@ -2846,6 +2854,7 @@ checklogin(accnumb, bearer);
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
 										      if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
 											      if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
+												      lastTagFromAgent = answer[i].transfers[z].timeL;
 												      numero_telefono = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
 												      numero_ricontatto = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
 												      numero_cfiscale = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
@@ -2990,10 +2999,27 @@ checklogin(accnumb, bearer);
 							      durationinseconds = "---";
 						      }
 						      
-						      
+						      console.log("lastMessageAgent " + lastMessageAgent);
+						      console.log("lastTagFromAgent " + lastTagFromAgent);
+						      var lastActivityAgent = 0;
+						      var lastTypeActivityAgent = 0;
+						      if((lastMessageAgent !== 0) || (lastTagFromAgent !== 0)){
+							      if(lastMessageAgent > lastTagFromAgent){
+								      lastActivityAgent = lastMessageAgent;
+								      lastTypeActivityAgent = "Message";
+							      } else{
+								      lastActivityAgent = lastTagFromAgent;
+								      lastTypeActivityAgent = "Tag";
+							      }
+						      }
+						      console.log("lastActivityAgent " + lastActivityAgent);
+						      console.log("lastTypeActivityAgent " + lastTypeActivityAgent);
+						      console.log ("************");
+						      console.log ("************");
+						      console.log ("************");
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"facebook_out": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"facebook_out": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"lastActivityAgent": lastActivityAgent,"lastActivityAgent": lastTypeActivityAgent,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -3050,6 +3076,8 @@ checklogin(accnumb, bearer);
 			"endReason": "String",
 			"timeToAccept": "String",
 			"firstTimeAnswer": "String",
+			"lastActivityAgent": "String",
+			"lastTypeActivityAgent": "String",
 			"customerName": "String",
 			"phoneNumber": "String",
 			"imeiNumber": "String",
