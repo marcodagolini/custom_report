@@ -2734,7 +2734,7 @@ checklogin(accnumb, bearer);
 								      }
 								      if (isAnswered){
 									      // firstTimeAnswer = secondsToString(TimeAnswer);
-									      firstTimeAnswer = TimeAnswer;
+									      firstTimeAnswer = parseInt(TimeAnswer);
 								      }
 								      else{
 									      firstTimeAnswer = "NOT_ANSWERED"
@@ -2914,7 +2914,7 @@ checklogin(accnumb, bearer);
 								      }
 								      if (isAnswered){
 									      // timeToAccept = secondsToString(TimeAnswer);
-									      timeToAccept = TimeAnswer;
+									      timeToAccept = parseInt(TimeAnswer);
 								      }
 								      else{
 									      timeToAccept = "NOT_ANSWERED"
