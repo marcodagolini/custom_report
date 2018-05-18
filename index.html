@@ -2988,9 +2988,7 @@ checklogin(accnumb, bearer);
 						      
 						      var endDateEngagement = "";
 						      var durationinseconds = "";
-						      // var startDateEngagement = new Date(answer[i].info.startTimeL);
-						      var startDateEngagement = answer[i].info.startTimeL;
-						      startDateEngagement = startDateEngagement.getMonth() + 1 + '/' + startDateEngagement.getDate() + '/' + startDateEngagement.getFullYear() + " " + startDateEngagement.getHours() + ":" + startDateEngagement.getMinutes() + ":" + startDateEngagement.getSeconds();
+						      var startDateEngagement = new Date(answer[i].info.startTimeL);
 						      if (answer[i].info.endTimeL != -1){
 							      endDateEngagement = new Date(answer[i].info.endTimeL);
 							      durationinseconds = Math.floor((answer[i].info.endTimeL - answer[i].info.startTimeL)/1000);
@@ -3005,10 +3003,10 @@ checklogin(accnumb, bearer);
 						      var lastTypeActivityAgent = 0;
 						      if((lastMessageAgent !== 0) || (lastTagFromAgent !== 0)){
 							      if(lastMessageAgent > lastTagFromAgent){
-								      lastActivityAgent = lastMessageAgent;
+								      lastActivityAgent = new Date(lastMessageAgent);
 								      lastTypeActivityAgent = "Message";
 							      } else{
-								      lastActivityAgent = lastTagFromAgent;
+								      lastActivityAgent = new Date(lastTagFromAgent);
 								      lastTypeActivityAgent = "Tag";
 							      }
 						      }
