@@ -2847,9 +2847,15 @@ checklogin(accnumb, bearer);
 						      var lastTagFromAgent = 0;
 						      if(answer[i].hasOwnProperty('transfers')){
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
-								      if(answer[i].transfers[0].targetSkillName === "facebook_bot"){
+								      if(answer[i].transfers[0].targetSkillName === "Facebook_priv"){
 									      channel = "FaceBook";
 								      }
+								      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 1) {
+									      if(answer[i].transfers[1].targetSkillName === "Facebook_priv"){
+										     channel = "FaceBook";
+									      }
+								      }
+								 
 								      var arraylength = answer[i].transfers.length;
 								      for (var z = (arraylength -1); z > -1; z--){
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
