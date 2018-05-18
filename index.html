@@ -2753,12 +2753,19 @@ checklogin(accnumb, bearer);
 						      var phoneNumber = "";
 						      var imeiNumber = "";
 						      var customerName = "";
+						      var channel = "Web";
 						      if(answer[i].hasOwnProperty('sdes')){
 							      if(answer[i].sdes.events[0].hasOwnProperty('customerInfo')){
 								      imeiNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
+								      if(answer[i].sdes.events[0].customerInfo.customerInfo.customerId.indexOf("facebook") > -1){
+									      channel = "FaceBook";
+								      }
 							      }
 							      if(answer[i].sdes.events[1].hasOwnProperty('customerInfo')){
 								      imeiNumber = answer[i].sdes.events[1].customerInfo.customerInfo.imei;
+								      if(answer[i].sdes.events[1].customerInfo.customerInfo.customerId.indexOf("facebook") > -1){
+									      channel = "FaceBook";
+								      }
 							      }
 							      if(answer[i].sdes.events[0].hasOwnProperty('personalInfo')){
 								      if(answer[i].sdes.events[0].personalInfo.personalInfo.contacts.length){
@@ -2835,7 +2842,6 @@ checklogin(accnumb, bearer);
 						      var wasInLimbo = 0;
 						      var startLimbo = 0;
 						      var totalLimbo = 0;
-						      var channel = "Web";
 						      var numero_telefono = "---";
 						      var numero_ricontatto = "---";
 						      var numero_cfiscale = "---";
@@ -2846,15 +2852,7 @@ checklogin(accnumb, bearer);
 						      var lastTagFromAgent = 0;
 						      if(answer[i].hasOwnProperty('transfers')){
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
-								      if(answer[i].transfers[0].targetSkillName === "Facebook_priv"){
-									      channel = "FaceBook";
-								      }
-								      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 1) {
-									      if(answer[i].transfers[1].targetSkillName === "Facebook_priv"){
-										     channel = "FaceBook";
-									      }
-								      }
-								 
+								      
 								      var arraylength = answer[i].transfers.length;
 								      for (var z = (arraylength -1); z > -1; z--){
 									      if(answer[i].transfers[z].hasOwnProperty('contextData')){
