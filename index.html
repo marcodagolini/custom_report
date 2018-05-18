@@ -2987,7 +2987,9 @@ checklogin(accnumb, bearer);
 						      
 						      var endDateEngagement = "";
 						      var durationinseconds = "";
-						      var startDateEngagement = new Date(answer[i].info.startTimeL);
+						      // var startDateEngagement = new Date(answer[i].info.startTimeL);
+						      var startDateEngagement = answer[i].info.startTimeL;
+						      startDateEngagement = startDateEngagement.getMonth() + 1 + '/' + startDateEngagement.getDate() + '/' + startDateEngagement.getFullYear() + " " + startDateEngagement.getHours() + ":" + startDateEngagement.getMinutes() + ":" + startDateEngagement.getSeconds();
 						      if (answer[i].info.endTimeL != -1){
 							      endDateEngagement = new Date(answer[i].info.endTimeL);
 							      durationinseconds = Math.floor((answer[i].info.endTimeL - answer[i].info.startTimeL)/1000);
