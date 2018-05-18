@@ -2845,7 +2845,7 @@ checklogin(accnumb, bearer);
 						      var lastTagFromAgent = 0;
 						      if(answer[i].hasOwnProperty('transfers')){
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
-								      if(answer[i].transfers[0].targetSkillName === "Facebook_priv"){
+								      if(answer[i].transfers[0].targetSkillName === "facebook_bot"){
 									      channel = "FaceBook";
 								      }
 								      var arraylength = answer[i].transfers.length;
