@@ -2914,6 +2914,73 @@ checklogin(accnumb, bearer);
 						      TimeAnswer = 0;
 						      whatTime = 0;
 						      isAnswered = 0;
+						      
+						      
+						      /*********************/
+						      /*********************/
+						      /*********************/
+						      
+						      howManyMessages = answer[i].messageRecords.length;
+						      if(howManyMessages){
+						      		if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
+									if(answer[i].hasOwnProperty('transfers') && answer[i].transfers.length){
+										var agentParticipantsLength = answer[i].agentParticipants.length;
+										var transferLength = answer[i].transfers.length;
+										var isGeneral = 0;
+										var isOutbound = 0;
+										var agentLoginName = "";
+										var agentSkill = "";
+										var jumpInTimestamp = 0;
+										var partialTime = 0;
+										var effortTimeGeneral = 0;
+										var effortTimeOutbound = 0;
+										for (var z = 0; z < agentParticipantsLength; z++){
+											if(answer[i].agentParticipants[z].userTypeName === "Human"){
+												agentLoginName = answer[i].agentParticipants[z].agentLoginName;
+												jumpInTimestamp = answer[i].agentParticipants[z].timeL;
+												for (var f = 0; f < transferLength; f++){
+													if((answer[i].transfers[f].timeL > jumpInTimestamp) && (answer[i].transfers[f].sourceAgentLoginName === agentLoginName))
+														if(answer[i].transfers[f].sourceSkillName.indexOf("bound") > -1){
+															isGeneral = 0;
+															isOutbound = 1;
+														} else {
+															isGeneral = 1;
+															isOutbound = 0;
+														}
+														if(answer[i].transfers[f].targetSkillName === "Limbo" || answer[i].transfers[f].targetSkillName === "Freeze"){
+															partialTime = (jumpInTimestamp - answer[i].transfers[f].timeL)/1000;
+															if(isGeneral){
+																effortTimeGeneral = effortTimeGeneral + partialTime;
+															}
+															if(isOutbound){
+																effortTimeOutbound = effortTimeOutbound + partialTime;
+															}
+														}
+														
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							
+							console.log("effortTimeGeneral: " + effortTimeGeneral + " ******** effortTimeOutbound: " + effortTimeOutbound);
+						      	
+						      
+								      
+
+						      
+						      
+						      
+						      
+						      
+						      
+						      
+						      
+						      
+						      
+						      
 						      howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
 							      if (answer[i].messageRecords[0].sentBy === "Consumer"){
