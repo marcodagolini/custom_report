@@ -2938,7 +2938,7 @@ checklogin(accnumb, bearer);
 												agentLoginName = answer[i].agentParticipants[z].agentLoginName;
 												jumpInTimestamp = answer[i].agentParticipants[z].timeL;
 												for (var f = 0; f < transferLength; f++){
-													if((answer[i].transfers[f].timeL > jumpInTimestamp) && (answer[i].transfers[f].sourceAgentLoginName === agentLoginName))
+													if((answer[i].transfers[f].timeL > jumpInTimestamp) && (answer[i].transfers[f].sourceAgentLoginName === agentLoginName)){
 														if(answer[i].transfers[f].sourceSkillName.indexOf("bound") > -1){
 															isGeneral = 0;
 															isOutbound = 1;
