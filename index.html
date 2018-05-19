@@ -2928,6 +2928,7 @@ checklogin(accnumb, bearer);
 										var isOutbound = 0;
 										var agentLoginName = "";
 										var agentSkill = "";
+										var sourceSkillName = "";
 										var jumpInTimestamp = 0;
 										var partialTime = 0;
 										var effortTimeGeneral = 0;
@@ -2937,11 +2938,11 @@ checklogin(accnumb, bearer);
 												agentLoginName = answer[i].agentParticipants[z].agentLoginName;
 												jumpInTimestamp = answer[i].agentParticipants[z].timeL;
 												for (var f = 0; f < transferLength; f++){
-													if((answer[i].transfers[f].timeL > jumpInTimestamp) && (answer[i].transfers[f].sourceAgentLoginName === agentLoginName)){
+													if(answer[i].transfers[f].timeL > jumpInTimestamp){
 														if(answer[i].transfers[f].sourceSkillName.indexOf("bound") > -1){
 															isGeneral = 0;
 															isOutbound = 1;
-														} else {
+														} else if((answer[i].transfers[f].sourceSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].sourceSkillName.indexOf("uman") > -1)){
 															isGeneral = 1;
 															isOutbound = 0;
 														}
@@ -2953,6 +2954,7 @@ checklogin(accnumb, bearer);
 															if(isOutbound){
 																effortTimeOutbound = effortTimeOutbound + partialTime;
 															}
+															f = transferLength;
 														}
 														
 													}
