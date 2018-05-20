@@ -2967,10 +2967,8 @@ checklogin(accnumb, bearer);
 											if((answer[i].agentParticipants[z].userTypeName === "Human") && (answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT")){
 												agentLoginName = answer[i].agentParticipants[z].agentLoginName;
 												jumpInTimestamp = answer[i].agentParticipants[z].timeL;
-												var inside = 0;
 												for (var f = 0; f < transferLength; f++){
 													if(answer[i].transfers[f].timeL > jumpInTimestamp){
-														inside = 1;
 														if(answer[i].transfers[f].targetSkillName === "Limbo" || answer[i].transfers[f].targetSkillName === "Freeze" ){
 															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 															if(isGeneral){
@@ -3039,7 +3037,7 @@ checklogin(accnumb, bearer);
 															
 														}
 													}
-													if ((inside === 0) && (f === (transferLength - 1))){
+													if (f === (transferLength - 1)){
 														partialTime = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
 														if(isGeneral){
 															effortTimeGeneral = effortTimeGeneral + partialTime;
