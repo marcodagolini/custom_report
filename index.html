@@ -2925,6 +2925,16 @@ checklogin(accnumb, bearer);
 						      var lastAgentOutbound = "";
 						      var lastTeamGeneral = "";
 						      var lastTeamOutbound = "";
+						      
+						      var numberAgentsGeneral = 0;
+						      var numberAgentsOutbound = 0;
+						      var numberTeamsGeneral = 0;
+						      var numberTeamsOutbound = 0;
+						      
+						      var arrayAgentsGeneral = [];
+						      var arrayAgentsOutbound = [];
+						      var arrayTeamsGeneral = [];
+						      var arrayTeamsOutbound = [];
 						      howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
 						      		if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
@@ -2962,11 +2972,23 @@ checklogin(accnumb, bearer);
 																effortTimeGeneral = effortTimeGeneral + partialTime;
 																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
+																if(!arrayAgentsGeneral.includes(lastAgentGeneral)){
+																	arrayAgentsGeneral.push(lastAgentGeneral);
+																}
+																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
+																	arrayTeamsGeneral.push(lastTeamGeneral);
+																}
 															}
 															if(isOutbound){
 																effortTimeOutbound = effortTimeOutbound + partialTime;
 																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
+																if(!arrayAgentsOutbound.includes(lastAgentOutbound)){
+																	arrayAgentsOutbound.push(lastAgentOutbound);
+																}
+																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
+																	arrayTeamsOutbound.push(lastTeamOutbound);
+																}
 															}
 															f = transferLength;
 														}
@@ -2976,11 +2998,23 @@ checklogin(accnumb, bearer);
 																effortTimeGeneral = effortTimeGeneral + partialTime;
 																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
+																if(!arrayAgentsGeneral.includes(lastAgentGeneral)){
+																	arrayAgentsGeneral.push(lastAgentGeneral);
+																}
+																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
+																	arrayTeamsGeneral.push(lastTeamGeneral);
+																}
 															}
 															if(isOutbound){
 																effortTimeOutbound = effortTimeOutbound + partialTime;
 																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
+																if(!arrayAgentsOutbound.includes(lastAgentOutbound)){
+																	arrayAgentsOutbound.push(lastAgentOutbound);
+																}
+																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
+																	arrayTeamsOutbound.push(lastTeamOutbound);
+																}
 															}
 															isGeneral = 1;
 															isOutbound = 0;
@@ -2992,11 +3026,23 @@ checklogin(accnumb, bearer);
 																effortTimeGeneral = effortTimeGeneral + partialTime;
 																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
+																if(!arrayAgentsGeneral.includes(lastAgentGeneral)){
+																	arrayAgentsGeneral.push(lastAgentGeneral);
+																}
+																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
+																	arrayTeamsGeneral.push(lastTeamGeneral);
+																}
 															}
 															if(isOutbound){
 																effortTimeOutbound = effortTimeOutbound + partialTime;
 																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
+																if(!arrayAgentsOutbound.includes(lastAgentOutbound)){
+																	arrayAgentsOutbound.push(lastAgentOutbound);
+																}
+																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
+																	arrayTeamsOutbound.push(lastTeamOutbound);
+																}
 															}
 															isGeneral = 0;
 															isOutbound = 1;
@@ -3011,9 +3057,12 @@ checklogin(accnumb, bearer);
 							}
 							effortTimeGeneral = Math.floor(effortTimeGeneral);
 						        effortTimeOutbound = Math.floor(effortTimeOutbound);
-							console.log("effortTimeGeneral: " + effortTimeGeneral + " ******** effortTimeOutbound: " + effortTimeOutbound);
-						        console.log("convID: " + answer[i].info.conversationId);
-						      	
+							// console.log("effortTimeGeneral: " + effortTimeGeneral + " ******** effortTimeOutbound: " + effortTimeOutbound);
+						        // console.log("convID: " + answer[i].info.conversationId);
+						      	numberAgentsGeneral = arrayAgentsGeneral.length;
+						        numberAgentsOutbound = arrayAgentsOutbound.length;
+						        numberTeamsGeneral = arrayTeamsGeneral.length;
+						        numberTeamsOutbound = arrayTeamsOutbound.length;
 						      
 								      
 
@@ -3132,10 +3181,10 @@ checklogin(accnumb, bearer);
 						      }
 						      
 						      var inactivetime = durationinseconds - effortTimeGeneral - effortTimeOutbound;
-
-      
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttimegeneral": effortTimeGeneral, "efforttimeoutbound": effortTimeOutbound,"inactivetime": inactivetime,"agentgeneral": lastAgentGeneral,"agentoutbound": lastAgentOutbound,"teamgeneral": lastTeamGeneral,"teamoutbound": lastTeamOutbound,"skill": skill,"channel": channel,"outbound": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"lastActivityAgent": lastActivityAgent,"lastTypeActivityAgent": lastTypeActivityAgent,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      
+						      
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttimegeneral": effortTimeGeneral, "efforttimeoutbound": effortTimeOutbound,"inactivetime": inactivetime,"agentgeneral": lastAgentGeneral,"agentoutbound": lastAgentOutbound,"teamgeneral": lastTeamGeneral,"teamoutbound": lastTeamOutbound,"skill": skill,"channel": channel,"outbound": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagentigeneral": numberAgentsGeneral,"numeroagentioutbound": numberAgentsOutbound,"numerogruppigeneral": numberTeamsGeneral,"numerogruppioutbound": numberTeamsOutbound,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"lastActivityAgent": lastActivityAgent,"lastTypeActivityAgent": lastTypeActivityAgent,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -3189,8 +3238,10 @@ checklogin(accnumb, bearer);
 			"limbo": "String",
 			"limboaveragetime": "String",
 			"risvegliata": "String",
-			"numeroagenti": "String",
-			"numerogruppi": "String",
+			"numeroagentigeneral": "String",
+			"numeroagentioutbound": "String",
+			"numerogruppigeneral": "String",
+			"numerogruppioutbound": "String",
 			"yesno": "String",
 			"comments": "String",
 			"endReason": "String",
