@@ -3052,7 +3052,7 @@ checklogin(accnumb, bearer);
 															f = transferLength;
 														}
 													}
-													if ((inside === 0) && (f === (transferLength - 1)) && (answer[i].info.endTimeL !== -1)){
+													if ((inside === 0) && (f === (transferLength - 1))){
 														partialTime = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
 														if(isGeneral){
 															effortTimeGeneral = effortTimeGeneral + partialTime;
