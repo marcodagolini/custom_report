@@ -2996,19 +2996,11 @@ checklogin(accnumb, bearer);
 															f = transferLength;
 														}
 														else if((answer[i].transfers[f].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].targetSkillName.indexOf("uman") > -1)){
-															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
-															if(isGeneral){
-																effortTimeGeneral = effortTimeGeneral + partialTime;
-																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
-																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
-																if(!arrayAgentsGeneral.includes(lastAgentGeneral)){
-																	arrayAgentsGeneral.push(lastAgentGeneral);
-																}
-																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
-																	arrayTeamsGeneral.push(lastTeamGeneral);
-																}
-															}
+															
 															if(isOutbound){
+																isGeneral = 1;
+																isOutbound = 0;
+																partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 																effortTimeOutbound = effortTimeOutbound + partialTime;
 																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
@@ -3018,14 +3010,16 @@ checklogin(accnumb, bearer);
 																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
 																	arrayTeamsOutbound.push(lastTeamOutbound);
 																}
+																f = transferLength;
 															}
-															isGeneral = 1;
-															isOutbound = 0;
-															f = transferLength;
+
 														}
 														else if(answer[i].transfers[f].targetSkillName.indexOf("utbound") > -1){
-															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
+															
 															if(isGeneral){
+																isGeneral = 0;
+																isOutbound = 1;
+																partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 																effortTimeGeneral = effortTimeGeneral + partialTime;
 																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
@@ -3035,21 +3029,12 @@ checklogin(accnumb, bearer);
 																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
 																	arrayTeamsGeneral.push(lastTeamGeneral);
 																}
+																f = transferLength;
 															}
-															if(isOutbound){
-																effortTimeOutbound = effortTimeOutbound + partialTime;
-																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
-																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
-																if(!arrayAgentsOutbound.includes(lastAgentOutbound)){
-																	arrayAgentsOutbound.push(lastAgentOutbound);
-																}
-																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
-																	arrayTeamsOutbound.push(lastTeamOutbound);
-																}
-															}
-															isGeneral = 0;
-															isOutbound = 1;
-															f = transferLength;
+
+															
+															
+															
 														}
 													}
 													if ((inside === 0) && (f === (transferLength - 1))){
