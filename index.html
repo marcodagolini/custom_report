@@ -2932,19 +2932,24 @@ checklogin(accnumb, bearer);
 										var partialTime = 0;
 										var effortTimeGeneral = 0;
 										var effortTimeOutbound = 0;
+										for (var f = 0; f < transferLength; f++){
+											if(answer[i].transfers[f].sourceSkillName.indexOf("bound") > -1){
+												isGeneral = 0;
+												isOutbound = 1;
+												f = transferLength;
+											} else if((answer[i].transfers[f].sourceSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].sourceSkillName.indexOf("uman") > -1)){
+												isGeneral = 1;
+												isOutbound = 0;
+												f = transferLength;
+											}
+										}
+												
 										for (var z = 0; z < agentParticipantsLength; z++){
 											if((answer[i].agentParticipants[z].userTypeName === "Human") && (answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT")){
 												agentLoginName = answer[i].agentParticipants[z].agentLoginName;
 												jumpInTimestamp = answer[i].agentParticipants[z].timeL;
 												for (var f = 0; f < transferLength; f++){
 													if(answer[i].transfers[f].timeL > jumpInTimestamp){
-														if(answer[i].transfers[f].sourceSkillName.indexOf("bound") > -1){
-															isGeneral = 0;
-															isOutbound = 1;
-														} else if((answer[i].transfers[f].sourceSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].sourceSkillName.indexOf("uman") > -1)){
-															isGeneral = 1;
-															isOutbound = 0;
-														}
 														if(answer[i].transfers[f].targetSkillName === "Limbo" || answer[i].transfers[f].targetSkillName === "Freeze" || (f === (transferLength - 1))){
 															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 															if(isGeneral){
@@ -2955,7 +2960,30 @@ checklogin(accnumb, bearer);
 															}
 															f = transferLength;
 														}
-														
+														if((answer[i].transfers[f].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].targetSkillName.indexOf("uman") > -1)){
+															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
+															if(isGeneral){
+																effortTimeGeneral = effortTimeGeneral + partialTime;
+															}
+															if(isOutbound){
+																effortTimeOutbound = effortTimeOutbound + partialTime;
+															}
+															isGeneral = 1;
+															isOutbound = 0;
+															f = transferLength;
+														}
+														if(answer[i].transfers[f].targetSkillName.indexOf("utbound") > -1){
+															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
+															if(isGeneral){
+																effortTimeGeneral = effortTimeGeneral + partialTime;
+															}
+															if(isOutbound){
+																effortTimeOutbound = effortTimeOutbound + partialTime;
+															}
+															isGeneral = 0;
+															isOutbound = 1;
+															f = transferLength;
+														}
 													}
 												}
 											}
