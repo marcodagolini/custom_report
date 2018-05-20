@@ -3053,89 +3053,32 @@ checklogin(accnumb, bearer);
 															f = transferLength;
 														}
 													}
-													if ((inside === 0) && (f === (transferLength - 1))){
-														if(answer[i].transfers[f].targetSkillName === "Limbo" || answer[i].transfers[f].targetSkillName === "Freeze" || (f === (transferLength - 1))){
-															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
-															if(isGeneral){
-																effortTimeGeneral = effortTimeGeneral + partialTime;
-																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
-																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
-																if(!arrayAgentsGeneral.includes(lastAgentGeneral)){
-																	arrayAgentsGeneral.push(lastAgentGeneral);
-																}
-																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
-																	arrayTeamsGeneral.push(lastTeamGeneral);
-																}
+													if ((inside === 0) && (f === (transferLength - 1)) && (answer[i].info.endTimeL !== -1)){
+														partialTime = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
+														if(isGeneral){
+															effortTimeGeneral = effortTimeGeneral + partialTime;
+															lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
+															lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
+															if(!arrayAgentsGeneral.includes(lastAgentGeneral)){
+																arrayAgentsGeneral.push(lastAgentGeneral);
 															}
-															if(isOutbound){
-																effortTimeOutbound = effortTimeOutbound + partialTime;
-																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
-																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
-																if(!arrayAgentsOutbound.includes(lastAgentOutbound)){
-																	arrayAgentsOutbound.push(lastAgentOutbound);
-																}
-																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
-																	arrayTeamsOutbound.push(lastTeamOutbound);
-																}
+															if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
+																arrayTeamsGeneral.push(lastTeamGeneral);
 															}
-															f = transferLength;
 														}
-														else if((answer[i].transfers[f].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].targetSkillName.indexOf("uman") > -1)){
-															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
-															if(isGeneral){
-																effortTimeGeneral = effortTimeGeneral + partialTime;
-																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
-																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
-																if(!arrayAgentsGeneral.includes(lastAgentGeneral)){
-																	arrayAgentsGeneral.push(lastAgentGeneral);
-																}
-																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
-																	arrayTeamsGeneral.push(lastTeamGeneral);
-																}
+														if(isOutbound){
+															effortTimeOutbound = effortTimeOutbound + partialTime;
+															lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
+															lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
+															if(!arrayAgentsOutbound.includes(lastAgentOutbound)){
+																arrayAgentsOutbound.push(lastAgentOutbound);
 															}
-															if(isOutbound){
-																effortTimeOutbound = effortTimeOutbound + partialTime;
-																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
-																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
-																if(!arrayAgentsOutbound.includes(lastAgentOutbound)){
-																	arrayAgentsOutbound.push(lastAgentOutbound);
-																}
-																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
-																	arrayTeamsOutbound.push(lastTeamOutbound);
-																}
+															if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
+																arrayTeamsOutbound.push(lastTeamOutbound);
 															}
-															isGeneral = 1;
-															isOutbound = 0;
-															f = transferLength;
 														}
-														else if(answer[i].transfers[f].targetSkillName.indexOf("utbound") > -1){
-															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
-															if(isGeneral){
-																effortTimeGeneral = effortTimeGeneral + partialTime;
-																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
-																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
-																if(!arrayAgentsGeneral.includes(lastAgentGeneral)){
-																	arrayAgentsGeneral.push(lastAgentGeneral);
-																}
-																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
-																	arrayTeamsGeneral.push(lastTeamGeneral);
-																}
-															}
-															if(isOutbound){
-																effortTimeOutbound = effortTimeOutbound + partialTime;
-																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
-																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
-																if(!arrayAgentsOutbound.includes(lastAgentOutbound)){
-																	arrayAgentsOutbound.push(lastAgentOutbound);
-																}
-																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
-																	arrayTeamsOutbound.push(lastTeamOutbound);
-																}
-															}
-															isGeneral = 0;
-															isOutbound = 1;
-															f = transferLength;
-														}
+															
+														
 													}
 												}
 											}
