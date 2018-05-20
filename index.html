@@ -2920,6 +2920,8 @@ checklogin(accnumb, bearer);
 						      /*********************/
 						      var effortTimeGeneral = 0;
 						      var effortTimeOutbound = 0;
+						      var lastAgentGeneral = "";
+						      var lastAgentOutbound = "";
 						      howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
 						      		if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
@@ -2955,9 +2957,11 @@ checklogin(accnumb, bearer);
 															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 															if(isGeneral){
 																effortTimeGeneral = effortTimeGeneral + partialTime;
+																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 															}
 															if(isOutbound){
 																effortTimeOutbound = effortTimeOutbound + partialTime;
+																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 															}
 															f = transferLength;
 														}
@@ -2965,9 +2969,11 @@ checklogin(accnumb, bearer);
 															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 															if(isGeneral){
 																effortTimeGeneral = effortTimeGeneral + partialTime;
+																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 															}
 															if(isOutbound){
 																effortTimeOutbound = effortTimeOutbound + partialTime;
+																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 															}
 															isGeneral = 1;
 															isOutbound = 0;
@@ -2977,9 +2983,11 @@ checklogin(accnumb, bearer);
 															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 															if(isGeneral){
 																effortTimeGeneral = effortTimeGeneral + partialTime;
+																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 															}
 															if(isOutbound){
 																effortTimeOutbound = effortTimeOutbound + partialTime;
+																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 															}
 															isGeneral = 0;
 															isOutbound = 1;
@@ -3118,7 +3126,7 @@ checklogin(accnumb, bearer);
 
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttimegeneral": effortTimeGeneral, "efforttimeoutbound": effortTimeOutbound,"inactivetime": inactivetime,"agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"outbound": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"lastActivityAgent": lastActivityAgent,"lastTypeActivityAgent": lastTypeActivityAgent,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttimegeneral": effortTimeGeneral, "efforttimeoutbound": effortTimeOutbound,"inactivetime": inactivetime,"agentgeneral": answer[i].info.latestAgentLoginName,"agentoutbound": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"outbound": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"lastActivityAgent": lastActivityAgent,"lastTypeActivityAgent": lastTypeActivityAgent,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -3155,7 +3163,8 @@ checklogin(accnumb, bearer);
 			"efforttimegeneral": "String",
 			"efforttimeoutbound": "String",
 			"inactivetime": "String",
-    			"agent": "String",
+    			"agentgeneral": "String",
+			"agentoutbound": "String",
 			"team": "String",
 			"skill": "String",
 			"channel": "String",
