@@ -2968,7 +2968,7 @@ checklogin(accnumb, bearer);
 												for (var f = 0; f < transferLength; f++){
 													if(answer[i].transfers[f].timeL > jumpInTimestamp){
 														inside = 1;
-														if(answer[i].transfers[f].targetSkillName === "Limbo" || answer[i].transfers[f].targetSkillName === "Freeze" || (f === (transferLength - 1))){
+														if(answer[i].transfers[f].targetSkillName === "Limbo" || answer[i].transfers[f].targetSkillName === "Freeze" ){
 															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 															if(isGeneral){
 																effortTimeGeneral = effortTimeGeneral + partialTime;
