@@ -2934,6 +2934,9 @@ checklogin(accnumb, bearer);
 						      var arrayTeamsOutbound = [];
 						      howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
+							      if(answer[i].info.conversationId === "203d0ccd-4f4c-41dd-9517-e54eb0a331ee"){
+								      console.log("inside");
+							      }
 						      		if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
 									if(answer[i].hasOwnProperty('transfers') && answer[i].transfers.length){
 										var agentParticipantsLength = answer[i].agentParticipants.length;
@@ -3049,9 +3052,6 @@ checklogin(accnumb, bearer);
 														}
 													}
 													if ((inside === 0) && (f === (transferLength - 1))){
-														if(facebook_out === "Yes"){
-															console.log("inside");
-														}
 														partialTime = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
 														if(isGeneral){
 															effortTimeGeneral = effortTimeGeneral + partialTime;
