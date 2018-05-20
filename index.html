@@ -3114,10 +3114,12 @@ checklogin(accnumb, bearer);
 								      lastTypeActivityAgent = "Tag";
 							      }
 						      }
+						      
+						      var inactivetime = durationinseconds - effortTimeGeneral - effortTimeOutbound;
 
       
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttime": efforttime, "agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"outbound": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"lastActivityAgent": lastActivityAgent,"lastTypeActivityAgent": lastTypeActivityAgent,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttimegeneral": effortTimeGeneral, "efforttimeoutbound": effortTimeOutbound,"inactivetime": inactivetime,"agent": answer[i].info.latestAgentLoginName,"team": answer[i].info.latestAgentGroupName,"skill": skill,"channel": channel,"outbound": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagenti": numeroagenti,"numerogruppi": numerogruppi,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"lastActivityAgent": lastActivityAgent,"lastTypeActivityAgent": lastTypeActivityAgent,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -3151,7 +3153,9 @@ checklogin(accnumb, bearer);
     			"start": "String",
     			"end": "String",
 			"durationinseconds": "String",
-			"efforttime": "String",
+			"efforttimegeneral": "String",
+			"efforttimeoutbound": "String",
+			"inactivetime": "String",
     			"agent": "String",
 			"team": "String",
 			"skill": "String",
