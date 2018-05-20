@@ -3050,6 +3050,9 @@ checklogin(accnumb, bearer);
 														}
 													}
 													if ((inside === 0) && (f === (transferLength - 1))){
+														if(facebook_out === "Yes"){
+															console.log("inside");
+														}
 														partialTime = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
 														if(isGeneral){
 															effortTimeGeneral = effortTimeGeneral + partialTime;
