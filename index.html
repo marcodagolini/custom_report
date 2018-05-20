@@ -2961,7 +2961,7 @@ checklogin(accnumb, bearer);
 															}
 															f = transferLength;
 														}
-														if((answer[i].transfers[f].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].targetSkillName.indexOf("uman") > -1)){
+														else if((answer[i].transfers[f].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].targetSkillName.indexOf("uman") > -1)){
 															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 															if(isGeneral){
 																effortTimeGeneral = effortTimeGeneral + partialTime;
@@ -2973,7 +2973,7 @@ checklogin(accnumb, bearer);
 															isOutbound = 0;
 															f = transferLength;
 														}
-														if(answer[i].transfers[f].targetSkillName.indexOf("utbound") > -1){
+														else if(answer[i].transfers[f].targetSkillName.indexOf("utbound") > -1){
 															partialTime = (answer[i].transfers[f].timeL - jumpInTimestamp)/1000;
 															if(isGeneral){
 																effortTimeGeneral = effortTimeGeneral + partialTime;
