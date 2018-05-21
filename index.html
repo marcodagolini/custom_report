@@ -2937,9 +2937,7 @@ checklogin(accnumb, bearer);
 						      var arrayTeamsOutbound = [];
 						      howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
-							      if(answer[i].info.conversationId === "9d8d7496-416f-4be6-aecd-9ab09e650e7f"){
-								      console.log("inside");
-							      }
+
 						      		if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
 									if(answer[i].hasOwnProperty('transfers') && answer[i].transfers.length){
 										var agentParticipantsLength = answer[i].agentParticipants.length;
