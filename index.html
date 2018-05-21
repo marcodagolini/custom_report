@@ -2787,6 +2787,48 @@ checklogin(accnumb, bearer);
 									      customerName = sdesName + " " + sdesSurname;
 								      }
 							      }
+							      
+							      
+							      /*****************/
+							      
+							      var timeToAcceptFacebook = 0;
+							      var firstTimeAnswerFacebook = 0;
+							      var participantID = 0;
+							      if(channel === " FaceBook"){
+								      if(answer[i].hasOwnProperty('transfers')){
+									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
+										      var arraylength = answer[i].transfers.length;
+										      for (var z = (arraylength -1); z > -1; z--){
+											     if(answer[i].transfers[z].targetSkillName === "Facebook_priv"){
+												     var startingTime = answer[i].transfers[z].timeL;
+												     z = arraylength;
+											     }
+										      }
+									      }
+								      }
+								      if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
+									      for (var b = 0; b < answer[i].agentParticipants.length; b++){
+										      if(answer[i].agentParticipants[b].userTypeName === "Human"){
+											      participantID = answer[i].agentParticipants[b].agentId;
+											      timeToAcceptFacebook = (answer[i].agentParticipants[b].timeL - whatTime)/1000;
+											      b = answer[i].agentParticipants.length;
+										      }
+									      }
+										
+								      }
+								      if(answer[i].hasOwnProperty('messageRecords') && answer[i].messageRecords.length){
+									      for (var b = 0; b < answer[i].messageRecords.length; b++){
+										      if(answer[i].messageRecords[b].participantId === participantID){
+											      firstTimeAnswerFacebook = (answer[i].messageRecords[b].timeL - whatTime)/1000;
+											      b = answer[i].messageRecords.length;
+										      }
+									      }
+										
+								      }
+								  
+							      }
+							      
+							      
 							      if(answer[i].sdes.events[1].hasOwnProperty('personalInfo')){
 								      if(answer[i].sdes.events[1].personalInfo.personalInfo.contacts.length){
 									      phoneNumber = answer[i].sdes.events[1].personalInfo.personalInfo.contacts[0].personalContact.phone;
@@ -2917,9 +2959,6 @@ checklogin(accnumb, bearer);
 						      isAnswered = 0;
 						      
 						      
-						      /*********************/
-						      /*********************/
-						      /*********************/
 						      var effortTimeGeneral = 0;
 						      var effortTimeOutbound = 0;
 						      var lastAgentGeneral = "";
@@ -3198,7 +3237,7 @@ checklogin(accnumb, bearer);
 						      
 						      
 						      
-						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttimegeneral": effortTimeGeneral, "efforttimeoutbound": effortTimeOutbound,"inactivetime": inactivetime,"agentgeneral": lastAgentGeneral,"agentoutbound": lastAgentOutbound,"teamgeneral": lastTeamGeneral,"teamoutbound": lastTeamOutbound,"skill": skill,"channel": channel,"outbound": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagentigeneral": numberAgentsGeneral,"numeroagentioutbound": numberAgentsOutbound,"numerogruppigeneral": numberTeamsGeneral,"numerogruppioutbound": numberTeamsOutbound,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"lastActivityAgent": lastActivityAgent,"lastTypeActivityAgent": lastTypeActivityAgent,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
+						      var pieceToAdd = {"start": startDateEngagement,"end": endDateEngagement, "durationinseconds": durationinseconds, "efforttimegeneral": effortTimeGeneral, "efforttimeoutbound": effortTimeOutbound,"inactivetime": inactivetime,"agentgeneral": lastAgentGeneral,"agentoutbound": lastAgentOutbound,"teamgeneral": lastTeamGeneral,"teamoutbound": lastTeamOutbound,"skill": skill,"channel": channel,"outbound": facebook_out,"telefono": numero_telefono,"ricontatto": numero_ricontatto,"cfiscale": numero_cfiscale,"tags": vfTag,"triplettauno": triplettauno,"triplettadue": triplettadue,"triplettatre": triplettatre,"limbo": limbo,"limboaveragetime": limboaveragetime,"risvegliata": risvegliata,"numeroagentigeneral": numberAgentsGeneral,"numeroagentioutbound": numberAgentsOutbound,"numerogruppigeneral": numberTeamsGeneral,"numerogruppioutbound": numberTeamsOutbound,"yesno": yesno,"comments": comments,"endReason": endReason,"timeToAccept": timeToAccept,"firstTimeAnswer": firstTimeAnswer,"timeToAcceptFacebook": timeToAcceptFacebook,"firstTimeAnswerFacebook": firstTimeAnswerFacebook,"lastActivityAgent": lastActivityAgent,"lastTypeActivityAgent": lastTypeActivityAgent,"customerName": customerName,"phoneNumber": phoneNumber,"imeiNumber": imeiNumber,"conversation": answer[i].info.conversationId,"transcript": messages};
 						      exportObject = exportObject.concat(pieceToAdd);
 					      }
 				      	      console.log(exportObject);
@@ -3260,7 +3299,9 @@ checklogin(accnumb, bearer);
 			"comments": "String",
 			"endReason": "String",
 			"timeToAccept": "String",
+			"timeToAcceptFacebook": "String",
 			"firstTimeAnswer": "String",
+			"firstTimeAnswerFaceBook": "String",
 			"lastActivityAgent": "String",
 			"lastTypeActivityAgent": "String",
 			"customerName": "String",
