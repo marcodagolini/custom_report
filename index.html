@@ -2808,7 +2808,7 @@ checklogin(accnumb, bearer);
 									      for (var b = 0; b < answer[i].agentParticipants.length; b++){
 										      if(answer[i].agentParticipants[b].userTypeName === "Human"){
 											      participantID = answer[i].agentParticipants[b].agentId;
-											      timeToAcceptFacebook = Math.floor((answer[i].agentParticipants[b].timeL - whatTime)/1000);
+											      timeToAcceptFacebook = Math.floor((answer[i].agentParticipants[b].timeL - startingTime)/1000);
 											      timeToAcceptFacebook = timeToAcceptFacebook.toString();
 											      b = answer[i].agentParticipants.length;
 										      }
@@ -2819,7 +2819,7 @@ checklogin(accnumb, bearer);
 								      if(answer[i].hasOwnProperty('messageRecords') && answer[i].messageRecords.length){
 									      for (var b = 0; b < answer[i].messageRecords.length; b++){
 										      if(answer[i].messageRecords[b].participantId === participantID){
-											      firstTimeAnswerFacebook = Math.floor((answer[i].messageRecords[b].timeL - whatTime)/1000);
+											      firstTimeAnswerFacebook = Math.floor((answer[i].messageRecords[b].timeL - startingTime)/1000);
 											      firstTimeAnswerFacebook = firstTimeAnswerFacebook.toString();
 											      b = answer[i].messageRecords.length;
 										      }
