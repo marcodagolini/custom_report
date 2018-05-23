@@ -2792,6 +2792,7 @@ checklogin(accnumb, bearer);
 							      
 							   
 							      var timestampFacebook_priv;
+							      var timestampOutbound = "-";
 							      var timeSpentInFacebook_bot = 0;
 							      var startingTime = 0;
 							      var timeToAcceptFacebook = "-";
@@ -2805,6 +2806,12 @@ checklogin(accnumb, bearer);
 											     if(answer[i].transfers[z].targetSkillName === "Facebook_priv"){
 												     startingTime = answer[i].transfers[z].timeL;
 												     z = arraylength;
+											     }
+										      }
+										      for (var p = 0; p < (arraylength -1); p++){
+											     if(answer[i].transfers[p].targetSkillName === "Outbound"){
+												     timestampOutbound = new Date(answer[i].transfers[p].timeL);
+												     p = arraylength;
 											     }
 										      }
 									      }
@@ -3297,6 +3304,7 @@ checklogin(accnumb, bearer);
 									"timeToAccept": timeToAcceptFacebook,
 									"firstTimeAnswer": firstTimeAnswerFacebook,
 									"timestampFacebook_priv": timestampFacebook_priv,
+									"timestampOutbound": timestampOutbound,
 									"timeInFacebook_bot": timeSpentInFacebook_bot,
 									"lastActivityAgent": lastActivityAgent,
 									"lastTypeActivityAgent": lastTypeActivityAgent,
@@ -3369,6 +3377,7 @@ checklogin(accnumb, bearer);
 			"timeToAccept": "String",
 			"firstTimeAnswer": "String",
 			"timestampFacebook_priv": "String",
+			"timestampOutbound": "String",
 			"timeInFacebook_bot": "String",
 			"lastActivityAgent": "String",
 			"lastTypeActivityAgent": "String",
