@@ -2791,12 +2791,13 @@ checklogin(accnumb, bearer);
 							      
 							   
 							      var timestampFacebook_priv;
-							      var timestampOutbound = "-";
+							      var timestampOutbound;
 							      var timeSpentInFacebook_bot = 0;
 							      var startingTime = 0;
 							      var timeToAcceptFacebook = "-";
 							      var firstTimeAnswerFacebook =  "-";
 							      var participantID = 0;
+							      var controlOB = 0;
 							      if(channel === "FaceBook"){
 								      if(answer[i].hasOwnProperty('transfers')){
 									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
@@ -2809,9 +2810,14 @@ checklogin(accnumb, bearer);
 										      }
 										      for (var p = 0; p < (arraylength -1); p++){
 											     if(answer[i].transfers[p].targetSkillName === "Outbound"){
-												     timestampOutbound = new Date(answer[i].transfers[p].timeL);
 												     p = arraylength;
+												     controlOB = 1;
 											     }
+										      }
+										      if(controlOB === 1){
+											      timestampOutbound = new Date(answer[i].transfers[p].timeL);
+										      } else{
+											      timestampOutbound = "-";
 										      }
 									      }
 								      }
