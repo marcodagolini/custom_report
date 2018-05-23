@@ -2818,7 +2818,7 @@ checklogin(accnumb, bearer);
 										      if((answer[i].agentParticipants[b].userTypeName === "Human") && (answer[i].agentParticipants[b].permission === "ASSIGNED_AGENT")){
 											      participantID = answer[i].agentParticipants[b].agentId;
 											      timeToAcceptFacebook = Math.floor((answer[i].agentParticipants[b].timeL - startingTime)/1000);
-											      timeToAcceptFacebook = timeToAcceptFacebook.toString();
+											      
 											      b = answer[i].agentParticipants.length;
 										      }
 									      }
@@ -2829,18 +2829,20 @@ checklogin(accnumb, bearer);
 									      for (var b = 0; b < answer[i].messageRecords.length; b++){
 										      if(answer[i].messageRecords[b].participantId === participantID){
 											      firstTimeAnswerFacebook = Math.floor((answer[i].messageRecords[b].timeL - startingTime)/1000);
-											      firstTimeAnswerFacebook = firstTimeAnswerFacebook.toString();
+											      
 											      b = answer[i].messageRecords.length;
 										      }
 									      }
 										
 								      }
-								      if(startingTime === 0){
+								      if((startingTime === 0) || (timeToAcceptFacebook < 0)){
 									      timeToAcceptFacebook = "-";
 									      firstTimeAnswerFacebook = "-";
 									      timestampFacebook_priv = "-";
 									      timeSpentInFacebook_bot = "-";
 								      } else{
+									      timeToAcceptFacebook = timeToAcceptFacebook.toString();
+									      firstTimeAnswerFacebook = firstTimeAnswerFacebook.toString();
 									      timestampFacebook_priv = new Date(startingTime);
 									      timeSpentInFacebook_bot = Math.floor((startingTime - answer[i].info.startTimeL)/1000);
 								      }
