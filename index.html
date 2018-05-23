@@ -2810,11 +2810,13 @@ checklogin(accnumb, bearer);
 								      }
 								      if(startingTime === 0){
 									      timestampFacebook_priv = "-";
+									      timeSpentInFacebook_bot = "-";
 								      } else{
 									      timestampFacebook_priv = new Date(startingTime);
+									      timeSpentInFacebook_bot = Math.floor((startingTime - answer[i].info.startTimeL)/1000);
 								      }
 								      
-								      timeSpentInFacebook_bot = Math.floor((startingTime - answer[i].info.startTimeL)/1000);
+								      
 								      if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
 									      for (var b = 0; b < answer[i].agentParticipants.length; b++){
 										      if((answer[i].agentParticipants[b].userTypeName === "Human") && (answer[i].agentParticipants[b].permission === "ASSIGNED_AGENT")){
