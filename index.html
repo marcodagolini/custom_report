@@ -2789,7 +2789,7 @@ checklogin(accnumb, bearer);
 							      /*****************/
 							      
 							   
-							      
+							      var timestampFacebook_priv;
 							      var timeToAcceptFacebook = "-";
 							      var firstTimeAnswerFacebook =  "-";
 							      var participantID = 0;
@@ -2805,6 +2805,7 @@ checklogin(accnumb, bearer);
 										      }
 									      }
 								      }
+								      timestampFacebook_priv = new Date(startingTime);
 								      if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
 									      for (var b = 0; b < answer[i].agentParticipants.length; b++){
 										      if((answer[i].agentParticipants[b].userTypeName === "Human") && (answer[i].agentParticipants[b].permission === "ASSIGNED_AGENT")){
@@ -3270,10 +3271,10 @@ checklogin(accnumb, bearer);
 									"yesno": yesno,
 									"comments": comments,
 									"endReason": endReason,
-									"timeToAccept": timeToAccept,
-									"firstTimeAnswer": firstTimeAnswer,
-									"timeToAcceptFacebook": timeToAcceptFacebook,
-									"firstTimeAnswerFaceBook": firstTimeAnswerFacebook,
+									"timeToAccept": timeToAcceptFacebook,
+									"firstTimeAnswer": firstTimeAnswerFacebook,
+									"timestampFacebook_priv": timeToAcceptFacebook,
+									"timeInFacebook_bot": firstTimeAnswerFacebook,
 									"lastActivityAgent": lastActivityAgent,
 									"lastTypeActivityAgent": lastTypeActivityAgent,
 									"customerName": customerName,
@@ -3344,8 +3345,8 @@ checklogin(accnumb, bearer);
 			"endReason": "String",
 			"timeToAccept": "String",
 			"firstTimeAnswer": "String",
-			"timeToAcceptFacebook": "String",
-			"firstTimeAnswerFaceBook": "String",
+			"timestampFacebook_priv": "String",
+			"timeInFacebook_bot": "String",
 			"lastActivityAgent": "String",
 			"lastTypeActivityAgent": "String",
 			"customerName": "String",
