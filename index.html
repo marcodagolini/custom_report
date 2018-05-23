@@ -2802,13 +2802,13 @@ checklogin(accnumb, bearer);
 								      if(answer[i].hasOwnProperty('transfers')){
 									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 										      var arraylength = answer[i].transfers.length;
-										      for (var z = 0; z < (arraylength -1); z++){
+										      for (var z = 0; z < arraylength; z++){
 											     if(answer[i].transfers[z].targetSkillName === "Facebook_priv"){
 												     startingTime = answer[i].transfers[z].timeL;
 												     z = arraylength;
 											     }
 										      }
-										      for (var p = 0; p < (arraylength -1); p++){
+										      for (var p = 0; p < arraylength; p++){
 											     if(answer[i].transfers[p].targetSkillName === "Outbound"){
 												     timestampOutbound = new Date(answer[i].transfers[p].timeL);
 												     p = arraylength;
