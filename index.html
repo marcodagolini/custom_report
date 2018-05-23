@@ -3094,7 +3094,10 @@ checklogin(accnumb, bearer);
 														}
 													}
 													if (f === (transferLength - 1)){
-														partialTime = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
+														if(answer[i].info.endTimeL > 0){
+															partialTime = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
+														}
+														
 														if(isGeneral){
 															effortTimeGeneral = effortTimeGeneral + partialTime;
 															lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
