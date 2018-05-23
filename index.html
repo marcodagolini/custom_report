@@ -2793,7 +2793,8 @@ checklogin(accnumb, bearer);
 							      
 							   
 							      var timestampFacebook_priv;
-							      var timeSpentInFacebook_bot;
+							      var timeSpentInFacebook_bot = 0;
+							      var startingTime = 0;
 							      var timeToAcceptFacebook = "-";
 							      var firstTimeAnswerFacebook =  "-";
 							      var participantID = 0;
@@ -2803,14 +2804,19 @@ checklogin(accnumb, bearer);
 										      var arraylength = answer[i].transfers.length;
 										      for (var z = 0; z < (arraylength -1); z++){
 											     if(answer[i].transfers[z].targetSkillName === "Facebook_priv"){
-												     var startingTime = answer[i].transfers[z].timeL;
+												     startingTime = answer[i].transfers[z].timeL;
 												     z = arraylength;
 											     }
 										      }
 									      }
 								      }
-								      timestampFacebook_priv = new Date(startingTime);
-								      timeSpentInFacebook_bot = (startingTime - answer[i].info.startTimeL)/1000;
+								      if(startingTime === 0){
+									      timestampFacebook_priv = "-"-;
+								      } else{
+									      timestampFacebook_priv = new Date(startingTime);
+								      }
+								      
+								      timeSpentInFacebook_bot = Math.floor((startingTime - answer[i].info.startTimeL)/1000);
 								      if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
 									      for (var b = 0; b < answer[i].agentParticipants.length; b++){
 										      if((answer[i].agentParticipants[b].userTypeName === "Human") && (answer[i].agentParticipants[b].permission === "ASSIGNED_AGENT")){
