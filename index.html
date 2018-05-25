@@ -2807,7 +2807,7 @@ checklogin(accnumb, bearer);
 									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 										      var arraylength = answer[i].transfers.length;
 										      for (var z = 0; z < arraylength; z++){
-											     if(answer[i].transfers[z].targetSkillName === "Facebook_priv"){
+											     if((answer[i].transfers[z].targetSkillName === "Facebook_priv") || (answer[i].transfers[z].targetSkillName === "Facebook_priv_night")){
 												     startingTime = answer[i].transfers[z].timeL;
 												     z = arraylength;
 											     }
@@ -2817,6 +2817,12 @@ checklogin(accnumb, bearer);
 												     timestampOutbound = new Date(answer[i].transfers[p].timeL);
 												     p = arraylength;
 												     controlOB = 1;
+											     }
+										      }
+										      for (var t = 0; t < arraylength; t++){
+											     if(answer[i].transfers[t].targetSkillName === "Facebook_priv_night"){
+												     night = "Yes";
+												     t = arraylength;
 											     }
 										      }
 										      if(controlOB === 0){
