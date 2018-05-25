@@ -3009,6 +3009,7 @@ checklogin(accnumb, bearer);
 						      var arrayTeamsGeneral = [];
 						      var arrayTeamsOutbound = [];
 						      howManyMessages = answer[i].messageRecords.length;
+						      var partialTime = 0;
 						      if(howManyMessages){
 
 						      		if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
@@ -3021,7 +3022,7 @@ checklogin(accnumb, bearer);
 										var agentSkill = "";
 										var sourceSkillName = "";
 										var jumpInTimestamp = 0;
-										var partialTime = 0;
+										
 										for (var f = 0; f < transferLength; f++){
 											if(answer[i].transfers[f].sourceSkillName.indexOf("bound") > -1){
 												isGeneral = 0;
