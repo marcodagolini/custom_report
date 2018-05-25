@@ -2793,12 +2793,15 @@ checklogin(accnumb, bearer);
 							   
 							      var timestampFacebook_priv;
 							      var timestampOutbound = 0;
+							      var timestampNight = 0;
 							      var timeSpentInFacebook_bot = 0;
 							      var startingTime = 0;
 							      var timeToAcceptFacebook = "-";
 							      var firstTimeAnswerFacebook =  "-";
 							      var participantID = 0;
 							      var controlOB = 0;
+							      var night = "No";
+
 							      if(channel === "FaceBook"){
 								      if(answer[i].hasOwnProperty('transfers')){
 									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
