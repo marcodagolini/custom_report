@@ -2848,7 +2848,7 @@ checklogin(accnumb, bearer);
 								     
 								      if(answer[i].hasOwnProperty('messageRecords') && answer[i].messageRecords.length){
 									      for (var b = 0; b < answer[i].messageRecords.length; b++){
-										      if(answer[i].messageRecords[b].participantId === participantID){
+										      if(answer[i].messageRecords[b].sentBy === "Agent" && answer[i].messageRecords[b].participantId !== FacebookBotID){
 											      firstTimeAnswerFacebook = Math.floor((answer[i].messageRecords[b].timeL - startingTime)/1000);
 											      
 											      b = answer[i].messageRecords.length;
