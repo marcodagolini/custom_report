@@ -2856,8 +2856,8 @@ checklogin(accnumb, bearer);
 									      timestampFacebook_priv = "-";
 									      timeSpentInFacebook_bot = "-";
 								      } else{
-									      timeToAcceptFacebook = firstTimeAnswer.toString();
-									      firstTimeAnswerFacebook = TimeAnswer.toString();
+									      timeToAcceptFacebook = timeToAcceptFacebook.toString();
+									      firstTimeAnswerFacebook = firstTimeAnswer.toString();
 									      timestampFacebook_priv = new Date(startingTime);
 									      timeSpentInFacebook_bot = Math.floor((startingTime - answer[i].info.startTimeL)/1000);
 								      }
