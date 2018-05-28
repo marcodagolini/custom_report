@@ -2744,7 +2744,7 @@ checklogin(accnumb, bearer);
 								      
 								      if (isAnswered){
 									      // firstTimeAnswer = secondsToString(TimeAnswer);
-									      firstTimeAnswer = parseInt(TimeAnswer);
+									      firstTimeAnswer = Math.floor(parseInt(TimeAnswer));
 								      }
 								      else{
 									      firstTimeAnswer = "NOT_ANSWERED"
@@ -2855,7 +2855,7 @@ checklogin(accnumb, bearer);
 									      timestampFacebook_priv = "-";
 									      timeSpentInFacebook_bot = "-";
 								      } else{
-									      timeToAcceptFacebook = timeToAcceptFacebook.toString();
+									      timeToAcceptFacebook = firstTimeAnswer.toString();
 									      firstTimeAnswerFacebook = TimeAnswer.toString();
 									      timestampFacebook_priv = new Date(startingTime);
 									      timeSpentInFacebook_bot = Math.floor((startingTime - answer[i].info.startTimeL)/1000);
