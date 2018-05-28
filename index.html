@@ -2741,9 +2741,7 @@ checklogin(accnumb, bearer);
 										      n = howManyMessages;
 									      }
 								      }
-								      if(answer[i].info.conversationId === "1b791223-5b83-4e62-a051-362eba0b11fb"){
-									      console.log("hoooray!!");
-								      }
+								      
 								      if (isAnswered){
 									      // firstTimeAnswer = secondsToString(TimeAnswer);
 									      firstTimeAnswer = parseInt(TimeAnswer);
@@ -2846,10 +2844,14 @@ checklogin(accnumb, bearer);
 									      }
 										
 								      }
+								      
+								      if(answer[i].info.conversationId === "1b791223-5b83-4e62-a051-362eba0b11fb"){
+									      console.log("hoooray!!");
+								      }
 								     
 								      if(answer[i].hasOwnProperty('messageRecords') && answer[i].messageRecords.length){
 									      for (var b = 0; b < answer[i].messageRecords.length; b++){
-										      if(answer[i].messageRecords[b].sentBy === "Agent" && answer[i].messageRecords[b].participantId !== FacebookBotID){
+										      if(answer[i].messageRecords[b].participantId === participantID){
 											      firstTimeAnswerFacebook = Math.floor((answer[i].messageRecords[b].timeL - startingTime)/1000);
 											      
 											      b = answer[i].messageRecords.length;
