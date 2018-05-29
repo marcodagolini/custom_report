@@ -504,6 +504,7 @@ span.psw {
   var teamNumber = 0;
   var skillArray = [];
   var teamArray = [];
+  var alberoArray = [];
   var uname;
   var pwd;
   var csrf;
@@ -896,6 +897,9 @@ function botOrNot() {
 				  for (var v = 0; v < length; v++){
 					  if (agentJSON[v].id === data.parentGroupId){
 						  nameGroupFather = agentJSON[v].name;
+						  var newElementAlbero = '{"son":' + agentJSON[v].name + ',"father":' + nameGroupFather + '}';
+						  newElementAlbero = JSON.parse(newElementAlbero);
+						  alberoArray.push(newElementAlbero)
 					  }
 				  }
 				  console.log(data.name + "*****" + nameGroupFather);
@@ -907,6 +911,7 @@ function botOrNot() {
 			  beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
 		  });
 	  }
+	  setTimeout(function(){ console.log(alberoArray); }, 3000);
                        
 	
   }
