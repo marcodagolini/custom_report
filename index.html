@@ -3111,6 +3111,12 @@ checklogin(accnumb, bearer);
 																	arrayAgentsGeneral.push(lastAgentGeneral);
 																}
 																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
+																	var agentAlberoLength = alberoArray.length;
+																	for(var counter = 0; counter < agentAlberoLength; counter++){
+																		if (alberoArray[counter].son === lastTeamGeneral){
+																			lastTeamGeneral = alberoArray[counter].father;
+																		}
+																	}
 																	arrayTeamsGeneral.push(lastTeamGeneral);
 																}
 															}
@@ -3159,6 +3165,12 @@ checklogin(accnumb, bearer);
 																	arrayAgentsGeneral.push(lastAgentGeneral);
 																}
 																if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
+																	var agentAlberoLength = alberoArray.length;
+																	for(var counter = 0; counter < agentAlberoLength; counter++){
+																		if (alberoArray[counter].son === lastTeamGeneral){
+																			lastTeamGeneral = alberoArray[counter].father;
+																		}
+																	}
 																	arrayTeamsGeneral.push(lastTeamGeneral);
 																}
 																f = transferLength;
@@ -3182,6 +3194,12 @@ checklogin(accnumb, bearer);
 																arrayAgentsGeneral.push(lastAgentGeneral);
 															}
 															if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
+																var agentAlberoLength = alberoArray.length;
+																for(var counter = 0; counter < agentAlberoLength; counter++){
+																	if (alberoArray[counter].son === lastTeamGeneral){
+																		lastTeamGeneral = alberoArray[counter].father;
+																	}
+																}
 																arrayTeamsGeneral.push(lastTeamGeneral);
 															}
 														}
