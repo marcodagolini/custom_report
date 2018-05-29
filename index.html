@@ -855,6 +855,7 @@ function botOrNot() {
 				  }
 				  appendTeam = appendTeam.concat('</select>');
 				  $("#team").append(appendTeam);
+				  buildAlbero(data);
 			  },
 			  error: function error(e, text) {
 				  localStorage.setItem('account_number', '');
@@ -864,6 +865,43 @@ function botOrNot() {
 		  });
                        
 	}, 3000);
+  }
+	
+	
+	
+	
+	
+  function buildAlbero(agentJSON){
+	  
+	  var length = agentJSON.length;
+	  var groupID;
+	  console.log("*********************");
+	  console.log("*** Albero Gruppi ***");
+	  console.log("*********************");
+	  for (var p = 0; p < length; p++){
+		  
+		  groupID = agentJSON[p].id;
+		  
+		  $.ajax({
+			  url: "https://" + accountReadWrite + "/api/account/" + accnumb + "/configuration/le-users/agentGroups/" + groupID,
+			  method: "GET",
+			  jsonp: "cb",
+			  jsonpCallback: "domainCallback",
+			  cache: true,
+			  contentType: "application/json",
+			  "If-Match": "-1",
+			  success: function success(data) {
+				  console.log(data.parentGroupId + "*****" + groupID);
+			  },
+			  error: function error(e, text) {
+				  localStorage.setItem('account_number', '');
+				  location.reload();
+			  },
+			  beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
+		  });
+	  }
+                       
+	
   }
 	
   function loadCustomStats(answer){
