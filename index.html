@@ -3128,6 +3128,12 @@ checklogin(accnumb, bearer);
 																	arrayAgentsOutbound.push(lastAgentOutbound);
 																}
 																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
+																	var agentAlberoLength = alberoArray.length;
+																	for(var counter = 0; counter < agentAlberoLength; counter++){
+																		if (alberoArray[counter].son === lastTeamOutbound){
+																			lastTeamOutbound = alberoArray[counter].father;
+																		}
+																	}
 																	arrayTeamsOutbound.push(lastTeamOutbound);
 																}
 															}
@@ -3146,6 +3152,12 @@ checklogin(accnumb, bearer);
 																	arrayAgentsOutbound.push(lastAgentOutbound);
 																}
 																if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
+																	var agentAlberoLength = alberoArray.length;
+																	for(var counter = 0; counter < agentAlberoLength; counter++){
+																		if (alberoArray[counter].son === lastTeamOutbound){
+																			lastTeamOutbound = alberoArray[counter].father;
+																		}
+																	}
 																	arrayTeamsOutbound.push(lastTeamOutbound);
 																}
 																f = transferLength;
@@ -3211,6 +3223,12 @@ checklogin(accnumb, bearer);
 																arrayAgentsOutbound.push(lastAgentOutbound);
 															}
 															if(!arrayTeamsOutbound.includes(lastTeamOutbound)){
+																var agentAlberoLength = alberoArray.length;
+																for(var counter = 0; counter < agentAlberoLength; counter++){
+																	if (alberoArray[counter].son === lastTeamOutbound){
+																		lastTeamOutbound = alberoArray[counter].father;
+																	}
+																}
 																arrayTeamsOutbound.push(lastTeamOutbound);
 															}
 														}
