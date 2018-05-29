@@ -894,7 +894,7 @@ function botOrNot() {
 			  "If-Match": "-1",
 			  success: function success(data) {
 				  for (var v = 0; v < length; v++){
-					  if (agentJSON[v].id === data.id){
+					  if (agentJSON[v].id === data.parentGroupId){
 						  nameGroupFather = agentJSON[v].name;
 					  }
 				  }
