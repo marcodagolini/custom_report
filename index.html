@@ -885,31 +885,39 @@ function botOrNot() {
 		  
 		  groupID = agentJSON[p].id;
 		  
-		  $.ajax({
-			  url: "https://" + accountReadWrite + "/api/account/" + accnumb + "/configuration/le-users/agentGroups/" + groupID,
-			  method: "GET",
-			  jsonp: "cb",
-			  jsonpCallback: "domainCallback",
-			  cache: true,
-			  contentType: "application/json",
-			  "If-Match": "-1",
-			  success: function success(data) {
-				  for (var v = 0; v < length; v++){
-					  if (agentJSON[v].id === data.parentGroupId){
-						  nameGroupFather = agentJSON[v].name;
-						  var newElementAlbero = '{"son":"' + data.name + '","father":"' + nameGroupFather + '"}';
-						  newElementAlbero = JSON.parse(newElementAlbero);
-						  alberoArray.push(newElementAlbero)
-					  }
-				  }
-				  console.log(data.name + "*****" + nameGroupFather);
-			  },
-			  error: function error(e, text) {
-				  localStorage.setItem('account_number', '');
-				  location.reload();
-			  },
-			  beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
-		  });
+		  if (groupID < 0){
+			  var newElementAlbero = '{"son":"Main Group","father":"Main Group"}';
+			  newElementAlbero = JSON.parse(newElementAlbero);
+			  alberoArray.push(newElementAlbero);
+		  }
+		  else{
+		  
+		  	$.ajax({
+			  	url: "https://" + accountReadWrite + "/api/account/" + accnumb + "/configuration/le-users/agentGroups/" + groupID,
+			  	method: "GET",
+			  	jsonp: "cb",
+			  	jsonpCallback: "domainCallback",
+			  	cache: true,
+			  	contentType: "application/json",
+			  	"If-Match": "-1",
+			  	success: function success(data) {
+				  	for (var v = 0; v < length; v++){
+					  	if (agentJSON[v].id === data.parentGroupId){
+						  	nameGroupFather = agentJSON[v].name;
+						  	var newElementAlbero = '{"son":"' + data.name + '","father":"' + nameGroupFather + '"}';
+						  	newElementAlbero = JSON.parse(newElementAlbero);
+						  	alberoArray.push(newElementAlbero);
+					  	}
+				  	}
+				  	console.log(data.name + "*****" + nameGroupFather);
+			  	},
+			  	error: function error(e, text) {
+				  	localStorage.setItem('account_number', '');
+				  	location.reload();
+			  	},
+			  	beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
+		  	});
+		  }
 	  }
 	  setTimeout(function(){ console.log(alberoArray); }, 5000);
                        
