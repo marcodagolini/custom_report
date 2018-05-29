@@ -898,7 +898,7 @@ function botOrNot() {
 				  for (var v = 0; v < length; v++){
 					  if (agentJSON[v].id === data.parentGroupId){
 						  nameGroupFather = agentJSON[v].name;
-						  var newElementAlbero = '{"son":' + agentJSON[v].name + ',"father":' + nameGroupFather + '}';
+						  var newElementAlbero = '{"son":"' + agentJSON[v].name + '","father":"' + nameGroupFather + '"}';
 						  newElementAlbero = JSON.parse(newElementAlbero);
 						  alberoArray.push(newElementAlbero)
 					  }
