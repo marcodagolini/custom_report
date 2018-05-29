@@ -892,7 +892,7 @@ function botOrNot() {
 			  contentType: "application/json",
 			  "If-Match": "-1",
 			  success: function success(data) {
-				  for (var v = 0; v < legth; v++){
+				  for (var v = 0; v < length; v++){
 					  if (agentJSON[v].id === data.id){
 						  nameGroupFather = agentJSON[v].name;
 					  }
