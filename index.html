@@ -874,6 +874,7 @@ function botOrNot() {
 	  
 	  var length = agentJSON.length;
 	  var groupID;
+	  var nameGroupFather;
 	  console.log("*********************");
 	  console.log("*** Albero Gruppi ***");
 	  console.log("*********************");
@@ -890,7 +891,12 @@ function botOrNot() {
 			  contentType: "application/json",
 			  "If-Match": "-1",
 			  success: function success(data) {
-				  console.log(data.parentGroupId + "*****" + groupID);
+				  for (var v = 0; v < legth; v++){
+					  if (agentJSON[v].id === data.id){
+						  nameGroupFather = agentJSON[v].name;
+					  }
+				  }
+				  console.log(data.name + "*****" + nameGroupFather);
 			  },
 			  error: function error(e, text) {
 				  localStorage.setItem('account_number', '');
