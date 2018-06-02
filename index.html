@@ -2226,7 +2226,7 @@ function botOrNot() {
                               		data: '{\"start":{\"from\":' + (new Date().getTime()-5000) + ',\"to\":'+ new Date().getTime() + '}}',
                               		success: function success(data) {
 						$('#myloader').css('display', 'none');
-          					$('#myreports').css('display', 'inline');
+          					// $('#myreports').css('display', 'inline');
 						setInterval(function(){
 							loadBar();
 						}, 30000);
@@ -2358,7 +2358,7 @@ checklogin(accnumb, bearer);
 								  $('#myloader').css('display', 'inline');
 								  setTimeout(function(){
 									  $('#myloader').css('display', 'none');
-									  $('#myreports').css('display', 'inline');
+									  // $('#myreports').css('display', 'inline');
 									  setInterval(function(){
 										  loadBar();
 									  }, 30000);
