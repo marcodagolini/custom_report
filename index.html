@@ -2976,6 +2976,11 @@ checklogin(accnumb, bearer);
 						      var skill = answer[i].info.latestSkillName;
 						      var limbo = 0;
 						      var risvegliata = 0;
+						      var risvegliataOutbound = 0;
+						      var risvegliataGeneral = 0;
+						      var limboOutbound = 0;
+						      var limboGeneral = 0;
+						      var isRisvegliataOutbound = false;
 						      var limboaveragetime = 0;
 						      var wasInLimbo = 0;
 						      var startLimbo = 0;
@@ -3023,13 +3028,30 @@ checklogin(accnumb, bearer);
 								      }
    
 								      for (var z = 0; z < arraylength; z++){
+									      if (answer[i].transfers[z].targetSkillName.indexOf("utbound") > -1){
+										      isRisvegliataOutbound = true;
+									      } else if (answer[i].transfers[z].targetSkillName.indexOf("acebook") > -1){
+										      isRisvegliataOutbound = false;
+									      } else if (answer[i].transfers[z].targetSkillName.indexOf("uman") > -1){
+										      isRisvegliataOutbound = false;
+									      }
 									      if ((answer[i].transfers[z].targetSkillName === "Limbo") && (answer[i].transfers[z].sourceSkillName !== "Limbo")){
 										      limbo = limbo +1;
+										      if (isRisvegliataOutbound){
+											      limboOutbound = limboOutbound + 1;
+										      } else{
+											      limboGeneral = limboGeneral + 1;
+										      }
 										      wasInLimbo = 1;
 										      startLimbo = answer[i].transfers[z].timeL;
 									      }
 									      if ((answer[i].transfers[z].targetSkillName !== "Limbo") && (answer[i].transfers[z].sourceSkillName === "Limbo")){
 										      risvegliata = risvegliata +1;
+										      if (isRisvegliataOutbound){
+											      risvegliataOutbound = risvegliataOutbound + 1;
+										      } else{
+											      risvegliataGeneral = risvegliataGeneral + 1;
+										      }
 										      totalLimbo = totalLimbo + ((answer[i].transfers[z].timeL - startLimbo)/1000);
 									      }
 								      }
@@ -3393,8 +3415,12 @@ checklogin(accnumb, bearer);
 									"triplettadue": triplettadue,
 									"triplettatre": triplettatre,
 									"limbo": limbo,
+									"limboGeneral": limboGeneral,
+									"limboOutbound": limboOutbound,
 									"limboaveragetime": limboaveragetime,
 									"risvegliata": risvegliata,
+									"risvegliataGeneral": risvegliataGeneral,
+									"risvegliataOutbound": risvegliataOutbound,
 									"numeroagentigeneral": numberAgentsGeneral,
 									"numeroagentioutbound": numberAgentsOutbound,
 									"numerogruppigeneral": numberTeamsGeneral,
@@ -3467,8 +3493,12 @@ checklogin(accnumb, bearer);
 			"triplettadue": "String",
 			"triplettatre": "String",
 			"limbo": "String",
+			"limboGeneral": "String",
+			"limboOutbound": "String",
 			"limboaveragetime": "String",
 			"risvegliata": "String",
+			"risvegliataGeneral": "String",
+			"risvegliataOutbound": "String",
 			"numeroagentigeneral": "String",
 			"numeroagentioutbound": "String",
 			"numerogruppigeneral": "String",
