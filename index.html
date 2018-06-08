@@ -2861,7 +2861,7 @@ checklogin(accnumb, bearer);
 							      var controlOB = 0;
 							      var night = "No";
 
-							      if(channel === "FaceBook"){
+							      if((channel === "FaceBook") || (channel === "Web")){
 								      if(answer[i].hasOwnProperty('transfers')){
 									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 										      var arraylength = answer[i].transfers.length;
