@@ -2882,6 +2882,12 @@ checklogin(accnumb, bearer);
 												     t = arraylength;
 											     }
 										      }
+										      for (var tz = 0; tz < arraylength; tz++){
+											     if(answer[i].transfers[tz].targetSkillName === "human_night"){
+												     night = "Yes";
+												     tz = arraylength;
+											     }
+										      }
 										      if(controlOB === 0){
 											      timestampOutbound = "-";
 										      }
