@@ -486,7 +486,7 @@ span.psw {
 
     </br></br>
 
-    <button type="button" id ="downloadTranscripts" class="downloadTranscripts">Download</button></br></br>
+    <button type="button" id ="downloadTranscripts" class="downloadTranscripts" disabled>Download</button></br></br>
     <div id="reportMSG"></div>
     </br></br></br>
 
@@ -923,6 +923,7 @@ function botOrNot() {
 		  	});
 		  }
 	  }
+	  $("#downloadTranscripts").prop( "disabled", false );
 	  setTimeout(function(){ console.log(alberoArray); }, 5000);
                        
 	
