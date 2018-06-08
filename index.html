@@ -2777,6 +2777,10 @@ checklogin(accnumb, bearer);
 							      }
 						      }
 						      
+						      if(answer[i].info.conversationId === "05d41083-0e73-4132-88f5-8a8b34c8808b"){
+								console.log("hoooray!!");
+							}
+						      
 						      
 						      var TimeAnswer = 0;
 						      var whatTime = 0;
@@ -2911,9 +2915,7 @@ checklogin(accnumb, bearer);
 										
 								      }
 								      
-								      if(answer[i].info.conversationId === "05d41083-0e73-4132-88f5-8a8b34c8808b"){
-									      console.log("hoooray!!");
-								      }
+								      
 
 								      if((startingTime === 0) || (timeToAcceptFacebook < 0)){
 									      timeToAcceptFacebook = "-";
