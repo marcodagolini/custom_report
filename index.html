@@ -3197,6 +3197,7 @@ checklogin(accnumb, bearer);
 																	for(var counter = 0; counter < agentAlberoLength; counter++){
 																		if (alberoArray[counter].son === lastTeamGeneral){
 																			lastTeamGeneral = alberoArray[counter].father;
+																			counter = agentAlberoLength;
 																		}
 																	}
 																	arrayTeamsGeneral.push(lastTeamGeneral);
@@ -3214,6 +3215,7 @@ checklogin(accnumb, bearer);
 																	for(var counter = 0; counter < agentAlberoLength; counter++){
 																		if (alberoArray[counter].son === lastTeamOutbound){
 																			lastTeamOutbound = alberoArray[counter].father;
+																			counter = agentAlberoLength;
 																		}
 																	}
 																	arrayTeamsOutbound.push(lastTeamOutbound);
@@ -3238,6 +3240,7 @@ checklogin(accnumb, bearer);
 																	for(var counter = 0; counter < agentAlberoLength; counter++){
 																		if (alberoArray[counter].son === lastTeamOutbound){
 																			lastTeamOutbound = alberoArray[counter].father;
+																			counter = agentAlberoLength;
 																		}
 																	}
 																	arrayTeamsOutbound.push(lastTeamOutbound);
@@ -3263,6 +3266,7 @@ checklogin(accnumb, bearer);
 																	for(var counter = 0; counter < agentAlberoLength; counter++){
 																		if (alberoArray[counter].son === lastTeamGeneral){
 																			lastTeamGeneral = alberoArray[counter].father;
+																			counter = agentAlberoLength;
 																		}
 																	}
 																	arrayTeamsGeneral.push(lastTeamGeneral);
@@ -3292,6 +3296,7 @@ checklogin(accnumb, bearer);
 																for(var counter = 0; counter < agentAlberoLength; counter++){
 																	if (alberoArray[counter].son === lastTeamGeneral){
 																		lastTeamGeneral = alberoArray[counter].father;
+																		counter = agentAlberoLength;
 																	}
 																}
 																arrayTeamsGeneral.push(lastTeamGeneral);
@@ -3309,6 +3314,7 @@ checklogin(accnumb, bearer);
 																for(var counter = 0; counter < agentAlberoLength; counter++){
 																	if (alberoArray[counter].son === lastTeamOutbound){
 																		lastTeamOutbound = alberoArray[counter].father;
+																		counter = agentAlberoLength;
 																	}
 																}
 																arrayTeamsOutbound.push(lastTeamOutbound);
