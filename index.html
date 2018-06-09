@@ -3176,9 +3176,6 @@ checklogin(accnumb, bearer);
 										for (var z = 0; z < agentParticipantsLength; z++){
 											if((answer[i].agentParticipants[z].userTypeName === "Human") && (answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT")){
 												agentLoginName = answer[i].agentParticipants[z].agentLoginName;
-												if (agentLoginName ==="RVLADEA"){
-													console.log("hooray!!!");
-												}
 												jumpInTimestamp = answer[i].agentParticipants[z].timeL;
 												for (var f = 0; f < transferLength; f++){
 													if(answer[i].transfers[f].timeL > jumpInTimestamp){
