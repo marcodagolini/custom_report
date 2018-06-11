@@ -3009,7 +3009,7 @@ checklogin(accnumb, bearer);
 							      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 								      var arraylength = answer[i].transfers.length;
 								      for (var z = 0; z < arraylength; z++){
-									      if((answer[i].transfers[z].targetSkillName.indexOf("utbound") > -1){
+									      if((answer[i].transfers[z].targetSkillName.indexOf("utbound")) > -1){
 										      facebook_out = "Yes";
 									      }
 								      }
