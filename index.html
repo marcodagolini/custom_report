@@ -3108,6 +3108,14 @@ checklogin(accnumb, bearer);
 										      wasInLimbo = 1;
 										      startLimbo = answer[i].transfers[z].timeL;
 									      }
+									      if ((answer[i].transfers[z].targetSkillName === "Freeze") && (answer[i].transfers[z].sourceSkillName !== "Freeze")){
+										      freeze = freeze +1;
+										      if (isRisvegliataOutbound){
+											      freezeOutbound = freezeOutbound + 1;
+										      } else{
+											      freezeGeneral = freezeGeneral + 1;
+										      }
+									      }
 									      if ((answer[i].transfers[z].targetSkillName !== "Limbo") && (answer[i].transfers[z].sourceSkillName === "Limbo")){
 										      risvegliata = risvegliata +1;
 										      if (isRisvegliataOutbound){
@@ -3116,6 +3124,14 @@ checklogin(accnumb, bearer);
 											      risvegliataGeneral = risvegliataGeneral + 1;
 										      }
 										      totalLimbo = totalLimbo + ((answer[i].transfers[z].timeL - startLimbo)/1000);
+									      }
+									      if ((answer[i].transfers[z].targetSkillName !== "Freeze") && (answer[i].transfers[z].sourceSkillName === "Freeze")){
+										      risvegliataFreeze = risvegliataFreeze +1;
+										      if (isRisvegliataOutbound){
+											      risvegliataFreezeOutbound = risvegliataFreezeOutbound + 1;
+										      } else{
+											      risvegliataFreezeGeneral = risvegliataFreezeGeneral + 1;
+										      }
 									      }
 								      }
 							      }
@@ -3519,6 +3535,12 @@ checklogin(accnumb, bearer);
 									"risvegliata": risvegliata,
 									"risvegliataGeneral": risvegliataGeneral,
 									"risvegliataOutbound": risvegliataOutbound,
+									"freeze": freeze,
+									"freezeGeneral": freezeGeneral,
+									"freezeOutbound": freezeOutbound,
+									"risvegliataFreeze": risvegliataFreeze,
+									"risvegliataFreezeGeneral": risvegliataFreezeGeneral,
+									"risvegliataFreezeOutbound": risvegliataFreezeOutbound,
 									"numeroagentigeneral": numberAgentsGeneral,
 									"numeroagentioutbound": numberAgentsOutbound,
 									"numerogruppigeneral": numberTeamsGeneral,
@@ -3597,6 +3619,12 @@ checklogin(accnumb, bearer);
 			"risvegliata": "String",
 			"risvegliataGeneral": "String",
 			"risvegliataOutbound": "String",
+			"freeze": "String",
+			"freezeGeneral": "String",
+			"freezeOutbound": "String",
+			"risvegliataFreeze": "String",
+			"risvegliataFreezeGeneral": "String",
+			"risvegliataFreezeOutbound": "String",
 			"numeroagentigeneral": "String",
 			"numeroagentioutbound": "String",
 			"numerogruppigeneral": "String",
