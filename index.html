@@ -3138,6 +3138,8 @@ checklogin(accnumb, bearer);
 						      var lastAgentOutbound = "";
 						      var lastTeamGeneral = "";
 						      var lastTeamOutbound = "";
+						      var lastProperTeamGeneral = "";
+						      var lastProperTeamOutbound = "";
 						      
 						      var numberAgentsGeneral = 0;
 						      var numberAgentsOutbound = 0;
@@ -3189,6 +3191,7 @@ checklogin(accnumb, bearer);
 																effortTimeGeneral = effortTimeGeneral + partialTime;
 																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
+																lastProperTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
 																if(!arrayProperTeamsGeneral.includes(lastTeamGeneral)){
 																	arrayProperTeamsGeneral.push(lastTeamGeneral);
 																}
@@ -3210,6 +3213,7 @@ checklogin(accnumb, bearer);
 																effortTimeOutbound = effortTimeOutbound + partialTime;
 																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
+																lastProperTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
 																if(!arrayProperTeamsOutbound.includes(lastTeamOutbound)){
 																	arrayProperTeamsOutbound.push(lastTeamOutbound);
 																}
@@ -3238,6 +3242,7 @@ checklogin(accnumb, bearer);
 																effortTimeOutbound = effortTimeOutbound + partialTime;
 																lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 																lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
+																lastProperTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
 																if(!arrayProperTeamsOutbound.includes(lastTeamOutbound)){
 																	arrayProperTeamsOutbound.push(lastTeamOutbound);
 																}
@@ -3267,6 +3272,7 @@ checklogin(accnumb, bearer);
 																effortTimeGeneral = effortTimeGeneral + partialTime;
 																lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 																lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
+																lastProperTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
 																if(!arrayProperTeamsGeneral.includes(lastTeamGeneral)){
 																	arrayProperTeamsGeneral.push(lastTeamGeneral);
 																}
@@ -3301,6 +3307,7 @@ checklogin(accnumb, bearer);
 															effortTimeGeneral = effortTimeGeneral + partialTime;
 															lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 															lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
+															lastProperTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
 															if(!arrayProperTeamsGeneral.includes(lastTeamGeneral)){
 																arrayProperTeamsGeneral.push(lastTeamGeneral);
 															}
@@ -3322,6 +3329,7 @@ checklogin(accnumb, bearer);
 															effortTimeOutbound = effortTimeOutbound + partialTime;
 															lastAgentOutbound = answer[i].agentParticipants[z].agentFullName;
 															lastTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
+															lastProperTeamOutbound = answer[i].agentParticipants[z].agentGroupName;
 															if(!arrayProperTeamsOutbound.includes(lastTeamOutbound)){
 																arrayProperTeamsOutbound.push(lastTeamOutbound);
 															}
@@ -3485,8 +3493,8 @@ checklogin(accnumb, bearer);
 									"inactivetime": inactivetime,
 									"agentgeneral": lastAgentGeneral,
 									"agentoutbound": lastAgentOutbound,
-									"teamgeneral": lastTeamGeneral,
-									"teamoutbound": lastTeamOutbound,
+									"teamgeneral": lastProperTeamGeneral,
+									"teamoutbound": lastProperTeamOutbound,
 									"skill": skill,
 									"channel": channel,
 									"night": night,
