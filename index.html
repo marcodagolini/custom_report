@@ -3508,6 +3508,113 @@ checklogin(accnumb, bearer);
 						      
 						      
 						      
+						      var timestampLastActGen = 0;
+						      var timestampLastActOut = 0;
+						      
+						     
+						      
+						      howManyMessages = answer[i].messageRecords.length;
+						      if(howManyMessages){
+						      		if(answer[i].info.endTimeL > 0){
+									var transferLength = answer[i].transfers.length;
+									var thisIsGeneral = false;
+									var thisIsOutbound = false;
+									var startThisPeriod = 0;
+									var endThisPeriod = 0;
+									var lastMessageSentGeneral = 0;
+									var lastMessageSentOutbound = 0;
+									for (var z = 0; z < transferLength; z++){
+										if(answer[i].transfers[z].targetSkillName.indexOf("acebook") || answer[i].transfers[z].targetSkillName.indexOf("uman")){
+											if(!thisIsGeneral){
+												thisIsGeneral = true;
+												startThisPeriod = answer[i].transfers[z].timeL;
+											}
+										}
+										if(answer[i].transfers[z].targetSkillName.indexOf("utbound")){
+											if(thisIsGeneral){
+												thisIsGeneral = false;
+												endThisPeriod = answer[i].transfers[z].timeL;
+												for (var m = (howManyMessages - 1); m > -1 ; m--){
+													if((answer[i].messageRecords[m].timeL < endThisPeriod) && (answer[i].messageRecords[m].timeL > startThisPeriod) && (answer[i].messageRecords[m].sentBy === "Agent") && (answer[i].messageRecords[m].participantId !== "1089636032")){
+														lastMessageSentGeneral = answer[i].messageRecords[m].timeL;
+														if(lastMessageSentGeneral > timestampLastActGen){
+															timestampLastActGen = lastMessageSentGeneral;
+														}
+													}
+												}
+											}
+										}
+										if(answer[i].transfers[z].hasOwnProperty('contextData')){
+											if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
+												if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
+													timestampLastActGen = answer[i].transfers[z].timeL;
+												}
+												if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "awakeLater"){
+													timestampLastActGen = answer[i].transfers[z].timeL;
+												}
+											}
+										}
+										
+									}
+									
+									thisIsGeneral = false;
+									thisIsOutbound = false;
+									
+									for (var z = 0; z < transferLength; z++){
+										if(answer[i].transfers[z].targetSkillName.indexOf("utbound")){
+											if(!thisIsOutbound){
+												thisIsOutbound = true;
+												startThisPeriod = answer[i].transfers[z].timeL;
+											}
+										}
+										if(answer[i].transfers[z].targetSkillName.indexOf("acebook") || answer[i].transfers[z].targetSkillName.indexOf("uman")){
+											if(thisIsOutbound){
+												thisIsOutbound = false;
+												endThisPeriod = answer[i].transfers[z].timeL;
+												for (var m = (howManyMessages - 1); m > -1 ; m--){
+													if((answer[i].messageRecords[m].timeL < endThisPeriod) && (answer[i].messageRecords[m].timeL > startThisPeriod) && (answer[i].messageRecords[m].sentBy === "Agent") && (answer[i].messageRecords[m].participantId !== "1089636032")){
+														lastMessageSentOutbound = answer[i].messageRecords[m].timeL;
+														if(lastMessageSentOutbound > timestampLastActOut){
+															timestampLastActOut = lastMessageSentOutbound;
+														}
+													}
+												}
+											}
+										}
+										if(answer[i].transfers[z].hasOwnProperty('contextData')){
+											if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
+												if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
+													timestampLastActOut = answer[i].transfers[z].timeL;
+												}
+												if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "awakeLater"){
+													timestampLastActOut = answer[i].transfers[z].timeL;
+												}
+											}
+										}
+										
+									}
+									
+								}
+						      		
+							      
+						      }
+						      
+						      if(timestampLastActGen === 0){
+						      		timestampLastActGen = "-";
+						      } else{
+						      		timestampLastActGen = new Date(timestampLastActGen);
+						      }
+						      
+						      if(timestampLastActOut === 0){
+						      		timestampLastActOut = "-";
+						      } else{
+						      		timestampLastActOut = new Date(timestampLastActOut);
+						      }
+						      		
+						
+						      
+						     
+						      
 						      var pieceToAdd = {"start": startDateEngagement,
 									"end": endDateEngagement,
 									"durationinseconds": durationinseconds,
@@ -3554,6 +3661,8 @@ checklogin(accnumb, bearer);
 									"timestampFacebook_priv": timestampFacebook_priv,
 									"timestampOutbound": timestampOutbound,
 									"timeInFacebook_bot": timeSpentInFacebook_bot,
+									"timestampLastActGen": timestampLastActGen,
+									"timestampLastActOut": timestampLastActOut,
 									"lastActivityAgent": lastActivityAgent,
 									"lastTypeActivityAgent": lastTypeActivityAgent,
 									"customerName": customerName,
@@ -3638,6 +3747,8 @@ checklogin(accnumb, bearer);
 			"timestampFacebook_priv": "String",
 			"timestampOutbound": "String",
 			"timeInFacebook_bot": "String",
+			"timestampLastActGen": "String",
+			"timestampLastActOut": "String",
 			"lastActivityAgent": "String",
 			"lastTypeActivityAgent": "String",
 			"customerName": "String",
