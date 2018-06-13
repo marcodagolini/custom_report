@@ -3534,9 +3534,6 @@ checklogin(accnumb, bearer);
 												for (var m = (howManyMessages - 1); m > -1 ; m--){
 													if((answer[i].messageRecords[m].timeL < endThisPeriod) && (answer[i].messageRecords[m].timeL > startThisPeriod) && (answer[i].messageRecords[m].sentBy === "Agent") && (answer[i].messageRecords[m].participantId !== "1089636032")){
 														lastMessageSentGeneral = answer[i].messageRecords[m].timeL;
-														if(lastMessageSentGeneral > timestampLastActGen){
-															timestampLastActGen = lastMessageSentGeneral;
-														}
 													}
 												}
 											}
@@ -3554,6 +3551,9 @@ checklogin(accnumb, bearer);
 											}
 										}
 										
+									}
+									if(lastMessageSentGeneral > timestampLastActGen){
+										timestampLastActGen = lastMessageSentGeneral;
 									}
 									
 									thisIsGeneral = false;
@@ -3573,9 +3573,6 @@ checklogin(accnumb, bearer);
 												for (var m = (howManyMessages - 1); m > -1 ; m--){
 													if((answer[i].messageRecords[m].timeL < endThisPeriod) && (answer[i].messageRecords[m].timeL > startThisPeriod) && (answer[i].messageRecords[m].sentBy === "Agent") && (answer[i].messageRecords[m].participantId !== "1089636032")){
 														lastMessageSentOutbound = answer[i].messageRecords[m].timeL;
-														if(lastMessageSentOutbound > timestampLastActOut){
-															timestampLastActOut = lastMessageSentOutbound;
-														}
 													}
 												}
 											}
@@ -3593,6 +3590,9 @@ checklogin(accnumb, bearer);
 											}
 										}
 										
+									}
+									if(lastMessageSentOutbound > timestampLastActOut){
+										timestampLastActOut = lastMessageSentOutbound;
 									}
 									
 								}
