@@ -3542,13 +3542,15 @@ checklogin(accnumb, bearer);
 												}
 											}
 										}
-										if(answer[i].transfers[z].hasOwnProperty('contextData')){
-											if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
-												if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
-													timestampLastActGen = answer[i].transfers[z].timeL;
-												}
-												if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "awakeLater"){
-													timestampLastActGen = answer[i].transfers[z].timeL;
+										if(thisIsGeneral){
+											if(answer[i].transfers[z].hasOwnProperty('contextData')){
+												if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
+													if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
+														timestampLastActGen = answer[i].transfers[z].timeL;
+													}
+													if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "awakeLater"){
+														timestampLastActGen = answer[i].transfers[z].timeL;
+													}
 												}
 											}
 										}
@@ -3579,13 +3581,15 @@ checklogin(accnumb, bearer);
 												}
 											}
 										}
-										if(answer[i].transfers[z].hasOwnProperty('contextData')){
-											if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
-												if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
-													timestampLastActOut = answer[i].transfers[z].timeL;
-												}
-												if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "awakeLater"){
-													timestampLastActOut = answer[i].transfers[z].timeL;
+										if(thisIsOutbound){
+											if(answer[i].transfers[z].hasOwnProperty('contextData')){
+												if(answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')){
+													if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
+														timestampLastActOut = answer[i].transfers[z].timeL;
+													}
+													if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "awakeLater"){
+														timestampLastActOut = answer[i].transfers[z].timeL;
+													}
 												}
 											}
 										}
