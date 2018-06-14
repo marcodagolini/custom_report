@@ -7,7 +7,6 @@
 
 
 
-
 <head>
   
 </head>
@@ -21,24 +20,31 @@ body{
 }
 .grid-container-header {
   display: grid;
-  grid-template-columns: 180px 140px 140px 140px 140px 140px;
-  width: 880px;
+  grid-template-columns: 300px 100px 100px 100px;
+  width: 600px;
   background-color: #2196F3;
-  padding: 5px;
+  padding: 0px;
 }
-.grid-container-closed {
+.grid-bright {
   display: grid;
-  grid-template-columns: 180px 140px 140px 140px 140px 140px;
-  width: 880px;
-  background-color: #ff0000;
-  padding: 5px;
+  grid-template-columns: 300px 100px 100px 100px;
+  width: 600px;
+  background-color: #ebf3fb;
+  padding: 0px;
 }
-.grid-container-open {
+.grid-dark {
   display: grid;
-  grid-template-columns: 180px 140px 140px 140px 140px 140px;
-  width: 880px;
-  background-color: #00ff00;
-  padding: 5px;
+  grid-template-columns: 300px 100px 100px 100px;
+  width: 600px;
+  background-color: #c1c1c1;
+  padding: 0px;
+}
+.grid-tot {
+  display: grid;
+  grid-template-columns: 300px 100px 100px 100px;
+  width: 600px;
+  background-color: #79b178;
+  padding: 0px;
 }
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
@@ -57,7 +63,7 @@ body{
 	
 .bar-container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
   background-color: #2196F3;
   padding: 5px;
 }
@@ -122,7 +128,6 @@ button[disabled]{
   background-color: #f68a1f;
   opacity: 0.5;
 }
-
 	
 .cancelbtn {
     width: auto;
@@ -214,7 +219,7 @@ span.psw {
     </br>
     <button type="button" id ="logout" class="logout" style="float: right;">Log Out</button>
 
-    <div class="bar-container">
+    <div class="bar-container" style="display:none;">
   	<div class="bar-item">open</div>
   	<div class="bar-item">pending</div>
   	<div class="bar-item">unassigned</div>
@@ -229,7 +234,11 @@ span.psw {
   	<div id="soonOverdue" class="bar-item"></div>
     </div>
 
+	</br></br>
     
+    <div id="reportHeroku"></div>
+    <div id="reportBot"></div>
+
 
 
     <div id="loadingStats">
@@ -240,10 +249,14 @@ span.psw {
 	    <div id="loaderMSG"></div>
 	    </br>
     </div>
+	
+    
 
     <div id="loadedStats" style="display:none;">
 	    </br>
-	    <div id="reportBot"></div>
+
+
+<!--
 	    <h2>Statistics:</h2>
 	<label><b>Skill</b></label></br>   
 	<div id="skill"></div>
@@ -257,174 +270,119 @@ span.psw {
     	<input id="endCustomDate" type="date" />
 	<input id="endCustomHour" type="time"></br>
 	<div id="refreshMSG"></div>
+	
+        </br></br>
+-->
+
 	<button type="button" id ="refresh" class="refresh" style="float: right;">Refresh</button>
 
-
-</br></br>
-
 	    
-	<div class="grid-container-header" style="display:none;">
-  		<div class="grid-item"></div>
-  		<div class="grid-item">last 30 days</div>
-		<div class="grid-item">custom time</div>
-  		<div class="grid-item">midnight-->now</div>  
-  		<div class="grid-item">last 60 mins</div>
-  		<div class="grid-item">last 10 mins</div>
-  		<div class="grid-item-left">established</div>  
-  		<div class="grid-item" id="lastMonthHeader"></div>
-		<div class="grid-item" id="customTimeHeader"></div>
-  		<div class="grid-item" id="lastDayHeader"></div>
-  		<div class="grid-item" id="lastHourHeader"></div> 
-  		<div class="grid-item" id="last10Header"></div>
+	<div class="grid-container-header">
+  		<div class="grid-item-left">skill</div>  
+  		<div class="grid-item" id="openConv">open</div>
+		<div class="grid-item" id="unassignedConv">unassigned</div>
+  		<div class="grid-item" id="assignedConv">assigned</div>	
 	</div>
-	<div class="grid-container-closed" style="display:none;">
-  		<div class="grid-item-left">closed</div>
-  		<div class="grid-item" id="lastMonthClosedClosed"></div>
-		<div class="grid-item" id="customTimeClosedClosed"></div>
-  		<div class="grid-item" id="lastDayClosedClosed"></div>  
-  		<div class="grid-item" id="lastHourClosedClosed"></div>
-  		<div class="grid-item" id="last10ClosedClosed"></div>
-		<div class="grid-item-left">manual closed</div>
-  		<div class="grid-item" id="lastMonthClosedClosedManual"></div>
-		<div class="grid-item" id="customTimeClosedClosedManual"></div>
-  		<div class="grid-item" id="lastDayClosedClosedManual"></div>  
-  		<div class="grid-item" id="lastHourClosedClosedManual"></div>
-		<div class="grid-item" id="last10ClosedClosedManual"></div>
-		<div class="grid-item-left">automatic closed</div>
-  		<div class="grid-item" id="lastMonthClosedClosedAutomatic"></div>
-		<div class="grid-item" id="customTimeClosedClosedAutomatic"></div>
-  		<div class="grid-item" id="lastDayClosedClosedAutomatic"></div>  
-  		<div class="grid-item" id="lastHourClosedClosedAutomatic"></div>
-		<div class="grid-item" id="last10ClosedClosedAutomatic"></div>
-		<div class="grid-item-left">time to accept</div>
-  		<div class="grid-item" id="lastMonthClosedTimeToAccept"></div>
-		<div class="grid-item" id="customTimeClosedTimeToAccept"></div>
-  		<div class="grid-item" id="lastDayClosedTimeToAccept"></div>  
-  		<div class="grid-item" id="lastHourClosedTimeToAccept"></div>
-		<div class="grid-item" id="last10ClosedTimeToAccept"></div>
-		<div class="grid-item-left">0-30 sec</div>
-  		<div class="grid-item" id="lastMonthClosedTimeToAcceptFirstBulk"></div>
-		<div class="grid-item" id="customTimeClosedTimeToAcceptFirstBulk"></div>
-  		<div class="grid-item" id="lastDayClosedTimeToAcceptFirstBulk"></div>  
-  		<div class="grid-item" id="lastHourClosedTimeToAcceptFirstBulk"></div>
-		<div class="grid-item" id="last10ClosedTimeToAcceptFirstBulk"></div>
-		<div class="grid-item-left">31-60 sec</div>
-  		<div class="grid-item" id="lastMonthClosedTimeToAcceptSecondBulk"></div>
-		<div class="grid-item" id="customTimeClosedTimeToAcceptSecondBulk"></div>
-  		<div class="grid-item" id="lastDayClosedTimeToAcceptSecondBulk"></div>  
-  		<div class="grid-item" id="lastHourClosedTimeToAcceptSecondBulk"></div>
-		<div class="grid-item" id="last10ClosedTimeToAcceptSecondBulk"></div>
-		<div class="grid-item-left">> 60 sec</div>
-  		<div class="grid-item" id="lastMonthClosedTimeToAcceptThirdBulk"></div>
-		<div class="grid-item" id="customTimeClosedTimeToAcceptThirdBulk"></div>
-  		<div class="grid-item" id="lastDayClosedTimeToAcceptThirdBulk"></div>  
-  		<div class="grid-item" id="lastHourClosedTimeToAcceptThirdBulk"></div>
-		<div class="grid-item" id="last10ClosedTimeToAcceptThirdBulk"></div>
-  		<div class="grid-item-left">first time answer</div>  
-  		<div class="grid-item" id="lastMonthFTAClosed"></div>
-		<div class="grid-item" id="customTimeFTAClosed"></div>
-  		<div class="grid-item" id="lastDayFTAClosed"></div>
-  		<div class="grid-item" id="lastHourFTAClosed"></div> 
-  		<div class="grid-item" id="last10FTAClosed"></div>
-		<div class="grid-item-left">0-30 sec</div>  
-  		<div class="grid-item" id="lastMonthFTAClosedFirstBulk"></div>
-		<div class="grid-item" id="customTimeFTAClosedFirstBulk"></div>
-  		<div class="grid-item" id="lastDayFTAClosedFirstBulk"></div>
-  		<div class="grid-item" id="lastHourFTAClosedFirstBulk"></div> 
-  		<div class="grid-item" id="last10FTAClosedFirstBulk"></div>
-		<div class="grid-item-left">31-60 sec</div>  
-  		<div class="grid-item" id="lastMonthFTAClosedSecondBulk"></div>
-		<div class="grid-item" id="customTimeFTAClosedSecondBulk"></div>
-  		<div class="grid-item" id="lastDayFTAClosedSecondBulk"></div>
-  		<div class="grid-item" id="lastHourFTAClosedSecondBulk"></div> 
-  		<div class="grid-item" id="last10FTAClosedSecondBulk"></div>
-		<div class="grid-item-left">> 60 sec</div>  
-  		<div class="grid-item" id="lastMonthFTAClosedThirdBulk"></div>
-		<div class="grid-item" id="customTimeFTAClosedThirdBulk"></div>
-  		<div class="grid-item" id="lastDayFTAClosedThirdBulk"></div>
-  		<div class="grid-item" id="lastHourFTAClosedThirdBulk"></div> 
-  		<div class="grid-item" id="last10FTAClosedThirdBulk"></div>
-  		<div class="grid-item-left">general time answer</div>  
-  		<div class="grid-item" id="lastMonthGTAClosed"></div>
-		<div class="grid-item" id="customTimeGTAClosed"></div>
-  		<div class="grid-item" id="lastDayGTAClosed"></div>
-  		<div class="grid-item" id="lastHourGTAClosed"></div> 
-  		<div class="grid-item" id="last10GTAClosed"></div>
+	<div class="grid-bright">
+  		<div class="grid-item-left">Facebook_priv</div>
+  		<div class="grid-item" id="FBPopenConv"></div>
+		<div class="grid-item" id="FBPassignedConv"></div>
+		<div class="grid-item" id="FBPunassignedConv"></div>
 	</div>
-	<div class="grid-container-open" style="display:none;">
-  		<div class="grid-item-left">open</div>
-  		<div class="grid-item" id="lastMonthOpenOpen"></div>
-		<div class="grid-item" id="customTimeOpenOpen"></div>
-  		<div class="grid-item" id="lastDayOpenOpen"></div>  
-  		<div class="grid-item" id="lastHourOpenOpen"></div>
-  		<div class="grid-item" id="last10OpenOpen"></div>
-		<div class="grid-item-left">time to accept</div>
-  		<div class="grid-item" id="lastMonthOpenTimeToAccept"></div>
-		<div class="grid-item" id="customTimeOpenTimeToAccept"></div>
-  		<div class="grid-item" id="lastDayOpenTimeToAccept"></div>  
-  		<div class="grid-item" id="lastHourOpenTimeToAccept"></div>
-		<div class="grid-item" id="last10OpenTimeToAccept"></div>
-		<div class="grid-item-left">0-30 sec</div>
-  		<div class="grid-item" id="lastMonthOpenTimeToAcceptFirstBulk"></div>
-		<div class="grid-item" id="customTimeOpenTimeToAcceptFirstBulk"></div>
-  		<div class="grid-item" id="lastDayOpenTimeToAcceptFirstBulk"></div>  
-  		<div class="grid-item" id="lastHourOpenTimeToAcceptFirstBulk"></div>
-		<div class="grid-item" id="last10OpenTimeToAcceptFirstBulk"></div>
-		<div class="grid-item-left">31-60 sec</div>
-  		<div class="grid-item" id="lastMonthOpenTimeToAcceptSecondBulk"></div>
-		<div class="grid-item" id="customTimeOpenTimeToAcceptSecondBulk"></div>
-  		<div class="grid-item" id="lastDayOpenTimeToAcceptSecondBulk"></div>  
-  		<div class="grid-item" id="lastHourOpenTimeToAcceptSecondBulk"></div>
-		<div class="grid-item" id="last10OpenTimeToAcceptSecondBulk"></div>
-		<div class="grid-item-left">> 60 sec</div>
-  		<div class="grid-item" id="lastMonthOpenTimeToAcceptThirdBulk"></div>
-		<div class="grid-item" id="customTimeOpenTimeToAcceptThirdBulk"></div>
-  		<div class="grid-item" id="lastDayOpenTimeToAcceptThirdBulk"></div>  
-  		<div class="grid-item" id="lastHourOpenTimeToAcceptThirdBulk"></div>
-		<div class="grid-item" id="last10OpenTimeToAcceptThirdBulk"></div>
-  		<div class="grid-item-left">first time answer</div>  
-  		<div class="grid-item" id="lastMonthFTAOpen"></div>
-		<div class="grid-item" id="customTimeFTAOpen"></div>
-  		<div class="grid-item" id="lastDayFTAOpen"></div>
-  		<div class="grid-item" id="lastHourFTAOpen"></div> 
-  		<div class="grid-item" id="last10FTAOpen"></div>
-		<div class="grid-item-left">0-30 sec</div>  
-  		<div class="grid-item" id="lastMonthFTAOpenFirstBulk"></div>
-		<div class="grid-item" id="customTimeFTAOpenFirstBulk"></div>
-  		<div class="grid-item" id="lastDayFTAOpenFirstBulk"></div>
-  		<div class="grid-item" id="lastHourFTAOpenFirstBulk"></div> 
-  		<div class="grid-item" id="last10FTAOpenFirstBulk"></div>
-		<div class="grid-item-left">31-60 sec</div>  
-  		<div class="grid-item" id="lastMonthFTAOpenSecondBulk"></div>
-		<div class="grid-item" id="customTimeFTAOpenSecondBulk"></div>
-  		<div class="grid-item" id="lastDayFTAOpenSecondBulk"></div>
-  		<div class="grid-item" id="lastHourFTAOpenSecondBulk"></div> 
-  		<div class="grid-item" id="last10FTAOpenSecondBulk"></div>
-		<div class="grid-item-left">> 60 sec</div>  
-  		<div class="grid-item" id="lastMonthFTAOpenThirdBulk"></div>
-		<div class="grid-item" id="customTimeFTAOpenThirdBulk"></div>
-  		<div class="grid-item" id="lastDayFTAOpenThirdBulk"></div>
-  		<div class="grid-item" id="lastHourFTAOpenThirdBulk"></div> 
-  		<div class="grid-item" id="last10FTAOpenThirdBulk"></div>
-  		<div class="grid-item-left">general time answer</div>  
-  		<div class="grid-item" id="lastMonthGTAOpen"></div>
-		<div class="grid-item" id="customTimeGTAOpen"></div>
-  		<div class="grid-item" id="lastDayGTAOpen"></div>
-  		<div class="grid-item" id="lastHourGTAOpen"></div> 
-  		<div class="grid-item" id="last10GTAOpen"></div>
-  		<div class="grid-item-left">pending</div>  
-  		<div class="grid-item" id="lastMonthWaitingOpen"></div>
-		<div class="grid-item" id="customTimeWaitingOpen"></div>
-  		<div class="grid-item" id="lastDayWaitingOpen"></div>
-  		<div class="grid-item" id="lastHourWaitingOpen"></div> 
-  		<div class="grid-item" id="last10WaitingOpen"></div>
-  		<div class="grid-item-left">unassigned</div>  
-  		<div class="grid-item" id="lastMonthNAOpen"></div>
-		<div class="grid-item" id="customTimeNAOpen"></div>
-  		<div class="grid-item" id="lastDayNAOpen"></div>
-  		<div class="grid-item" id="lastHourNAOpen"></div> 
-  		<div class="grid-item" id="last10NAOpen"></div>
+
+	<div class="grid-dark">
+  		<div class="grid-item-left">Facebook_risvegliate</div>
+  		<div class="grid-item" id="FBRopenConv"></div>
+		<div class="grid-item" id="FBRassignedConv"></div>
+		<div class="grid-item" id="FBRunassignedConv"></div>
 	</div>
+	
+	<div class="grid-bright">
+  		<div class="grid-item-left">Facebook_priv_night</div>
+  		<div class="grid-item" id="FBPNopenConv"></div>
+		<div class="grid-item" id="FBPNassignedConv"></div>
+		<div class="grid-item" id="FBPNunassignedConv"></div>
+	</div>
+
+	<div class="grid-dark">
+  		<div class="grid-item-left">Facebook_priv_night_risvegliate</div>
+  		<div class="grid-item" id="FBPNRopenConv"></div>
+		<div class="grid-item" id="FBPNRassignedConv"></div>
+		<div class="grid-item" id="FBPNRunassignedConv"></div>
+	</div>
+	
+	<div class="grid-bright">
+  		<div class="grid-item-left">Human</div>
+  		<div class="grid-item" id="HopenConv"></div>
+		<div class="grid-item" id="HassignedConv"></div>
+		<div class="grid-item" id="HunassignedConv"></div>
+	</div>
+
+	<div class="grid-dark">
+  		<div class="grid-item-left">Human_risvegliate</div>
+  		<div class="grid-item" id="HRopenConv"></div>
+		<div class="grid-item" id="HRassignedConv"></div>
+		<div class="grid-item" id="HRunassignedConv"></div>
+	</div>
+
+	<div class="grid-bright">
+  		<div class="grid-item-left">Human_night</div>
+  		<div class="grid-item" id="HNopenConv"></div>
+		<div class="grid-item" id="HNassignedConv"></div>
+		<div class="grid-item" id="HNunassignedConv"></div>
+	</div>
+
+	<div class="grid-dark">
+  		<div class="grid-item-left">Human_night_risvegliate</div>
+  		<div class="grid-item" id="HNRopenConv"></div>
+		<div class="grid-item" id="HNRassignedConv"></div>
+		<div class="grid-item" id="HNRunassignedConv"></div>
+	</div>
+
+	<div class="grid-bright">
+  		<div class="grid-item-left">Outbound</div>
+  		<div class="grid-item" id="OopenConv"></div>
+		<div class="grid-item" id="OassignedConv"></div>
+		<div class="grid-item" id="OunassignedConv"></div>
+	</div>
+
+	<div class="grid-dark">
+  		<div class="grid-item-left">Outbound_risvegliate</div>
+  		<div class="grid-item" id="ORopenConv"></div>
+		<div class="grid-item" id="ORassignedConv"></div>
+		<div class="grid-item" id="ORunassignedConv"></div>
+	</div>
+
+	<div class="grid-bright">
+  		<div class="grid-item-left">Outbound_fixed</div>
+  		<div class="grid-item" id="OFopenConv"></div>
+		<div class="grid-item" id="OFassignedConv"></div>
+		<div class="grid-item" id="OFunassignedConv"></div>
+	</div>
+
+	<div class="grid-dark">
+  		<div class="grid-item-left">Outbound_fixed_risvegliate</div>
+  		<div class="grid-item" id="OFRopenConv"></div>
+		<div class="grid-item" id="OFRassignedConv"></div>
+		<div class="grid-item" id="OFRunassignedConv"></div>
+	</div>
+
+	<div class="grid-bright">
+  		<div class="grid-item-left">Inglese</div>
+  		<div class="grid-item" id="IopenConv"></div>
+		<div class="grid-item" id="IassignedConv"></div>
+		<div class="grid-item" id="IunassignedConv"></div>
+	</div>
+
+	<div class="grid-tot">
+  		<div class="grid-item-left">Totale</div>
+  		<div class="grid-item" id="TopenConv"></div>
+		<div class="grid-item" id="TassignedConv"></div>
+		<div class="grid-item" id="TunassignedConv"></div>
+	</div>
+
+	</br>
+	<div id="slotsAvailable"></div>
 
 	</br></br></br></br>
 
@@ -537,33 +495,39 @@ span.psw {
   }
 	
 	
-  function percentage(a, b, c){
-	  var a1 = parseInt(a);
-	  var b1 = parseInt(b);
-	  var c1 = parseInt(c);
-	  var tot = a1 + b1 + c1;
-	  if (tot){
-		  var percent1 = Math.floor(100 * a1/tot);
-		  var percent2 = Math.floor(100 * b1/tot);
-		  var percent3 = 100 - percent1 - percent2;
-		  var percent1 = percent1 + '%';
-		  var percent2 = percent2 + '%';
-		  var percent3 = percent3 + '%';
-		  var response = [percent1, percent2, percent3];
-		  return response;
-	  }
-	  else{
-		  var percent1 = '--';
-		  var percent2 = '--';
-		  var percent3 = '--';
-		  var response = [percent1, percent2, percent3];
-		  return response;
-	  }
-	    
-	  
-  }
+  
 	
  
+	
+function herokuOrNot() {
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+          	if (this.readyState === 4) {
+			if (this.status == 200 && xhr.status < 300){
+				document.getElementById("reportHeroku").innerHTML = "Il servizio di hosting del bot e' up";
+				document.getElementById("reportHeroku").style = "color : green";
+				document.getElementById("reportHeroku").style.fontWeight = "bold";
+				document.getElementById("reportHeroku").style.fontSize = "large";
+			}
+			else{
+				document.getElementById("reportHeroku").innerHTML = "Il servizio di hosting del bot e' down";
+				document.getElementById("reportHeroku").style = "color : red";
+				document.getElementById("reportHeroku").style.fontWeight = "bold";
+				document.getElementById("reportHeroku").style.fontSize = "large";
+			}
+          	}
+		else {
+            		document.getElementById("reportHeroku").innerHTML = "...checking hosting bot status...";
+            		document.getElementById("reportHeroku").style = "color : black";
+			document.getElementById("reportHeroku").style.fontWeight = "bold";
+			document.getElementById("reportHeroku").style.fontSize = "large";
+          	}
+        });
+        var URLforGET = "https://vodafonebotdario.herokuapp.com/ping?ping=true&username=" + localStorage.getItem('username');
+	xhr.open("GET", URLforGET);
+        xhr.send();
+}
+	
 	
 function botOrNot() {
         var xhr = new XMLHttpRequest();
@@ -573,66 +537,81 @@ function botOrNot() {
 				document.getElementById("reportBot").innerHTML = "Il bot e' connesso";
 				document.getElementById("reportBot").style = "color : green";
 				document.getElementById("reportBot").style.fontWeight = "bold";
-				document.getElementById("reportBot").style.fontSize = "xx-large";
+				document.getElementById("reportBot").style.fontSize = "large";
 			}
 			else{
 				document.getElementById("reportBot").innerHTML = "Il bot non e' connesso";
 				document.getElementById("reportBot").style = "color : red";
 				document.getElementById("reportBot").style.fontWeight = "bold";
-				document.getElementById("reportBot").style.fontSize = "xx-large";
+				document.getElementById("reportBot").style.fontSize = "large";
 			}
           	}
 		else {
             		document.getElementById("reportBot").innerHTML = "...checking bot status...";
             		document.getElementById("reportBot").style = "color : black";
 			document.getElementById("reportBot").style.fontWeight = "bold";
-			document.getElementById("reportBot").style.fontSize = "xx-large";
+			document.getElementById("reportBot").style.fontSize = "large";
           	}
         });
-        var URLforGET = "https://vodafonebotdario.herokuapp.com/ping?ping=true&username=" + localStorage.getItem('username');
+        var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=1&visitorID=0&convID=0";
 	xhr.open("GET", URLforGET);
         xhr.send();
 }
 	
 	
 	
+function retrieveAgentsLogged(){
+	
+	var body = '{"status":["ONLINE"],"skillIds":["1089726032","1096374632","1102673132","1102673332","987637232","1096374432","1105369932","1105551632","1093097632","1096374732","1105849832","1105849932","1097496532","1012134132","1111294132"]}';
+	var totalSpots = 0;
+	var availableSpots = 0;
+	
+	setTimeout(function(){
+		  
+		  $.ajax({
+			  url: "https://lo.msghist.liveperson.net/messaging_history/api/account/13099967/agent-view/status",
+			  method: "POST",
+			  jsonp: "cb",
+			  jsonpCallback: "domainCallback",
+			  cache: true,
+			  contentType: "application/json",
+			  "If-Match": "-1",
+			  data: body,
+			  success: function success(data) {
+				  // console.log("********");
+				  // console.log(JSON.stringify(data));
+				  if(data.hasOwnProperty('_metadata')){
+					  if(data._metadata.hasOwnProperty('count')){
+						  if(data._metadata.count > 0){
+							  if(data.hasOwnProperty('agentStatusRecords')){
+								  var agentStatusRecordsLength = data.agentStatusRecords.length;
+								  for (var z = 0; z < agentStatusRecordsLength; z++){
+									  totalSpots = data.agentStatusRecords[z].configuredMaxSlots - data.agentStatusRecords[z].busySlots;
+									  availableSpots = availableSpots + totalSpots;
+								  }
+							  }
+						  }
+					  }
+				  }
+				  document.getElementById("slotsAvailable").innerHTML = "Sessioni disponibili: " + availableSpots;
+				  document.getElementById("slotsAvailable").style = "color : green";
+				  document.getElementById("slotsAvailable").style.fontWeight = "bold";
+				  document.getElementById("slotsAvailable").style.fontSize = "large";
+			  },
+			  error: function error(e, text) {
+				  localStorage.setItem('account_number', '');
+				  location.reload();
+			  },
+			  beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
+		  });
+                       
+	}, 3000);
 	
 	
-  function secondsToString(timeInSeconds){
-						      
-	var hours;
-	var minutes;
-	var seconds;
-	var diff;
-	var stringAnswer;
-	if (isNaN(timeInSeconds)){
-		stringAnswer = "--";
-		return stringAnswer;
-	}
-	if (Math.floor(timeInSeconds/(60*60)) > 0){
-		hours = Math.floor(timeInSeconds/(60*60));
-		diff = timeInSeconds - hours*60*60;
-		if (Math.floor(diff/60) > 0){
-			minutes = Math.floor(diff/60);
-			seconds = Math.floor(diff - minutes*60);
-			stringAnswer = hours + "h, " + minutes + "m, " + seconds + "s";
-		}
-		else{
-			seconds = Math.floor(diff);
-			stringAnswer = hours + "h, " + seconds + "s";
-		}
-	}
-	else if (Math.floor(timeInSeconds/60) > 0){
-		var minutes = Math.floor(timeInSeconds/60);
-		var seconds = Math.floor(timeInSeconds - minutes*60);
-		stringAnswer = minutes + "m, " + seconds + "s";
-	}
-	else{
-		var seconds = Math.floor(timeInSeconds);
-		stringAnswer = seconds + "s";
-	}
-	return stringAnswer;
-  }
+}
+	
+	
+	
 	
   function loadLimboBar(){
 	  
@@ -650,6 +629,7 @@ function botOrNot() {
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
+				      herokuOrNot();
 				      botOrNot();
 				      if((data._metadata.count) > 0){
 					      var length = data.conversationHistoryRecords.length;
@@ -933,1276 +913,271 @@ function botOrNot() {
 	
   }
 	
-  function loadCustomStats(answer){
-	  var length = answer.length;
-	  var howManyMessages = 0;
-	  var numberConvs = 0;
-	  var whatTime = 0;
-	  var isAnswered = 0;
-	  var TimeAnswer = 0;
-	  var totalTime = 0;
-	  var numberTotal = 0;
-	  console.log("(CUSTOM) skill: " + skillNumber + " ***** start: " + customDate + " ***** end: " + endCustomDate);
-	  for (var m = 0; m < length; m++){
-		  whatTime = answer[m].info.startTimeL;
-		  if((whatTime > customDate) && (whatTime < endCustomDate)){
-			 numberConvs = numberConvs + 1; 
-		  }
-	  }
-	  document.getElementById("customTimeHeader").innerHTML = numberConvs;
-	  numberConvs = 0;
-	  for (var m = 0; m < length; m++){
-		  if (answer[m].info.status === "OPEN"){
-			  whatTime = answer[m].info.startTimeL;
-			  if((whatTime > customDate) && (whatTime < endCustomDate)){
-				 numberConvs = numberConvs + 1;  
-			  }
-		  }	 		  
-	  }
-	  document.getElementById("customTimeOpenOpen").innerHTML = numberConvs;
-	  numberConvs = 0;
-	  for (var m = 0; m < length; m++){
-		  if (answer[m].info.status === "CLOSE"){
-			  whatTime = answer[m].info.startTimeL;
-			  if((whatTime > customDate) && (whatTime < endCustomDate)){
-				 numberConvs = numberConvs + 1;  
-			  }
-		  }	 		  
-	  }
-	  document.getElementById("customTimeClosedClosed").innerHTML = numberConvs;
-	  numberConvs = 0;
-	  for (var m = 0; m < length; m++){
-		  if (answer[m].info.status === "CLOSE" && answer[m].info.closeReasonDescription === "BRAND_AUTO_CLOSE"){
-			  whatTime = answer[m].info.startTimeL;
-			  if((whatTime > customDate) && (whatTime < endCustomDate)){
-				 numberConvs = numberConvs + 1;  
-			  }
-		  }	 		  
-	  }
-	   for (var m = 0; m < length; m++){
-		 whatTime = answer[m].info.startTimeL;
-		 if(answer[m].info.status === "CLOSE" && answer[m].info.closeReason === "AGENT" && answer[m].info.latestSkillName === "Limbo"){
-			 if((whatTime > customDate) && (whatTime < endCustomDate)){
-				 numberConvs = numberConvs + 1;
-			 }
-		 }
-		 
-	 }
-	  document.getElementById("customTimeClosedClosedAutomatic").innerHTML = numberConvs;
-	  numberConvs = 0;
-	  for (var m = 0; m < length; m++){
-		  if (answer[m].info.status === "CLOSE" && answer[m].info.closeReason === "AGENT" && answer[m].info.latestSkillName !== "Limbo"){
-			  whatTime = answer[m].info.startTimeL;
-			  if((whatTime > customDate) && (whatTime < endCustomDate)){
-				 numberConvs = numberConvs + 1;  
-			  }
-		  }	 		  
-	  }
-	  document.getElementById("customTimeClosedClosedManual").innerHTML = numberConvs;
-	  numberConvs = 0;
-	  for (var m = 0; m < length; m++){
-		  if (answer[m].info.status === "OPEN" && answer[m].info.latestQueueState === "IN_QUEUE"){
-			  whatTime = answer[m].info.startTimeL;
-			  if((whatTime > customDate) && (whatTime < endCustomDate)){
-				 numberConvs = numberConvs + 1;  
-			  }
-		  }	 		  
-	  }
-	  document.getElementById("customTimeNAOpen").innerHTML = numberConvs;
-	  numberConvs = 0;
-	  for (var m = 0; m < length; m++){
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-		 	if (answer[m].info.status === "OPEN" && answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer"){
-				whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
-				if ((whatTime > customDate) && (whatTime < endCustomDate)){
-					numberConvs = numberConvs + 1;
-		 		}
-		 	}
-		 }
-	  }
-	  document.getElementById("customTimeWaitingOpen").innerHTML = numberConvs;
-	  numberConvs = 0;
-	  totalTime = 0;
-	  numberTotal = 0;
-	  document.getElementById("customTimeClosedTimeToAcceptFirstBulk").innerHTML = 0;
-	  document.getElementById("customTimeClosedTimeToAcceptSecondBulk").innerHTML = 0;
-	  document.getElementById("customTimeClosedTimeToAcceptThirdBulk").innerHTML = 0;
-	  for (var m = 0; m < length; m++){
-		 TimeAnswer = 0;
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-		 	if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
-				whatTime = answer[m].messageRecords[0].timeL;
-				if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
-					for (var b = 0; b < answer[m].agentParticipants.length; b++){
-						if(answer[m].agentParticipants[b].userTypeName === "Human"){
-							TimeAnswer = (answer[m].agentParticipants[b].timeL - whatTime)/1000;
-							b = answer[m].agentParticipants.length;
-						}
-					}
-					if ((whatTime > customDate) && (whatTime < endCustomDate)){
-						totalTime = totalTime + TimeAnswer;
-						numberTotal = numberTotal + 1;
-						switch(findBulk(TimeAnswer)) {
-							case 1:
-								document.getElementById("customTimeClosedTimeToAcceptFirstBulk").innerHTML ++;
-								break;
-							case 2:
-								document.getElementById("customTimeClosedTimeToAcceptSecondBulk").innerHTML ++;
-								break;
-							case 3:
-								document.getElementById("customTimeClosedTimeToAcceptThirdBulk").innerHTML ++;
-								break;
-						}
-		 			}
-				}
-		 	}
-		 }
-	  }
-	  var perc = percentage(document.getElementById("customTimeClosedTimeToAcceptFirstBulk").innerHTML, document.getElementById("customTimeClosedTimeToAcceptSecondBulk").innerHTML, document.getElementById("customTimeClosedTimeToAcceptThirdBulk").innerHTML);
-	  document.getElementById("customTimeClosedTimeToAcceptFirstBulk").innerHTML = perc[0];
-	  document.getElementById("customTimeClosedTimeToAcceptSecondBulk").innerHTML = perc[1];
-	  document.getElementById("customTimeClosedTimeToAcceptThirdBulk").innerHTML = perc[2];
-	  document.getElementById("customTimeClosedTimeToAccept").innerHTML = secondsToString(totalTime/numberTotal);
-	  numberConvs = 0;
-	  totalTime = 0;
-	  numberTotal = 0;
-	  document.getElementById("customTimeOpenTimeToAcceptFirstBulk").innerHTML = 0;
-	  document.getElementById("customTimeOpenTimeToAcceptSecondBulk").innerHTML = 0;
-	  document.getElementById("customTimeOpenTimeToAcceptThirdBulk").innerHTML = 0;
-	  for (var m = 0; m < length; m++){
-		 TimeAnswer = 0;
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-		 	if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
-				whatTime = answer[m].messageRecords[0].timeL;
-				if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
-					for (var b = 0; b < answer[m].agentParticipants.length; b++){
-						if(answer[m].agentParticipants[b].userTypeName === "Human"){
-							TimeAnswer = (answer[m].agentParticipants[b].timeL - whatTime)/1000;
-							b = answer[m].agentParticipants.length;
-						}
-					}
-					if ((whatTime > customDate) && (whatTime < endCustomDate)){
-						totalTime = totalTime + TimeAnswer;
-						numberTotal = numberTotal + 1;
-						switch(findBulk(TimeAnswer)) {
-							case 1:
-								document.getElementById("customTimeOpenTimeToAcceptFirstBulk").innerHTML ++;
-								break;
-							case 2:
-								document.getElementById("customTimeOpenTimeToAcceptSecondBulk").innerHTML ++;
-								break;
-							case 3:
-								document.getElementById("customTimeOpenTimeToAcceptThirdBulk").innerHTML ++;
-								break;
-						}
-		 			}
-				}
-		 	}
-		 }
-	  }
-	  var perc = percentage(document.getElementById("customTimeOpenTimeToAcceptFirstBulk").innerHTML, document.getElementById("customTimeOpenTimeToAcceptSecondBulk").innerHTML, document.getElementById("customTimeOpenTimeToAcceptThirdBulk").innerHTML);
-	  document.getElementById("customTimeOpenTimeToAcceptFirstBulk").innerHTML = perc[0];
-	  document.getElementById("customTimeOpenTimeToAcceptSecondBulk").innerHTML = perc[1];
-	  document.getElementById("customTimeOpenTimeToAcceptThirdBulk").innerHTML = perc[2];
-	  document.getElementById("customTimeOpenTimeToAccept").innerHTML = secondsToString(totalTime/numberTotal);
-	  numberConvs = 0;
-	  totalTime = 0;
-	  numberTotal = 0;
-	  isAnswered = 0;
-	  document.getElementById("customTimeFTAOpenFirstBulk").innerHTML = 0;
-	  document.getElementById("customTimeFTAOpenSecondBulk").innerHTML = 0;
-	  document.getElementById("customTimeFTAOpenThirdBulk").innerHTML = 0;
-	  for (var m = 0; m < length; m++){
-		 TimeAnswer = 0;
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-			if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
-				whatTime = answer[m].messageRecords[0].timeL;
-				isAnswered = 0;
-				for (var n = 1; n < howManyMessages; n++){
-					if(answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID){
-						TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-						isAnswered = 1;
-						n = howManyMessages;
-					}
-				}
-				if (isAnswered && ((whatTime > customDate) && (whatTime < endCustomDate))){
-					totalTime = totalTime + TimeAnswer;
-					numberTotal = numberTotal + 1;
-					switch(findBulk(TimeAnswer)) {
-							case 1:
-								document.getElementById("customTimeFTAOpenFirstBulk").innerHTML ++;
-								break;
-							case 2:
-								document.getElementById("customTimeFTAOpenSecondBulk").innerHTML ++;
-								break;
-							case 3:
-								document.getElementById("customTimeFTAOpenThirdBulk").innerHTML ++;
-								break;
-						}
-				}
-		 	}	
-		 }
-		 
-	  }
-	  var perc = percentage(document.getElementById("customTimeFTAOpenFirstBulk").innerHTML, document.getElementById("customTimeFTAOpenSecondBulk").innerHTML, document.getElementById("customTimeFTAOpenThirdBulk").innerHTML);
-	  document.getElementById("customTimeFTAOpenFirstBulk").innerHTML = perc[0];
-	  document.getElementById("customTimeFTAOpenSecondBulk").innerHTML = perc[1];
-	  document.getElementById("customTimeFTAOpenThirdBulk").innerHTML = perc[2];
-	  document.getElementById("customTimeFTAOpen").innerHTML = secondsToString(totalTime/numberTotal);
-	  numberConvs = 0;
-	  totalTime = 0;
-	  numberTotal = 0;
-	  isAnswered = 0;
-	  document.getElementById("customTimeFTAClosedFirstBulk").innerHTML = 0;
-	  document.getElementById("customTimeFTAClosedSecondBulk").innerHTML = 0;
-	  document.getElementById("customTimeFTAClosedThirdBulk").innerHTML = 0;
-	  for (var m = 0; m < length; m++){
-		 TimeAnswer = 0;
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-			if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
-				whatTime = answer[m].messageRecords[0].timeL;
-				isAnswered = 0;
-				for (var n = 1; n < howManyMessages; n++){
-					if(answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID){
-						TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-						isAnswered = 1;
-						n = howManyMessages;
-					}
-				}
-				if (isAnswered && ((whatTime > customDate) && (whatTime < endCustomDate))){
-					totalTime = totalTime + TimeAnswer;
-					numberTotal = numberTotal + 1;
-					switch(findBulk(TimeAnswer)) {
-							case 1:
-								document.getElementById("customTimeFTAClosedFirstBulk").innerHTML ++;
-								break;
-							case 2:
-								document.getElementById("customTimeFTAClosedSecondBulk").innerHTML ++;
-								break;
-							case 3:
-								document.getElementById("customTimeFTAClosedThirdBulk").innerHTML ++;
-								break;
-						}
-				}
-		 	}	
-		 }
-		 
-	  }
-	  var perc = percentage(document.getElementById("customTimeFTAClosedFirstBulk").innerHTML, document.getElementById("customTimeFTAClosedSecondBulk").innerHTML, document.getElementById("customTimeFTAClosedThirdBulk").innerHTML);
-	  document.getElementById("customTimeFTAClosedFirstBulk").innerHTML = perc[0];
-	  document.getElementById("customTimeFTAClosedSecondBulk").innerHTML = perc[1];
-	  document.getElementById("customTimeFTAClosedThirdBulk").innerHTML = perc[2];
-	  document.getElementById("customTimeFTAClosed").innerHTML = secondsToString(totalTime/numberTotal);
-	  numberConvs = 0;
-	  totalTime = 0;
-	  numberTotal = 0;
-	  isAnswered = 0;
-	  for (var m = 0; m < length; m++){
-		 isAnswered = 0;
-		 if(answer[m].info.status === "CLOSE"){
-		 	TimeAnswer = 0;
-		 	howManyMessages = answer[m].messageRecords.length;
-			if(howManyMessages){
-		 		for (var n = 0; n < howManyMessages; n++){
-			 		if((answer[m].messageRecords[n].sentBy === "Consumer") && !isAnswered){
-				 		whatTime = answer[m].messageRecords[n].timeL;
-				 		isAnswered = 1;
-			 		}
-			 		else if((answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID) && isAnswered){
-				 		TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-				 		if ((whatTime > customDate) && (whatTime < endCustomDate)){
-							totalTime = totalTime + TimeAnswer;
-							numberTotal = numberTotal + 1;
-		 		 		}
-				 		isAnswered = 0;
-			 		}
-		 		}
-			}
-		 }	 
-	  }
-	  document.getElementById("customTimeGTAClosed").innerHTML = secondsToString(totalTime/numberTotal);
-	  numberConvs = 0;
-	  totalTime = 0;
-	  numberTotal = 0;
-	  isAnswered = 0;
-	  for (var m = 0; m < length; m++){
-		 isAnswered = 0;
-		 if(answer[m].info.status === "OPEN"){
-		 	TimeAnswer = 0;
-		 	howManyMessages = answer[m].messageRecords.length;
-			if(howManyMessages){
-		 		for (var n = 0; n < howManyMessages; n++){
-			 		if((answer[m].messageRecords[n].sentBy === "Consumer") && !isAnswered){
-				 		whatTime = answer[m].messageRecords[n].timeL;
-				 		isAnswered = 1;
-			 		}
-			 		else if((answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID) && isAnswered){
-				 		TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-				 		if ((whatTime > customDate) && (whatTime < endCustomDate)){
-							totalTime = totalTime + TimeAnswer;
-							numberTotal = numberTotal + 1;
-		 		 		}
-				 		isAnswered = 0;
-			 		}
-		 		}
-			}
-		 }	 
-	  }
-	  document.getElementById("customTimeGTAOpen").innerHTML = secondsToString(totalTime/numberTotal);
-	 
-   
-		 
-  }
 	
   function loadStats(answer){
+	  var FBPopenConv = 0;
+	  var FBPassignedConv = 0;
+	  var FBPunassignedConv = 0;
+	  var FBRopenConv =0;
+	  var FBRassignedConv =0;
+	  var FBRunassignedConv =0;
+	  var FBPNopenConv =0;
+	  var FBPNassignedConv =0;
+	  var FBPNunassignedConv =0;
+	  var FBPNRopenConv =0;
+	  var FBPNRassignedConv =0;
+	  var FBPNRunassignedConv =0;
+	  var HopenConv =0;
+	  var HassignedConv =0;
+	  var HunassignedConv =0;
+	  var HRopenConv =0;
+	  var HRassignedConv =0;
+	  var HRunassignedConv =0;
+	  var HNopenConv =0;
+	  var HNassignedConv =0;
+	  var HNunassignedConv =0;
+	  var HNRopenConv =0;
+	  var HNRassignedConv =0;
+	  var HNRunassignedConv =0;
+	  var OopenConv =0;
+	  var OassignedConv =0;
+	  var OunassignedConv =0;
+	  var ORopenConv =0;
+	  var ORassignedConv =0;
+	  var ORunassignedConv =0;
+	  var OFopenConv =0;
+	  var OFassignedConv =0;
+	  var OFunassignedConv =0;
+	  var OFRopenConv =0;
+	  var OFRassignedConv =0;
+	  var OFRunassignedConv =0;
+	  var IopenConv =0;
+	  var IassignedConv =0;
+	  var IunassignedConv =0;
+	  var TopenConv =0;
+	  var TassignedConv =0;
+	  var TunassignedConv =0;
 	  
-	 var numberTenMinutesAgo = 0;
-	 var numberOneHourAgo = 0;
-	 var numberOneDayAgo = 0;
-	 var numberOneMonthAgo = 0;
-	 var length = answer.length;
-	 var howManyMessages;
-	 var TimeAnswer = 0;
-	 var TotalTimeTenMinutesAgo = 0;
-	 var TotalTimeOneHourAgo = 0;
-	 var TotalTimeOneDayAgo = 0;
-	 var TotalTimeOneMonthAgo = 0;
-	 var isAnswered = 0;
 	  
-	 var date = new Date();
-	 var dd = date.getDate();
-	 if (dd < 10){
-		 dd = "0" + dd;
-	 }
-    	 var mm = date.getMonth() + 1;
-	 if (mm < 10){
-		 mm = "0" + mm;
-	 }
-    	 var y = date.getFullYear();
-	 var enddate = y + "-" + mm + "-" + dd;
-	 
-	 date.setDate(date.getDate());
-	 var dd = date.getDate();
-	 if (dd < 10){
-		 dd = "0" + dd;
-	 }
-    	 var mm = date.getMonth() + 1;
-	 if (mm < 10){
-		 mm = "0" + mm;
-	 }
-    	 var y = date.getFullYear();
-	 var startdate = y + "-" + mm + "-" + dd;
 	  
-	 startdate = new Date(startdate);
-	 var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-	 var year = startdate.getFullYear();
-  	 var month = months[startdate.getMonth()];
-  	 var date = startdate.getDate(); 
-	 var hour = $('#starthour').val();
-	 startdate = month + " " + date + " " + year + " " + hour + timeZone;
-	 var d = new Date(startdate);
-	 var midnightToday = d.getTime();
-	 var oneHourAgo = Date.now() - (1000*60*60);
-	 var tenMinutesAgo = Date.now() - (1000*60*10);
-	 var whatTime = 0;
-	 for (var m = 0; m < length; m++){
-		 whatTime = answer[m].info.startTimeL;
-		 if (whatTime > tenMinutesAgo){
-			numberTenMinutesAgo = numberTenMinutesAgo + 1; 
-		 }
-		 else if (whatTime > oneHourAgo){
-			numberOneHourAgo = numberOneHourAgo + 1;
-		 }
-		 else if (whatTime > midnightToday){
-			numberOneDayAgo = numberOneDayAgo + 1;
-		 }
-		 else{
-			numberOneMonthAgo = numberOneMonthAgo + 1;
-		 }
-	 }
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 document.getElementById("last10Header").innerHTML = numberTenMinutesAgo;
-	 document.getElementById("lastHourHeader").innerHTML = numberOneHourAgo;
-	 document.getElementById("lastDayHeader").innerHTML = numberOneDayAgo;
-	 document.getElementById("lastMonthHeader").innerHTML = numberOneMonthAgo;
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 for (var m = 0; m < length; m++){
-		 whatTime = answer[m].info.startTimeL;
-		 if (answer[m].info.status === "OPEN"){
-			if (whatTime > tenMinutesAgo){
-				numberTenMinutesAgo = numberTenMinutesAgo + 1; 
-		 	}
-		 	else if (whatTime > oneHourAgo){
-				numberOneHourAgo = numberOneHourAgo + 1;
-		 	}
-		 	else if (whatTime > midnightToday){
-				numberOneDayAgo = numberOneDayAgo + 1;
-		 	}
-		 	else{
-				numberOneMonthAgo = numberOneMonthAgo + 1;
-		 	} 
-		 }
-	 }
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 document.getElementById("last10OpenOpen").innerHTML = numberTenMinutesAgo;
-	 document.getElementById("lastHourOpenOpen").innerHTML = numberOneHourAgo;
-	 document.getElementById("lastDayOpenOpen").innerHTML = numberOneDayAgo;
-	 document.getElementById("lastMonthOpenOpen").innerHTML = numberOneMonthAgo;
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 for (var m = 0; m < length; m++){
-		 whatTime = answer[m].info.startTimeL;
-		 if (answer[m].info.status === "CLOSE"){
-			if (whatTime > tenMinutesAgo){
-				numberTenMinutesAgo = numberTenMinutesAgo + 1; 
-		 	}
-		 	else if (whatTime > oneHourAgo){
-				numberOneHourAgo = numberOneHourAgo + 1;
-		 	}
-		 	else if (whatTime > midnightToday){
-				numberOneDayAgo = numberOneDayAgo + 1;
-		 	}
-		 	else{
-				numberOneMonthAgo = numberOneMonthAgo + 1;
-		 	} 
-		 }
-	 }
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 document.getElementById("last10ClosedClosed").innerHTML = numberTenMinutesAgo;
-	 document.getElementById("lastHourClosedClosed").innerHTML = numberOneHourAgo;
-	 document.getElementById("lastDayClosedClosed").innerHTML = numberOneDayAgo;
-	 document.getElementById("lastMonthClosedClosed").innerHTML = numberOneMonthAgo;
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 for (var m = 0; m < length; m++){
-		 whatTime = answer[m].info.startTimeL;
-		 if (answer[m].info.status === "CLOSE" && answer[m].info.closeReason === "AGENT" && answer[m].info.latestSkillName !== "Limbo"){
-			if (whatTime > tenMinutesAgo){
-				numberTenMinutesAgo = numberTenMinutesAgo + 1; 
-		 	}
-		 	else if (whatTime > oneHourAgo){
-				numberOneHourAgo = numberOneHourAgo + 1;
-		 	}
-		 	else if (whatTime > midnightToday){
-				numberOneDayAgo = numberOneDayAgo + 1;
-		 	}
-		 	else{
-				numberOneMonthAgo = numberOneMonthAgo + 1;
-		 	} 
-		 }
-	 }
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 document.getElementById("last10ClosedClosedManual").innerHTML = numberTenMinutesAgo;
-	 document.getElementById("lastHourClosedClosedManual").innerHTML = numberOneHourAgo;
-	 document.getElementById("lastDayClosedClosedManual").innerHTML = numberOneDayAgo;
-	 document.getElementById("lastMonthClosedClosedManual").innerHTML = numberOneMonthAgo;
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 for (var m = 0; m < length; m++){
-		 whatTime = answer[m].info.startTimeL;
-		 if (answer[m].info.status === "CLOSE" && answer[m].info.closeReasonDescription === "BRAND_AUTO_CLOSE"){
-			if (whatTime > tenMinutesAgo){
-				numberTenMinutesAgo = numberTenMinutesAgo + 1; 
-		 	}
-		 	else if (whatTime > oneHourAgo){
-				numberOneHourAgo = numberOneHourAgo + 1;
-		 	}
-		 	else if (whatTime > midnightToday){
-				numberOneDayAgo = numberOneDayAgo + 1;
-		 	}
-		 	else{
-				numberOneMonthAgo = numberOneMonthAgo + 1;
-		 	} 
-		 }
-	 }
-	 for (var m = 0; m < length; m++){
-		 whatTime = answer[m].info.startTimeL;
-		 if(answer[m].info.status === "CLOSE" && answer[m].info.closeReason === "AGENT" && answer[m].info.latestSkillName === "Limbo"){
-			if (whatTime > tenMinutesAgo){
-				numberTenMinutesAgo = numberTenMinutesAgo + 1;
-			}
-			 else if (whatTime > oneHourAgo){
-				 numberOneHourAgo = numberOneHourAgo + 1;
-			 }
-			 else if (whatTime > midnightToday){
-				 numberOneDayAgo = numberOneDayAgo + 1;
-			 }
-			 else{
-				 numberOneMonthAgo = numberOneMonthAgo + 1;
-			 }
-		 }
-		 
-	 }
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 document.getElementById("last10ClosedClosedAutomatic").innerHTML = numberTenMinutesAgo;
-	 document.getElementById("lastHourClosedClosedAutomatic").innerHTML = numberOneHourAgo;
-	 document.getElementById("lastDayClosedClosedAutomatic").innerHTML = numberOneDayAgo;
-	 document.getElementById("lastMonthClosedClosedAutomatic").innerHTML = numberOneMonthAgo;
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 for (var m = 0; m < length; m++){
-		 whatTime = answer[m].info.startTimeL;
-		 if (answer[m].info.status === "OPEN" && answer[m].info.latestQueueState === "IN_QUEUE"){
-			if (whatTime > tenMinutesAgo){
-				numberTenMinutesAgo = numberTenMinutesAgo + 1; 
-		 	}
-		 	else if (whatTime > oneHourAgo){
-				numberOneHourAgo = numberOneHourAgo + 1;
-		 	}
-		 	else if (whatTime > midnightToday){
-				numberOneDayAgo = numberOneDayAgo + 1;
-		 	}
-		 	else{
-				numberOneMonthAgo = numberOneMonthAgo + 1;
-		 	} 
-		 }
-	 }
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 document.getElementById("last10NAOpen").innerHTML = numberTenMinutesAgo;
-	 document.getElementById("lastHourNAOpen").innerHTML = numberOneHourAgo;
-	 document.getElementById("lastDayNAOpen").innerHTML = numberOneDayAgo;
-	 document.getElementById("lastMonthNAOpen").innerHTML = numberOneMonthAgo;
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 for (var m = 0; m < length; m++){
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-		 if (answer[m].info.status === "OPEN" && answer[m].messageRecords[(howManyMessages - 1)].sentBy === "Consumer"){
-			whatTime = answer[m].messageRecords[(howManyMessages - 1)].timeL;
-			if (whatTime > tenMinutesAgo){
-				numberTenMinutesAgo = numberTenMinutesAgo + 1; 
-		 	}
-		 	else if (whatTime > oneHourAgo){
-				numberOneHourAgo = numberOneHourAgo + 1;
-		 	}
-		 	else if (whatTime > midnightToday){
-				numberOneDayAgo = numberOneDayAgo + 1;
-		 	}
-		 	else{
-				numberOneMonthAgo = numberOneMonthAgo + 1;
-		 	} 
-		 }
-		 }
-	 }
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 document.getElementById("last10WaitingOpen").innerHTML = numberTenMinutesAgo;
-	 document.getElementById("lastHourWaitingOpen").innerHTML = numberOneHourAgo;
-	 document.getElementById("lastDayWaitingOpen").innerHTML = numberOneDayAgo;
-	 document.getElementById("lastMonthWaitingOpen").innerHTML = numberOneMonthAgo;
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 document.getElementById("last10FTAOpenFirstBulk").innerHTML = 0;
-	 document.getElementById("last10FTAOpenSecondBulk").innerHTML = 0;
-	 document.getElementById("last10FTAOpenThirdBulk").innerHTML = 0;
-	 document.getElementById("lastHourFTAOpenFirstBulk").innerHTML = 0;
-	 document.getElementById("lastHourFTAOpenSecondBulk").innerHTML = 0;
-	 document.getElementById("lastHourFTAOpenThirdBulk").innerHTML = 0;
-	 document.getElementById("lastDayFTAOpenFirstBulk").innerHTML = 0;
-	 document.getElementById("lastDayFTAOpenSecondBulk").innerHTML = 0;
-	 document.getElementById("lastDayFTAOpenThirdBulk").innerHTML = 0;
-	 document.getElementById("lastMonthFTAOpenFirstBulk").innerHTML = 0;
-	 document.getElementById("lastMonthFTAOpenSecondBulk").innerHTML = 0;
-	 document.getElementById("lastMonthFTAOpenThirdBulk").innerHTML = 0;
-	 for (var m = 0; m < length; m++){
-		 TimeAnswer = 0;
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-		 if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
-			whatTime = answer[m].messageRecords[0].timeL;
-			isAnswered = 0;
-			for (var n = 1; n < howManyMessages; n++){
-				if(answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID){
-					TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-					isAnswered = 1;
-					n = howManyMessages;
-				}
-			}
-			if (isAnswered && (whatTime > tenMinutesAgo)){
-				TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
-				numberTenMinutesAgo = numberTenMinutesAgo + 1;
-				switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("last10FTAOpenFirstBulk").innerHTML ++;
-						document.getElementById("lastHourFTAOpenFirstBulk").innerHTML ++;
-						document.getElementById("lastDayFTAOpenFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAOpenFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("last10FTAOpenSecondBulk").innerHTML ++;
-						document.getElementById("lastHourFTAOpenSecondBulk").innerHTML ++;
-						document.getElementById("lastDayFTAOpenSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAOpenSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("last10FTAOpenThirdBulk").innerHTML ++;
-						document.getElementById("lastHourFTAOpenThirdBulk").innerHTML ++;
-						document.getElementById("lastDayFTAOpenThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAOpenThirdBulk").innerHTML ++;
-						break;
-				}
-		 	}
-		 	else if (isAnswered && (whatTime > oneHourAgo)){
-				TotalTimeOneHourAgo = TotalTimeOneHourAgo + TimeAnswer;
-				numberOneHourAgo = numberOneHourAgo + 1;
-				switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastHourFTAOpenFirstBulk").innerHTML ++;
-						document.getElementById("lastDayFTAOpenFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAOpenFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastHourFTAOpenSecondBulk").innerHTML ++;
-						document.getElementById("lastDayFTAOpenSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAOpenSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastHourFTAOpenThirdBulk").innerHTML ++;
-						document.getElementById("lastDayFTAOpenThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAOpenThirdBulk").innerHTML ++;
-						break;
-				}
-		 	}
-		 	else if (isAnswered && (whatTime > midnightToday)){
-				TotalTimeOneDayAgo = TotalTimeOneDayAgo + TimeAnswer;
-				numberOneDayAgo = numberOneDayAgo + 1;
-				switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastDayFTAOpenFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAOpenFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastDayFTAOpenSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAOpenSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastDayFTAOpenThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAOpenThirdBulk").innerHTML ++;
-						break;
-				}
-		 	}
-		 	else if (isAnswered){
-				TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TimeAnswer;
-				numberOneMonthAgo = numberOneMonthAgo + 1;
-				switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastMonthFTAOpenFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastMonthFTAOpenSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastMonthFTAOpenThirdBulk").innerHTML ++;
-						break;
-				}
-		 	} 
-		 }
-		 }
-	 }
-	 var perc = percentage(document.getElementById("lastMonthFTAOpenFirstBulk").innerHTML, document.getElementById("lastMonthFTAOpenSecondBulk").innerHTML, document.getElementById("lastMonthFTAOpenThirdBulk").innerHTML);
-	 document.getElementById("lastMonthFTAOpenFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastMonthFTAOpenSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastMonthFTAOpenThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("lastDayFTAOpenFirstBulk").innerHTML, document.getElementById("lastDayFTAOpenSecondBulk").innerHTML, document.getElementById("lastDayFTAOpenThirdBulk").innerHTML);
-	 document.getElementById("lastDayFTAOpenFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastDayFTAOpenSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastDayFTAOpenThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("lastHourFTAOpenFirstBulk").innerHTML, document.getElementById("lastHourFTAOpenSecondBulk").innerHTML, document.getElementById("lastHourFTAOpenThirdBulk").innerHTML);
-	 document.getElementById("lastHourFTAOpenFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastHourFTAOpenSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastHourFTAOpenThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("last10FTAOpenFirstBulk").innerHTML, document.getElementById("last10FTAOpenSecondBulk").innerHTML, document.getElementById("last10FTAOpenThirdBulk").innerHTML);
-	 document.getElementById("last10FTAOpenFirstBulk").innerHTML = perc[0];
-	 document.getElementById("last10FTAOpenSecondBulk").innerHTML = perc[1];
-	 document.getElementById("last10FTAOpenThirdBulk").innerHTML = perc[2];
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 TotalTimeOneHourAgo = TotalTimeTenMinutesAgo + TotalTimeOneHourAgo;
-	 TotalTimeOneDayAgo = TotalTimeOneHourAgo + TotalTimeOneDayAgo;
-	 TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TotalTimeOneDayAgo;
-	 document.getElementById("last10FTAOpen").innerHTML = secondsToString(TotalTimeTenMinutesAgo/numberTenMinutesAgo);
-	 document.getElementById("lastHourFTAOpen").innerHTML = secondsToString(TotalTimeOneHourAgo/numberOneHourAgo);
-	 document.getElementById("lastDayFTAOpen").innerHTML = secondsToString(TotalTimeOneDayAgo/numberOneDayAgo);
-	 document.getElementById("lastMonthFTAOpen").innerHTML = secondsToString(TotalTimeOneMonthAgo/numberOneMonthAgo);
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 TotalTimeTenMinutesAgo = 0;
-	 TotalTimeOneHourAgo = 0;
-	 TotalTimeOneDayAgo = 0;
-	 TotalTimeOneMonthAgo = 0;
-	 isAnswered = 0;
-	 document.getElementById("last10FTAClosedFirstBulk").innerHTML = 0;
-	 document.getElementById("last10FTAClosedSecondBulk").innerHTML = 0;
-	 document.getElementById("last10FTAClosedThirdBulk").innerHTML = 0;
-	 document.getElementById("lastHourFTAClosedFirstBulk").innerHTML = 0;
-	 document.getElementById("lastHourFTAClosedSecondBulk").innerHTML = 0;
-	 document.getElementById("lastHourFTAClosedThirdBulk").innerHTML = 0;
-	 document.getElementById("lastDayFTAClosedFirstBulk").innerHTML = 0;
-	 document.getElementById("lastDayFTAClosedSecondBulk").innerHTML = 0;
-	 document.getElementById("lastDayFTAClosedThirdBulk").innerHTML = 0;
-	 document.getElementById("lastMonthFTAClosedFirstBulk").innerHTML = 0;
-	 document.getElementById("lastMonthFTAClosedSecondBulk").innerHTML = 0;
-	 document.getElementById("lastMonthFTAClosedThirdBulk").innerHTML = 0;
-	 for (var m = 0; m < length; m++){
-		 TimeAnswer = 0;
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-		 if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
-			whatTime = answer[m].messageRecords[0].timeL;
-			isAnswered = 0;
-			for (var n = 1; n < howManyMessages; n++){
-				if(answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID){
-					TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-					isAnswered = 1;
-					n = howManyMessages;
-				}
-			}
-			if (isAnswered && (whatTime > tenMinutesAgo)){
-				TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
-				numberTenMinutesAgo = numberTenMinutesAgo + 1;
-				switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("last10FTAClosedFirstBulk").innerHTML ++;
-						document.getElementById("lastHourFTAClosedFirstBulk").innerHTML ++;
-						document.getElementById("lastDayFTAClosedFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAClosedFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("last10FTAClosedSecondBulk").innerHTML ++;
-						document.getElementById("lastHourFTAClosedSecondBulk").innerHTML ++;
-						document.getElementById("lastDayFTAClosedSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAClosedSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("last10FTAClosedThirdBulk").innerHTML ++;
-						document.getElementById("lastHourFTAClosedThirdBulk").innerHTML ++;
-						document.getElementById("lastDayFTAClosedThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAClosedThirdBulk").innerHTML ++;
-						break;
-				}
-		 	}
-		 	else if (isAnswered && (whatTime > oneHourAgo)){
-				TotalTimeOneHourAgo = TotalTimeOneHourAgo + TimeAnswer;
-				numberOneHourAgo = numberOneHourAgo + 1;
-				switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastHourFTAClosedFirstBulk").innerHTML ++;
-						document.getElementById("lastDayFTAClosedFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAClosedFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastHourFTAClosedSecondBulk").innerHTML ++;
-						document.getElementById("lastDayFTAClosedSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAClosedSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastHourFTAClosedThirdBulk").innerHTML ++;
-						document.getElementById("lastDayFTAClosedThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAClosedThirdBulk").innerHTML ++;
-						break;
-				}
-		 	}
-		 	else if (isAnswered && (whatTime > midnightToday)){
-				TotalTimeOneDayAgo = TotalTimeOneDayAgo + TimeAnswer;
-				numberOneDayAgo = numberOneDayAgo + 1;
-				switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastDayFTAClosedFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAClosedFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastDayFTAClosedSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAClosedSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastDayFTAClosedThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthFTAClosedThirdBulk").innerHTML ++;
-						break;
-				}
-		 	}
-		 	else if (isAnswered){
-				TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TimeAnswer;
-				numberOneMonthAgo = numberOneMonthAgo + 1;
-				switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastMonthFTAClosedFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastMonthFTAClosedSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastMonthFTAClosedThirdBulk").innerHTML ++;
-						break;
-				}
-		 	} 
-		 }
-		 }
-	 }
-	 var perc = percentage(document.getElementById("lastMonthFTAClosedFirstBulk").innerHTML, document.getElementById("lastMonthFTAClosedSecondBulk").innerHTML, document.getElementById("lastMonthFTAClosedThirdBulk").innerHTML);
-	 document.getElementById("lastMonthFTAClosedFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastMonthFTAClosedSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastMonthFTAClosedThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("lastDayFTAClosedFirstBulk").innerHTML, document.getElementById("lastDayFTAClosedSecondBulk").innerHTML, document.getElementById("lastDayFTAClosedThirdBulk").innerHTML);
-	 document.getElementById("lastDayFTAClosedFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastDayFTAClosedSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastDayFTAClosedThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("lastHourFTAClosedFirstBulk").innerHTML, document.getElementById("lastHourFTAClosedSecondBulk").innerHTML, document.getElementById("lastHourFTAClosedThirdBulk").innerHTML);
-	 document.getElementById("lastHourFTAClosedFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastHourFTAClosedSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastHourFTAClosedThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("last10FTAClosedFirstBulk").innerHTML, document.getElementById("last10FTAClosedSecondBulk").innerHTML, document.getElementById("last10FTAClosedThirdBulk").innerHTML);
-	 document.getElementById("last10FTAClosedFirstBulk").innerHTML = perc[0];
-	 document.getElementById("last10FTAClosedSecondBulk").innerHTML = perc[1];
-	 document.getElementById("last10FTAClosedThirdBulk").innerHTML = perc[2];
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 TotalTimeOneHourAgo = TotalTimeTenMinutesAgo + TotalTimeOneHourAgo;
-	 TotalTimeOneDayAgo = TotalTimeOneHourAgo + TotalTimeOneDayAgo;
-	 TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TotalTimeOneDayAgo;
-	 document.getElementById("last10FTAClosed").innerHTML = secondsToString(TotalTimeTenMinutesAgo/numberTenMinutesAgo);
-	 document.getElementById("lastHourFTAClosed").innerHTML = secondsToString(TotalTimeOneHourAgo/numberOneHourAgo);
-	 document.getElementById("lastDayFTAClosed").innerHTML = secondsToString(TotalTimeOneDayAgo/numberOneDayAgo);
-	 document.getElementById("lastMonthFTAClosed").innerHTML = secondsToString(TotalTimeOneMonthAgo/numberOneMonthAgo);
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 TotalTimeTenMinutesAgo = 0;
-	 TotalTimeOneHourAgo = 0;
-	 TotalTimeOneDayAgo = 0;
-	 TotalTimeOneMonthAgo = 0;
-	 for (var m = 0; m < length; m++){
-		 isAnswered = 0;
-		 if(answer[m].info.status === "CLOSE"){
-		 	TimeAnswer = 0;
-		 	howManyMessages = answer[m].messageRecords.length;
-			if(howManyMessages){
-		 	for (var n = 0; n < howManyMessages; n++){
-			 	if((answer[m].messageRecords[n].sentBy === "Consumer") && !isAnswered){
-				 	whatTime = answer[m].messageRecords[n].timeL;
-				 	isAnswered = 1;
-			 	}
-			 	else if((answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID) && isAnswered){
-				 	TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-				 	if (whatTime > tenMinutesAgo){
-						TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
-						numberTenMinutesAgo = numberTenMinutesAgo + 1;
-		 		 	}
-		 		 	else if (whatTime > oneHourAgo){
-						TotalTimeOneHourAgo = TotalTimeOneHourAgo + TimeAnswer;
-						numberOneHourAgo = numberOneHourAgo + 1;
-		 		 	}
-		 		 	else if (whatTime > midnightToday){
-						TotalTimeOneDayAgo = TotalTimeOneDayAgo + TimeAnswer;
-						numberOneDayAgo = numberOneDayAgo + 1;
-		 		 	}
-		 		 	else{
-						TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TimeAnswer;
-						numberOneMonthAgo = numberOneMonthAgo + 1;
-		 		 	} 
-				 	isAnswered = 0;
-			 	}
-		 	}
-			}
-		 }	 
-	 }
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 TotalTimeOneHourAgo = TotalTimeTenMinutesAgo + TotalTimeOneHourAgo;
-	 TotalTimeOneDayAgo = TotalTimeOneHourAgo + TotalTimeOneDayAgo;
-	 TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TotalTimeOneDayAgo;
-	 document.getElementById("last10GTAClosed").innerHTML = secondsToString(TotalTimeTenMinutesAgo/numberTenMinutesAgo);
-	 document.getElementById("lastHourGTAClosed").innerHTML = secondsToString(TotalTimeOneHourAgo/numberOneHourAgo);
-	 document.getElementById("lastDayGTAClosed").innerHTML = secondsToString(TotalTimeOneDayAgo/numberOneDayAgo);
-	 document.getElementById("lastMonthGTAClosed").innerHTML = secondsToString(TotalTimeOneMonthAgo/numberOneMonthAgo);
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 TotalTimeTenMinutesAgo = 0;
-	 TotalTimeOneHourAgo = 0;
-	 TotalTimeOneDayAgo = 0;
-	 TotalTimeOneMonthAgo = 0;
-	 for (var m = 0; m < length; m++){
-		 isAnswered = 0;
-		 if(answer[m].info.status === "OPEN"){
-		 	TimeAnswer = 0;
-		 	howManyMessages = answer[m].messageRecords.length;
-			if(howManyMessages){
-		 	for (var n = 0; n < howManyMessages; n++){
-			 	if((answer[m].messageRecords[n].sentBy === "Consumer") && !isAnswered){
-				 	whatTime = answer[m].messageRecords[n].timeL;
-				 	isAnswered = 1;
-			 	}
-			 	else if((answer[m].messageRecords[n].sentBy === "Agent" && answer[m].messageRecords[n].participantId !== FacebookBotID) && isAnswered){
-				 	TimeAnswer = (answer[m].messageRecords[n].timeL - whatTime)/1000;
-				 	if (whatTime > tenMinutesAgo){
-						TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
-						numberTenMinutesAgo = numberTenMinutesAgo + 1; 
-		 		 	}
-		 		 	else if (whatTime > oneHourAgo){
-						TotalTimeOneHourAgo = TotalTimeOneHourAgo + TimeAnswer;
-						numberOneHourAgo = numberOneHourAgo + 1;
-		 		 	}
-		 		 	else if (whatTime > midnightToday){
-						TotalTimeOneDayAgo = TotalTimeOneDayAgo + TimeAnswer;
-						numberOneDayAgo = numberOneDayAgo + 1;
-		 		 	}
-		 		 	else{
-						TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TimeAnswer;
-						numberOneMonthAgo = numberOneMonthAgo + 1;
-		 		 	} 
-				 	isAnswered = 0;
-			 	}
-		 	}
-			}
-		 }	 
-	 }
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 TotalTimeOneHourAgo = TotalTimeTenMinutesAgo + TotalTimeOneHourAgo;
-	 TotalTimeOneDayAgo = TotalTimeOneHourAgo + TotalTimeOneDayAgo;
-	 TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TotalTimeOneDayAgo;
-	 document.getElementById("last10GTAOpen").innerHTML = secondsToString(TotalTimeTenMinutesAgo/numberTenMinutesAgo);
-	 document.getElementById("lastHourGTAOpen").innerHTML = secondsToString(TotalTimeOneHourAgo/numberOneHourAgo);
-	 document.getElementById("lastDayGTAOpen").innerHTML = secondsToString(TotalTimeOneDayAgo/numberOneDayAgo);
-	 document.getElementById("lastMonthGTAOpen").innerHTML = secondsToString(TotalTimeOneMonthAgo/numberOneMonthAgo);
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 TotalTimeTenMinutesAgo = 0;
-	 TotalTimeOneHourAgo = 0;
-	 TotalTimeOneDayAgo = 0;
-	 TotalTimeOneMonthAgo = 0;
-	 isAnswered = 0;
-	 document.getElementById("last10ClosedTimeToAcceptFirstBulk").innerHTML = 0;
-	 document.getElementById("last10ClosedTimeToAcceptSecondBulk").innerHTML = 0;
-	 document.getElementById("last10ClosedTimeToAcceptThirdBulk").innerHTML = 0;
-	 document.getElementById("lastHourClosedTimeToAcceptFirstBulk").innerHTML = 0;
-	 document.getElementById("lastHourClosedTimeToAcceptSecondBulk").innerHTML = 0;
-	 document.getElementById("lastHourClosedTimeToAcceptThirdBulk").innerHTML = 0;
-	 document.getElementById("lastDayClosedTimeToAcceptFirstBulk").innerHTML = 0;
-	 document.getElementById("lastDayClosedTimeToAcceptSecondBulk").innerHTML = 0;
-	 document.getElementById("lastDayClosedTimeToAcceptThirdBulk").innerHTML = 0;
-	 document.getElementById("lastMonthClosedTimeToAcceptFirstBulk").innerHTML = 0;
-	 document.getElementById("lastMonthClosedTimeToAcceptSecondBulk").innerHTML = 0;
-	 document.getElementById("lastMonthClosedTimeToAcceptThirdBulk").innerHTML = 0;
-	 for (var m = 0; m < length; m++){
-		 TimeAnswer = 0;
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-		 if (answer[m].info.status === "CLOSE" && answer[m].messageRecords[0].sentBy === "Consumer"){
-			whatTime = answer[m].info.startTimeL;
-			if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
-				for (var b = 0; b < answer[m].agentParticipants.length; b++){
-					if(answer[m].agentParticipants[b].userTypeName === "Human"){
-						TimeAnswer = (answer[m].agentParticipants[b].timeL - whatTime)/1000;
-						b = answer[m].agentParticipants.length;
-					}
-				}
-				if (whatTime > tenMinutesAgo){
-					TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
-					numberTenMinutesAgo = numberTenMinutesAgo + 1;
-					switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("last10ClosedTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastHourClosedTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastDayClosedTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthClosedTimeToAcceptFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("last10ClosedTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastHourClosedTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastDayClosedTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthClosedTimeToAcceptSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("last10ClosedTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastHourClosedTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastDayClosedTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthClosedTimeToAcceptThirdBulk").innerHTML ++;
-						break;
-					}
-		 		}
-		 		else if (whatTime > oneHourAgo){
-					TotalTimeOneHourAgo = TotalTimeOneHourAgo + TimeAnswer;
-					numberOneHourAgo = numberOneHourAgo + 1;
-					switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastHourClosedTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastDayClosedTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthClosedTimeToAcceptFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastHourClosedTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastDayClosedTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthClosedTimeToAcceptSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastHourClosedTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastDayClosedTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthClosedTimeToAcceptThirdBulk").innerHTML ++;
-						break;
-					}
-		 		}
-		 		else if (whatTime > midnightToday){
-					TotalTimeOneDayAgo = TotalTimeOneDayAgo + TimeAnswer;
-					numberOneDayAgo = numberOneDayAgo + 1;
-					switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastDayClosedTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthClosedTimeToAcceptFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastDayClosedTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthClosedTimeToAcceptSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastDayClosedTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthClosedTimeToAcceptThirdBulk").innerHTML ++;
-						break;
-					}
-		 		}
-		 		else {
-					TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TimeAnswer;
-					numberOneMonthAgo = numberOneMonthAgo + 1;
-					switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastMonthClosedTimeToAcceptFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastMonthClosedTimeToAcceptSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastMonthClosedTimeToAcceptThirdBulk").innerHTML ++;
-						break;
-					}
-		 		}
-			}
-		 }
-		 }
-	 }
-	 var perc = percentage(document.getElementById("lastMonthClosedTimeToAcceptFirstBulk").innerHTML, document.getElementById("lastMonthClosedTimeToAcceptSecondBulk").innerHTML, document.getElementById("lastMonthClosedTimeToAcceptThirdBulk").innerHTML);
-	 document.getElementById("lastMonthClosedTimeToAcceptFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastMonthClosedTimeToAcceptSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastMonthClosedTimeToAcceptThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("lastDayClosedTimeToAcceptFirstBulk").innerHTML, document.getElementById("lastDayClosedTimeToAcceptSecondBulk").innerHTML, document.getElementById("lastDayClosedTimeToAcceptThirdBulk").innerHTML);
-	 document.getElementById("lastDayClosedTimeToAcceptFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastDayClosedTimeToAcceptSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastDayClosedTimeToAcceptThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("lastHourClosedTimeToAcceptFirstBulk").innerHTML, document.getElementById("lastHourClosedTimeToAcceptSecondBulk").innerHTML, document.getElementById("lastHourClosedTimeToAcceptThirdBulk").innerHTML);
-	 document.getElementById("lastHourClosedTimeToAcceptFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastHourClosedTimeToAcceptSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastHourClosedTimeToAcceptThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("last10ClosedTimeToAcceptFirstBulk").innerHTML, document.getElementById("last10ClosedTimeToAcceptSecondBulk").innerHTML, document.getElementById("last10ClosedTimeToAcceptThirdBulk").innerHTML);
-	 document.getElementById("last10ClosedTimeToAcceptFirstBulk").innerHTML = perc[0];
-	 document.getElementById("last10ClosedTimeToAcceptSecondBulk").innerHTML = perc[1];
-	 document.getElementById("last10ClosedTimeToAcceptThirdBulk").innerHTML = perc[2];
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 TotalTimeOneHourAgo = TotalTimeTenMinutesAgo + TotalTimeOneHourAgo;
-	 TotalTimeOneDayAgo = TotalTimeOneHourAgo + TotalTimeOneDayAgo;
-	 TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TotalTimeOneDayAgo;
-	 document.getElementById("last10ClosedTimeToAccept").innerHTML = secondsToString(TotalTimeTenMinutesAgo/numberTenMinutesAgo);
-	 document.getElementById("lastHourClosedTimeToAccept").innerHTML = secondsToString(TotalTimeOneHourAgo/numberOneHourAgo);
-	 document.getElementById("lastDayClosedTimeToAccept").innerHTML = secondsToString(TotalTimeOneDayAgo/numberOneDayAgo);
-	 document.getElementById("lastMonthClosedTimeToAccept").innerHTML = secondsToString(TotalTimeOneMonthAgo/numberOneMonthAgo);
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 TotalTimeTenMinutesAgo = 0;
-	 TotalTimeOneHourAgo = 0;
-	 TotalTimeOneDayAgo = 0;
-	 TotalTimeOneMonthAgo = 0;
-	 isAnswered = 0;
-	 document.getElementById("last10OpenTimeToAcceptFirstBulk").innerHTML = 0;
-	 document.getElementById("last10OpenTimeToAcceptSecondBulk").innerHTML = 0;
-	 document.getElementById("last10OpenTimeToAcceptThirdBulk").innerHTML = 0;
-	 document.getElementById("lastHourOpenTimeToAcceptFirstBulk").innerHTML = 0;
-	 document.getElementById("lastHourOpenTimeToAcceptSecondBulk").innerHTML = 0;
-	 document.getElementById("lastHourOpenTimeToAcceptThirdBulk").innerHTML = 0;
-	 document.getElementById("lastDayOpenTimeToAcceptFirstBulk").innerHTML = 0;
-	 document.getElementById("lastDayOpenTimeToAcceptSecondBulk").innerHTML = 0;
-	 document.getElementById("lastDayOpenTimeToAcceptThirdBulk").innerHTML = 0;
-	 document.getElementById("lastMonthOpenTimeToAcceptFirstBulk").innerHTML = 0;
-	 document.getElementById("lastMonthOpenTimeToAcceptSecondBulk").innerHTML = 0;
-	 document.getElementById("lastMonthOpenTimeToAcceptThirdBulk").innerHTML = 0;
-	 for (var m = 0; m < length; m++){
-		 TimeAnswer = 0;
-		 howManyMessages = answer[m].messageRecords.length;
-		 if(howManyMessages){
-		 if (answer[m].info.status === "OPEN" && answer[m].messageRecords[0].sentBy === "Consumer"){
-			whatTime = answer[m].info.startTimeL;
-			if(answer[m].hasOwnProperty('agentParticipants') && answer[m].agentParticipants.length){
-				for (var b = 0; b < answer[m].agentParticipants.length; b++){
-					if(answer[m].agentParticipants[b].userTypeName === "Human"){
-						TimeAnswer = (answer[m].agentParticipants[b].timeL - whatTime)/1000;
-						b = answer[m].agentParticipants.length;
-					}
-				}
-				if (whatTime > tenMinutesAgo){
-					TotalTimeTenMinutesAgo = TotalTimeTenMinutesAgo + TimeAnswer;
-					numberTenMinutesAgo = numberTenMinutesAgo + 1;
-					switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("last10OpenTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastHourOpenTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastDayOpenTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthOpenTimeToAcceptFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("last10OpenTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastHourOpenTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastDayOpenTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthOpenTimeToAcceptSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("last10OpenTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastHourOpenTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastDayOpenTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthOpenTimeToAcceptThirdBulk").innerHTML ++;
-						break;
-					}
-		 		}
-		 		else if (whatTime > oneHourAgo){
-					TotalTimeOneHourAgo = TotalTimeOneHourAgo + TimeAnswer;
-					numberOneHourAgo = numberOneHourAgo + 1;
-					switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastHourOpenTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastDayOpenTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthOpenTimeToAcceptFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastHourOpenTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastDayOpenTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthOpenTimeToAcceptSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastHourOpenTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastDayOpenTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthOpenTimeToAcceptThirdBulk").innerHTML ++;
-						break;
-					}
-		 		}
-		 		else if (whatTime > midnightToday){
-					TotalTimeOneDayAgo = TotalTimeOneDayAgo + TimeAnswer;
-					numberOneDayAgo = numberOneDayAgo + 1;
-					switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastDayOpenTimeToAcceptFirstBulk").innerHTML ++;
-						document.getElementById("lastMonthOpenTimeToAcceptFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastDayOpenTimeToAcceptSecondBulk").innerHTML ++;
-						document.getElementById("lastMonthOpenTimeToAcceptSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastDayOpenTimeToAcceptThirdBulk").innerHTML ++;
-						document.getElementById("lastMonthOpenTimeToAcceptThirdBulk").innerHTML ++;
-						break;
-					}
-		 		}
-		 		else {
-					TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TimeAnswer;
-					numberOneMonthAgo = numberOneMonthAgo + 1;
-					switch(findBulk(TimeAnswer)) {
-					case 1:
-						document.getElementById("lastMonthOpenTimeToAcceptFirstBulk").innerHTML ++;
-						break;
-					case 2:
-						document.getElementById("lastMonthOpenTimeToAcceptSecondBulk").innerHTML ++;
-						break;
-					case 3:
-						document.getElementById("lastMonthOpenTimeToAcceptThirdBulk").innerHTML ++;
-						break;
-					}
-		 		}
-			}
-		 }
-		 }
-	 }
-	 var perc = percentage(document.getElementById("lastMonthOpenTimeToAcceptFirstBulk").innerHTML, document.getElementById("lastMonthOpenTimeToAcceptSecondBulk").innerHTML, document.getElementById("lastMonthOpenTimeToAcceptThirdBulk").innerHTML);
-	 document.getElementById("lastMonthOpenTimeToAcceptFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastMonthOpenTimeToAcceptSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastMonthOpenTimeToAcceptThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("lastDayOpenTimeToAcceptFirstBulk").innerHTML, document.getElementById("lastDayOpenTimeToAcceptSecondBulk").innerHTML, document.getElementById("lastDayOpenTimeToAcceptThirdBulk").innerHTML);
-	 document.getElementById("lastDayOpenTimeToAcceptFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastDayOpenTimeToAcceptSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastDayOpenTimeToAcceptThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("lastHourOpenTimeToAcceptFirstBulk").innerHTML, document.getElementById("lastHourOpenTimeToAcceptSecondBulk").innerHTML, document.getElementById("lastHourOpenTimeToAcceptThirdBulk").innerHTML);
-	 document.getElementById("lastHourOpenTimeToAcceptFirstBulk").innerHTML = perc[0];
-	 document.getElementById("lastHourOpenTimeToAcceptSecondBulk").innerHTML = perc[1];
-	 document.getElementById("lastHourOpenTimeToAcceptThirdBulk").innerHTML = perc[2];
-	 perc = percentage(document.getElementById("last10OpenTimeToAcceptFirstBulk").innerHTML, document.getElementById("last10OpenTimeToAcceptSecondBulk").innerHTML, document.getElementById("last10OpenTimeToAcceptThirdBulk").innerHTML);
-	 document.getElementById("last10OpenTimeToAcceptFirstBulk").innerHTML = perc[0];
-	 document.getElementById("last10OpenTimeToAcceptSecondBulk").innerHTML = perc[1];
-	 document.getElementById("last10OpenTimeToAcceptThirdBulk").innerHTML = perc[2];
-	 numberOneHourAgo = numberTenMinutesAgo + numberOneHourAgo;
-	 numberOneDayAgo = numberOneDayAgo + numberOneHourAgo;
-	 numberOneMonthAgo = numberOneMonthAgo + numberOneDayAgo;
-	 TotalTimeOneHourAgo = TotalTimeTenMinutesAgo + TotalTimeOneHourAgo;
-	 TotalTimeOneDayAgo = TotalTimeOneHourAgo + TotalTimeOneDayAgo;
-	 TotalTimeOneMonthAgo = TotalTimeOneMonthAgo + TotalTimeOneDayAgo;
-	 document.getElementById("last10OpenTimeToAccept").innerHTML = secondsToString(TotalTimeTenMinutesAgo/numberTenMinutesAgo);
-	 document.getElementById("lastHourOpenTimeToAccept").innerHTML = secondsToString(TotalTimeOneHourAgo/numberOneHourAgo);
-	 document.getElementById("lastDayOpenTimeToAccept").innerHTML = secondsToString(TotalTimeOneDayAgo/numberOneDayAgo);
-	 document.getElementById("lastMonthOpenTimeToAccept").innerHTML = secondsToString(TotalTimeOneMonthAgo/numberOneMonthAgo);
-	 numberTenMinutesAgo = 0;
-	 numberOneHourAgo = 0;
-	 numberOneDayAgo = 0;
-	 numberOneMonthAgo = 0;
-	 TotalTimeTenMinutesAgo = 0;
-	 TotalTimeOneHourAgo = 0;
-	 TotalTimeOneDayAgo = 0;
-	 TotalTimeOneMonthAgo = 0;
-	 isAnswered = 0;
-	  
-	 $('#loadingStats').css('display', 'none');
-	 // $('#loadedStats').css('display', 'inline');
-  
+	  $('#loadingStats').css('display', 'none');
+	  $('#loadedStats').css('display', 'inline');
+	  var answerLength = answer.length;
+	  var latestSkill = "";
+	  var isAssigned = false;
+	  for (var z = 0; z < answerLength; z++){
+		  latestSkill = answer[z].info.latestSkillName;
+		  if(answer[z].info.latestQueueState === "IN_QUEUE"){
+			  isAssigned = false;
+		  } else{
+			  isAssigned = true;
+		  }
+		  switch(latestSkill) {
+			  case "Facebook_priv":
+				  FBPopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  FBPassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  FBPunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+				  
+			case "facebook_risvegliate":
+				  FBRopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  FBRassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  FBRunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "Facebook_priv_night":
+				  FBPNopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  FBPNassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  FBPNunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "Facebook_priv_night_risvegli":
+				  FBPNRopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  FBPNRassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  FBPNRunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "human":
+				  HopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  HassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  HunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "human_risvegliate":
+				  HRopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  HRassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  HRunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "human_night":
+				  HNopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  HNassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  HNunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "human_night_risvegliate":
+				  HNRopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  HNRassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  HNRunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "Outbound":
+				  OopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  OassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  OunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "outbound_risvegliate":
+				  ORopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  ORassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  ORunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "Outbound_fixed":
+				  OFopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  OFassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  OFunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "Outbound_fixed_risvegliate":
+				  OFRopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  OFRassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  OFRunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+			case "Inglese":
+				  IopenConv ++;
+				  TopenConv ++;
+				  if(isAssigned){
+					  IassignedConv ++;
+					  TassignedConv ++;
+				  } else{
+					  IunassignedConv ++;
+					  TunassignedConv ++;
+				  }
+				  break;
+				  
+				  
+				  
+				  
+				  
+		  }
+	  }
+	  document.getElementById("FBPopenConv").innerHTML = FBPopenConv;
+	  document.getElementById("FBPassignedConv").innerHTML = FBPassignedConv;
+	  document.getElementById("FBPunassignedConv").innerHTML = FBPunassignedConv;
+	  document.getElementById("FBRopenConv").innerHTML = FBRopenConv;
+	  document.getElementById("FBRassignedConv").innerHTML = FBRassignedConv;
+	  document.getElementById("FBRunassignedConv").innerHTML = FBRunassignedConv;
+	  document.getElementById("FBPNopenConv").innerHTML = FBPNopenConv;
+	  document.getElementById("FBPNassignedConv").innerHTML = FBPNassignedConv;
+	  document.getElementById("FBPNunassignedConv").innerHTML = FBPNunassignedConv;
+	  document.getElementById("FBPNRopenConv").innerHTML = FBPNRopenConv;
+	  document.getElementById("FBPNRassignedConv").innerHTML = FBPNRassignedConv;
+	  document.getElementById("FBPNRunassignedConv").innerHTML = FBPNRunassignedConv;
+	  document.getElementById("HopenConv").innerHTML = HopenConv;
+	  document.getElementById("HassignedConv").innerHTML = HassignedConv;
+	  document.getElementById("HunassignedConv").innerHTML = HunassignedConv;
+	  document.getElementById("HRopenConv").innerHTML = HRopenConv;
+	  document.getElementById("HRassignedConv").innerHTML = HRassignedConv;
+	  document.getElementById("HRunassignedConv").innerHTML = HRunassignedConv;
+	  document.getElementById("HNopenConv").innerHTML = HNopenConv;
+	  document.getElementById("HNassignedConv").innerHTML = HNassignedConv;
+	  document.getElementById("HNunassignedConv").innerHTML = HNunassignedConv;
+	  document.getElementById("HNRopenConv").innerHTML = HNRopenConv;
+	  document.getElementById("HNRassignedConv").innerHTML = HNRassignedConv;
+	  document.getElementById("HNRunassignedConv").innerHTML = HNRunassignedConv;
+	  document.getElementById("OopenConv").innerHTML = OopenConv;
+	  document.getElementById("OassignedConv").innerHTML = OassignedConv;
+	  document.getElementById("OunassignedConv").innerHTML = OunassignedConv;
+	  document.getElementById("ORopenConv").innerHTML = ORopenConv;
+	  document.getElementById("ORassignedConv").innerHTML = ORassignedConv;
+	  document.getElementById("ORunassignedConv").innerHTML = ORunassignedConv;
+	  document.getElementById("OFopenConv").innerHTML = OFopenConv;
+	  document.getElementById("OFassignedConv").innerHTML = OFassignedConv;
+	  document.getElementById("OFunassignedConv").innerHTML = OFunassignedConv;
+	  document.getElementById("OFRopenConv").innerHTML = OFRopenConv;
+	  document.getElementById("OFRassignedConv").innerHTML = OFRassignedConv;
+	  document.getElementById("OFRunassignedConv").innerHTML = OFRunassignedConv;
+	  document.getElementById("IopenConv").innerHTML = IopenConv;
+	  document.getElementById("IassignedConv").innerHTML = IassignedConv;
+	  document.getElementById("IunassignedConv").innerHTML = IunassignedConv;
+	  document.getElementById("TopenConv").innerHTML = TopenConv;
+	  document.getElementById("TassignedConv").innerHTML = TassignedConv;
+	  document.getElementById("TunassignedConv").innerHTML = TunassignedConv;
 	 
   }
 	
@@ -2244,7 +1219,10 @@ function botOrNot() {
 						loadSkills();
 						loadTeams();
 						refreshTranscripts();
+						$('#loadedStats').css('display', 'none');
+						$('#loadingStats').css('display', 'inline');
 						loadConvs();
+						retrieveAgentsLogged();
                               		},
                               		error: function error(e, text) {
 						localStorage.setItem('account_number', '');
@@ -2286,43 +1264,13 @@ checklogin(accnumb, bearer);
 	  }
 	  if($(evt.target).is('#refresh')) {
 		  
-		  var isChanged = 0;
-		  var length = skillArray.length;
-		  for (var m = 0; m < length; m++){
-			  if(skillArray[m].name === $("#skillName").val()){
-				  if(skillArray[m].name === "human"){
-					  skillNumber = skillArray[m].id + overwriteHumanSkill;
-					  isChanged = 1;
-				  }else{
-				  	skillNumber = skillArray[m].id;
-				  	isChanged = 1;
-				  }
-			  }
-		  }
-		  if (!isChanged){
-			  skillNumber = "-1";
-		  }
-		  length = teamArray.length;
-		  for (var m = 0; m < length; m++){
-			  if(teamArray[m].name === $("#teamName").val()){
-				  teamNumber = teamArray[m].id;
-				  console.log("teamNumber="+teamNumber);
-			  }
-		  }
-		  if (customDate < (Date.now() - (1000*60*60*24*30))){
-			  document.getElementById("refreshMSG").innerHTML = "Please do a query related to the last 30 days!";
-			  document.getElementById("refreshMSG").style = "color : red";
-		  }
-		  else if (customDate > endCustomDate){
-			  document.getElementById("refreshMSG").innerHTML = "Start date ist more recent than the end date!";
-			  document.getElementById("refreshMSG").style = "color : red";
-		  }
-		  else{
-			  document.getElementById("refreshMSG").innerHTML = "";
-			  console.log("skill:" + skillNumber + "*****start:" + customDate + "*****end:" + endCustomDate);
-			  loadConvs();
-		  }
+		document.getElementById("loaderMSG").innerHTML = "Refreshing data!";
+		document.getElementById("loaderMSG").style = "color : green";
 		  
+		$('#loadedStats').css('display', 'none');
+		$('#loadingStats').css('display', 'inline');
+		loadConvs();
+		retrieveAgentsLogged();
 		  							
 	  }
   });
@@ -2369,14 +1317,18 @@ checklogin(accnumb, bearer);
 								  setTimeout(function(){
 									  $('#myloader').css('display', 'none');
 									  $('#myreports').css('display', 'inline');
-									  setInterval(function(){
-										  loadBar();
-									  }, 30000);
+									  
 									  loadBar();
 									  loadSkills();
 									  loadTeams();
 									  refreshTranscripts();
+									  
+									  $('#loadedStats').css('display', 'none');
+									  $('#loadingStats').css('display', 'inline');
+	 
 									  loadConvs();
+									  retrieveAgentsLogged();
+									  
 								  }, 2000);
 							  },
 							  error: function error(e, text) {
@@ -2580,12 +1532,9 @@ checklogin(accnumb, bearer);
  function loadConvs(){
 	 
 	 
-	 $('#loadedStats').css('display', 'none');
-	 $('#loadingStats').css('display', 'inline');
 	 
 	 var end = Date.now();
-	 // var start = end - (1000*60*60*24*30);  // loading Convs started till 30 days ago
-	 var start = end - (1000);  // loading Convs started till 1 sec ago
+	 var start = end - (1000*60*60*24*30);  // loading Convs started till 30 days ago
 	 var offset = 0;
 	 var body = "";
 	 var answer = [];
@@ -2628,7 +1577,6 @@ checklogin(accnumb, bearer);
 					      console.log(answer.length);
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      console.log(answer.length);
-					      loadCustomStats(answer);
 					      loadStats(answer);
 				      }
 				      
@@ -2663,6 +1611,8 @@ checklogin(accnumb, bearer);
 					      loadOpenConvs(body, offset, callback);   
 				      }
 				      else{
+					      
+					      /****************
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      offset = 0;
 					      if(skillNumber === "-1"){
@@ -2680,6 +1630,12 @@ checklogin(accnumb, bearer);
 					      }
 					      console.log(body);
 					      loadClosedConvs(body, offset, callback);
+					      ******************/
+					      
+					      // console.log(answer.length);
+					      answer = answer.concat(data.conversationHistoryRecords);
+					      console.log(answer.length);
+					      loadStats(answer);
 				      }
 				      
      
@@ -2815,7 +1771,6 @@ checklogin(accnumb, bearer);
 								      }
 								      
 								      if (isAnswered){
-									      // firstTimeAnswer = secondsToString(TimeAnswer);
 									      firstTimeAnswer = Math.floor(parseInt(TimeAnswer));
 								      }
 								      else{
@@ -2873,7 +1828,6 @@ checklogin(accnumb, bearer);
 							      var participantID = 0;
 							      var controlOB = 0;
 							      var night = "No";
-
 							      if((channel === "FaceBook") || (channel === "Web")){
 								      if(answer[i].hasOwnProperty('transfers')){
 									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
@@ -2972,7 +1926,6 @@ checklogin(accnumb, bearer);
 								      
 								      
 								      
-
 								      
 								      
 								  
@@ -3176,7 +2129,6 @@ checklogin(accnumb, bearer);
 						      howManyMessages = answer[i].messageRecords.length;
 						      var partialTime = 0;
 						      if(howManyMessages){
-
 						      		if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
 									if(answer[i].hasOwnProperty('transfers') && answer[i].transfers.length){
 										var agentParticipantsLength = answer[i].agentParticipants.length;
@@ -3282,7 +2234,6 @@ checklogin(accnumb, bearer);
 																}
 																f = transferLength;
 															}
-
 														}
 														else if(answer[i].transfers[f].targetSkillName.indexOf("utbound") > -1){
 															
@@ -3313,7 +2264,6 @@ checklogin(accnumb, bearer);
 																}
 																f = transferLength;
 															}
-
 															
 															
 															
@@ -3387,7 +2337,6 @@ checklogin(accnumb, bearer);
 						        numberTeamsOutbound = arrayTeamsOutbound.length;
 						      
 								      
-
 						      
 						      
 						      
@@ -3414,7 +2363,6 @@ checklogin(accnumb, bearer);
 										
 								      }
 								      if (isAnswered){
-									      // timeToAccept = secondsToString(TimeAnswer);
 									      timeToAccept = parseInt(TimeAnswer);
 								      }
 								      else{
@@ -3489,7 +2437,6 @@ checklogin(accnumb, bearer);
 							      durationinseconds = "---";
 						      }
 						      
-
 						      var lastActivityAgent = 0;
 						      var lastTypeActivityAgent = 0;
 						      if((lastMessageAgent !== 0) || (lastTagFromAgent !== 0)){
@@ -3612,9 +2559,24 @@ checklogin(accnumb, bearer);
 						      } else{
 						      		timestampLastActOut = new Date(timestampLastActOut);
 						      }
-						      		
-						
 						      
+						      
+						      
+						      var timestampNextUnfreeze = "-";
+						      if (answer[i].hasOwnProperty('transfers')){
+						      		var transferlength = answer[i].transfers.length;
+								if (transferlength > 1){
+									if(answer[i].transfers[(transferlength - 2)].hasOwnProperty('contextData')){
+										if(answer[i].transfers[(transferlength - 2)].contextData.hasOwnProperty('structuredMetadata')){
+											if(answer[i].transfers[(transferlength - 2)].contextData.structuredMetadata[0].botResponse.intents[0].id === "awakeLater"){
+												timestampNextUnfreeze = new Date(parseInt(answer[i].transfers[(transferlength - 2)].contextData.structuredMetadata[0].botResponse.intents[0].name));
+											}
+										}
+									}
+								}
+						      }
+						      
+	
 						     
 						      
 						      var pieceToAdd = {"start": startDateEngagement,
@@ -3665,6 +2627,7 @@ checklogin(accnumb, bearer);
 									"timeInFacebook_bot": timeSpentInFacebook_bot,
 									"timestampLastActGen": timestampLastActGen,
 									"timestampLastActOut": timestampLastActOut,
+									"timestampNextUnfreeze": timestampNextUnfreeze,
 									"lastActivityAgent": lastActivityAgent,
 									"lastTypeActivityAgent": lastTypeActivityAgent,
 									"customerName": customerName,
@@ -3751,6 +2714,7 @@ checklogin(accnumb, bearer);
 			"timeInFacebook_bot": "String",
 			"timestampLastActGen": "String",
 			"timestampLastActOut": "String",
+			"timestampNextUnfreeze": "String",
 			"lastActivityAgent": "String",
 			"lastTypeActivityAgent": "String",
 			"customerName": "String",
