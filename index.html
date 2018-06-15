@@ -7,7 +7,6 @@
 
 
 
-
 <head>
   
 </head>
@@ -21,22 +20,22 @@ body{
 }
 .grid-container-header {
   display: grid;
-  grid-template-columns: 300px 100px 100px 100px;
-  width: 600px;
+  grid-template-columns: 200px 100px 100px 100px 100px 100px 100px 100px 100px;
+  width: 1000px;
   background-color: #2196F3;
   padding: 0px;
 }
 .grid-bright {
   display: grid;
-  grid-template-columns: 300px 100px 100px 100px;
-  width: 600px;
+  grid-template-columns: 300px 100px 100px 100px 100px 100px 100px 100px;
+  width: 1000px;
   background-color: #ebf3fb;
   padding: 0px;
 }
 .grid-dark {
   display: grid;
-  grid-template-columns: 300px 100px 100px 100px;
-  width: 600px;
+  grid-template-columns: 300px 100px 100px 100px 100px 100px 100px 100px;
+  width: 1000px;
   background-color: #c1c1c1;
   padding: 0px;
 }
@@ -60,6 +59,15 @@ body{
   padding: 0px;
   font-size: 20px;
   text-align: right;
+}
+	
+.grid-title-left {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 0px solid rgba(0, 0, 0, 0.8);
+  padding: 0px;
+  font-size: 20px;
+  text-align: left;
+  color: red;
 }
 	
 .bar-container {
@@ -279,16 +287,25 @@ span.psw {
 
 	    
 	<div class="grid-container-header">
+		<div class="grid-title-left">FaceBook PM</div> 
   		<div class="grid-item-left">skill</div>  
   		<div class="grid-item" id="openConv">open</div>
 		<div class="grid-item" id="assignedConv">assigned</div>
-  		<div class="grid-item" id="unassignedConv">unassigned</div>	
+  		<div class="grid-item" id="unassignedConv">unassigned</div>
+		<div class="grid-item" id="onlineAgents">online</div>
+		<div class="grid-item" id="awayAgents">away</div>
+		<div class="grid-item" id="backsoonAgents">back soon</div>
+		<div class="grid-item" id="maxSlots">max slots</div>
 	</div>
 	<div class="grid-bright">
   		<div class="grid-item-left">Facebook_priv</div>
   		<div class="grid-item" id="FBPopenConv"></div>
 		<div class="grid-item" id="FBPassignedConv"></div>
 		<div class="grid-item" id="FBPunassignedConv"></div>
+		<div class="grid-item" id="FBPonlineAgents"></div>
+		<div class="grid-item" id="FBPawayAgents"></div>
+		<div class="grid-item" id="FBPsoonAgents"></div>
+		<div class="grid-item" id="FBPslots"></div>
 	</div>
 
 	<div class="grid-dark">
@@ -296,6 +313,10 @@ span.psw {
   		<div class="grid-item" id="FBRopenConv"></div>
 		<div class="grid-item" id="FBRassignedConv"></div>
 		<div class="grid-item" id="FBRunassignedConv"></div>
+		<div class="grid-item" id="FBRonlineAgents"></div>
+		<div class="grid-item" id="FBRawayAgents"></div>
+		<div class="grid-item" id="FBRsoonAgents"></div>
+		<div class="grid-item" id="FBRslots"></div>
 	</div>
 	
 	<div class="grid-bright">
@@ -303,6 +324,10 @@ span.psw {
   		<div class="grid-item" id="FBPNopenConv"></div>
 		<div class="grid-item" id="FBPNassignedConv"></div>
 		<div class="grid-item" id="FBPNunassignedConv"></div>
+		<div class="grid-item" id="FBPNonlineAgents"></div>
+		<div class="grid-item" id="FBPNawayAgents"></div>
+		<div class="grid-item" id="FBPNsoonAgents"></div>
+		<div class="grid-item" id="FBPNslots"></div>
 	</div>
 
 	<div class="grid-dark">
@@ -310,6 +335,29 @@ span.psw {
   		<div class="grid-item" id="FBPNRopenConv"></div>
 		<div class="grid-item" id="FBPNRassignedConv"></div>
 		<div class="grid-item" id="FBPNRunassignedConv"></div>
+		<div class="grid-item" id="FBPNRonlineAgents"></div>
+		<div class="grid-item" id="FBPNRawayAgents"></div>
+		<div class="grid-item" id="FBPNRsoonAgents"></div>
+		<div class="grid-item" id="FBPNRslots"></div>
+	</div>
+
+	<div class="grid-tot">
+  		<div class="grid-item-left">Totale</div>
+  		<div class="grid-item" id="TFBopenConv"></div>
+		<div class="grid-item" id="TFBassignedConv"></div>
+		<div class="grid-item" id="TFBunassignedConv"></div>
+	</div></br>
+
+	<div class="grid-container-header">
+		<div class="grid-title-left">Chat Web</div> 
+  		<div class="grid-item-left">skill</div>  
+  		<div class="grid-item" id="openConv">open</div>
+		<div class="grid-item" id="assignedConv">assigned</div>
+  		<div class="grid-item" id="unassignedConv">unassigned</div>
+		<div class="grid-item" id="onlineAgents">online</div>
+		<div class="grid-item" id="awayAgents">away</div>
+		<div class="grid-item" id="backsoonAgents">back soon</div>
+		<div class="grid-item" id="maxSlots">max slots</div>
 	</div>
 	
 	<div class="grid-bright">
@@ -317,6 +365,10 @@ span.psw {
   		<div class="grid-item" id="HopenConv"></div>
 		<div class="grid-item" id="HassignedConv"></div>
 		<div class="grid-item" id="HunassignedConv"></div>
+		<div class="grid-item" id="HonlineAgents"></div>
+		<div class="grid-item" id="HawayAgents"></div>
+		<div class="grid-item" id="HsoonAgents"></div>
+		<div class="grid-item" id="Hslots"></div>
 	</div>
 
 	<div class="grid-dark">
@@ -324,6 +376,10 @@ span.psw {
   		<div class="grid-item" id="HRopenConv"></div>
 		<div class="grid-item" id="HRassignedConv"></div>
 		<div class="grid-item" id="HRunassignedConv"></div>
+		<div class="grid-item" id="HRonlineAgents"></div>
+		<div class="grid-item" id="HRawayAgents"></div>
+		<div class="grid-item" id="HRsoonAgents"></div>
+		<div class="grid-item" id="HRslots"></div>
 	</div>
 
 	<div class="grid-bright">
@@ -331,6 +387,10 @@ span.psw {
   		<div class="grid-item" id="HNopenConv"></div>
 		<div class="grid-item" id="HNassignedConv"></div>
 		<div class="grid-item" id="HNunassignedConv"></div>
+		<div class="grid-item" id="HNonlineAgents"></div>
+		<div class="grid-item" id="HNawayAgents"></div>
+		<div class="grid-item" id="HNsoonAgents"></div>
+		<div class="grid-item" id="HNslots"></div>
 	</div>
 
 	<div class="grid-dark">
@@ -338,6 +398,29 @@ span.psw {
   		<div class="grid-item" id="HNRopenConv"></div>
 		<div class="grid-item" id="HNRassignedConv"></div>
 		<div class="grid-item" id="HNRunassignedConv"></div>
+		<div class="grid-item" id="HNRonlineAgents"></div>
+		<div class="grid-item" id="HNRawayAgents"></div>
+		<div class="grid-item" id="HNRsoonAgents"></div>
+		<div class="grid-item" id="HNRslots"></div>
+	</div>
+
+	<div class="grid-tot">
+  		<div class="grid-item-left">Totale</div>
+  		<div class="grid-item" id="TWebopenConv"></div>
+		<div class="grid-item" id="TWebassignedConv"></div>
+		<div class="grid-item" id="TWebunassignedConv"></div>
+	</div></br>
+
+	<div class="grid-container-header">
+		<div class="grid-title-left">Outbound</div> 
+  		<div class="grid-item-left">skill</div>  
+  		<div class="grid-item" id="openConv">open</div>
+		<div class="grid-item" id="assignedConv">assigned</div>
+  		<div class="grid-item" id="unassignedConv">unassigned</div>
+		<div class="grid-item" id="onlineAgents">online</div>
+		<div class="grid-item" id="awayAgents">away</div>
+		<div class="grid-item" id="backsoonAgents">back soon</div>
+		<div class="grid-item" id="maxSlots">max slots</div>
 	</div>
 
 	<div class="grid-bright">
@@ -345,6 +428,10 @@ span.psw {
   		<div class="grid-item" id="OopenConv"></div>
 		<div class="grid-item" id="OassignedConv"></div>
 		<div class="grid-item" id="OunassignedConv"></div>
+		<div class="grid-item" id="OonlineAgents"></div>
+		<div class="grid-item" id="OawayAgents"></div>
+		<div class="grid-item" id="OsoonAgents"></div>
+		<div class="grid-item" id="Oslots"></div>
 	</div>
 
 	<div class="grid-dark">
@@ -352,6 +439,10 @@ span.psw {
   		<div class="grid-item" id="ORopenConv"></div>
 		<div class="grid-item" id="ORassignedConv"></div>
 		<div class="grid-item" id="ORunassignedConv"></div>
+		<div class="grid-item" id="ORonlineAgents"></div>
+		<div class="grid-item" id="ORawayAgents"></div>
+		<div class="grid-item" id="ORsoonAgents"></div>
+		<div class="grid-item" id="ORslots"></div>
 	</div>
 
 	<div class="grid-bright">
@@ -359,6 +450,10 @@ span.psw {
   		<div class="grid-item" id="OFopenConv"></div>
 		<div class="grid-item" id="OFassignedConv"></div>
 		<div class="grid-item" id="OFunassignedConv"></div>
+		<div class="grid-item" id="OFonlineAgents"></div>
+		<div class="grid-item" id="OFawayAgents"></div>
+		<div class="grid-item" id="OFsoonAgents"></div>
+		<div class="grid-item" id="OFslots"></div>
 	</div>
 
 	<div class="grid-dark">
@@ -366,6 +461,29 @@ span.psw {
   		<div class="grid-item" id="OFRopenConv"></div>
 		<div class="grid-item" id="OFRassignedConv"></div>
 		<div class="grid-item" id="OFRunassignedConv"></div>
+		<div class="grid-item" id="OFRonlineAgents"></div>
+		<div class="grid-item" id="OFRawayAgents"></div>
+		<div class="grid-item" id="OFRsoonAgents"></div>
+		<div class="grid-item" id="OFRslots"></div>
+	</div>
+
+	<div class="grid-tot">
+  		<div class="grid-item-left">Totale</div>
+  		<div class="grid-item" id="TOopenConv"></div>
+		<div class="grid-item" id="TOassignedConv"></div>
+		<div class="grid-item" id="TOunassignedConv"></div>
+	</div></br>
+
+	<div class="grid-container-header">
+		<div class="grid-title-left">Other</div> 
+  		<div class="grid-item-left">skill</div>  
+  		<div class="grid-item" id="openConv">open</div>
+		<div class="grid-item" id="assignedConv">assigned</div>
+  		<div class="grid-item" id="unassignedConv">unassigned</div>
+		<div class="grid-item" id="onlineAgents">online</div>
+		<div class="grid-item" id="awayAgents">away</div>
+		<div class="grid-item" id="backsoonAgents">back soon</div>
+		<div class="grid-item" id="maxSlots">max slots</div>
 	</div>
 
 	<div class="grid-bright">
@@ -373,13 +491,17 @@ span.psw {
   		<div class="grid-item" id="IopenConv"></div>
 		<div class="grid-item" id="IassignedConv"></div>
 		<div class="grid-item" id="IunassignedConv"></div>
+		<div class="grid-item" id="IonlineAgents"></div>
+		<div class="grid-item" id="IawayAgents"></div>
+		<div class="grid-item" id="IsoonAgents"></div>
+		<div class="grid-item" id="Islots"></div>
 	</div>
 
 	<div class="grid-tot">
   		<div class="grid-item-left">Totale</div>
-  		<div class="grid-item" id="TopenConv"></div>
-		<div class="grid-item" id="TassignedConv"></div>
-		<div class="grid-item" id="TunassignedConv"></div>
+  		<div class="grid-item" id="TOtheropenConv"></div>
+		<div class="grid-item" id="TOtherassignedConv"></div>
+		<div class="grid-item" id="TOtherunassignedConv"></div>
 	</div>
 
 	</br>
@@ -955,9 +1077,18 @@ function retrieveAgentsLogged(){
 	  var IopenConv =0;
 	  var IassignedConv =0;
 	  var IunassignedConv =0;
-	  var TopenConv =0;
-	  var TassignedConv =0;
-	  var TunassignedConv =0;
+	  var TFBopenConv =0;
+	  var TFBassignedConv =0;
+	  var TFBunassignedConv =0;
+	  var TWebopenConv =0;
+	  var TWebassignedConv =0;
+	  var TWebunassignedConv =0;
+	  var TOopenConv =0;
+	  var TOassignedConv =0;
+	  var TOunassignedConv =0;
+	  var TOtheropenConv =0;
+	  var TOtherassignedConv =0;
+	  var TOtherunassignedConv =0;
 	  
 	  
 	  
@@ -976,158 +1107,158 @@ function retrieveAgentsLogged(){
 		  switch(latestSkill) {
 			  case "Facebook_priv":
 				  FBPopenConv ++;
-				  TopenConv ++;
+				  TFBopenConv ++;
 				  if(isAssigned){
 					  FBPassignedConv ++;
-					  TassignedConv ++;
+					  TFBassignedConv ++;
 				  } else{
 					  FBPunassignedConv ++;
-					  TunassignedConv ++;
+					  TFBunassignedConv ++;
 				  }
 				  break;
 				  
 				  
 			case "facebook_risvegliate":
 				  FBRopenConv ++;
-				  TopenConv ++;
+				  TFBopenConv ++;
 				  if(isAssigned){
 					  FBRassignedConv ++;
-					  TassignedConv ++;
+					  TFBassignedConv ++;
 				  } else{
 					  FBRunassignedConv ++;
-					  TunassignedConv ++;
+					  TFBunassignedConv ++;
 				  }
 				  break;
 				  
 			case "Facebook_priv_night":
 				  FBPNopenConv ++;
-				  TopenConv ++;
+				  TFBopenConv ++;
 				  if(isAssigned){
 					  FBPNassignedConv ++;
-					  TassignedConv ++;
+					  TFBassignedConv ++;
 				  } else{
 					  FBPNunassignedConv ++;
-					  TunassignedConv ++;
+					  TFBunassignedConv ++;
 				  }
 				  break;
 				  
 			case "Facebook_priv_night_risvegli":
 				  FBPNRopenConv ++;
-				  TopenConv ++;
+				  TFBopenConv ++;
 				  if(isAssigned){
 					  FBPNRassignedConv ++;
-					  TassignedConv ++;
+					  TFBassignedConv ++;
 				  } else{
 					  FBPNRunassignedConv ++;
-					  TunassignedConv ++;
+					  TFBunassignedConv ++;
 				  }
 				  break;
 				  
 			case "human":
 				  HopenConv ++;
-				  TopenConv ++;
+				  TWebopenConv ++;
 				  if(isAssigned){
 					  HassignedConv ++;
-					  TassignedConv ++;
+					  TWebassignedConv ++;
 				  } else{
 					  HunassignedConv ++;
-					  TunassignedConv ++;
+					  TWebunassignedConv ++;
 				  }
 				  break;
 				  
 			case "human_risvegliate":
 				  HRopenConv ++;
-				  TopenConv ++;
+				  TWebopenConv ++;
 				  if(isAssigned){
 					  HRassignedConv ++;
-					  TassignedConv ++;
+					  TWebassignedConv ++;
 				  } else{
 					  HRunassignedConv ++;
-					  TunassignedConv ++;
+					  TWebunassignedConv ++;
 				  }
 				  break;
 				  
 			case "human_night":
 				  HNopenConv ++;
-				  TopenConv ++;
+				  TWebopenConv ++;
 				  if(isAssigned){
 					  HNassignedConv ++;
-					  TassignedConv ++;
+					  TWebassignedConv ++;
 				  } else{
 					  HNunassignedConv ++;
-					  TunassignedConv ++;
+					  TWebunassignedConv ++;
 				  }
 				  break;
 				  
 			case "human_night_risvegliate":
 				  HNRopenConv ++;
-				  TopenConv ++;
+				  TWebopenConv ++;
 				  if(isAssigned){
 					  HNRassignedConv ++;
-					  TassignedConv ++;
+					  TWebassignedConv ++;
 				  } else{
 					  HNRunassignedConv ++;
-					  TunassignedConv ++;
+					  TWebunassignedConv ++;
 				  }
 				  break;
 				  
 			case "Outbound":
 				  OopenConv ++;
-				  TopenConv ++;
+				  TOopenConv ++;
 				  if(isAssigned){
 					  OassignedConv ++;
-					  TassignedConv ++;
+					  TOassignedConv ++;
 				  } else{
 					  OunassignedConv ++;
-					  TunassignedConv ++;
+					  TOunassignedConv ++;
 				  }
 				  break;
 				  
 			case "outbound_risvegliate":
 				  ORopenConv ++;
-				  TopenConv ++;
+				  TOopenConv ++;
 				  if(isAssigned){
 					  ORassignedConv ++;
-					  TassignedConv ++;
+					  TOassignedConv ++;
 				  } else{
 					  ORunassignedConv ++;
-					  TunassignedConv ++;
+					  TOunassignedConv ++;
 				  }
 				  break;
 				  
 			case "Outbound_fixed":
 				  OFopenConv ++;
-				  TopenConv ++;
+				  TOopenConv ++;
 				  if(isAssigned){
 					  OFassignedConv ++;
-					  TassignedConv ++;
+					  TOassignedConv ++;
 				  } else{
 					  OFunassignedConv ++;
-					  TunassignedConv ++;
+					  TOunassignedConv ++;
 				  }
 				  break;
 				  
 			case "Outbound_fixed_risvegliate":
 				  OFRopenConv ++;
-				  TopenConv ++;
+				  TOopenConv ++;
 				  if(isAssigned){
 					  OFRassignedConv ++;
-					  TassignedConv ++;
+					  TOassignedConv ++;
 				  } else{
 					  OFRunassignedConv ++;
-					  TunassignedConv ++;
+					  TOunassignedConv ++;
 				  }
 				  break;
 				  
 			case "Inglese":
 				  IopenConv ++;
-				  TopenConv ++;
+				  TOtheropenConv ++;
 				  if(isAssigned){
 					  IassignedConv ++;
-					  TassignedConv ++;
+					  TOtherassignedConv ++;
 				  } else{
 					  IunassignedConv ++;
-					  TunassignedConv ++;
+					  TOtherunassignedConv ++;
 				  }
 				  break;
 				  
@@ -1176,9 +1307,18 @@ function retrieveAgentsLogged(){
 	  document.getElementById("IopenConv").innerHTML = IopenConv;
 	  document.getElementById("IassignedConv").innerHTML = IassignedConv;
 	  document.getElementById("IunassignedConv").innerHTML = IunassignedConv;
-	  document.getElementById("TopenConv").innerHTML = TopenConv;
-	  document.getElementById("TassignedConv").innerHTML = TassignedConv;
-	  document.getElementById("TunassignedConv").innerHTML = TunassignedConv;
+	  document.getElementById("TFBopenConv").innerHTML = TFBopenConv;
+	  document.getElementById("TFBassignedConv").innerHTML = TFBassignedConv;
+	  document.getElementById("TFBunassignedConv").innerHTML = TFBunassignedConv;
+	  document.getElementById("TWebopenConv").innerHTML = TWebopenConv;
+	  document.getElementById("TWebassignedConv").innerHTML = TWebassignedConv;
+	  document.getElementById("TWebunassignedConv").innerHTML = TWebunassignedConv;
+	  document.getElementById("TOopenConv").innerHTML = TOopenConv;
+	  document.getElementById("TOassignedConv").innerHTML = TOassignedConv;
+	  document.getElementById("TOunassignedConv").innerHTML = TOunassignedConv;
+	  document.getElementById("TOtheropenConv").innerHTML = TOtheropenConv;
+	  document.getElementById("TOtherassignedConv").innerHTML = TOtherassignedConv;
+	  document.getElementById("TOtherunassignedConv").innerHTML = TOtherunassignedConv;
 	 
   }
 	
