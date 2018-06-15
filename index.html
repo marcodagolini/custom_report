@@ -5,6 +5,7 @@
 
 
 
+
 <head>
   
 </head>
@@ -39,8 +40,8 @@ body{
 }
 .grid-tot {
   display: grid;
-  grid-template-columns: 300px 100px 100px 100px;
-  width: 600px;
+  grid-template-columns: 300px 100px 100px 100px 100px 100px 100px 100px;
+  width: 1000px;
   background-color: #79b178;
   padding: 0px;
 }
@@ -344,6 +345,10 @@ span.psw {
   		<div class="grid-item" id="TFBopenConv"></div>
 		<div class="grid-item" id="TFBassignedConv"></div>
 		<div class="grid-item" id="TFBunassignedConv"></div>
+		<div class="grid-item" id="TFBonlineAgents"></div>
+		<div class="grid-item" id="TFBawayAgents"></div>
+		<div class="grid-item" id="TFBsoonAgents"></div>
+		<div class="grid-item" id="TFBslots"></div>
 	</div></br>
 
 	<div class="grid-container-header">
@@ -407,6 +412,10 @@ span.psw {
   		<div class="grid-item" id="TWebopenConv"></div>
 		<div class="grid-item" id="TWebassignedConv"></div>
 		<div class="grid-item" id="TWebunassignedConv"></div>
+		<div class="grid-item" id="TWebonlineAgents"></div>
+		<div class="grid-item" id="TWebawayAgents"></div>
+		<div class="grid-item" id="TWebsoonAgents"></div>
+		<div class="grid-item" id="TWebslots"></div>
 	</div></br>
 
 	<div class="grid-container-header">
@@ -470,6 +479,10 @@ span.psw {
   		<div class="grid-item" id="TOopenConv"></div>
 		<div class="grid-item" id="TOassignedConv"></div>
 		<div class="grid-item" id="TOunassignedConv"></div>
+		<div class="grid-item" id="TOonlineAgents"></div>
+		<div class="grid-item" id="TOawayAgents"></div>
+		<div class="grid-item" id="TOsoonAgents"></div>
+		<div class="grid-item" id="TOslots"></div>
 	</div></br>
 
 	<div class="grid-container-header">
@@ -500,6 +513,10 @@ span.psw {
   		<div class="grid-item" id="TOtheropenConv"></div>
 		<div class="grid-item" id="TOtherassignedConv"></div>
 		<div class="grid-item" id="TOtherunassignedConv"></div>
+		<div class="grid-item" id="TOtheronlineAgents"></div>
+		<div class="grid-item" id="TOtherawayAgents"></div>
+		<div class="grid-item" id="TOthersoonAgents"></div>
+		<div class="grid-item" id="TOtherslots"></div>
 	</div>
 
 	</br>
@@ -791,51 +808,231 @@ function retrieveAgentsLogged(){
 													  break;
 													  
 													  case "facebook_risvegliate":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  FBRonlineAgents = FBRonlineAgents + 1;
+															  FBRslots = FBRslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  FBRawayAgents = FBRawayAgents + 1;
+															  FBRslots = FBRslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  FBRsoonAgents = FBRsoonAgents + 1;
+															  FBRslots = FBRslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "Facebook_priv_night":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  FBPNonlineAgents = FBPNonlineAgents + 1;
+															  FBPNslots = FBPNslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  FBPNawayAgents = FBPNawayAgents + 1;
+															  FBPNslots = FBPNslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  FBPNsoonAgents = FBPNsoonAgents + 1;
+															  FBPNslots = FBPNslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "Facebook_priv_night_risvegli":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  FBPNRonlineAgents = FBPNRonlineAgents + 1;
+															  FBPNRslots = FBPNRslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  FBPNRawayAgents = FBPNRawayAgents + 1;
+															  FBPNRslots = FBPNRslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  FBPNRsoonAgents = FBPNRsoonAgents + 1;
+															  FBPNRslots = FBPNRslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "human":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  HonlineAgents = HonlineAgents + 1;
+															  Hslots = Hslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  HawayAgents = HawayAgents + 1;
+															  Hslots = Hslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  HsoonAgents = HsoonAgents + 1;
+															  Hslots = Hslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "human_risvegliate":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  HRonlineAgents = HRonlineAgents + 1;
+															  HRslots = HRslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  HRawayAgents = HRawayAgents + 1;
+															  HRslots = HRslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  HRsoonAgents = HRsoonAgents + 1;
+															  HRslots = HRslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "human_night":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  HNonlineAgents = HNonlineAgents + 1;
+															  HNslots = HNslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  HNawayAgents = HNawayAgents + 1;
+															  HNslots = HNslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  HNsoonAgents = HNsoonAgents + 1;
+															  HNslots = HNslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "human_night_risvegliate":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  HNRonlineAgents = HNRonlineAgents + 1;
+															  HNRslots = HNRslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  HNRawayAgents = HNRawayAgents + 1;
+															  HNRslots = HNRslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  HNRsoonAgents = HNRsoonAgents + 1;
+															  HNRslots = HNRslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "Outbound":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  OonlineAgents = OonlineAgents + 1;
+															  Oslots = Oslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  OawayAgents = OawayAgents + 1;
+															  Oslots = Oslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  OsoonAgents = OsoonAgents + 1;
+															  Oslots = Oslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "outbound_risvegliate":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  ORonlineAgents = ORonlineAgents + 1;
+															  ORslots = ORslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  ORawayAgents = ORawayAgents + 1;
+															  ORslots = ORslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  ORsoonAgents = ORsoonAgents + 1;
+															  ORslots = ORslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "Outbound_fixed":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  OFonlineAgents = OFonlineAgents + 1;
+															  OFslots = OFslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  OFawayAgents = OFawayAgents + 1;
+															  OFslots = OFslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  OFsoonAgents = OFsoonAgents + 1;
+															  OFslots = OFslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "Outbound_fixed_risvegliate":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  OFRonlineAgents = OFRonlineAgents + 1;
+															  OFRslots = OFRslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  OFRawayAgents = OFRawayAgents + 1;
+															  OFRslots = OFRslots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  OFRsoonAgents = OFRsoonAgents + 1;
+															  OFRslots = OFRslots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 													  case "Inglese":
-													  
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  IonlineAgents = IonlineAgents + 1;
+															  Islots = Islots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  IawayAgents = IawayAgents + 1;
+															  Islots = Islots + totalSpots;
+															  break;
+															  
+															  case "BACK_SOON":
+															  IsoonAgents = IsoonAgents + 1;
+															  Islots = Islots + totalSpots;
+															  break;	  
+													  }
 													  break;
 													  
 											  }
@@ -856,6 +1053,55 @@ function retrieveAgentsLogged(){
 				  document.getElementById("FBPawayAgents").innerHTML = FBPawayAgents;
 				  document.getElementById("FBPsoonAgents").innerHTML = FBPsoonAgents;
 				  document.getElementById("FBPslots").innerHTML = (Math.round(FBPslots * 100) / 100);
+				  document.getElementById("FBRonlineAgents").innerHTML = FBRonlineAgents;
+				  document.getElementById("FBRawayAgents").innerHTML = FBRawayAgents;
+				  document.getElementById("FBRsoonAgents").innerHTML = FBRsoonAgents;
+				  document.getElementById("FBRslots").innerHTML = (Math.round(FBRslots * 100) / 100);
+				  document.getElementById("FBPNonlineAgents").innerHTML = FBPNonlineAgents;
+				  document.getElementById("FBPNawayAgents").innerHTML = FBPNawayAgents;
+				  document.getElementById("FBPNsoonAgents").innerHTML = FBPNsoonAgents;
+				  document.getElementById("FBPNslots").innerHTML = (Math.round(FBPNslots * 100) / 100);
+				  document.getElementById("FBPNRonlineAgents").innerHTML = FBPNRonlineAgents;
+				  document.getElementById("FBPNRawayAgents").innerHTML = FBPNRawayAgents;
+				  document.getElementById("FBPNRsoonAgents").innerHTML = FBPNRsoonAgents;
+				  document.getElementById("FBPNRslots").innerHTML = (Math.round(FBPNRslots * 100) / 100);
+				  document.getElementById("HonlineAgents").innerHTML = HonlineAgents;
+				  document.getElementById("HawayAgents").innerHTML = HawayAgents;
+				  document.getElementById("HsoonAgents").innerHTML = HsoonAgents;
+				  document.getElementById("Hslots").innerHTML = (Math.round(Hslots * 100) / 100);
+				  document.getElementById("HRonlineAgents").innerHTML = HRonlineAgents;
+				  document.getElementById("HRawayAgents").innerHTML = HRawayAgents;
+				  document.getElementById("HRsoonAgents").innerHTML = HRsoonAgents;
+				  document.getElementById("HRslots").innerHTML = (Math.round(HRslots * 100) / 100);
+				  document.getElementById("HNonlineAgents").innerHTML = HNonlineAgents;
+				  document.getElementById("HNawayAgents").innerHTML = HNawayAgents;
+				  document.getElementById("HNsoonAgents").innerHTML = HNsoonAgents;
+				  document.getElementById("HNslots").innerHTML = (Math.round(HNslots * 100) / 100);
+				  document.getElementById("HNRonlineAgents").innerHTML = HNRonlineAgents;
+				  document.getElementById("HNRawayAgents").innerHTML = HNRawayAgents;
+				  document.getElementById("HNRsoonAgents").innerHTML = HNRsoonAgents;
+				  document.getElementById("HNRslots").innerHTML = (Math.round(HNRslots * 100) / 100);
+				  document.getElementById("OonlineAgents").innerHTML = OonlineAgents;
+				  document.getElementById("OawayAgents").innerHTML = OawayAgents;
+				  document.getElementById("OsoonAgents").innerHTML = OsoonAgents;
+				  document.getElementById("Oslots").innerHTML = (Math.round(Oslots * 100) / 100);
+				  document.getElementById("ORonlineAgents").innerHTML = ORonlineAgents;
+				  document.getElementById("ORawayAgents").innerHTML = ORawayAgents;
+				  document.getElementById("ORsoonAgents").innerHTML = ORsoonAgents;
+				  document.getElementById("ORslots").innerHTML = (Math.round(ORslots * 100) / 100);
+				  document.getElementById("OFonlineAgents").innerHTML = OFonlineAgents;
+				  document.getElementById("OFawayAgents").innerHTML = OFawayAgents;
+				  document.getElementById("OFsoonAgents").innerHTML = OFsoonAgents;
+				  document.getElementById("OFslots").innerHTML = (Math.round(OFslots * 100) / 100);
+				  document.getElementById("OFRonlineAgents").innerHTML = OFRonlineAgents;
+				  document.getElementById("OFRawayAgents").innerHTML = OFRawayAgents;
+				  document.getElementById("OFRsoonAgents").innerHTML = OFRsoonAgents;
+				  document.getElementById("OFRslots").innerHTML = (Math.round(OFRslots * 100) / 100);
+				  document.getElementById("IonlineAgents").innerHTML = IonlineAgents;
+				  document.getElementById("IawayAgents").innerHTML = IawayAgents;
+				  document.getElementById("IsoonAgents").innerHTML = IsoonAgents;
+				  document.getElementById("Islots").innerHTML = (Math.round(Islots * 100) / 100);
+				  document.getElementById("TFBonlineAgents").innerHTML = $("#FBPonlineAgents").val() + $("#FBRonlineAgents").val() + $("#FBPNonlineAgents").val() + $("#FBPNRonlineAgents").val()
 	  
 	  
 	  
