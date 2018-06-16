@@ -752,7 +752,24 @@ function retrieveAgentsLogged(){
 	var IonlineAgents = 0;
 	var IawayAgents = 0;
 	var IsoonAgents = 0;
-	var Islots =0;
+	var Islots = 0;
+	var TFBonlineAgents = 0;
+	var TWebonlineAgents = 0;
+	var TOonlineAgents = 0;
+	var TOtheronlineAgents = 0;
+	var TFBawayAgents = 0;
+	var TWebawayAgents = 0;
+	var TOawayAgents = 0;
+	var TOtherawayAgents = 0;
+	var TFBsoonAgents = 0;
+	var TWebsoonAgents = 0;
+	var TOsoonAgents = 0;
+	var TOthersoonAgents = 0;
+	var TFBslots = 0;
+	var TWebslots = 0;
+	var TOslots = 0;
+	var TOtherslots = 0;
+	
 	
 	// var body = '{"status":["ONLINE"],"skillIds":["1089726032","1096374632","1102673132","1102673332","987637232","1096374432","1105369932","1105551632","1093097632","1096374732","1105849832","1105849932","1097496532","1012134132","1111294132"]}';
 	var body = '{"skillIds":["1089726032","1096374632","1102673132","1102673332","987637232","1096374432","1105369932","1105551632","1093097632","1096374732","1105849832","1105849932","1097496532","1012134132","1111294132"]}';
@@ -779,6 +796,7 @@ function retrieveAgentsLogged(){
 							  if(data.hasOwnProperty('agentStatusRecords')){
 								  var agentStatusRecordsLength = data.agentStatusRecords.length;
 								  for (var z = 0; z < agentStatusRecordsLength; z++){
+									  var counted = false;
 									  totalSpots = (data.agentStatusRecords[z].configuredMaxSlots) - (data.agentStatusRecords[z].busySlots);
 									  availableSpots = availableSpots + totalSpots;
 									  var skillLength = data.agentStatusRecords[z].agentSkills.length;
@@ -793,16 +811,29 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  FBPonlineAgents = FBPonlineAgents + 1;
+															  if(!counted){
+																  TFBonlineAgents = TFBonlineAgents + 1;
+																  TFBslots = TFBslots + totalSpots;
+																  counted = true;
+															  }
 															  FBPslots = FBPslots + totalSpots;
 															  break;
 															  
 															  case "AWAY":
 															  FBPawayAgents = FBPawayAgents + 1;
+															  if(!counted){
+																  TFBawayAgents = TFBawayAgents + 1;
+																  counted = true;
+															  }
 															  // FBPslots = FBPslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  FBPsoonAgents = FBPsoonAgents + 1;
+															  if(!counted){
+																  TFBsoonAgents = TFBsoonAgents + 1;
+																  counted = true;
+															  }
 															  // FBPslots = FBPslots + totalSpots;
 															  break;	  
 													  }
@@ -812,16 +843,29 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  FBRonlineAgents = FBRonlineAgents + 1;
+															  if(!counted){
+																  TFBonlineAgents = TFBonlineAgents + 1;
+																  TFBslots = TFBslots + totalSpots;
+																  counted = true;
+															  }
 															  FBRslots = FBRslots + totalSpots;
-															  break;
 															  
+															  break;
 															  case "AWAY":
 															  FBRawayAgents = FBRawayAgents + 1;
+															  if(!counted){
+																  TFBawayAgents = TFBawayAgents + 1;
+																  counted = true;
+															  }
 															  // FBRslots = FBRslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  FBRsoonAgents = FBRsoonAgents + 1;
+															  if(!counted){
+																  TFBsoonAgents = TFBsoonAgents + 1;
+																  counted = true;
+															  }
 															  // FBRslots = FBRslots + totalSpots;
 															  break;	  
 													  }
@@ -831,16 +875,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  FBPNonlineAgents = FBPNonlineAgents + 1;
+															  if(!counted){
+																  TFBonlineAgents = TFBonlineAgents + 1;
+																  TFBslots = TFBslots + totalSpots;
+																  counted = true;
+															  }
 															  FBPNslots = FBPNslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  FBPNawayAgents = FBPNawayAgents + 1;
+															  if(!counted){
+																  TFBawayAgents = TFBawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // FBPNslots = FBPNslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  FBPNsoonAgents = FBPNsoonAgents + 1;
+															  if(!counted){
+																  TFBsoonAgents = TFBsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // FBPNslots = FBPNslots + totalSpots;
 															  break;	  
 													  }
@@ -850,16 +910,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  FBPNRonlineAgents = FBPNRonlineAgents + 1;
+															  if(!counted){
+																  TFBonlineAgents = TFBonlineAgents + 1;
+																  TFBslots = TFBslots + totalSpots;
+																  counted = true;
+															  }
 															  FBPNRslots = FBPNRslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  FBPNRawayAgents = FBPNRawayAgents + 1;
+															  if(!counted){
+																  TFBawayAgents = TFBawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // FBPNRslots = FBPNRslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  FBPNRsoonAgents = FBPNRsoonAgents + 1;
+															  if(!counted){
+																  TFBsoonAgents = TFBsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // FBPNRslots = FBPNRslots + totalSpots;
 															  break;	  
 													  }
@@ -869,16 +945,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  HonlineAgents = HonlineAgents + 1;
+															  if(!counted){
+																  TWebonlineAgents = TWebonlineAgents + 1;
+																  TWebslots = TWebslots + totalSpots;
+																  counted = true;
+															  }
 															  Hslots = Hslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  HawayAgents = HawayAgents + 1;
+															  if(!counted){
+																  TWebawayAgents = TWebawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // Hslots = Hslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  HsoonAgents = HsoonAgents + 1;
+															  if(!counted){
+																  TWebsoonAgents = TWebsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // Hslots = Hslots + totalSpots;
 															  break;	  
 													  }
@@ -888,16 +980,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  HRonlineAgents = HRonlineAgents + 1;
+															  if(!counted){
+																  TWebonlineAgents = TWebonlineAgents + 1;
+																  TWebslots = TWebslots + totalSpots;
+																  counted = true;
+															  }
 															  HRslots = HRslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  HRawayAgents = HRawayAgents + 1;
+															  if(!counted){
+																  TWebawayAgents = TWebawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // HRslots = HRslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  HRsoonAgents = HRsoonAgents + 1;
+															  if(!counted){
+																  TWebsoonAgents = TWebsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // HRslots = HRslots + totalSpots;
 															  break;	  
 													  }
@@ -907,16 +1015,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  HNonlineAgents = HNonlineAgents + 1;
+															  if(!counted){
+																  TWebonlineAgents = TWebonlineAgents + 1;
+																  TWebslots = TWebslots + totalSpots;
+																  counted = true;
+															  }
 															  HNslots = HNslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  HNawayAgents = HNawayAgents + 1;
+															  if(!counted){
+																  TWebawayAgents = TWebawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // HNslots = HNslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  HNsoonAgents = HNsoonAgents + 1;
+															  if(!counted){
+																  TWebsoonAgents = TWebsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // HNslots = HNslots + totalSpots;
 															  break;	  
 													  }
@@ -926,16 +1050,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  HNRonlineAgents = HNRonlineAgents + 1;
+															  if(!counted){
+																  TWebonlineAgents = TWebonlineAgents + 1;
+																  TWebslots = TWebslots + totalSpots;
+																  counted = true;
+															  }
 															  HNRslots = HNRslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  HNRawayAgents = HNRawayAgents + 1;
+															  if(!counted){
+																  TWebawayAgents = TWebawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // HNRslots = HNRslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  HNRsoonAgents = HNRsoonAgents + 1;
+															  if(!counted){
+																  TWebsoonAgents = TWebsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // HNRslots = HNRslots + totalSpots;
 															  break;	  
 													  }
@@ -945,16 +1085,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  OonlineAgents = OonlineAgents + 1;
+															  if(!counted){
+																  TOonlineAgents = TOonlineAgents + 1;
+																  TOslots = TOslots + totalSpots;
+																  counted = true;
+															  }
 															  Oslots = Oslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  OawayAgents = OawayAgents + 1;
+															  if(!counted){
+																  TOawayAgents = TOawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // Oslots = Oslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  OsoonAgents = OsoonAgents + 1;
+															  if(!counted){
+																  TOsoonAgents = TOsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // Oslots = Oslots + totalSpots;
 															  break;	  
 													  }
@@ -964,16 +1120,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  ORonlineAgents = ORonlineAgents + 1;
+															  if(!counted){
+																  TOonlineAgents = TOonlineAgents + 1;
+																  TOslots = TOslots + totalSpots;
+																  counted = true;
+															  }
 															  ORslots = ORslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  ORawayAgents = ORawayAgents + 1;
+															  if(!counted){
+																  TOawayAgents = TOawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // ORslots = ORslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  ORsoonAgents = ORsoonAgents + 1;
+															  if(!counted){
+																  TOsoonAgents = TOsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // ORslots = ORslots + totalSpots;
 															  break;	  
 													  }
@@ -983,16 +1155,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  OFonlineAgents = OFonlineAgents + 1;
+															  if(!counted){
+																  TOonlineAgents = TOonlineAgents + 1;
+																  TOslots = TOslots + totalSpots;
+																  counted = true;
+															  }
 															  OFslots = OFslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  OFawayAgents = OFawayAgents + 1;
+															  if(!counted){
+																  TOawayAgents = TOawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // OFslots = OFslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  OFsoonAgents = OFsoonAgents + 1;
+															  if(!counted){
+																  TOsoonAgents = TOsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // OFslots = OFslots + totalSpots;
 															  break;	  
 													  }
@@ -1002,16 +1190,32 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  OFRonlineAgents = OFRonlineAgents + 1;
+															  if(!counted){
+																  TOonlineAgents = TOonlineAgents + 1;
+																  TOslots = TOslots + totalSpots;
+																  counted = true;
+															  }
 															  OFRslots = OFRslots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  OFRawayAgents = OFRawayAgents + 1;
+															  if(!counted){
+																  TOawayAgents = TOawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // OFRslots = OFRslots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  OFRsoonAgents = OFRsoonAgents + 1;
+															  if(!counted){
+																  TOsoonAgents = TOsoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // OFRslots = OFRslots + totalSpots;
 															  break;	  
 													  }
@@ -1021,22 +1225,39 @@ function retrieveAgentsLogged(){
 													  switch(statusAgent) {
 															  case "ONLINE":
 															  IonlineAgents = IonlineAgents + 1;
+															  if(!counted){
+																  TOtheronlineAgents = TOtheronlineAgents + 1;
+																  TOtherslots = TOtherslots + totalSpots;
+																  counted = true;
+															  }
 															  Islots = Islots + totalSpots;
+															  
 															  break;
 															  
 															  case "AWAY":
 															  IawayAgents = IawayAgents + 1;
+															  if(!counted){
+																  TOtherawayAgents = TOtherawayAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // Islots = Islots + totalSpots;
 															  break;
 															  
 															  case "BACK_SOON":
 															  IsoonAgents = IsoonAgents + 1;
+															  if(!counted){
+																  TOthersoonAgents = TOthersoonAgents + 1;
+																  counted = true;
+															  }
+															  
 															  // Islots = Islots + totalSpots;
 															  break;	  
 													  }
 													  break;
 													  
 											  }
+											  
 											  
 										  }
 									  }
@@ -1115,22 +1336,22 @@ function retrieveAgentsLogged(){
 				  document.getElementById("IsoonAgents").innerHTML = IsoonAgents;
 				  Islots = (Math.round(Islots * 100) / 100);
 				  document.getElementById("Islots").innerHTML = Islots;
-				  document.getElementById("TFBonlineAgents").innerHTML = FBPonlineAgents + FBRonlineAgents + FBPNonlineAgents + FBPNRonlineAgents;
-				  document.getElementById("TWebonlineAgents").innerHTML = HonlineAgents + HRonlineAgents + HNonlineAgents + HNRonlineAgents;
-				  document.getElementById("TOonlineAgents").innerHTML = OonlineAgents + ORonlineAgents + OFonlineAgents + OFRonlineAgents;
-				  document.getElementById("TOtheronlineAgents").innerHTML = IonlineAgents;
-				  document.getElementById("TFBawayAgents").innerHTML = FBPawayAgents + FBRawayAgents + FBPNawayAgents + FBPNRawayAgents;
-				  document.getElementById("TWebawayAgents").innerHTML = HawayAgents + HRawayAgents + HNawayAgents + HNRawayAgents;
-				  document.getElementById("TOawayAgents").innerHTML = OawayAgents + ORawayAgents + OFawayAgents + OFRawayAgents;
-				  document.getElementById("TOtherawayAgents").innerHTML = IawayAgents;
-				  document.getElementById("TFBsoonAgents").innerHTML = FBPsoonAgents + FBRsoonAgents + FBPNsoonAgents + FBPNRsoonAgents;
-				  document.getElementById("TWebsoonAgents").innerHTML = HsoonAgents + HRsoonAgents + HNsoonAgents + HNRsoonAgents;
-				  document.getElementById("TOsoonAgents").innerHTML = OsoonAgents + ORsoonAgents + OFsoonAgents + OFRsoonAgents;
-				  document.getElementById("TOthersoonAgents").innerHTML = IsoonAgents;
-				  document.getElementById("TFBslots").innerHTML = FBPslots + FBRslots + FBPNslots + FBPNRslots;
-				  document.getElementById("TWebslots").innerHTML = Hslots + HRslots + HNslots + HNRslots;
-				  document.getElementById("TOslots").innerHTML = Oslots + ORslots + OFslots + OFRslots;
-				  document.getElementById("TOtherslots").innerHTML = Islots;
+				  document.getElementById("TFBonlineAgents").innerHTML = TFBonlineAgents;
+				  document.getElementById("TWebonlineAgents").innerHTML = TWebonlineAgents;
+				  document.getElementById("TOonlineAgents").innerHTML = TOonlineAgents;
+				  document.getElementById("TOtheronlineAgents").innerHTML = TOtheronlineAgents;
+				  document.getElementById("TFBawayAgents").innerHTML = TFBawayAgents;
+				  document.getElementById("TWebawayAgents").innerHTML = TWebawayAgents;
+				  document.getElementById("TOawayAgents").innerHTML = TOawayAgents;
+				  document.getElementById("TOtherawayAgents").innerHTML = TOtherawayAgents;
+				  document.getElementById("TFBsoonAgents").innerHTML = TFBsoonAgents;
+				  document.getElementById("TWebsoonAgents").innerHTML = TWebsoonAgents;
+				  document.getElementById("TOsoonAgents").innerHTML = TOsoonAgents;
+				  document.getElementById("TOthersoonAgents").innerHTML = TOthersoonAgents;
+				  document.getElementById("TFBslots").innerHTML = (Math.round(TFBslots * 100) / 100);
+				  document.getElementById("TWebslots").innerHTML = (Math.round(TWebslots * 100) / 100);
+				  document.getElementById("TOslots").innerHTML = (Math.round(TOslots * 100) / 100);
+				  document.getElementById("TOtherslots").innerHTML = (Math.round(TOtherslots * 100) / 100);
 				  
 	  
 	  
