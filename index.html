@@ -800,8 +800,8 @@ function retrieveAgentsLogged(){
 			  "If-Match": "-1",
 			  data: body,
 			  success: function success(data) {
-				  console.log("********");
-				  console.log(JSON.stringify(data));
+				  // console.log("********");
+				  // console.log(JSON.stringify(data));
 				  if(data.hasOwnProperty('_metadata')){
 					  if(data._metadata.hasOwnProperty('count')){
 						  if(data._metadata.count > 0){
@@ -1555,11 +1555,11 @@ function retrieveAgentsLogged(){
 								newHuman = newHuman.concat(toAppendHuman);
 							}
 						}
-						console.log("*****");
-						console.log("*****");
-						console.log(newHuman);
-						console.log("*****");
-						console.log("*****");
+						// console.log("*****");
+						// console.log("*****");
+						// console.log(newHuman);
+						// console.log("*****");
+						// console.log("*****");
 						overwriteHumanSkill = newHuman;
 						appendSkill = appendSkill.concat('</select>');
 						$("#skill").append(appendSkill);
@@ -2530,23 +2530,26 @@ checklogin(accnumb, bearer);
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
+				      
 				      if(offset == 0){
-					      conversationsToDownload = data._metadata.count;
-					      conversationsPartial = data.conversationHistoryRecords.length;
-					      console.log(conversationsPartial + " of --> " + conversationsToDownload);      
+					      conversationsToDownload = data._metadata.count;    
 				      }
-				      if((data.conversationHistoryRecords.length) == 100){
-					      offset = offset + 100;
+				      
+				      conversationsPartial = conversationsPartial + data.conversationHistoryRecords.length;
+				      if(conversationsPartial < conversationsToDownload){
+					      offset = conversationsPartial;
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      document.getElementById("reportMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
 					      document.getElementById("reportMSG").style = "color : green";      
 					      // console.log(data.conversationHistoryRecords);
 					      console.log ("adding conversations...");
+					      console.log(offset + " of --> " + conversationsToDownload);
 					      // setTimeout(function(){
 						      tryUntilSuccess(offset, callback);
 					      // }, 1000);
 				      }
 				      else{
+					      console.log("last bucket: " + data.conversationHistoryRecords.length);
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      console.log(answer.length);
 					      document.getElementById("reportMSG").innerHTML = answer.length + " Messaging conversations downloaded with success!";
