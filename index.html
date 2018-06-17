@@ -6,6 +6,7 @@
 
 
 
+
 <head>
   
 </head>
@@ -2497,6 +2498,8 @@ checklogin(accnumb, bearer);
 	 });
 	 
  }
+	
+ 
  
  
  function downloadTranscripts(start, end, options){
@@ -2551,9 +2554,11 @@ checklogin(accnumb, bearer);
 					      console.log("last bucket: " + data.conversationHistoryRecords.length);
 					      answer = answer.concat(data.conversationHistoryRecords);
 					      console.log(answer.length);
-					      document.getElementById("reportMSG").innerHTML = answer.length + " Messaging conversations downloaded with success!";
-					      document.getElementById("reportMSG").style = "color : green";
+					      
+					      
 					      for (var i = 0; i < (answer.length); i++){
+						      document.getElementById("reportMSG").innerHTML = "...analyzing data...";
+						      document.getElementById("reportMSG").style = "color : green";
 						      var messages = "";
 						      var thismessage = "";
 						      var thisactor = "";
@@ -3513,7 +3518,11 @@ checklogin(accnumb, bearer);
 					      }
 				      	      // console.log(exportObject);
 					      if (exportObject.length > 0){
+						      
+						      document.getElementById("reportMSG").innerHTML = answer.length + " Messaging conversations downloaded with success!";
+						      document.getElementById("reportMSG").style = "color : green";
 						      exportData(exportObject);
+		
 					      }
 					      else{
 						      document.getElementById("reportMSG").innerHTML = "I've not found any conversation in this period!";
@@ -3655,7 +3664,7 @@ checklogin(accnumb, bearer);
 		};
 		download(jsonToSsXml(exportObject), 'transcripts.xls', 'application/vnd.ms-excel');
 		$("#hiddenbutton")[0].click();
-		 
+		
 		 
 	 }
 	 
