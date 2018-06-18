@@ -4,8 +4,6 @@
 
 
 
-
-
 <head>
   
 </head>
@@ -2977,7 +2975,7 @@ checklogin(accnumb, bearer);
 						      var partialTime = 0;
 						      if(howManyMessages){
 						      		if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
-									if(answer[i].hasOwnProperty('transfers') && answer[i].transfers.length){
+									if(answer[i].hasOwnProperty('transfers')){
 										var agentParticipantsLength = answer[i].agentParticipants.length;
 										var transferLength = answer[i].transfers.length;
 										var isGeneral = 0;
@@ -3003,6 +3001,29 @@ checklogin(accnumb, bearer);
 											if((answer[i].agentParticipants[z].userTypeName === "Human") && (answer[i].agentParticipants[z].permission === "ASSIGNED_AGENT")){
 												agentLoginName = answer[i].agentParticipants[z].agentLoginName;
 												jumpInTimestamp = answer[i].agentParticipants[z].timeL;
+												if(transferLength === 0){
+													effortTimeGeneral = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
+													lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
+													lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
+													lastProperTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
+													if(!arrayProperTeamsGeneral.includes(lastTeamGeneral)){
+														arrayProperTeamsGeneral.push(lastTeamGeneral);
+													}
+													if(!arrayAgentsGeneral.includes(lastAgentGeneral)){
+														arrayAgentsGeneral.push(lastAgentGeneral);
+													}
+													var agentAlberoLength = alberoArray.length;
+													for(var counter = 0; counter < agentAlberoLength; counter++){
+														if (alberoArray[counter].son === lastTeamGeneral){
+															lastTeamGeneral = alberoArray[counter].father;
+															counter = agentAlberoLength;
+														}
+													}
+													if(!arrayTeamsGeneral.includes(lastTeamGeneral)){
+														arrayTeamsGeneral.push(lastTeamGeneral);
+													}
+													z = agentParticipantsLength;
+												}
 												for (var f = 0; f < transferLength; f++){
 													if(answer[i].transfers[f].timeL > jumpInTimestamp){
 														if(answer[i].transfers[f].targetSkillName === "Limbo" || answer[i].transfers[f].targetSkillName === "Freeze" ){
