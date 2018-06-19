@@ -2556,8 +2556,11 @@ checklogin(accnumb, bearer);
 					      
 					      
 					      for (var i = 0; i < (answer.length); i++){
-						      document.getElementById("reportMSG").innerHTML = "...analyzing data...";
-						      document.getElementById("reportMSG").style = "color : green";
+						      
+						      if (i % 1000 == 0){
+							      console.log("inside refresh");
+						      }
+
 						      var messages = "";
 						      var thismessage = "";
 						      var thisactor = "";
