@@ -5,6 +5,9 @@
 
 
 
+
+
+
 <head>
   
 </head>
@@ -529,7 +532,9 @@ span.psw {
 	</div>
 
 	</br>
-	<div id="slotsAvailable"></div>
+	<div id="slotsAvailable"></div></br></br>
+
+	<div id="offlineAssignedAgent"></div>
 
 	</br></br></br></br>
 
@@ -629,6 +634,8 @@ span.psw {
   var overwriteHumanSkill = "";
   var FacebookBotID = "1089636032";
   var exportObject = [];
+  var agentLogged = [];
+  var agentAssigned = [];
 	
   function findBulk(Seconds){
 	 if (Seconds <= 30){
@@ -787,6 +794,8 @@ function retrieveAgentsLogged(){
 	var totalSpots = 0;
 	var availableSpots = 0;
 	
+	agentLogged = [];
+	
 	setTimeout(function(){
 		  
 		  $.ajax({
@@ -807,6 +816,7 @@ function retrieveAgentsLogged(){
 							  if(data.hasOwnProperty('agentStatusRecords')){
 								  var agentStatusRecordsLength = data.agentStatusRecords.length;
 								  for (var z = 0; z < agentStatusRecordsLength; z++){
+									  agentLogged.push(data.agentStatusRecords[z].agentLoginName);
 									  var counted = false;
 									  totalSpots = (data.agentStatusRecords[z].configuredMaxSlots) - (data.agentStatusRecords[z].busySlots);
 									  availableSpots = availableSpots + totalSpots;
@@ -1779,6 +1789,7 @@ function retrieveAgentsLogged(){
 	  var TOtheropenConv =0;
 	  var TOtherassignedConv =0;
 	  var TOtherunassignedConv =0;
+	  agentAssigned = [];
 	  
 	  
 	  
@@ -1793,6 +1804,11 @@ function retrieveAgentsLogged(){
 			  isAssigned = false;
 		  } else{
 			  isAssigned = true;
+			  if(!agentLogged.includes(answer[z].info.latestAgentLoginName)){
+				  if(!agentAssigned.includes(answer[z].info.latestAgentLoginName)){
+					  agentAssigned.push(answer[z].info.latestAgentLoginName);
+				  }
+			  }
 		  }
 		  switch(latestSkill) {
 			  case "Facebook_priv":
@@ -2020,6 +2036,15 @@ function retrieveAgentsLogged(){
 	  document.getElementById("TOtheropenConv").innerHTML = TOtheropenConv;
 	  document.getElementById("TOtherassignedConv").innerHTML = TOtherassignedConv;
 	  document.getElementById("TOtherunassignedConv").innerHTML = TOtherunassignedConv;
+	  
+	  console.log("your logged agents: " + JSON.stringify(agentLogged));
+	  console.log("your not-logged agents: " + JSON.stringify(agentAssigned));
+	  
+	  document.getElementById("offlineAssignedAgent").innerHTML = "Operatori offline che hanno conversazioni assegnate: " + agentAssigned;
+	  document.getElementById("offlineAssignedAgent").style = "color : red";
+	  
+	  
+	  
 	 
   }
 	
