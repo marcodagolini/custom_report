@@ -808,7 +808,7 @@ function retrieveAgentsLogged(){
 			  data: body,
 			  success: function success(data) {
 				  // console.log("********");
-				  // console.log(JSON.stringify(data));
+				  console.log(JSON.stringify(data));
 				  if(data.hasOwnProperty('_metadata')){
 					  if(data._metadata.hasOwnProperty('count')){
 						  if(data._metadata.count > 0){
