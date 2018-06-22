@@ -815,7 +815,7 @@ function retrieveAgentsLogged(){
 							  if(data.hasOwnProperty('agentStatusRecords')){
 								  var agentStatusRecordsLength = data.agentStatusRecords.length;
 								  for (var z = 0; z < agentStatusRecordsLength; z++){
-									  agentLogged.push(data.agentStatusRecords[z].agentName);
+									  agentLogged.push(data.agentStatusRecords[z].agentLoginName);
 									  var counted = false;
 									  totalSpots = (data.agentStatusRecords[z].configuredMaxSlots) - (data.agentStatusRecords[z].busySlots);
 									  availableSpots = availableSpots + totalSpots;
@@ -1803,9 +1803,9 @@ function retrieveAgentsLogged(){
 			  isAssigned = false;
 		  } else{
 			  isAssigned = true;
-			  if(!agentLogged.includes(answer[z].info.latestAgentFullName)){
-				  if(!agentAssigned.includes(answer[z].info.latestAgentFullName)){
-					  agentAssigned.push(answer[z].info.latestAgentFullName);
+			  if(!agentLogged.includes(answer[z].info.latestAgentLoginName)){
+				  if(!agentAssigned.includes(answer[z].info.latestAgentLoginName)){
+					  agentAssigned.push(answer[z].info.latestAgentLoginName);
 				  }
 			  }
 		  }
