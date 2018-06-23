@@ -4,6 +4,9 @@
 
 
 
+
+
+
 <head>
   
 </head>
@@ -805,7 +808,7 @@ function retrieveAgentsLogged(){
 			  data: body,
 			  success: function success(data) {
 				  // console.log("********");
-				  // console.log(JSON.stringify(data));
+				  console.log(JSON.stringify(data));
 				  if(data.hasOwnProperty('_metadata')){
 					  if(data._metadata.hasOwnProperty('count')){
 						  if(data._metadata.count > 0){
@@ -2033,8 +2036,8 @@ function retrieveAgentsLogged(){
 	  document.getElementById("TOtherassignedConv").innerHTML = TOtherassignedConv;
 	  document.getElementById("TOtherunassignedConv").innerHTML = TOtherunassignedConv;
 	  
-	  // console.log("your logged agents: " + JSON.stringify(agentLogged));
-	  // console.log("your not-logged agents: " + JSON.stringify(agentAssigned));
+	  console.log("your logged agents: " + JSON.stringify(agentLogged));
+	  console.log("your not-logged agents: " + JSON.stringify(agentAssigned));
 	  
 	  document.getElementById("offlineAssignedAgent").innerHTML = "Operatori offline che hanno conversazioni assegnate: " + agentAssigned;
 	  document.getElementById("offlineAssignedAgent").style = "color : red";
@@ -2605,22 +2608,24 @@ checklogin(accnumb, bearer);
 		};
 		 
 		 jsonToSsXml = function (jsonObject) {
+			var myLength = jsonObject.length
     			var row;
     			var col;
     			var xml;
     			var data = typeof jsonObject != "object" ? JSON.parse(jsonObject) : jsonObject;
     
     			xml = emitXmlHeader();
-    			for (row = 0; row < data.length; row++) {
+    			for (row = 0; row < myLength; row++) {
         			xml += '<ss:Row>\n';
       
-        			for (col in data[row]) {
+        			for (col in data[0]) {
             				xml += '  <ss:Cell>\n';
             				xml += '    <ss:Data ss:Type="' + testTypes[col]  + '">';
-            				xml += data[row][col] + '</ss:Data>\n';
+            				xml += data[0][col] + '</ss:Data>\n';
             				xml += '  </ss:Cell>\n';
         			}
         			xml += '</ss:Row>\n';
+				data.splice(0, 1);
     			}
     
     			xml += emitXmlFooter();
@@ -3659,7 +3664,6 @@ function analysis(answer){
 				}
 			}else{
 				setTimeout(function(){
-					
 					document.getElementById("reportMSG").innerHTML = answer.length + " Messaging conversations downloaded with success!";
 					document.getElementById("reportMSG").style = "color : green";
 					answer = [];
