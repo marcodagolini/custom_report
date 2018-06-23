@@ -3660,9 +3660,10 @@ function analysis(answer){
 				}
 			}else{
 				setTimeout(function(){
-					answer = [];
+					
 					document.getElementById("reportMSG").innerHTML = answer.length + " Messaging conversations downloaded with success!";
 					document.getElementById("reportMSG").style = "color : green";
+					answer = [];
 					exportData(exportObject);
 				}, 1000);
 			}
