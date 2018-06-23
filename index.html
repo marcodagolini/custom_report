@@ -807,7 +807,7 @@ function retrieveAgentsLogged(){
 			  data: body,
 			  success: function success(data) {
 				  // console.log("********");
-				  console.log(JSON.stringify(data));
+				  // console.log(JSON.stringify(data));
 				  if(data.hasOwnProperty('_metadata')){
 					  if(data._metadata.hasOwnProperty('count')){
 						  if(data._metadata.count > 0){
@@ -2035,8 +2035,8 @@ function retrieveAgentsLogged(){
 	  document.getElementById("TOtherassignedConv").innerHTML = TOtherassignedConv;
 	  document.getElementById("TOtherunassignedConv").innerHTML = TOtherunassignedConv;
 	  
-	  console.log("your logged agents: " + JSON.stringify(agentLogged));
-	  console.log("your not-logged agents: " + JSON.stringify(agentAssigned));
+	  // console.log("your logged agents: " + JSON.stringify(agentLogged));
+	  // console.log("your not-logged agents: " + JSON.stringify(agentAssigned));
 	  
 	  document.getElementById("offlineAssignedAgent").innerHTML = "Operatori offline che hanno conversazioni assegnate: " + agentAssigned;
 	  document.getElementById("offlineAssignedAgent").style = "color : red";
