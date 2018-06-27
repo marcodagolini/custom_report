@@ -6,6 +6,7 @@
 
 
 
+
 <head>
   
 </head>
@@ -602,6 +603,10 @@ span.psw {
 
     <button type="button" id ="downloadTranscripts" class="downloadTranscripts" disabled>Download</button></br></br>
     <div id="reportMSG"></div>
+    </br></br></br>
+
+	<div id="assignedConversationsList"></div>
+
     </br></br></br>
 
     <a id="hiddenbutton" style="visibility:hidden;" href="">Hidden</a>
@@ -1792,6 +1797,7 @@ function retrieveAgentsLogged(){
 	  agentAssigned = [];
 	  
 	  var unassignedConversationsList = "Conversazioni non assegnate:";
+	  var assignedConversationsList = "Conversazioni assegnate:";
 	  
 	  
 	  
@@ -1817,6 +1823,7 @@ function retrieveAgentsLogged(){
 				  FBPopenConv ++;
 				  TFBopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  FBPassignedConv ++;
 					  TFBassignedConv ++;
 				  } else{
@@ -1831,6 +1838,7 @@ function retrieveAgentsLogged(){
 				  FBRopenConv ++;
 				  TFBopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  FBRassignedConv ++;
 					  TFBassignedConv ++;
 				  } else{
@@ -1844,6 +1852,7 @@ function retrieveAgentsLogged(){
 				  FBPNopenConv ++;
 				  TFBopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  FBPNassignedConv ++;
 					  TFBassignedConv ++;
 				  } else{
@@ -1857,6 +1866,7 @@ function retrieveAgentsLogged(){
 				  FBPNRopenConv ++;
 				  TFBopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  FBPNRassignedConv ++;
 					  TFBassignedConv ++;
 				  } else{
@@ -1870,6 +1880,7 @@ function retrieveAgentsLogged(){
 				  HopenConv ++;
 				  TWebopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  HassignedConv ++;
 					  TWebassignedConv ++;
 				  } else{
@@ -1883,6 +1894,7 @@ function retrieveAgentsLogged(){
 				  HRopenConv ++;
 				  TWebopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  HRassignedConv ++;
 					  TWebassignedConv ++;
 				  } else{
@@ -1896,6 +1908,7 @@ function retrieveAgentsLogged(){
 				  HNopenConv ++;
 				  TWebopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  HNassignedConv ++;
 					  TWebassignedConv ++;
 				  } else{
@@ -1909,6 +1922,7 @@ function retrieveAgentsLogged(){
 				  HNRopenConv ++;
 				  TWebopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  HNRassignedConv ++;
 					  TWebassignedConv ++;
 				  } else{
@@ -1922,6 +1936,7 @@ function retrieveAgentsLogged(){
 				  OopenConv ++;
 				  TOopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  OassignedConv ++;
 					  TOassignedConv ++;
 				  } else{
@@ -1935,6 +1950,7 @@ function retrieveAgentsLogged(){
 				  ORopenConv ++;
 				  TOopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  ORassignedConv ++;
 					  TOassignedConv ++;
 				  } else{
@@ -1948,6 +1964,7 @@ function retrieveAgentsLogged(){
 				  OFopenConv ++;
 				  TOopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  OFassignedConv ++;
 					  TOassignedConv ++;
 				  } else{
@@ -1961,6 +1978,7 @@ function retrieveAgentsLogged(){
 				  OFRopenConv ++;
 				  TOopenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  OFRassignedConv ++;
 					  TOassignedConv ++;
 				  } else{
@@ -1974,6 +1992,7 @@ function retrieveAgentsLogged(){
 				  IopenConv ++;
 				  TOtheropenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  IassignedConv ++;
 					  TOtherassignedConv ++;
 				  } else{
@@ -1987,6 +2006,7 @@ function retrieveAgentsLogged(){
 				  PopenConv ++;
 				  TOtheropenConv ++;
 				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
 					  PassignedConv ++;
 					  TOtherassignedConv ++;
 				  } else{
@@ -2061,6 +2081,9 @@ function retrieveAgentsLogged(){
 	  
 	  document.getElementById("unassignedConversationsList").innerHTML = unassignedConversationsList;
 	  document.getElementById("unassignedConversationsList").style = "color : red";
+	  
+	  document.getElementById("assignedConversationsList").innerHTML = assignedConversationsList;
+	  document.getElementById("assignedConversationsList").style = "color : red";
 	  
 	  
 	  
