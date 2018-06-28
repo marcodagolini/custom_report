@@ -2846,18 +2846,7 @@ checklogin(accnumb, bearer);
 								      
 								      if(channel === "FaceBook"){
 									      
-									      
-									      if(answer[i].hasOwnProperty('sdes')){
-										      if(answer[i].sdes.hasOwnProperty('events')){
-											      var searchCustomerInfo = answer[i].sdes.events.length;
-											      for (var wq = 0; wq  < searchCustomerInfo; wq ++){
-												      if(answer[i].sdes.events[wq].hasOwnProperty('customerInfo')){
-													      campo1 = answer[i].sdes.events[wq].customerInfo[0].customerInfo[0].customerId;
-													      wq = searchCustomerInfo;
-												      }
-											      }
-										      }
-									      }
+				
 									      
 									 
 									 if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
@@ -3617,7 +3606,7 @@ checklogin(accnumb, bearer);
 								}
 						      }
 						      
-						      
+						      var campo1 = "";
 						      var campo2 = "";
 						      var campo3 = "";
 	
