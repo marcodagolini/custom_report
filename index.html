@@ -2873,7 +2873,7 @@ checklogin(accnumb, bearer);
 									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 										      var arraylength = answer[i].transfers.length;
 										      for (var z = 0; z < arraylength; z++){
-											     if((answer[i].transfers[z].targetSkillName === "Facebook_priv") || (answer[i].transfers[z].targetSkillName === "Facebook_priv_night") || (answer[i].transfers[z].targetSkillName === "human") || (answer[i].transfers[z].targetSkillName === "human_night")){
+											     if((answer[i].transfers[z].targetSkillName === "Facebook_priv") || (answer[i].transfers[z].targetSkillName === "Facebook_priv_night") || (answer[i].transfers[z].targetSkillName === "Fixed") || (answer[i].transfers[z].targetSkillName === "Fixed_risvegliata") || (answer[i].transfers[z].targetSkillName === "human") || (answer[i].transfers[z].targetSkillName === "human_night")){
 												     startingTime = answer[i].transfers[z].timeL;
 												     z = arraylength;
 											     }
@@ -3103,6 +3103,8 @@ checklogin(accnumb, bearer);
 										      isRisvegliataOutbound = false;
 									      } else if (answer[i].transfers[z].targetSkillName.indexOf("uman") > -1){
 										      isRisvegliataOutbound = false;
+									      } else if (answer[i].transfers[z].targetSkillName.indexOf("Fixed") > -1){
+										      isRisvegliataOutbound = false;
 									      }
 									      if ((answer[i].transfers[z].targetSkillName === "Limbo") && (answer[i].transfers[z].sourceSkillName !== "Limbo")){
 										      limbo = limbo +1;
@@ -3199,7 +3201,7 @@ checklogin(accnumb, bearer);
 												isGeneral = 0;
 												isOutbound = 1;
 												f = transferLength;
-											} else if((answer[i].transfers[f].sourceSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].sourceSkillName.indexOf("uman") > -1)){
+											} else if((answer[i].transfers[f].sourceSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].sourceSkillName.indexOf("uman") > -1) || (answer[i].transfers[f].sourceSkillName.indexOf("Fixed") > -1)){
 												isGeneral = 1;
 												isOutbound = 0;
 												f = transferLength;
@@ -3283,7 +3285,7 @@ checklogin(accnumb, bearer);
 															}
 															f = transferLength;
 														}
-														else if((answer[i].transfers[f].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].targetSkillName.indexOf("uman") > -1)){
+														else if((answer[i].transfers[f].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[f].targetSkillName.indexOf("uman") > -1) || (answer[i].transfers[f].targetSkillName.indexOf("Fixed") > -1)){
 															
 															if(isOutbound){
 																isGeneral = 1;
@@ -3533,9 +3535,9 @@ checklogin(accnumb, bearer);
 						      var timestampLastActGen = 0;
 						      var timestampLastActOut = 0;
 						      
-						     if(answer[i].info.conversationId === "0a0c7e37-467b-4de9-bf36-8c2ea0e7c2d3"){
-								console.log("hoooray!!");
-							}
+						      // if(answer[i].info.conversationId === "0a0c7e37-467b-4de9-bf36-8c2ea0e7c2d3"){
+								// console.log("hoooray!!");
+						       // }
 						      
 						      howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
@@ -3548,7 +3550,7 @@ checklogin(accnumb, bearer);
 									var lastMessageSentGeneral = 0;
 									var lastMessageSentOutbound = 0;
 									for (var z = 0; z < transferLength; z++){
-										if((answer[i].transfers[z].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[z].targetSkillName.indexOf("uman") > -1)){
+										if((answer[i].transfers[z].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[z].targetSkillName.indexOf("uman") > -1) || (answer[i].transfers[z].targetSkillName.indexOf("Fixed") > -1)){
 											if(!thisIsGeneral){
 												thisIsGeneral = true;
 												startThisPeriod = answer[i].transfers[z].timeL;
@@ -3604,7 +3606,7 @@ checklogin(accnumb, bearer);
 												startThisPeriod = answer[i].transfers[z].timeL;
 											}
 										}
-										if((answer[i].transfers[z].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[z].targetSkillName.indexOf("uman") > -1)){
+										if((answer[i].transfers[z].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[z].targetSkillName.indexOf("uman") > -1) || (answer[i].transfers[z].targetSkillName.indexOf("Fixed") > -1)){
 											if(thisIsOutbound){
 												thisIsOutbound = false;
 												endThisPeriod = answer[i].transfers[z].timeL;
