@@ -3815,10 +3815,10 @@ function analysis(answer){
 		document.getElementById("reportMSG").innerHTML = "I've not found any conversation in this period!";
 		document.getElementById("reportMSG").style = "color : red";
 	} else{
-		document.getElementById("reportMSG").innerHTML = "...analyzing data...";
-		document.getElementById("reportMSG").style = "color : green";
 		for (var mz = 0; mz <= myAnswerLength; mz++) {
 			setTimeout(function(mz) {
+				document.getElementById("reportMSG").innerHTML = "...analyzing data... " + (mz/myAnswerLength) *100 + "%";
+				document.getElementById("reportMSG").style = "color : green";
 				tryAnalysisUntilSuccess(mz, answer);
 			}, 0, mz);
 		}
