@@ -3818,7 +3818,7 @@ function analysis(answer){
 	} else{
 		for (var mz = 0; mz <= myAnswerLength; mz++) {
 			setTimeout(function(mz) {
-				document.getElementById("reportMSG").innerHTML = "...analyzing data... " + (mz/myAnswerLength) *100 + "%";
+				document.getElementById("reportMSG").innerHTML = "...analyzing data...  (" + Math.round(100*(mz/myAnswerLength)) + "%)";
 				document.getElementById("reportMSG").style = "color : green";
 				tryAnalysisUntilSuccess(mz, answer);
 			}, 0, mz);
