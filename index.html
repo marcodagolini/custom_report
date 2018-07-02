@@ -3815,6 +3815,7 @@ function analysis(answer){
 	if(myAnswerLength === 0){
 		document.getElementById("reportMSG").innerHTML = "I've not found any conversation in this period!";
 		document.getElementById("reportMSG").style = "color : red";
+		$("#downloadTranscripts").prop( "disabled", false ); 
 	} else{
 		for (var mz = 0; mz <= myAnswerLength; mz++) {
 			setTimeout(function(mz) {
