@@ -1862,7 +1862,16 @@ function retrieveAgentsLogged(){
 	  var stringWaitingFrom = "";
 	  for (var z = 0; z < answerLength; z++){
 		  latestSkill = answer[z].info.latestSkillName;
-		  if(answer[z].info.latestQueueState === "IN_QUEUE"){
+		  var isRealQueue = true;
+		  if(answer[z].hasOwnProperty('transfers')){
+			  var wer = answer[z].transfers.length;
+			  if (wer > 0){
+				  if(answer[z].transfers[(wer-1)].reason === "Back2Q"){
+					  isRealQueue = false;
+				  }
+			  }
+		  }
+		  if(answer[z].info.latestQueueState === "IN_QUEUE" && !isRealQueue){
 			  isAssigned = false;
 			  if(answer[z].hasOwnProperty('transfers')){
 				  var rew = answer[z].transfers.length;
