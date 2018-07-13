@@ -1874,11 +1874,11 @@ function retrieveAgentsLogged(){
 						  if(answer[z].transfers[mycounter].contextData.hasOwnProperty('structuredMetadata')){
 							  if(answer[z].transfers[mycounter].contextData.structuredMetadata[0].hasOwnProperty('botResponse')){
 								  if(answer[z].transfers[mycounter].contextData.structuredMetadata[0].botResponse.hasOwnProperty('intents')){
-									  if(answer[z].transfers[mycounter].contextData.structuredMetadata[0].botResponse.intents[2].name === "limbo"){
+									  if(answer[z].transfers[mycounter].contextData.structuredMetadata[0].botResponse.intents[2] === "limbo"){
 										  myLastLimboFreezeHere = answer[z].transfers[mycounter].timeL;
 										  mycounter = 0;
 									  }
-									  if(answer[z].transfers[mycounter].contextData.structuredMetadata[0].botResponse.intents[2].name === "risvegliata"){
+									  if(answer[z].transfers[mycounter].contextData.structuredMetadata[0].botResponse.intents[2] === "risvegliata"){
 										  myLastLimboFreezeHere = answer[z].transfers[mycounter].timeL;
 										  mycounter = 0;
 									  }
