@@ -2853,16 +2853,15 @@ checklogin(accnumb, bearer);
 											      }
 										      }
 									      }
-									      if(timeToAcceptFacebook === 0){
+									      timeSpentInFacebook_bot = "-";
+									      if(timeToAcceptFacebook < 0){
 										      timeToAcceptFacebook = "-";
 										      firstTimeAnswerFacebook = "-";
 										      timestampFacebook_priv = "-";
-										      timeSpentInFacebook_bot = "-";
 									      } else{
 										      timeToAcceptFacebook = timeToAcceptFacebook.toString();
 										      firstTimeAnswerFacebook = firstTimeAnswer.toString();
 										      timestampFacebook_priv = new Date(startingTime);
-										      timeSpentInFacebook_bot = Math.floor((startingTime - answer[i].info.startTimeL)/1000);
 									      }
 									      
 								      }
@@ -2886,7 +2885,7 @@ checklogin(accnumb, bearer);
 									      } else{
 										      timeToAcceptFacebook = timeToAcceptFacebook.toString();
 										      firstTimeAnswerFacebook = firstTimeAnswer.toString();
-										      timestampFacebook_priv = new Date(answer[i].info.startTimeL);
+										      timestampFacebook_priv = new Date(startingTime);
 									      }
 								      }
 							      }
