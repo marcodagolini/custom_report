@@ -3448,12 +3448,14 @@ checklogin(accnumb, bearer);
 						      if(howManyMessages){
 						      		
 									var transferLength = answer[i].transfers.length;
-									var thisIsGeneral = false;
+									var thisIsGeneral = true;
 									var thisIsOutbound = false;
 									var startThisPeriod = 0;
 									var endThisPeriod = 0;
 									var lastMessageSentGeneral = 0;
 									var lastMessageSentOutbound = 0;
+							      
+							      		startThisPeriod = answer[i].info.startTimeL;
 									for (var z = 0; z < transferLength; z++){
 										if((answer[i].transfers[z].targetSkillName.indexOf("acebook") > -1) || (answer[i].transfers[z].targetSkillName.indexOf("uman") > -1) || (answer[i].transfers[z].targetSkillName.indexOf("Fixed") > -1)){
 											if(!thisIsGeneral){
