@@ -2804,7 +2804,7 @@ checklogin(accnumb, bearer);
 							      var timestampNight = 0;
 							      var timeSpentInFacebook_bot = 0;
 							      var startingTime = 0;
-							      var timeToAcceptFacebook = "-";
+							      var timeToAcceptFacebook = 0;
 							      var firstTimeAnswerFacebook =  "-";
 							      var participantID = 0;
 							      var controlOB = 0;
@@ -2814,15 +2814,11 @@ checklogin(accnumb, bearer);
 								      night = "Yes";
 							      }
 							      if((channel === "FaceBook") || (channel === "Web")){
+								      startingTime = answer[i].info.startTimeL;
 								      if(answer[i].hasOwnProperty('transfers')){
 									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 										      var arraylength = answer[i].transfers.length;
-										      for (var z = 0; z < arraylength; z++){
-											     if((answer[i].transfers[z].targetSkillName === "Facebook_priv") || (answer[i].transfers[z].targetSkillName === "Facebook_priv_night") || (answer[i].transfers[z].targetSkillName === "Fixed") || (answer[i].transfers[z].targetSkillName === "Fixed_risvegliata") || (answer[i].transfers[z].targetSkillName === "human") || (answer[i].transfers[z].targetSkillName === "human_night")){
-												     startingTime = answer[i].transfers[z].timeL;
-												     z = arraylength;
-											     }
-										      }
+										      
 										      for (var p = 0; p < arraylength; p++){
 											     if(answer[i].transfers[p].targetSkillName.indexOf("utbound") > -1){
 												     timestampOutbound = new Date(answer[i].transfers[p].timeL);
@@ -2857,7 +2853,7 @@ checklogin(accnumb, bearer);
 											      }
 										      }
 									      }
-									      if((startingTime === 0) || (timeToAcceptFacebook < 0)){
+									      if(timeToAcceptFacebook === 0){
 										      timeToAcceptFacebook = "-";
 										      firstTimeAnswerFacebook = "-";
 										      timestampFacebook_priv = "-";
