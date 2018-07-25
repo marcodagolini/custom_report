@@ -2760,16 +2760,19 @@ checklogin(accnumb, bearer);
 						      var imeiNumber = "";
 						      var customerName = "";
 						      var channel = "Web";
+						      var valueDoingRouting = "";
 						      if(answer[i].hasOwnProperty('sdes')){
 							      if(answer[i].sdes.events[0].hasOwnProperty('customerInfo')){
 								      imeiNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
-								      if(answer[i].sdes.events[0].customerInfo.customerInfo.customerType.indexOf("acebook") > -1){
+								      valueDoingRouting = answer[i].sdes.events[0].customerInfo.customerInfo.customerType;
+								      if(valueDoingRouting.indexOf("acebook") > -1){
 									      channel = "FaceBook";
 								      }
 							      }
 							      if(answer[i].sdes.events[1].hasOwnProperty('customerInfo')){
 								      imeiNumber = answer[i].sdes.events[1].customerInfo.customerInfo.imei;
-								      if(answer[i].sdes.events[1].customerInfo.customerInfo.customerType.indexOf("acebook") > -1){
+								      valueDoingRouting = answer[i].sdes.events[1].customerInfo.customerInfo.customerType;
+								      if(valueDoingRouting.indexOf("acebook") > -1){
 									      channel = "FaceBook";
 								      }
 							      }
@@ -2807,6 +2810,9 @@ checklogin(accnumb, bearer);
 							      var controlOB = 0;
 							      var night = "No";
 							      var campo1 = "";
+							      if(valueDoingRouting.indexOf("ight") > -1){
+								      night = "Yes";
+							      }
 							      if((channel === "FaceBook") || (channel === "Web")){
 								      if(answer[i].hasOwnProperty('transfers')){
 									      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
@@ -2824,18 +2830,6 @@ checklogin(accnumb, bearer);
 												     controlOB = 1;
 											     }
 										      }
-										      for (var t = 0; t < arraylength; t++){
-											     if(answer[i].transfers[t].targetSkillName === "Facebook_priv_night"){
-												     night = "Yes";
-												     t = arraylength;
-											     }
-										      }
-										      for (var tz = 0; tz < arraylength; tz++){
-											     if(answer[i].transfers[tz].targetSkillName === "human_night"){
-												     night = "Yes";
-												     tz = arraylength;
-											     }
-										      }
 										      if(controlOB === 0){
 											      timestampOutbound = "-";
 										      }
@@ -2850,37 +2844,32 @@ checklogin(accnumb, bearer);
 											      var searchCustomerInfo = answer[i].sdes.events.length;
 											      for (var wq = 0; wq  < searchCustomerInfo; wq ++){
 												      if(answer[i].sdes.events[wq].hasOwnProperty('customerInfo')){
-													      campo1 = answer[i].sdes.events[wq].customerInfo.customerInfo.customerId.replace('facebook_13099967_','');
+													      campo1 = answer[i].sdes.events[wq].customerInfo.customerInfo.customerId;
 													      wq = searchCustomerInfo;
 												      }
 											      }
 										      }
 									      }
-									      
-									 
-									 if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
-									      for (var b = 0; b < answer[i].agentParticipants.length; b++){
-										      if((answer[i].agentParticipants[b].userTypeName === "Human") && (answer[i].agentParticipants[b].permission === "ASSIGNED_AGENT")){
-											      participantID = answer[i].agentParticipants[b].agentId;
-											      timeToAcceptFacebook = Math.floor((answer[i].agentParticipants[b].timeL - startingTime)/1000);
-											      
-											      b = answer[i].agentParticipants.length;
+									      if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
+										      for (var b = 0; b < answer[i].agentParticipants.length; b++){
+											      if((answer[i].agentParticipants[b].userTypeName === "Human") && (answer[i].agentParticipants[b].permission === "ASSIGNED_AGENT")){
+												      participantID = answer[i].agentParticipants[b].agentId;
+												      timeToAcceptFacebook = Math.floor((answer[i].agentParticipants[b].timeL - startingTime)/1000);
+												      b = answer[i].agentParticipants.length;
+											      }
 										      }
 									      }
-										
-								      	}
-									      
-									if((startingTime === 0) || (timeToAcceptFacebook < 0)){
-									      timeToAcceptFacebook = "-";
-									      firstTimeAnswerFacebook = "-";
-									      timestampFacebook_priv = "-";
-									      timeSpentInFacebook_bot = "-";
-								      } else{
-									      timeToAcceptFacebook = timeToAcceptFacebook.toString();
-									      firstTimeAnswerFacebook = firstTimeAnswer.toString();
-									      timestampFacebook_priv = new Date(startingTime);
-									      timeSpentInFacebook_bot = Math.floor((startingTime - answer[i].info.startTimeL)/1000);
-								      }
+									      if((startingTime === 0) || (timeToAcceptFacebook < 0)){
+										      timeToAcceptFacebook = "-";
+										      firstTimeAnswerFacebook = "-";
+										      timestampFacebook_priv = "-";
+										      timeSpentInFacebook_bot = "-";
+									      } else{
+										      timeToAcceptFacebook = timeToAcceptFacebook.toString();
+										      firstTimeAnswerFacebook = firstTimeAnswer.toString();
+										      timestampFacebook_priv = new Date(startingTime);
+										      timeSpentInFacebook_bot = Math.floor((startingTime - answer[i].info.startTimeL)/1000);
+									      }
 									      
 								      }
 							      
