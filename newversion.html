@@ -2770,7 +2770,6 @@ checklogin(accnumb, bearer);
 										      channel = "FaceBook";
 									      }
 								      }
-
 							      }
 							      if(answer[i].sdes.events[1].hasOwnProperty('customerInfo')){
 								      imeiNumber = answer[i].sdes.events[1].customerInfo.customerInfo.imei;
@@ -2780,7 +2779,6 @@ checklogin(accnumb, bearer);
 										    channel = "FaceBook";
 									      }
 								      }
-
 							      }
 							      if(answer[i].sdes.events[0].hasOwnProperty('personalInfo')){
 								      if(answer[i].sdes.events[0].personalInfo.personalInfo.contacts.length){
@@ -3096,6 +3094,7 @@ checklogin(accnumb, bearer);
 						      howManyMessages = answer[i].messageRecords.length;
 						      var partialTime = 0;
 						      if(howManyMessages){
+								      
 						      		if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
 									if(answer[i].hasOwnProperty('transfers')){
 										var agentParticipantsLength = answer[i].agentParticipants.length;
@@ -3124,7 +3123,12 @@ checklogin(accnumb, bearer);
 												agentLoginName = answer[i].agentParticipants[z].agentLoginName;
 												jumpInTimestamp = answer[i].agentParticipants[z].timeL;
 												if(transferLength === 0){
-													effortTimeGeneral = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
+													if(answer[i].info.endTimeL === -1){
+														effortTimeGeneral = (Date.now() - jumpInTimestamp)/1000;
+													} else{
+														effortTimeGeneral = (answer[i].info.endTimeL - jumpInTimestamp)/1000;
+													}
+													
 													lastAgentGeneral = answer[i].agentParticipants[z].agentFullName;
 													lastTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
 													lastProperTeamGeneral = answer[i].agentParticipants[z].agentGroupName;
