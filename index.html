@@ -2826,6 +2826,35 @@ checklogin(accnumb, bearer);
 								      campo2 = answer[i].info.latestSkillName;
 							      }
 							      
+							      
+							       if(answer[i].hasOwnProperty('transfers')){
+								       if(answer[i].transfers.length > 0){
+									       if(answer[i].transfers[0].targetSkillName.indexOf("bot") > -1){
+										       if(answer[i].transfers.length > 2){
+											       if(answer[i].transfers[2].targetSkillName.indexOf("ight") > -1){
+												       night = "Yes";
+											       }
+										       } else{
+											       night = "Undefined";
+										       }
+									       } else{
+										       if(answer[i].transfers[0].targetSkillName.indexOf("ight") > -1){
+											       night = "Yes";
+										       }
+									       }
+								       } else{
+									       if(answer[i].info.latestSkillName.indexOf("ight") > -1){
+										       night = "Yes";
+									       }
+								       }
+							       } else{
+								       if(answer[i].info.latestSkillName.indexOf("ight") > -1){
+									       night = "Yes";
+								       }
+							       }
+											       
+
+
 							     
 							      
 							      if(valueDoingRouting.indexOf("ight") > -1){
