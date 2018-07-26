@@ -3630,16 +3630,19 @@ checklogin(accnumb, bearer);
 				if(answer[i].info.conversationId === "b4372dc7-cbac-4b45-b819-5a3a6c3fbd46"){
 					console.log("oi");
 				}
-					var myIndexForFix = imeiNumber.indexOf("/n")
-					if(myIndexForFix > -1 ){
-						imeiNumber = imeiNumber.substring(0, myIndexForFix);
+				
+				var match = /\r|\n/.exec(imeiNumber);
+					
+					if(match){
+						imeiNumber = "invalid format";
 					}
 				
+				match = /\r|\n/.exec(phoneNumber);
 				
-					myIndexForFix = phoneNumber.indexOf("/n")
-					if(myIndexForFix > -1 ){
-						phoneNumber = phoneNumber.substring(0, myIndexForFix);
+				if(match){
+						phoneNumber = "invalid format";
 					}
+
 				
 				
 	
