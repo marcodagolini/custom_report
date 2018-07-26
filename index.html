@@ -2816,6 +2816,23 @@ checklogin(accnumb, bearer);
 							      var controlOB = 0;
 							      var night = "No";
 							      var campo1 = "";
+							      var campo2 = "";
+							      if(valueDoingRouting === "Facebook_priv"){
+								      campo2 = "Facebook_priv";
+							      }
+							      if(valueDoingRouting === "Facebook_priv_night"){
+								      campo2 = "Facebook_priv_night";
+							      }
+							      if(valueDoingRouting === "Facebook_fixed"){
+								      campo2 = "Fixed";
+							      }
+							      if(valueDoingRouting === "VIP"){
+								      campo2 = "human";
+							      }
+							      if(valueDoingRouting === "skill_notturna_mobile"){
+								      campo2 = "human_night";
+							      }
+							      
 							      if(valueDoingRouting.indexOf("ight") > -1){
 								      night = "Yes";
 							      }
