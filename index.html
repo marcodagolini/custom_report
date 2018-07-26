@@ -2759,15 +2759,15 @@ checklogin(accnumb, bearer);
 						      var phoneNumber = "";
 						      var imeiNumber = "";
 						      var customerName = "";
-						      var channel = "Web";
+						      var channel = "FaceBook";
 						      var valueDoingRouting = "";
 						      if(answer[i].hasOwnProperty('sdes')){
 							      if(answer[i].sdes.events[0].hasOwnProperty('customerInfo')){
 								      imeiNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
 								      if(answer[i].sdes.events[0].customerInfo.customerInfo.hasOwnProperty('customerType')){
 									      valueDoingRouting = answer[i].sdes.events[0].customerInfo.customerInfo.customerType;
-									      if(valueDoingRouting.indexOf("acebook") > -1){
-										      channel = "FaceBook";
+									      if((valueDoingRouting.indexOf("uman") > -1) || (valueDoingRouting.indexOf("VIP") > -1)){
+										      channel = "Web";
 									      }
 								      }
 							      }
@@ -2775,8 +2775,8 @@ checklogin(accnumb, bearer);
 								      imeiNumber = answer[i].sdes.events[1].customerInfo.customerInfo.imei;
 								      if(answer[i].sdes.events[1].customerInfo.customerInfo.hasOwnProperty('customerType')){
 									      valueDoingRouting = answer[i].sdes.events[1].customerInfo.customerInfo.customerType;
-									      if(valueDoingRouting.indexOf("acebook") > -1){
-										    channel = "FaceBook";
+									      if((valueDoingRouting.indexOf("uman") > -1) || (valueDoingRouting.indexOf("VIP") > -1)){
+										    channel = "Web";
 									      }
 								      }
 							      }
