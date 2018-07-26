@@ -3629,7 +3629,9 @@ checklogin(accnumb, bearer);
 				
 				/*************** fix per Microsoft ***************/
 				
-				
+				if(answer[i].info.conversationId === "b4372dc7-cbac-4b45-b819-5a3a6c3fbd46"){
+					console.log("oi");
+				}
 					var myIndexForFix = imeiNumber.indexOf("/n")
 					if(myIndexForFix > -1 ){
 						imeiNumber = imeiNumber.substring(0, myIndexForFix);
