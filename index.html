@@ -3625,14 +3625,18 @@ checklogin(accnumb, bearer);
 						      var campo3 = "";
 				
 				/*************** fix per Microsoft ***************/
-				var myIndexForFix = imeiNumber.indexOf("/n")
-				if(myIndexForFix > -1 ){
-					imeiNumber = imeiNumber.substring(0, myIndexForFix);
-				}
 				
-				myIndexForFix = phoneNumber.indexOf("/n")
-				if(myIndexForFix > -1 ){
-					phoneNumber = phoneNumber.substring(0, myIndexForFix);
+				if(imeiNumber !== ""){
+					var myIndexForFix = imeiNumber.indexOf("/n")
+					if(myIndexForFix > -1 ){
+						imeiNumber = imeiNumber.substring(0, myIndexForFix);
+					}
+				}
+				if(phoneNumber !== ""){
+					myIndexForFix = phoneNumber.indexOf("/n")
+					if(myIndexForFix > -1 ){
+						phoneNumber = phoneNumber.substring(0, myIndexForFix);
+					}
 				}
 				
 	
