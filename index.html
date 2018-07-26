@@ -2818,6 +2818,8 @@ checklogin(accnumb, bearer);
 							      if(answer[i].hasOwnProperty('transfers')){
 								      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 									      campo2 = answer[i].transfers[0].sourceSkillName;
+								      }else{
+									      campo2 = answer[i].info.latestSkillName;
 								      }
 							      } else{
 								      campo2 = answer[i].info.latestSkillName;
