@@ -2834,7 +2834,7 @@ checklogin(accnumb, bearer);
 								      night = "Yes";
 							      }
 							      if(answer[i].hasOwnProperty('transfers')){
-								      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
+								      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 2) {
 									      if(answer[i].transfers[2].targetSkillName.indexOf("ight") > -1){
 										      night = "Yes";
 									      }
