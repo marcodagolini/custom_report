@@ -3,6 +3,8 @@
 
 
 
+
+
 <head>
   
 </head>
@@ -2755,18 +2757,18 @@ checklogin(accnumb, bearer);
 								      }
 							      }
 						      }
-						      var phoneNumber = "";
-						      var imeiNumber = "";
+						      var phoneNumber = "-";
+						      var imeiNumber = "-";
 						      var customerName = "";
-						      var channel = "Web";
+						      var channel = "FaceBook";
 						      var valueDoingRouting = "";
 						      if(answer[i].hasOwnProperty('sdes')){
 							      if(answer[i].sdes.events[0].hasOwnProperty('customerInfo')){
 								      imeiNumber = answer[i].sdes.events[0].customerInfo.customerInfo.imei;
 								      if(answer[i].sdes.events[0].customerInfo.customerInfo.hasOwnProperty('customerType')){
 									      valueDoingRouting = answer[i].sdes.events[0].customerInfo.customerInfo.customerType;
-									      if(valueDoingRouting.indexOf("acebook") > -1){
-										      channel = "FaceBook";
+									      if((valueDoingRouting.indexOf("uman") > -1) || (valueDoingRouting.indexOf("VIP") > -1) || (valueDoingRouting.indexOf("skill_notturna_mobile") > -1)){
+										      channel = "Web";
 									      }
 								      }
 							      }
@@ -2774,8 +2776,8 @@ checklogin(accnumb, bearer);
 								      imeiNumber = answer[i].sdes.events[1].customerInfo.customerInfo.imei;
 								      if(answer[i].sdes.events[1].customerInfo.customerInfo.hasOwnProperty('customerType')){
 									      valueDoingRouting = answer[i].sdes.events[1].customerInfo.customerInfo.customerType;
-									      if(valueDoingRouting.indexOf("acebook") > -1){
-										    channel = "FaceBook";
+									      if((valueDoingRouting.indexOf("uman") > -1) || (valueDoingRouting.indexOf("VIP") > -1) || (valueDoingRouting.indexOf("skill_notturna_mobile") > -1)){
+										    channel = "Web";
 									      }
 								      }
 							      }
@@ -2808,13 +2810,66 @@ checklogin(accnumb, bearer);
 							      var timeSpentInFacebook_bot = 0;
 							      var startingTime = 0;
 							      var timeToAcceptFacebook = 0;
+							      var isAccepted = false;
 							      var firstTimeAnswerFacebook =  "-";
 							      var participantID = 0;
 							      var controlOB = 0;
 							      var night = "No";
 							      var campo1 = "";
+							      var campo2 = "";
+							      if(answer[i].hasOwnProperty('transfers')){
+								      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
+									      campo2 = answer[i].transfers[0].sourceSkillName;
+								      }else{
+									      campo2 = answer[i].info.latestSkillName;
+								      }
+							      } else{
+								      campo2 = answer[i].info.latestSkillName;
+							      }
+							      
+							      
+							       if(answer[i].hasOwnProperty('transfers')){
+								       if(answer[i].transfers.length > 0){
+									       if(answer[i].transfers[0].targetSkillName.indexOf("bot") > -1){
+										       if(answer[i].transfers.length > 2){
+											       if(answer[i].transfers[2].targetSkillName.indexOf("ight") > -1){
+												       night = "Yes";
+											       }
+										       } else{
+											       night = "Undefined";
+										       }
+									       } else{
+										       if(answer[i].transfers[0].targetSkillName.indexOf("ight") > -1){
+											       night = "Yes";
+										       }
+									       }
+								       } else{
+									       if(answer[i].info.latestSkillName.indexOf("ight") > -1){
+										       night = "Yes";
+									       }
+								       }
+							       } else{
+								       if(answer[i].info.latestSkillName.indexOf("ight") > -1){
+									       night = "Yes";
+								       }
+							       }
+											       
+							     
+							      
 							      if(valueDoingRouting.indexOf("ight") > -1){
 								      night = "Yes";
+							      }
+							      if(answer[i].hasOwnProperty('transfers')){
+								      if(answer[i].transfers.length == 0){
+									      if(answer[i].info.latestSkillName.indexOf("ight") > -1){
+										      night = "Yes";
+									      }
+								      }
+								      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 2) {
+									      if(answer[i].transfers[2].targetSkillName.indexOf("ight") > -1){
+										      night = "Yes";
+									      }
+								      }
 							      }
 							      if((channel === "FaceBook") || (channel === "Web")){
 								      startingTime = answer[i].info.startTimeL;
@@ -2841,7 +2896,11 @@ checklogin(accnumb, bearer);
 											      var searchCustomerInfo = answer[i].sdes.events.length;
 											      for (var wq = 0; wq  < searchCustomerInfo; wq ++){
 												      if(answer[i].sdes.events[wq].hasOwnProperty('customerInfo')){
-													      campo1 = answer[i].sdes.events[wq].customerInfo.customerInfo.customerId;
+													      if(answer[i].sdes.events[wq].customerInfo.customerInfo.customerId.indexOf("_") > -1){
+														      campo1 = answer[i].sdes.events[wq].customerInfo.customerInfo.customerId.replace('facebook_13099967_','');
+													      } else{
+														      campo1 = answer[i].sdes.events[wq].customerInfo.customerInfo.customerId;
+													      }
 													      wq = searchCustomerInfo;
 												      }
 											      }
@@ -2850,6 +2909,7 @@ checklogin(accnumb, bearer);
 									      if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
 										      for (var b = 0; b < answer[i].agentParticipants.length; b++){
 											      if((answer[i].agentParticipants[b].userTypeName === "Human") && (answer[i].agentParticipants[b].permission === "ASSIGNED_AGENT")){
+												      isAccepted = true;
 												      participantID = answer[i].agentParticipants[b].agentId;
 												      timeToAcceptFacebook = Math.floor((answer[i].agentParticipants[b].timeL - startingTime)/1000);
 												      b = answer[i].agentParticipants.length;
@@ -2857,8 +2917,8 @@ checklogin(accnumb, bearer);
 										      }
 									      }
 									      timeSpentInFacebook_bot = "-";
-									      if(timeToAcceptFacebook < 0){
-										      timeToAcceptFacebook = "-";
+									      if(!isAccepted){
+										      timeToAcceptFacebook = "NOT ACCEPTED";
 										      firstTimeAnswerFacebook = "-";
 										      timestampFacebook_priv = "-";
 									      } else{
@@ -2873,6 +2933,7 @@ checklogin(accnumb, bearer);
 									      if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
 										      for (var b = 0; b < answer[i].agentParticipants.length; b++){
 											      if((answer[i].agentParticipants[b].userTypeName === "Human") && (answer[i].agentParticipants[b].permission === "ASSIGNED_AGENT")){
+												      isAccepted = true;
 												      participantID = answer[i].agentParticipants[b].agentId;
 												      timeToAcceptFacebook = Math.floor((answer[i].agentParticipants[b].timeL - answer[i].info.startTimeL)/1000);
 												      b = answer[i].agentParticipants.length;
@@ -2881,8 +2942,8 @@ checklogin(accnumb, bearer);
 									      }
 									      
 									      timeSpentInFacebook_bot = "-";
-									      if(timeToAcceptFacebook < 0){
-										      timeToAcceptFacebook = "-";
+									      if(!isAccepted){
+										      timeToAcceptFacebook = "NOT ACCEPTED";
 										      firstTimeAnswerFacebook = "-";
 										      timestampFacebook_priv = "-";
 									      } else{
@@ -3595,8 +3656,27 @@ checklogin(accnumb, bearer);
 						      }
 						      
 						      campo1 = campo1.toString();
-						      var campo2 = "";
 						      var campo3 = "";
+				
+				/*************** fix per Microsoft ***************/
+				
+				if(answer[i].info.conversationId === "b4372dc7-cbac-4b45-b819-5a3a6c3fbd46"){
+					console.log("oi");
+				}
+				
+				var match = /\r|\n/.exec(imeiNumber);
+					
+					if(match){
+						imeiNumber = "invalid format";
+					}
+				
+				match = /\r|\n/.exec(phoneNumber);
+				
+				if(match){
+						phoneNumber = "invalid format";
+					}
+				
+				
 	
 						     
 						      
