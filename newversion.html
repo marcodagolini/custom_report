@@ -3616,6 +3616,7 @@ checklogin(accnumb, bearer);
 									}
 							      		if(lastTagGenFromAgent > timestampLastActGen){
 										timestampLastActGen = lastTagGenFromAgent;
+										lastTypeActivityAgent = "Tag";
 									}
 							      
 									
@@ -3672,6 +3673,7 @@ checklogin(accnumb, bearer);
 									}
 							      		if(lastTagOutFromAgent > timestampLastActGen){
 										timestampLastActGen = lastTagOutFromAgent;
+										lastTypeActivityAgent = "Tag";
 									}
 									
 								
