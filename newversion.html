@@ -3561,6 +3561,8 @@ checklogin(accnumb, bearer);
 									var endThisPeriod = 0;
 									var lastMessageSentGeneral = 0;
 									var lastMessageSentOutbound = 0;
+							      		var lastTagGenFromAgent = 0;
+							      		var lastTagOutFromAgent = 0;
 							      
 							      		startThisPeriod = answer[i].info.startTimeL;
 									for (var z = 0; z < transferLength; z++){
@@ -3574,6 +3576,9 @@ checklogin(accnumb, bearer);
 											if(thisIsGeneral){
 												thisIsGeneral = false;
 												endThisPeriod = answer[i].transfers[z].timeL;
+												if((lastTagFromAgent > startThisPeriod) && (lastTagFromAgent < endThisPeriod)){
+													lastTagGenFromAgent = lastTagFromAgent;
+												}
 												for (var m = (howManyMessages - 1); m > -1 ; m--){
 													if((answer[i].messageRecords[m].timeL < endThisPeriod) && (answer[i].messageRecords[m].timeL > startThisPeriod) && (answer[i].messageRecords[m].sentBy === "Agent") && (answer[i].messageRecords[m].participantId !== "1089636032")){
 														lastMessageSentGeneral = answer[i].messageRecords[m].timeL;
@@ -3609,6 +3614,9 @@ checklogin(accnumb, bearer);
 									if(lastMessageSentGeneral > timestampLastActGen){
 										timestampLastActGen = lastMessageSentGeneral;
 									}
+							      		if(lastTagGenFromAgent > timestampLastActGen){
+										timestampLastActGen = lastTagGenFromAgent;
+									}
 							      
 									
 									thisIsGeneral = false;
@@ -3625,6 +3633,9 @@ checklogin(accnumb, bearer);
 											if(thisIsOutbound){
 												thisIsOutbound = false;
 												endThisPeriod = answer[i].transfers[z].timeL;
+												if((lastTagFromAgent > startThisPeriod) && (lastTagFromAgent < endThisPeriod)){
+													lastTagOutFromAgent = lastTagFromAgent;
+												}
 												for (var m = (howManyMessages - 1); m > -1 ; m--){
 													if((answer[i].messageRecords[m].timeL < endThisPeriod) && (answer[i].messageRecords[m].timeL > startThisPeriod) && (answer[i].messageRecords[m].sentBy === "Agent") && (answer[i].messageRecords[m].participantId !== "1089636032")){
 														lastMessageSentOutbound = answer[i].messageRecords[m].timeL;
@@ -3658,6 +3669,9 @@ checklogin(accnumb, bearer);
 									}
 									if(lastMessageSentOutbound > timestampLastActOut){
 										timestampLastActOut = lastMessageSentOutbound;
+									}
+							      		if(lastTagOutFromAgent > timestampLastActGen){
+										timestampLastActGen = lastTagOutFromAgent;
 									}
 									
 								
