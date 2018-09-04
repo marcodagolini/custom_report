@@ -2854,8 +2854,6 @@ checklogin(accnumb, bearer);
 								       }
 							       }
 											       
-
-
 							     
 							      
 							      if(valueDoingRouting.indexOf("ight") > -1){
@@ -3115,6 +3113,43 @@ checklogin(accnumb, bearer);
 								      }
 							      }
 						      }
+				
+							if(answer[i].hasOwnProperty('agentParticipants')){
+								if (typeof answer[i].agentParticipants !== 'undefined' && answer[i].agentParticipants.length > 0) {
+									var arraylength = answer[i].agentParticipants.length;
+									for (var z = (arraylength -1); z > -1; z--){
+										if(answer[i].agentParticipants[z].hasOwnProperty('contextData')){
+										      if(answer[i].agentParticipants[z].contextData.hasOwnProperty('structuredMetadata')){
+											      if(answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
+												      lastTagFromAgent = answer[i].agentParticipants[z].timeL;
+												      numero_telefono = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
+												      numero_ricontatto = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
+												      numero_cfiscale = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
+												      vfTag = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[3].name;
+												      triplettauno = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[4].name;
+												      triplettadue = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[5].name;
+												      triplettatre = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[6].name;
+												      if(vfTag === "undefined"){
+													      vfTag = "---";
+												      }
+												      if(triplettauno === "undefined"){
+													     triplettauno = "---"; 
+												      }
+												      if(triplettadue === "undefined"){
+													     triplettadue = "---"; 
+												      }
+												      if(triplettatre === "undefined"){
+													     triplettatre = "---"; 
+												      }
+												      z = 0;
+											      }
+										      }
+									      }
+									}
+								}
+							}
+				
+				
 						      if(wasInLimbo == 1){
 							      if (totalLimbo > 0){
 								     limboaveragetime = Math.floor(totalLimbo/limbo); 
@@ -3526,6 +3561,8 @@ checklogin(accnumb, bearer);
 									var endThisPeriod = 0;
 									var lastMessageSentGeneral = 0;
 									var lastMessageSentOutbound = 0;
+							      		var lastTagGenFromAgent = 0;
+							      		var lastTagOutFromAgent = 0;
 							      
 							      		startThisPeriod = answer[i].info.startTimeL;
 									for (var z = 0; z < transferLength; z++){
@@ -3539,6 +3576,9 @@ checklogin(accnumb, bearer);
 											if(thisIsGeneral){
 												thisIsGeneral = false;
 												endThisPeriod = answer[i].transfers[z].timeL;
+												if((lastTagFromAgent > startThisPeriod) && (lastTagFromAgent < endThisPeriod)){
+													lastTagGenFromAgent = lastTagFromAgent;
+												}
 												for (var m = (howManyMessages - 1); m > -1 ; m--){
 													if((answer[i].messageRecords[m].timeL < endThisPeriod) && (answer[i].messageRecords[m].timeL > startThisPeriod) && (answer[i].messageRecords[m].sentBy === "Agent") && (answer[i].messageRecords[m].participantId !== "1089636032")){
 														lastMessageSentGeneral = answer[i].messageRecords[m].timeL;
@@ -3574,6 +3614,11 @@ checklogin(accnumb, bearer);
 									if(lastMessageSentGeneral > timestampLastActGen){
 										timestampLastActGen = lastMessageSentGeneral;
 									}
+							      		if(lastTagGenFromAgent > timestampLastActGen){
+										timestampLastActGen = lastTagGenFromAgent;
+										lastTypeActivityAgent = "Tag";
+									}
+							      
 									
 									thisIsGeneral = false;
 									thisIsOutbound = false;
@@ -3589,6 +3634,9 @@ checklogin(accnumb, bearer);
 											if(thisIsOutbound){
 												thisIsOutbound = false;
 												endThisPeriod = answer[i].transfers[z].timeL;
+												if((lastTagFromAgent > startThisPeriod) && (lastTagFromAgent < endThisPeriod)){
+													lastTagOutFromAgent = lastTagFromAgent;
+												}
 												for (var m = (howManyMessages - 1); m > -1 ; m--){
 													if((answer[i].messageRecords[m].timeL < endThisPeriod) && (answer[i].messageRecords[m].timeL > startThisPeriod) && (answer[i].messageRecords[m].sentBy === "Agent") && (answer[i].messageRecords[m].participantId !== "1089636032")){
 														lastMessageSentOutbound = answer[i].messageRecords[m].timeL;
@@ -3622,6 +3670,10 @@ checklogin(accnumb, bearer);
 									}
 									if(lastMessageSentOutbound > timestampLastActOut){
 										timestampLastActOut = lastMessageSentOutbound;
+									}
+							      		if(lastTagOutFromAgent > timestampLastActGen){
+										timestampLastActGen = lastTagOutFromAgent;
+										lastTypeActivityAgent = "Tag";
 									}
 									
 								
@@ -3658,7 +3710,6 @@ checklogin(accnumb, bearer);
 						      }
 						      
 						      campo1 = campo1.toString();
-
 						      var campo3 = "";
 				
 				/*************** fix per Microsoft ***************/
@@ -3678,7 +3729,6 @@ checklogin(accnumb, bearer);
 				if(match){
 						phoneNumber = "invalid format";
 					}
-
 				
 				
 	
