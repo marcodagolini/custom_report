@@ -3113,6 +3113,43 @@ checklogin(accnumb, bearer);
 								      }
 							      }
 						      }
+				
+							if(answer[i].hasOwnProperty('agentParticipants')){
+								if (typeof answer[i].agentParticipants !== 'undefined' && answer[i].agentParticipants.length > 0) {
+									var arraylength = answer[i].agentParticipants.length;
+									for (var z = (arraylength -1); z > -1; z--){
+										if(answer[i].agentParticipants[z].hasOwnProperty('contextData')){
+										      if(answer[i].agentParticipants[z].contextData.hasOwnProperty('structuredMetadata')){
+											      if(answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[0].id === "telefono"){
+												      lastTagFromAgent = answer[i].agentParticipants[z].timeL;
+												      numero_telefono = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[0].name;
+												      numero_ricontatto = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[1].name;
+												      numero_cfiscale = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[2].name;
+												      vfTag = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[3].name;
+												      triplettauno = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[4].name;
+												      triplettadue = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[5].name;
+												      triplettatre = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[6].name;
+												      if(vfTag === "undefined"){
+													      vfTag = "---";
+												      }
+												      if(triplettauno === "undefined"){
+													     triplettauno = "---"; 
+												      }
+												      if(triplettadue === "undefined"){
+													     triplettadue = "---"; 
+												      }
+												      if(triplettatre === "undefined"){
+													     triplettatre = "---"; 
+												      }
+												      z = 0;
+											      }
+										      }
+									      }
+									}
+								}
+							}
+				
+				
 						      if(wasInLimbo == 1){
 							      if (totalLimbo > 0){
 								     limboaveragetime = Math.floor(totalLimbo/limbo); 
