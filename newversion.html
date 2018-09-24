@@ -1335,6 +1335,36 @@ function retrieveAgentsLogged(){
 													  }
 													  break;
 													  
+													  case "Inglese_chat":
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  IConlineAgents = IConlineAgents + 1;
+															  if(!Othercounted){
+																  TOtheronlineAgents = TOtheronlineAgents + 1;
+																  TOtherslots = TOtherslots + totalSpots;
+																  Othercounted = true;
+															  }
+															  ICslots = ICslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  ICawayAgents = ICawayAgents + 1;
+															  if(!Othercounted){
+																  TOtherawayAgents = TOtherawayAgents + 1;
+																  Othercounted = true;
+															  }
+															  break;
+															  
+															  case "BACK_SOON":
+															  ICsoonAgents = ICsoonAgents + 1;
+															  if(!Othercounted){
+																  TOthersoonAgents = TOthersoonAgents + 1;
+																  Othercounted = true;
+															  }
+															  break;	  
+													  }
+													  break;
+													  
 													  case "Priority":
 													  switch(statusAgent) {
 															  case "ONLINE":
