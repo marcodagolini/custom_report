@@ -2115,6 +2115,20 @@ function retrieveAgentsLogged(){
 				  }
 				  break;
 				  
+			case "Inglese_chat":
+				  ICopenConv ++;
+				  TOtheropenConv ++;
+				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
+					  ICassignedConv ++;
+					  TOtherassignedConv ++;
+				  } else{
+					  unassignedConversationsList = unassignedConversationsList + "<br>Inglese: " + answer[z].info.conversationId + stringWaitingFrom;
+					  ICunassignedConv ++;
+					  TOtherunassignedConv ++;
+				  }
+				  break;
+				  
 			case "Priority":
 				  PopenConv ++;
 				  TOtheropenConv ++;
