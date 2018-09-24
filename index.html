@@ -4,7 +4,6 @@
 
 
 
-
 <head>
   
 </head>
@@ -529,6 +528,16 @@ span.psw {
 		<div class="grid-item" id="Islots"></div>
 	</div>
 	<div class="grid-dark">
+  		<div class="grid-item-left">Inglese_Chat</div>
+  		<div class="grid-item" id="ICopenConv"></div>
+		<div class="grid-item" id="ICassignedConv"></div>
+		<div class="grid-item" id="ICunassignedConv"></div>
+		<div class="grid-item" id="IConlineAgents"></div>
+		<div class="grid-item" id="ICawayAgents"></div>
+		<div class="grid-item" id="ICsoonAgents"></div>
+		<div class="grid-item" id="ICslots"></div>
+	</div>
+	<div class="grid-bright">
   		<div class="grid-item-left">Priority</div>
   		<div class="grid-item" id="PopenConv"></div>
 		<div class="grid-item" id="PassignedConv"></div>
@@ -807,6 +816,10 @@ function retrieveAgentsLogged(){
 	var IawayAgents = 0;
 	var IsoonAgents = 0;
 	var Islots = 0;
+	var IConlineAgents = 0;
+	var ICawayAgents = 0;
+	var ICsoonAgents = 0;
+	var ICslots = 0;
 	var PonlineAgents = 0;
 	var PawayAgents = 0;
 	var PsoonAgents = 0;
@@ -828,7 +841,7 @@ function retrieveAgentsLogged(){
 	var TOslots = 0;
 	var TOtherslots = 0;
 	
-	var body = '{"skillIds":["1089726032","1096374632","1102673132","1102673332","987637232","1096374432","1105369932","1105551632","1093097632","1096374732","1105849832","1105849932","1097496532","1012134132","1111294132","1111905932","1117781232","1117781332"]}';
+	var body = '{"skillIds":["1089726032","1096374632","1102673132","1102673332","987637232","1096374432","1105369932","1105551632","1093097632","1096374732","1105849832","1105849932","1097496532","1012134132","1111294132","1111905932","1117781232","1117781332","1151792232"]}';
 	var totalSpots = 0;
 	var availableSpots = 0;
 	
@@ -1321,6 +1334,36 @@ function retrieveAgentsLogged(){
 													  }
 													  break;
 													  
+													  case "Inglese_chat":
+													  switch(statusAgent) {
+															  case "ONLINE":
+															  IConlineAgents = IConlineAgents + 1;
+															  if(!Othercounted){
+																  TOtheronlineAgents = TOtheronlineAgents + 1;
+																  TOtherslots = TOtherslots + totalSpots;
+																  Othercounted = true;
+															  }
+															  ICslots = ICslots + totalSpots;
+															  break;
+															  
+															  case "AWAY":
+															  ICawayAgents = ICawayAgents + 1;
+															  if(!Othercounted){
+																  TOtherawayAgents = TOtherawayAgents + 1;
+																  Othercounted = true;
+															  }
+															  break;
+															  
+															  case "BACK_SOON":
+															  ICsoonAgents = ICsoonAgents + 1;
+															  if(!Othercounted){
+																  TOthersoonAgents = TOthersoonAgents + 1;
+																  Othercounted = true;
+															  }
+															  break;	  
+													  }
+													  break;
+													  
 													  case "Priority":
 													  switch(statusAgent) {
 															  case "ONLINE":
@@ -1441,6 +1484,11 @@ function retrieveAgentsLogged(){
 				  document.getElementById("IsoonAgents").innerHTML = IsoonAgents;
 				  Islots = (Math.round(Islots * 100) / 100);
 				  document.getElementById("Islots").innerHTML = Islots;
+				  document.getElementById("IConlineAgents").innerHTML = IConlineAgents;
+				  document.getElementById("ICawayAgents").innerHTML = ICawayAgents;
+				  document.getElementById("ICsoonAgents").innerHTML = ICsoonAgents;
+				  ICslots = (Math.round(ICslots * 100) / 100);
+				  document.getElementById("ICslots").innerHTML = ICslots;
 				  document.getElementById("PonlineAgents").innerHTML = PonlineAgents;
 				  document.getElementById("PawayAgents").innerHTML = PawayAgents;
 				  document.getElementById("PsoonAgents").innerHTML = PsoonAgents;
@@ -1829,6 +1877,9 @@ function retrieveAgentsLogged(){
 	  var IopenConv =0;
 	  var IassignedConv =0;
 	  var IunassignedConv =0;
+	  var ICopenConv =0;
+	  var ICassignedConv =0;
+	  var ICunassignedConv =0;
 	  var PopenConv =0;
 	  var PassignedConv =0;
 	  var PunassignedConv =0;
@@ -2098,6 +2149,20 @@ function retrieveAgentsLogged(){
 				  }
 				  break;
 				  
+			case "Inglese_chat":
+				  ICopenConv ++;
+				  TOtheropenConv ++;
+				  if(isAssigned){
+					  assignedConversationsList = assignedConversationsList + "<br>" + answer[z].info.latestAgentFullName + ": " + answer[z].info.conversationId;
+					  ICassignedConv ++;
+					  TOtherassignedConv ++;
+				  } else{
+					  unassignedConversationsList = unassignedConversationsList + "<br>Inglese: " + answer[z].info.conversationId + stringWaitingFrom;
+					  ICunassignedConv ++;
+					  TOtherunassignedConv ++;
+				  }
+				  break;
+				  
 			case "Priority":
 				  PopenConv ++;
 				  TOtheropenConv ++;
@@ -2159,6 +2224,9 @@ function retrieveAgentsLogged(){
 	  document.getElementById("IopenConv").innerHTML = IopenConv;
 	  document.getElementById("IassignedConv").innerHTML = IassignedConv;
 	  document.getElementById("IunassignedConv").innerHTML = IunassignedConv;
+	  document.getElementById("ICopenConv").innerHTML = ICopenConv;
+	  document.getElementById("ICassignedConv").innerHTML = ICassignedConv;
+	  document.getElementById("ICunassignedConv").innerHTML = ICunassignedConv;
 	  document.getElementById("PopenConv").innerHTML = PopenConv;
 	  document.getElementById("PassignedConv").innerHTML = PassignedConv;
 	  document.getElementById("PunassignedConv").innerHTML = PunassignedConv;
