@@ -4,6 +4,7 @@
 
 
 
+
 <head>
   
 </head>
@@ -11,6 +12,7 @@
 
 <html>
 <style>
+	
 	
 body{
   margin: 20px;	
@@ -860,6 +862,7 @@ function retrieveAgentsLogged(){
 			  data: body,
 			  success: function success(data) {
 				  // console.log("********");
+				  loadConvs();
 				  console.log(JSON.stringify(data));
 				  if(data.hasOwnProperty('_metadata')){
 					  if(data._metadata.hasOwnProperty('count')){
@@ -2291,6 +2294,7 @@ function retrieveAgentsLogged(){
                               		success: function success(data) {
 						$('#myloader').css('display', 'none');
           					$('#myreports').css('display', 'inline');
+						retrieveAgentsLogged();  // loads also the conversations
 						setInterval(function(){
 							loadBar();
 						}, 30000);
@@ -2299,9 +2303,7 @@ function retrieveAgentsLogged(){
 						loadTeams();
 						refreshTranscripts();
 						$('#loadedStats').css('display', 'none');
-						$('#loadingStats').css('display', 'inline');
-						loadConvs();
-						retrieveAgentsLogged();
+						$('#loadingStats').css('display', 'inline');	
                               		},
                               		error: function error(e, text) {
 						localStorage.setItem('account_number', '');
@@ -2342,14 +2344,13 @@ checklogin(accnumb, bearer);
 		  }, 2000);
 	  }
 	  if($(evt.target).is('#refresh')) {
+		retrieveAgentsLogged();  // loads also the conversations
 		  
 		document.getElementById("loaderMSG").innerHTML = "Refreshing data!";
 		document.getElementById("loaderMSG").style = "color : green";
 		  
 		$('#loadedStats').css('display', 'none');
-		$('#loadingStats').css('display', 'inline');
-		loadConvs();
-		retrieveAgentsLogged();
+		$('#loadingStats').css('display', 'inline');	
 		  							
 	  }
   });
@@ -2396,17 +2397,14 @@ checklogin(accnumb, bearer);
 								  setTimeout(function(){
 									  $('#myloader').css('display', 'none');
 									  $('#myreports').css('display', 'inline');
-									  
+									  retrieveAgentsLogged();  // loads also the conversations
 									  loadBar();
 									  loadSkills();
 									  loadTeams();
 									  refreshTranscripts();
 									  
 									  $('#loadedStats').css('display', 'none');
-									  $('#loadingStats').css('display', 'inline');
-	 
-									  loadConvs();
-									  retrieveAgentsLogged();
+									  $('#loadingStats').css('display', 'inline');  
 									  
 								  }, 2000);
 							  },
