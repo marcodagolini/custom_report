@@ -2730,10 +2730,11 @@ checklogin(accnumb, bearer);
 	 }
 	 
 	 
-	
-	 loadOpenConvs(body, offset, function(err, resp) {
-		 // Your code here...
-	 });
+	 setTimeout(function(){
+	 	loadOpenConvs(body, offset, function(err, resp) {
+		 	// Your code here...
+	 	});
+	 }, 3000);
 	 
  }
 	
