@@ -3119,6 +3119,9 @@ checklogin(accnumb, bearer);
 												      triplettauno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[4].name;
 												      triplettadue = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[5].name;
 												      triplettatre = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[6].name;
+												      if(answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents.length > 7){
+													   yesno = answer[i].transfers[z].contextData.structuredMetadata[0].botResponse.intents[7].name;
+												      }
 												      if(vfTag === "undefined"){
 													      vfTag = "---";
 												      }
@@ -3201,6 +3204,9 @@ checklogin(accnumb, bearer);
 												      triplettauno = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[4].name;
 												      triplettadue = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[5].name;
 												      triplettatre = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[6].name;
+												      if(answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents.length > 7){
+													    yesno = answer[i].agentParticipants[z].contextData.structuredMetadata[0].botResponse.intents[7].name;
+												      }
 												      if(vfTag === "undefined"){
 													      vfTag = "---";
 												      }
