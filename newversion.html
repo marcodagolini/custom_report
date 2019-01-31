@@ -2834,16 +2834,26 @@ checklogin(accnumb, bearer);
 						      var customerName = "";
 						      var channel = "FaceBook";
 						      var valueDoingRouting = "";
+						      var myTimeStampRouting = 0;
 						      if(answer[i].hasOwnProperty('sdes')){
 							      var myLengthSdes = answer[i].sdes.events.length;
 							      for (var xs = 0; xs < myLengthSdes; xs++){
 								      if(answer[i].sdes.events[xs].hasOwnProperty('customerInfo')){
+									      
 									      imeiNumber = answer[i].sdes.events[xs].customerInfo.customerInfo.imei;
 									      if(answer[i].sdes.events[xs].customerInfo.customerInfo.hasOwnProperty('customerType')){
-										      valueDoingRouting = answer[i].sdes.events[xs].customerInfo.customerInfo.customerType;
-										      if((valueDoingRouting.indexOf("uman") > -1) || (valueDoingRouting.indexOf("VIP") > -1) || (valueDoingRouting.indexOf("skill_notturna_mobile") > -1) || (valueDoingRouting.indexOf("app_fixed") > -1)){
-											      channel = "Web";
+										      if(myTimeStampRouting < answer[i].sdes.events[xs].customerInfo.serverTimeStamp){
+											      myTimeStampRouting = answer[i].sdes.events[xs].customerInfo.serverTimeStamp;
+											      valueDoingRouting = answer[i].sdes.events[xs].customerInfo.customerInfo.customerType;
+											      if((valueDoingRouting.indexOf("uman") > -1) || (valueDoingRouting.indexOf("VIP") > -1) || (valueDoingRouting.indexOf("skill_notturna_mobile") > -1) || (valueDoingRouting.indexOf("app_fixed") > -1)){
+												      channel = "Web";
+											      } else{
+												      channel = "FaceBook";
+											      }
+											      
+										      
 										      }
+
 									      }
 								      }
 							      }
