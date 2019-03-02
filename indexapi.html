@@ -1784,8 +1784,10 @@ function retrieveAgentsLogged(){
 					      if(data._metadata.count > 0){
 						      
 					      }
+					      
+					      console.log("done with this call!");
 
-					      document.getElementById("loaderMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
+					      document.getElementById("loaderMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/mySkillsToLoadLength)) + "% completed...";
 					      document.getElementById("loaderMSG").style = "color : green";
 					      loadClosedConvs(start, end, offset, callback);
 				      }
