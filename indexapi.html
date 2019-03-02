@@ -1506,7 +1506,7 @@ function retrieveAgentsLogged(){
                     cache: true,
                     dataType: "jsonp",
                     success: function success(data) {
-			loadLimboBar();
+			// loadLimboBar();
                         if('lpCallError' in data.ResultSet){
 				localStorage.setItem('account_number', '');
 			   	location.reload(); 
