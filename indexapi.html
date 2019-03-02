@@ -1792,7 +1792,7 @@ function retrieveAgentsLogged(){
 					      actualValue = data.aggregations[0].count;
 					      actualID = myActualSkill + "openConv";
 					      document.getElementById(actualID).innerHTML = actualValue;
-					      if(data.aggregations[0].aggregatedBy === "latestConversationQueueState"){
+					      if(data.aggregations[0].aggregatedBy !== "latestConversationQueueState"){
 						      mycount = 1;
 					      }
 					      if(data.aggregations[mycount].buckets[0].key === "IN_QUEUE"){
