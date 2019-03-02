@@ -1783,8 +1783,6 @@ function retrieveAgentsLogged(){
 				      var actualID = ""
 				      var actualValue;
 				      
-				      console.log(data);
-				      
 				      if(data._metadata.count > 0){
 					      
 					      var mycount = 0;
@@ -1840,16 +1838,16 @@ function retrieveAgentsLogged(){
 				      offset = offset + 1;
 				      if(mySkillsToLoadLength > offset){
 					      
-						      
-					      
-					      
-					      console.log("done with this call!");
 
 					      document.getElementById("loaderMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/mySkillsToLoadLength)) + "% completed...";
 					      document.getElementById("loaderMSG").style = "color : green";
 					      loadMyAggregate(start, end, offset, callback);
 				      }
 				      else{
+					      console.log($('1089726032openConv').val());
+					      console.log($('1089726032assignedConv').val());
+					      console.log($('1089726032unassignedConv').val());
+
 					      $('#loadingStats').css('display', 'none');
 					      $('#loadedStats').css('display', 'inline');
 	  
