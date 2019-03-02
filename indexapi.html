@@ -1780,13 +1780,37 @@ function retrieveAgentsLogged(){
                               data: body,
                               success: function success(data) {
 				      
+				      var myActualSkill = mySkillsToLoad[offset];
+				      var actualID = ""
+				      var actualValue;
 				      
 				      if(data._metadata.count > 0){
-					      var myActualSkill = mySkillsToLoad[offset];
-					      var actualValue = data.aggregations[0].count;
-					      var actualID = myActualSkill + "openConv";
+					      
+					      actualValue = data.aggregations[0].count;
+					      actualID = myActualSkill + "openConv";
 					      document.getElementById(actualID).innerHTML = actualValue;
+					      if(data.aggregations[0].buckets[0].key === "IN_QUEUE"){
+						      actualValue = data.aggregations[0].buckets[0].count;
+						      actualID = myActualSkill + "unassignedConv";
+						      document.getElementById(actualID).innerHTML = actualValue;
+						      actualValue = data.aggregations[0].buckets[1].count;
+						      actualID = myActualSkill + "assignedConv";
+						      document.getElementById(actualID).innerHTML = actualValue;
+					      } else{
+						      actualValue = data.aggregations[0].buckets[1].count;
+						      actualID = myActualSkill + "unassignedConv";
+						      document.getElementById(actualID).innerHTML = actualValue;
+						      actualValue = data.aggregations[0].buckets[0].count;
+						      actualID = myActualSkill + "assignedConv";
+						      document.getElementById(actualID).innerHTML = actualValue;
+					      }
 				      } else{
+					      actualID = myActualSkill + "openConv";
+					      document.getElementById(actualID).innerHTML = "0";
+					      actualID = myActualSkill + "assignedConv";
+					      document.getElementById(actualID).innerHTML = "0";
+					      actualID = myActualSkill + "unassignedConv";
+					      document.getElementById(actualID).innerHTML = "0";
 					      
 				      }
 				      
