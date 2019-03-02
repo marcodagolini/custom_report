@@ -780,7 +780,7 @@ function retrieveAgentsLogged(){
 			  data: body,
 			  success: function success(data) {
 				  // console.log("********");
-				  loadConvs();
+				  loadAggregate();
 				  console.log(JSON.stringify(data));
 				  if(data.hasOwnProperty('_metadata')){
 					  if(data._metadata.hasOwnProperty('count')){
@@ -1753,15 +1753,20 @@ function retrieveAgentsLogged(){
 	
 	
   function loadAggregate(){
-	 
+	  
+	var mySkillsToLoad = ["1089726032","1096374632","1102673132","1102673332","987637232","1096374432","1105369932","1105551632","1093097632","1096374732","1105849832","1105849932","1097496532","1012134132","1111294132","1111905932","1117781232","1117781332","1151792232"];
+	  
+	var end = Date.now();
+	var start = end - (1000*60*60*24*30);  // loading Convs started till 30 days ago
+	  
+	var body = '{"start":{"from":' + start + ',"to":' + end + '}, "aggregateBy":["latestSkillIds"], "status": ["OPEN"], "skillIds":["1089726032"]}';
 	 
 	 
 
-	 console.log("(HISTORICAL) skill: " + skillNumber + " ***** team: " + teamNumber + " ***** start: " + start + " ***** end: " + end);
-	 function loadClosedConvs(body, offset, callback) {
+	 function loadClosedConvs(start, end, offset, callback) {
 	 
 	 	$.ajax({
-                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100&sort=start:desc",
+                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/aggregations",
                               method: "POST",
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
@@ -1775,7 +1780,7 @@ function retrieveAgentsLogged(){
 					      document.getElementById("loaderMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
 					      document.getElementById("loaderMSG").style = "color : green";
 					      console.log ("adding conversations...");
-					      loadClosedConvs(body, offset, callback);
+					      loadClosedConvs(start, end, offset, callback);
 				      }
 				      else{
 					      console.log(answer.length);
@@ -1793,71 +1798,8 @@ function retrieveAgentsLogged(){
                               beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
 		});
 	 }
-	 
-	 function loadOpenConvs(body, offset, callback) {
-		 
-	 
-	 	$.ajax({
-                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
-                              method: "POST",
-                              jsonp: "cb",
-                              jsonpCallback: "domainCallback",
-                              cache: true,
-                              contentType: "application/json",
-                              data: body,
-                              success: function success(data) {
-				      if((data.conversationHistoryRecords.length) == 100){
-					      offset = offset + 100;
-					      answer = answer.concat(data.conversationHistoryRecords);
-					      document.getElementById("loaderMSG").innerHTML = "...downloading open sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
-					      document.getElementById("loaderMSG").style = "color : green";
-					      console.log ("adding conversations...");
-					      loadOpenConvs(body, offset, callback);   
-				      }
-				      else{
-					      
-					      /****************
-					      answer = answer.concat(data.conversationHistoryRecords);
-					      offset = 0;
-					      if(skillNumber === "-1"){
-						     body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"]';
-					      }
-					      else{
-						       body = '{"start":{"from":' + start + ',"to":' + end + '}, "status": ["CLOSE"], "skillIds": ["' + skillNumber + overwriteHumanSkill + '"]';
-						      console.log(body);
-					      }
-					      if(teamNumber){
-						      body = body + ' ,"agentGroupIds":["' + teamNumber + '"]}';
-					      }
-					      else{
-						      body = body + '}';
-					      }
-					      console.log(body);
-					      loadClosedConvs(body, offset, callback);
-					      ******************/
-					      
-					      // console.log(answer.length);
-					      answer = answer.concat(data.conversationHistoryRecords);
-					      console.log(answer.length);
-					      loadStats(answer);
-				      }
-				      
-     
-				      
-                              },
-                              error: function error(e, text) {
-				      location.reload();
-                              },
-                              beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
-		});
-	 }
-	 
-	 
-	 setTimeout(function(){
-	 	loadOpenConvs(body, offset, function(err, resp) {
-		 	// Your code here...
-	 	});
-	 }, 3000);
+
+
 	 
  }
 	
