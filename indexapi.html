@@ -1913,7 +1913,6 @@ function retrieveAgentsLogged(){
 						loadBar();
 						loadSkills();
 						loadTeams();
-						refreshTranscripts();
 						$('#loadedStats').css('display', 'none');
 						$('#loadingStats').css('display', 'inline');	
                               		},
@@ -2013,7 +2012,6 @@ checklogin(accnumb, bearer);
 									  loadBar();
 									  loadSkills();
 									  loadTeams();
-									  refreshTranscripts();
 									  
 									  $('#loadedStats').css('display', 'none');
 									  $('#loadingStats').css('display', 'inline');  
@@ -2037,185 +2035,7 @@ checklogin(accnumb, bearer);
 	  }
   });
     
-  function refreshTranscripts(){
-	  
-	 var date = new Date();
-	 var dd = date.getDate();
-	 if (dd < 10){
-		 dd = "0" + dd;
-	 }
-    	 var mm = date.getMonth() + 1;
-	 if (mm < 10){
-		 mm = "0" + mm;
-	 }
-    	 var y = date.getFullYear();
-	 var enddate = y + "-" + mm + "-" + dd;
-	 
-	 date.setDate(date.getDate() - 7);
-	 var dd = date.getDate();
-	 if (dd < 10){
-		 dd = "0" + dd;
-	 }
-    	 var mm = date.getMonth() + 1;
-	 if (mm < 10){
-		 mm = "0" + mm;
-	 }
-    	 var y = date.getFullYear();
-	 var startdate = y + "-" + mm + "-" + dd;
-	 
-	 $('#startdate').val(startdate);
-	 $('#starthour').val("00:00");
-	 $('#enddate').val(enddate);
-	 $('#endhour').val("23:59");
-	 
-	 
-  		
-	  
-	 $(document).on('click', function(evt) {
-		 
-              if($(evt.target).is('.downloadTranscripts')) {
-		
-		      console.log($("#DropDownTimezone").val());
-		      switch($("#DropDownTimezone").val()) {
-    				case "(GMT +1:00 hour) Rome, Brussels, Copenhagen, Madrid, Paris":
-        				timeZone = ":00 GMT+0100";
-        			break;
-    				case "(GMT +2:00) Kaliningrad, South Africa":
-        				timeZone = ":00 GMT+0200";
-        			break;
-    				case "(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg":
-        				timeZone = ":00 GMT+0300";
-        			break;
-				case "(GMT +3:30) Tehran":
-        				timeZone = ":00 GMT+0330";
-        			break;
-    				case "(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi":
-        				timeZone = ":00 GMT+0400";
-        			break;
-    				case "(GMT +4:30) Kabul":
-        				timeZone = ":00 GMT+0430";
-        			break;
-    				case "(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent":
-        				timeZone = ":00 GMT+0500";
-        			break;
-				case "(GMT +5:30) Bombay, Calcutta, Madras, New Delhi":
-        				timeZone = ":00 GMT+0530";
-        			break;
-    				case "(GMT +6:00) Almaty, Dhaka, Colombo":
-        				timeZone = ":00 GMT+0600";
-        			break;
-    				case "(GMT +7:00) Bangkok, Hanoi, Jakarta":
-        				timeZone = ":00 GMT+0700";
-        			break;
-				case "(GMT +8:00) Beijing, Perth, Singapore, Hong Kong":
-        				timeZone = ":00 GMT+0800";
-        			break;
-				case "(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk":
-        				timeZone = ":00 GMT+0900";
-        			break;
-				case "(GMT +9:30) Adelaide, Darwin":
-        				timeZone = ":00 GMT+0930";
-        			break;
-    				case "(GMT +10:00) Eastern Australia, Guam, Vladivostok":
-        				timeZone = ":00 GMT+1000";
-        			break;
-    				case "(GMT +11:00) Magadan, Solomon Islands, New Caledonia":
-        				timeZone = ":00 GMT+1100";
-        			break;
-    				case "(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka":
-        				timeZone = ":00 GMT+1200";
-        			break;
-				case "(GMT -12:00) Eniwetok, Kwajalein":
-        				timeZone = ":00 GMT-1200";
-        			break;
-    				case "(GMT -11:00) Midway Island, Samoa":
-        				timeZone = ":00 GMT-1100";
-        			break;
-				case "(GMT -10:00) Hawaii":
-        				timeZone = ":00 GMT-1000";
-        			break;
-    				case "(GMT -9:00) Alaska":
-        				timeZone = ":00 GMT-0900";
-        			break;
-    				case "(GMT -8:00) Pacific Time (US &amp; Canada)":
-        				timeZone = ":00 GMT-0800";
-        			break;
-    				case "(GMT -7:00) Mountain Time (US &amp; Canada)":
-        				timeZone = ":00 GMT-0700";
-        			break;
-				case "(GMT -6:00) Central Time (US &amp; Canada), Mexico City":
-        				timeZone = ":00 GMT-0600";
-        			break;
-				case "(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima":
-        				timeZone = ":00 GMT-0500";
-        			break;
-				case "(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz":
-        				timeZone = ":00 GMT-0400";
-        			break;
-    				case "(GMT -3:30) Newfoundland":
-        				timeZone = ":00 GMT-0330";
-        			break;
-    				case "(GMT -3:00) Brazil, Buenos Aires, Georgetown":
-        				timeZone = ":00 GMT-0300";
-        			break;
-    				case "(GMT -2:00) Mid-Atlantic":
-        				timeZone = ":00 GMT-0200";
-        			break;
-				case "(GMT -1:00 hour) Azores, Cape Verde Islands":
-        				timeZone = ":00 GMT-0100";
-        			break;
-				case "(GMT) Western Europe Time, London, Lisbon, Casablanca":
-        				timeZone = ":00 GMT+0000";
-        			break;
-			}
-		      
-		      
-		      
-		     
-		    startdate = $('#startdate').val();
-		    startdate = new Date(startdate);
-		    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-		    var year = startdate.getFullYear();
-  		    var month = months[startdate.getMonth()];
-  	            var date = startdate.getDate(); 
-		    var hour = $('#starthour').val();
-		    startdate = month + " " + date + " " + year + " " + hour + timeZone;
-		    var d = new Date(startdate);
-		    var start = d.getTime();
-		      
-		    
-		    enddate = $('#enddate').val();
-		    enddate = new Date(enddate);
-		    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-		    var year = enddate.getFullYear();
-  		    var month = months[enddate.getMonth()];
-  	            var date = enddate.getDate(); 
-		    var hour = $('#endhour').val();
-		    enddate = month + " " + date + " " + year + " " + hour + timeZone;
-		    var d = new Date(enddate);
-		    var end = d.getTime();  
-		    var options = $('#transcriptOptions').val();
-		      
-		    if (start >= end) { 
-			    document.getElementById("reportMSG").innerHTML = "Please insert a correct end date!";
-                            document.getElementById("reportMSG").style = "color : red"; 
-		    }
-		    else if (((end - start)/1000) > (60*60*24*30)){
-			    document.getElementById("reportMSG").innerHTML = "No more than 30 days!";
-                            document.getElementById("reportMSG").style = "color : red"; 
-		    }
-		    else{
-			    document.getElementById("reportMSG").innerHTML = "";
-			    downloadTranscripts(start, end, options);
-		    }
-		      
-		      
-		    
-              }
-	 });
-	  
-	  
-  }
+  
     
  
  function loadConvs(){
