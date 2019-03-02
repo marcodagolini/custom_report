@@ -1786,7 +1786,7 @@ function retrieveAgentsLogged(){
 
 					      document.getElementById("loaderMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/mySkillsToLoadLength)) + "% completed...";
 					      document.getElementById("loaderMSG").style = "color : green";
-					      loadClosedConvs(start, end, offset, callback);
+					      loadMyAggregate(start, end, offset, callback);
 				      }
 				      else{
 					      $('#loadingStats').css('display', 'none');
