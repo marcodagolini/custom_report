@@ -1783,6 +1783,8 @@ function retrieveAgentsLogged(){
 				      var actualID = ""
 				      var actualValue;
 				      
+				      console.log(data);
+				      
 				      if(data._metadata.count > 0){
 					      
 					      actualValue = data.aggregations[0].count;
