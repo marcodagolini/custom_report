@@ -1779,9 +1779,12 @@ function retrieveAgentsLogged(){
                               data: body,
                               success: function success(data) {
 				      
-				      console.log(data);
+				      
 				      if(data._metadata.count > 0){
-					      var myActualSkill = mySkillsToLoad[offset]
+					      var myActualSkill = mySkillsToLoad[offset];
+					      var actualValue = data.aggregations[0].count;
+					      var actualID = myActualSkill + "openConv";
+					      document.getElementById(actualID).innerHTML = actualValue;
 				      } else{
 					      
 				      }
