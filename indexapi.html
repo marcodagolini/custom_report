@@ -1777,11 +1777,22 @@ function retrieveAgentsLogged(){
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
+				      
+				      console.log(data);
+				      if(data._metadata.count > 0){
+					      var myActualSkill = mySkillsToLoad[offset]
+				      } else{
+					      
+				      }
+				      
+				      
+				      
+				      
 				      offset = offset + 1;
 				      if(mySkillsToLoadLength > offset){
-					      if(data._metadata.count > 0){
+					      
 						      
-					      }
+					      
 					      
 					      console.log("done with this call!");
 
