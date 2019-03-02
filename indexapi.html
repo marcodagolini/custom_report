@@ -1843,9 +1843,93 @@ function retrieveAgentsLogged(){
 					      loadMyAggregate(start, end, offset, callback);
 				      }
 				      else{
-					      console.log($('1089726032openConv').val());
-					      console.log($('1089726032assignedConv').val());
-					      console.log($('1089726032unassignedConv').val());
+					      document.getElementById("TFBopenConv").innerHTML = parseInt($('#1089726032openConv').html()) + parseInt($('#1096374632openConv').html()) + parseInt($('#1102673132openConv').html()) + parseInt($('#1117781232openConv').html()) + parseInt($('#1117781332openConv').html())
+					      
+					      
+					      
+
+	<div class="grid-bright">
+  		<div class="grid-item-left">Facebook_priv</div>
+  		<div class="grid-item" id="1089726032openConv"></div>
+		<div class="grid-item" id="1089726032assignedConv"></div>
+		<div class="grid-item" id="1089726032unassignedConv"></div>
+		<div class="grid-item" id="FBPonlineAgents"></div>
+		<div class="grid-item" id="FBPawayAgents"></div>
+		<div class="grid-item" id="FBPsoonAgents"></div>
+		<div class="grid-item" id="FBPslots"></div>
+	</div>
+
+	<div class="grid-dark">
+  		<div class="grid-item-left">Facebook_risvegliate</div>
+  		<div class="grid-item" id="1096374632openConv"></div>
+		<div class="grid-item" id="1096374632assignedConv"></div>
+		<div class="grid-item" id="1096374632unassignedConv"></div>
+		<div class="grid-item" id="FBRonlineAgents"></div>
+		<div class="grid-item" id="FBRawayAgents"></div>
+		<div class="grid-item" id="FBRsoonAgents"></div>
+		<div class="grid-item" id="FBRslots"></div>
+	</div>
+	
+	<div class="grid-bright">
+  		<div class="grid-item-left">Facebook_priv_night</div>
+  		<div class="grid-item" id="1102673132openConv"></div>
+		<div class="grid-item" id="1102673132assignedConv"></div>
+		<div class="grid-item" id="1102673132unassignedConv"></div>
+		<div class="grid-item" id="FBPNonlineAgents"></div>
+		<div class="grid-item" id="FBPNawayAgents"></div>
+		<div class="grid-item" id="FBPNsoonAgents"></div>
+		<div class="grid-item" id="FBPNslots"></div>
+	</div>
+
+	<div class="grid-dark">
+  		<div class="grid-item-left">Facebook_priv_night_risvegliate</div>
+  		<div class="grid-item" id="1102673332openConv"></div>
+		<div class="grid-item" id="1102673332assignedConv"></div>
+		<div class="grid-item" id="1102673332unassignedConv"></div>
+		<div class="grid-item" id="FBPNRonlineAgents"></div>
+		<div class="grid-item" id="FBPNRawayAgents"></div>
+		<div class="grid-item" id="FBPNRsoonAgents"></div>
+		<div class="grid-item" id="FBPNRslots"></div>
+	</div>
+	
+	<div class="grid-bright">
+  		<div class="grid-item-left">Fixed</div>
+  		<div class="grid-item" id="1117781232openConv"></div>
+		<div class="grid-item" id="1117781232assignedConv"></div>
+		<div class="grid-item" id="1117781232unassignedConv"></div>
+		<div class="grid-item" id="FIXonlineAgents"></div>
+		<div class="grid-item" id="FIXawayAgents"></div>
+		<div class="grid-item" id="FIXsoonAgents"></div>
+		<div class="grid-item" id="FIXslots"></div>
+	</div>
+	
+	<div class="grid-dark">
+  		<div class="grid-item-left">Fixed_risvegliate</div>
+  		<div class="grid-item" id="1117781332openConv"></div>
+		<div class="grid-item" id="1117781332assignedConv"></div>
+		<div class="grid-item" id="1117781332unassignedConv"></div>
+		<div class="grid-item" id="FIXRonlineAgents"></div>
+		<div class="grid-item" id="FIXRawayAgents"></div>
+		<div class="grid-item" id="FIXRsoonAgents"></div>
+		<div class="grid-item" id="FIXRslots"></div>
+	</div>
+
+	<div class="grid-tot">
+  		<div class="grid-item-left">Totale</div>
+  		<div class="grid-item" id="TFBopenConv"></div>
+		<div class="grid-item" id="TFBassignedConv"></div>
+		<div class="grid-item" id="TFBunassignedConv"></div>
+		<div class="grid-item" id="TFBonlineAgents"></div>
+		<div class="grid-item" id="TFBawayAgents"></div>
+		<div class="grid-item" id="TFBsoonAgents"></div>
+		<div class="grid-item" id="TFBslots"></div>
+	</div></br>
+					      
+					      
+					      
+					      
+					      
+					      
 
 					      $('#loadingStats').css('display', 'none');
 					      $('#loadedStats').css('display', 'inline');
