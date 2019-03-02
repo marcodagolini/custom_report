@@ -1769,7 +1769,7 @@ function retrieveAgentsLogged(){
 
 	 function loadMyAggregate(start, end, offset, callback) {
 		 
-		 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "aggregateBy":["latestSkillIds","latestConversationQueueState"], "status": ["OPEN"], "skillIds":["' + mySkillsToLoad[offset] + '"]}';
+		 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "aggregateBy":["latestSkillIds","latestConversationQueueState"], "status": ["OPEN"], "latestSkillIds":["' + mySkillsToLoad[offset] + '"]}';
 	 
 	 
 	 	$.ajax({
