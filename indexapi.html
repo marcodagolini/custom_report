@@ -596,6 +596,10 @@ span.psw {
   var agentAssigned = [];
   var myFileToXLS = "";
 	
+  var mySkillsToLoad = ["1089726032","1096374632","1102673132","1102673332","987637232","1096374432","1105369932","1105551632","1093097632","1096374732","1105849832","1105849932","1097496532","1012134132","1111294132","1111905932","1117781232","1117781332","1151792232"];
+  var mySkillsToLoadLength = mySkillsToLoad.length;
+	  
+	
   function findBulk(Seconds){
 	 if (Seconds <= 30){
 		return 1; 
@@ -1753,17 +1757,18 @@ function retrieveAgentsLogged(){
 	
 	
   function loadAggregate(){
-	  
-	var mySkillsToLoad = ["1089726032","1096374632","1102673132","1102673332","987637232","1096374432","1105369932","1105551632","1093097632","1096374732","1105849832","1105849932","1097496532","1012134132","1111294132","1111905932","1117781232","1117781332","1151792232"];
-	  
+	 
 	var end = Date.now();
 	var start = end - (1000*60*60*24*30);  // loading Convs started till 30 days ago
+	var offset = 0;
 	  
-	var body = '{"start":{"from":' + start + ',"to":' + end + '}, "aggregateBy":["latestSkillIds"], "status": ["OPEN"], "skillIds":["1089726032"]}';
-	 
+	
 	 
 
-	 function loadClosedConvs(start, end, offset, callback) {
+	 function loadMyAggregate(start, end, offset, callback) {
+		 
+		 var body = '{"start":{"from":' + start + ',"to":' + end + '}, "aggregateBy":["latestSkillIds","latestConversationQueueState"], "status": ["OPEN"], "skillIds":["' + mySkillsToLoad[offset] + '"]}';
+	 
 	 
 	 	$.ajax({
                               url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/aggregations",
@@ -1774,19 +1779,20 @@ function retrieveAgentsLogged(){
                               contentType: "application/json",
                               data: body,
                               success: function success(data) {
-				      if((data.conversationHistoryRecords.length) == 100){
-					      offset = offset + 100;
-					      answer = answer.concat(data.conversationHistoryRecords);
+				      offset = offset + 1;
+				      if(mySkillsToLoadLength > offset){
+					      if(data._metadata.count > 0){
+						      
+					      }
+
 					      document.getElementById("loaderMSG").innerHTML = "...downloading sessions:" + Math.round(100*(offset/data._metadata.count)) + "% completed...";
 					      document.getElementById("loaderMSG").style = "color : green";
-					      console.log ("adding conversations...");
 					      loadClosedConvs(start, end, offset, callback);
 				      }
 				      else{
-					      console.log(answer.length);
-					      answer = answer.concat(data.conversationHistoryRecords);
-					      console.log(answer.length);
-					      loadStats(answer);
+					      $('#loadingStats').css('display', 'none');
+					      $('#loadedStats').css('display', 'inline');
+	  
 				      }
 				      
      
@@ -1798,6 +1804,12 @@ function retrieveAgentsLogged(){
                               beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
 		});
 	 }
+	  
+	 setTimeout(function(){
+	 	loadMyAggregate(start, end, offset, function(err, resp) {
+		 	// Your code here...
+	 	});
+	 }, 3000);
 
 
 	 
