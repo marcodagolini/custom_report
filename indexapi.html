@@ -1785,44 +1785,42 @@ function retrieveAgentsLogged(){
 				      
 				      if(data._metadata.count > 0){
 					      
+					      var mycount = 0;
+					      
 					      actualValue = data.aggregations[0].count;
 					      actualID = myActualSkill + "openConv";
 					      document.getElementById(actualID).innerHTML = actualValue;
 					      if(data.aggregations[0].aggregatedBy === "latestConversationQueueState"){
-						      if(data.aggregations[0].buckets[0].key === "IN_QUEUE"){
-							      actualValue = data.aggregations[0].buckets[0].count;
-							      actualID = myActualSkill + "unassignedConv";
-							      document.getElementById(actualID).innerHTML = actualValue;
-							      actualValue = data.aggregations[0].buckets[1].count;
+						      mycount = 1;
+					      }
+					      if(data.aggregations[mycount].buckets[0].key === "IN_QUEUE"){
+						      actualValue = data.aggregations[mycount].buckets[0].count;
+						      actualID = myActualSkill + "unassignedConv";
+						      document.getElementById(actualID).innerHTML = actualValue;
+						      if(data.aggregations[mycount].buckets.length > 1){
+							      actualValue = data.aggregations[mycount].buckets[1].count;
 							      actualID = myActualSkill + "assignedConv";
 							      document.getElementById(actualID).innerHTML = actualValue;
-						      }
-						      else{
-							      actualValue = data.aggregations[0].buckets[1].count;
-							      actualID = myActualSkill + "unassignedConv";
-							      document.getElementById(actualID).innerHTML = actualValue;
-							      actualValue = data.aggregations[0].buckets[0].count;
+						      } else{
 							      actualID = myActualSkill + "assignedConv";
-							      document.getElementById(actualID).innerHTML = actualValue;						      
+							      document.getElementById(actualID).innerHTML = "0";
 						      }
 					      } else{
-						      if(data.aggregations[1].buckets[0].key === "IN_QUEUE"){
-							      actualValue = data.aggregations[1].buckets[0].count;
+						      actualValue = data.aggregations[mycount].buckets[0].count;
+						      actualID = myActualSkill + "assignedConv";
+						      document.getElementById(actualID).innerHTML = actualValue;
+						      if(data.aggregations[mycount].buckets.length > 1){
+							      actualValue = data.aggregations[mycount].buckets[1].count;
 							      actualID = myActualSkill + "unassignedConv";
 							      document.getElementById(actualID).innerHTML = actualValue;
-							      actualValue = data.aggregations[1].buckets[1].count;
-							      actualID = myActualSkill + "assignedConv";
-							      document.getElementById(actualID).innerHTML = actualValue;
-						      }
-						      else{
-							      actualValue = data.aggregations[1].buckets[1].count;
+						      } else{
 							      actualID = myActualSkill + "unassignedConv";
-							      document.getElementById(actualID).innerHTML = actualValue;
-							      actualValue = data.aggregations[1].buckets[0].count;
-							      actualID = myActualSkill + "assignedConv";
-							      document.getElementById(actualID).innerHTML = actualValue;						      
+							      document.getElementById(actualID).innerHTML = "0";
 						      }
 					      }
+
+
+					      
 					      
 				      } else{
 					      actualID = myActualSkill + "openConv";
