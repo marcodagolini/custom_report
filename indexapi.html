@@ -1590,39 +1590,6 @@ function retrieveAgentsLogged(){
 				retrieveAgentsLogged();
 				$('#loadedStats').css('display', 'none');
 				$('#loadingStats').css('display', 'inline');
-				
-				/***
-			
-                           	$.ajax({
-                              		url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=0&limit=50",
-                              		method: "POST",
-                              		jsonp: "cb",
-                              		jsonpCallback: "domainCallback",
-                              		cache: true,
-                              		contentType: "application/json",
-                              		data: '{\"start":{\"from\":' + (new Date().getTime()-5000) + ',\"to\":'+ new Date().getTime() + '}}',
-                              		success: function success(data) {
-						$('#myloader').css('display', 'none');
-          					$('#myreports').css('display', 'inline');
-						retrieveAgentsLogged();  // loads also the conversations
-						setInterval(function(){
-							loadBar();
-						}, 30000);
-						loadBar();
-						loadSkills();
-						loadTeams();
-						$('#loadedStats').css('display', 'none');
-						$('#loadingStats').css('display', 'inline');	
-                              		},
-                              		error: function error(e, text) {
-						localStorage.setItem('account_number', '');
-				    		location.reload(); 
-                              		},
-                              		beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
-                          	});
-				
-				***/
-			
                         }
                     },
                     error: function error(e, text) {
@@ -1656,7 +1623,7 @@ checklogin(accnumb, bearer);
 		  }, 2000);
 	  }
 	  if($(evt.target).is('#refresh')) {
-		retrieveAgentsLogged();  // loads also the conversations
+		retrieveAgentsLogged();
 		  
 		document.getElementById("loaderMSG").innerHTML = "Refreshing data!";
 		document.getElementById("loaderMSG").style = "color : green";
@@ -1709,10 +1676,7 @@ checklogin(accnumb, bearer);
 								  setTimeout(function(){
 									  $('#myloader').css('display', 'none');
 									  $('#myreports').css('display', 'inline');
-									  retrieveAgentsLogged();  // loads also the conversations
-									  // loadBar();
-									  // loadSkills();
-									  // loadTeams();
+									  retrieveAgentsLogged();
 									  
 									  $('#loadedStats').css('display', 'none');
 									  $('#loadingStats').css('display', 'inline');  
