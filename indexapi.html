@@ -760,7 +760,7 @@ function retrieveAgentsLogged(){
 				  loadAggregate();
 				  $('#myloader').css('display', 'none');
 				  $('#myreports').css('display', 'inline');
-				  console.log(JSON.stringify(data));
+				  // console.log(JSON.stringify(data));
 				  if(data.hasOwnProperty('_metadata')){
 					  if(data._metadata.hasOwnProperty('count')){
 						  if(data._metadata.count > 0){
