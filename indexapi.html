@@ -1429,53 +1429,7 @@ function retrieveAgentsLogged(){
 	
 	
 	
-  function loadBar(){
-	  
-	  setTimeout(function(){
-		  
-	      	$.ajax({
-                    url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/facadeMsg/baseURI.lpCsds?version=1.0",
-                    jsonp: "cb",
-                    jsonpCallback: "domainCallback",
-                    cache: true,
-                    dataType: "jsonp",
-                    success: function success(data) {
-			// loadLimboBar();
-                        if('lpCallError' in data.ResultSet){
-				localStorage.setItem('account_number', '');
-			   	location.reload(); 
-                        }
-                        else{
-                           	facadeUri = data.ResultSet.lpData[0].lpServer;
-                           	$.ajax({
-                              		url: "https://" + facadeUri + "/api/messaging/rest/reporting/brands/" + accnumb + "/msgstatistics?v=1",
-                              		method: "GET",
-                              		jsonp: "cb",
-                              		jsonpCallback: "domainCallback",
-                              		cache: true,
-                              		contentType: "application/json",
-                              		success: function success(data) {
-						document.getElementById("open").innerHTML = data.active;
-						document.getElementById("pending").innerHTML = data.pending;
-						document.getElementById("overdue").innerHTML = data.overdue;
-						document.getElementById("soonOverdue").innerHTML = data.soonToOverdue;
-                              		},
-                              		error: function error(e, text) {
-						localStorage.setItem('account_number', '');
-				    		location.reload(); 
-                              		},
-                              		beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
-                          	});   
-                        }
-                    },
-                    error: function error(e, text) {
-			    console.log(text);
-			    localStorage.setItem('account_number', '');
-			    location.reload(); 
-                    }
-              	});
-	}, 1000);
-  }
+  
 	
   function loadSkills(){
 	  
