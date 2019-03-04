@@ -755,6 +755,8 @@ function retrieveAgentsLogged(){
 			  success: function success(data) {
 				  // console.log("********");
 				  loadAggregate();
+				  $('#myloader').css('display', 'none');
+				  $('#myreports').css('display', 'inline');
 				  console.log(JSON.stringify(data));
 				  if(data.hasOwnProperty('_metadata')){
 					  if(data._metadata.hasOwnProperty('count')){
@@ -1840,7 +1842,11 @@ function retrieveAgentsLogged(){
                            	uri = data.ResultSet.lpData[0].lpServer;
 				console.log(data);
                            	console.log(uri);
+				retrieveAgentsLogged();
+				$('#loadedStats').css('display', 'none');
+				$('#loadingStats').css('display', 'inline');
 				
+				/***
 			
                            	$.ajax({
                               		url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=0&limit=50",
@@ -1869,6 +1875,8 @@ function retrieveAgentsLogged(){
                               		},
                               		beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
                           	});
+				
+				***/
 			
                         }
                     },
