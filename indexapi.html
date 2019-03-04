@@ -1841,10 +1841,8 @@ function retrieveAgentsLogged(){
                            	uri = data.ResultSet.lpData[0].lpServer;
 				console.log(data);
                            	console.log(uri);
-				retrieveAgentsLogged();
-				$('#loadedStats').css('display', 'none');
-				$('#loadingStats').css('display', 'inline');
-				/***
+				
+			
                            	$.ajax({
                               		url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=0&limit=50",
                               		method: "POST",
@@ -1872,7 +1870,7 @@ function retrieveAgentsLogged(){
                               		},
                               		beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); } 
                           	});
-				***/
+			
                         }
                     },
                     error: function error(e, text) {
