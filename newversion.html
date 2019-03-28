@@ -2854,7 +2854,6 @@ checklogin(accnumb, bearer);
 											      
 										      
 										      }
-
 									      }
 								      }
 							      }
@@ -2935,6 +2934,9 @@ checklogin(accnumb, bearer);
 							     
 							      
 							      if(valueDoingRouting.indexOf("ight") > -1){
+								      night = "Yes";
+							      }
+							      if(valueDoingRouting.indexOf("notturna") > -1){
 								      night = "Yes";
 							      }
 							      if(answer[i].hasOwnProperty('transfers')){
