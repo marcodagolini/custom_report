@@ -2835,6 +2835,7 @@ checklogin(accnumb, bearer);
 						      var customerName = "";
 						      var channel = "FaceBook";
 						      var valueDoingRouting = "";
+						      var valueDoingRouting2 = "";
 						      var myTimeStampRouting = 0;
 						      if(answer[i].hasOwnProperty('sdes')){
 							      var myLengthSdes = answer[i].sdes.events.length;
@@ -2851,6 +2852,36 @@ checklogin(accnumb, bearer);
 											      } else{
 												      channel = "FaceBook";
 											      }
+											      
+											      /*********
+											      
+											      if(answer[i].hasOwnProperty('transfers')){
+												      if(answer[i].transfers.length == 0){
+													      valueDoingRouting2 = answer[i].info.latestSkillName;
+												      } else{
+													      valueDoingRouting2 = answer[i].transfers.sourceSkillName;
+												      }
+											      } else{
+												      valueDoingRouting2 = answer[i].info.latestSkillName;
+											      }
+											      if((valueDoingRouting2.indexOf("uman") > -1) || (valueDoingRouting2.indexOf("skill_notturna_mobile") > -1) || (valueDoingRouting2.indexOf("app_fixed") > -1)){
+												      channel = "Web";
+											      }
+											      if((valueDoingRouting2.indexOf("uman") > -1) || (valueDoingRouting2.indexOf("skill_notturna_mobile") > -1) || (valueDoingRouting2.indexOf("app_fixed") > -1)){
+												      channel = "App";
+											      }
+											      if((valueDoingRouting2.indexOf("uman") > -1) || (valueDoingRouting2.indexOf("skill_notturna_mobile") > -1) || (valueDoingRouting2.indexOf("app_fixed") > -1)){
+												      channel = "WhatsApp";
+											      }
+											      if((valueDoingRouting2.indexOf("uman") > -1) || (valueDoingRouting2.indexOf("skill_notturna_mobile") > -1) || (valueDoingRouting2.indexOf("app_fixed") > -1)){
+												      channel = "FaceBook";
+											      }
+											      
+											      
+											      
+											      ********/
+								      
+											      
 											      
 										      
 										      }
