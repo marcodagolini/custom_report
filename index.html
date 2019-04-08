@@ -2760,11 +2760,7 @@ checklogin(accnumb, bearer);
 		var totalLength = answer.length;
 		for (var i = 0; i < totalLength; i++){
 			setTimeout(function(i) {
-				
-				if(answer[i].info.conversationId === "14208f1d-4eb8-4901-a267-8762d757e245"){
-					console.log("conversation!");
-				}
-		
+
 		
 							var messages = "";
 							var thismessage = "";
@@ -3886,6 +3882,17 @@ checklogin(accnumb, bearer);
 									campo2,
 									campo3
 								       ];
+				
+				
+								
+				if(answer[i].info.conversationId === "14208f1d-4eb8-4901-a267-8762d757e245"){
+					console.log("conversation!");
+					console.log(pieceToAdd);
+				}
+		
+				
+				
+				
 									
 								var pieceToAddLength = pieceToAdd.length;
 								for(var pta = 0; pta < pieceToAddLength; pta++){
