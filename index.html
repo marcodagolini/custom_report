@@ -3525,12 +3525,25 @@ checklogin(accnumb, bearer);
 						      
 						      
 						      
-						      
-						      
-						      
-						      
-						      
-						      
+						        controlOB = 0;
+						      	if(answer[i].hasOwnProperty('transfers')){
+								if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
+									var arraylength = answer[i].transfers.length;
+									for (var p = 0; p < arraylength; p++){
+										if(answer[i].transfers[p].targetSkillName.indexOf("utbound") > -1){
+											timestampOutbound = new Date(answer[i].transfers[p].timeL);
+											p = arraylength;
+											controlOB = 1;
+										}
+									}
+									if(controlOB === 0){
+										timestampOutbound = "-";
+									}
+								}
+							}
+									      
+										      
+
 						      
 						      howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
