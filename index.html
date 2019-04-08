@@ -3531,6 +3531,34 @@ checklogin(accnumb, bearer);
 						      
 						      howManyMessages = answer[i].messageRecords.length;
 						      if(howManyMessages){
+							      var conversationBorn = 0;
+							      var conversationAnswered = 0;
+							      var tempoRisposta = 0;
+							      if (answer[i].messageRecords[0].sentBy === "Consumer"){
+								      conversationBorn = answer[i].messageRecords[0].timeL;
+								      conversationAnswered = 0;
+								      for (var nbv = 1; nbv < howManyMessages; nbv++){
+									      if(answer[i].messageRecords[nbv].sentBy === "Agent" && answer[i].messageRecords[nbv].participantId !== FacebookBotID){
+										      tempoRisposta = (answer[i].messageRecords[nbv].timeL - conversationBorn)/1000;
+										      conversationAnswered = 1;
+										      nbv = howManyMessages;
+									      }
+								      }
+								      
+								      if (conversationAnswered){
+									      firstTimeAnswer = Math.floor(parseInt(tempoRisposta));
+									      firstTimeAnswerFacebook = firstTimeAnswer.toString();
+								      }
+								      else{
+									      firstTimeAnswerFacebook = "NOT_ANSWERED"
+								      }
+							      }
+							      
+							      
+							      
+							      
+							      
+							      
 							      if (answer[i].messageRecords[0].sentBy === "Consumer"){
 								      whatTime = answer[i].messageRecords[0].timeL;
 								      if(answer[i].hasOwnProperty('agentParticipants') && answer[i].agentParticipants.length){
