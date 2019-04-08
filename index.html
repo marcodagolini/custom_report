@@ -3535,7 +3535,12 @@ checklogin(accnumb, bearer);
 						      if(howManyMessages){
 							      timeSpentInFacebook_bot = "-";
 							      startingTime = answer[i].info.startTimeL;
-							      timestampFacebook_priv = new Date(startingTime);		      
+							      timestampFacebook_priv = new Date(startingTime);
+							      if(timestampFacebook_priv.getHours() > 21 || timestampFacebook_priv.getHours() < 8){
+								     night = "Yes"; 
+							      } else{
+								      night = "No";
+							      }
 							      var conversationBorn = 0;
 							      var conversationAnswered = 0;
 							      var tempoRisposta = 0;
