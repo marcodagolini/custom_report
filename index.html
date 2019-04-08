@@ -3544,6 +3544,9 @@ checklogin(accnumb, bearer);
 								      }
 								      if (isAnswered){
 									      timeToAccept = parseInt(TimeAnswer);
+									      if(timeToAccept < 0){
+										     timeToAccept = 0; 
+									      }
 									      timeToAcceptFacebook = timeToAccept;
 									      timeToAcceptFacebook = timeToAcceptFacebook.toString();
 								      }
