@@ -3520,10 +3520,8 @@ checklogin(accnumb, bearer);
 						      
 								      
 						      
-						      
-						      
-						      
-						        controlOB = 0;
+
+							timestampOutbound = "-";
 						      	if(answer[i].hasOwnProperty('transfers')){
 								if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
 									var arraylength = answer[i].transfers.length;
@@ -3531,11 +3529,7 @@ checklogin(accnumb, bearer);
 										if(answer[i].transfers[p].targetSkillName.indexOf("utbound") > -1){
 											timestampOutbound = new Date(answer[i].transfers[p].timeL);
 											p = arraylength;
-											controlOB = 1;
 										}
-									}
-									if(controlOB === 0){
-										timestampOutbound = "-";
 									}
 								}
 							}
