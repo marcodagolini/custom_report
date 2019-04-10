@@ -2837,6 +2837,22 @@ checklogin(accnumb, bearer);
 						      var channel = "FaceBook";
 						      var valueDoingRouting = "";
 						      var myTimeStampRouting = 0;
+						      if(answer[i].hasOwnProperty('transfers')){
+				  				var rew = answer[i].transfers.length;
+				  				if(rew === 0){
+									if(answer[i].info.latestSkillName.indexOf("uman") > -1){
+										channel = "Web";
+									}
+								}
+						      } else{
+							      if(answer[i].info.latestSkillName.indexOf("uman") > -1){
+								      channel = "Web";
+							      }
+						      }
+				
+				
+				
+				
 						      if(answer[i].hasOwnProperty('sdes')){
 							      var myLengthSdes = answer[i].sdes.events.length;
 							      for (var xs = 0; xs < myLengthSdes; xs++){
