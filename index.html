@@ -2844,6 +2844,10 @@ checklogin(accnumb, bearer);
 									if(answer[i].info.latestSkillName.indexOf("uman") > -1){
 										channel = "Web";
 									}
+								} else{
+									if(answer[i].info.transfers[0].sourceSkillName.indexOf("uman") > -1){
+										channel = "Web";
+									}
 								}
 						      } else{
 							      if(answer[i].info.latestSkillName.indexOf("uman") > -1){
