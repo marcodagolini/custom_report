@@ -2839,12 +2839,10 @@ checklogin(accnumb, bearer);
 						      if(answer[i].hasOwnProperty('transfers')){
 				  				var rew = answer[i].transfers.length;
 				  				if(rew === 0){
-									// campo2 = answer[i].info.latestSkillName;
 									if(answer[i].info.latestSkillName.indexOf("uman") > -1){
 										channel = "Web";
 									}
 								} else{
-									// campo2 = answer[i].transfers[0].sourceSkillName;
 									if(answer[i].transfers[0].sourceSkillName.indexOf("uman") > -1){
 										channel = "Web";
 									}
