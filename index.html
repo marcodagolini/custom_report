@@ -2835,6 +2835,7 @@ checklogin(accnumb, bearer);
 						      var valueDoingRouting = "";
 						      var myTimeStampRouting = 0;
 						      var campo2 = "";
+						      var night = "No";
 						      if(answer[i].hasOwnProperty('transfers')){
 				  				var rew = answer[i].transfers.length;
 				  				if(rew === 0){
@@ -2842,10 +2843,16 @@ checklogin(accnumb, bearer);
 									if(answer[i].info.latestSkillName.indexOf("uman") > -1){
 										channel = "Web";
 									}
+									if(answer[i].info.latestSkillName.indexOf("ight") > -1){
+										night = "Yes";
+									}
 								} else{
 									campo2 = answer[i].transfers[0].sourceSkillName;
 									if(answer[i].transfers[0].sourceSkillName.indexOf("uman") > -1){
 										channel = "Web";
+									}
+									if(answer[i].transfers[0].sourceSkillName.indexOf("ight") > -1){
+										night = "Yes";
 									}
 								}
 						      } else{
@@ -2912,57 +2919,13 @@ checklogin(accnumb, bearer);
 							      var firstTimeAnswerFacebook =  "-";
 							      var participantID = 0;
 							      var controlOB = 0;
-							      var night = "No";
 							      var campo1 = "";
 
 							      
 							      
-							       if(answer[i].hasOwnProperty('transfers')){
-								       if(answer[i].transfers.length > 0){
-									       if(answer[i].transfers[0].targetSkillName.indexOf("bot") > -1){
-										       if(answer[i].transfers.length > 2){
-											       if(answer[i].transfers[2].targetSkillName.indexOf("ight") > -1){
-												       night = "Yes";
-											       }
-										       } else{
-											       night = "Undefined";
-										       }
-									       } else{
-										       if(answer[i].transfers[0].targetSkillName.indexOf("ight") > -1){
-											       night = "Yes";
-										       }
-									       }
-								       } else{
-									       if(answer[i].info.latestSkillName.indexOf("ight") > -1){
-										       night = "Yes";
-									       }
-								       }
-							       } else{
-								       if(answer[i].info.latestSkillName.indexOf("ight") > -1){
-									       night = "Yes";
-								       }
-							       }
+							       
 											       
 							     
-							      
-							      if(valueDoingRouting.indexOf("ight") > -1){
-								      night = "Yes";
-							      }
-							      if(valueDoingRouting.indexOf("notturna") > -1){
-								      night = "Yes";
-							      }
-							      if(answer[i].hasOwnProperty('transfers')){
-								      if(answer[i].transfers.length == 0){
-									      if(answer[i].info.latestSkillName.indexOf("ight") > -1){
-										      night = "Yes";
-									      }
-								      }
-								      if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 2) {
-									      if(answer[i].transfers[2].targetSkillName.indexOf("ight") > -1){
-										      night = "Yes";
-									      }
-								      }
-							      }
 							      if((channel === "FaceBook") || (channel === "Web")){
 								      startingTime = answer[i].info.startTimeL;
 								      if(answer[i].hasOwnProperty('transfers')){
