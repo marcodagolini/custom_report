@@ -1796,14 +1796,16 @@ function retrieveAgentsLogged(){
 	  console.log("*********************");
 	  for (var p = 0; p < length; p++){
 		  
-		  groupID = agentJSON[p].id;
+		  setTimeout(function(p) {
 		  
-		  if (groupID < 0){
-			  var newElementAlbero = '{"son":"Main Group","father":"Main Group"}';
-			  newElementAlbero = JSON.parse(newElementAlbero);
-			  alberoArray.push(newElementAlbero);
-		  }
-		  else{
+		  	groupID = agentJSON[p].id;
+		  
+		  	if (groupID < 0){
+			  	var newElementAlbero = '{"son":"Main Group","father":"Main Group"}';
+			  	newElementAlbero = JSON.parse(newElementAlbero);
+			  	alberoArray.push(newElementAlbero);
+		  	}
+		  	else{
 		  
 		  	$.ajax({
 			  	url: "https://" + accountReadWrite + "/api/account/" + accnumb + "/configuration/le-users/agentGroups/" + groupID,
@@ -1830,7 +1832,10 @@ function retrieveAgentsLogged(){
 			  	},
 			  	beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + bearer); }
 		  	});
-		  }
+		  	}
+
+		  }, 10, p);
+			  
 	  }
 	  $("#downloadTranscripts").prop( "disabled", false );
 	  setTimeout(function(){ console.log(alberoArray); }, 5000);
