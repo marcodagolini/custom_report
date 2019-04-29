@@ -1545,7 +1545,7 @@ function retrieveAgentsLogged(){
 	 var offset = 0;
 	  
 	 $.ajax({
-                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
+                              url: "https://lo.msghist.liveperson.net/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
                               method: "POST",
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
@@ -2288,7 +2288,7 @@ function retrieveAgentsLogged(){
 				console.log(data);
                            	console.log(uri);
                            	$.ajax({
-                              		url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=0&limit=50",
+                              		url: "https://lo.msghist.liveperson.net/messaging_history/api/account/" + accnumb + "/conversations/search?offset=0&limit=50",
                               		method: "POST",
                               		jsonp: "cb",
                               		jsonpCallback: "domainCallback",
@@ -2638,7 +2638,7 @@ checklogin(accnumb, bearer);
 	 function loadClosedConvs(body, offset, callback) {
 	 
 	 	$.ajax({
-                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100&sort=start:desc",
+                              url: "https://lo.msghist.liveperson.net/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100&sort=start:desc",
                               method: "POST",
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
@@ -2675,7 +2675,7 @@ checklogin(accnumb, bearer);
 		 
 	 
 	 	$.ajax({
-                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
+                              url: "https://lo.msghist.liveperson.net/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
                               method: "POST",
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
@@ -4029,7 +4029,7 @@ checklogin(accnumb, bearer);
 	 function tryUntilSuccess(offset, callback) {
 	 
 	 	$.ajax({
-                              url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
+                              url: "https://lo.msghist.liveperson.net/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100",
                               method: "POST",
                               jsonp: "cb",
                               jsonpCallback: "domainCallback",
